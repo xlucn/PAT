@@ -16,53 +16,52 @@
  * 如果两棵树是同构的，输出“Yes”，否则输出“No”。
  * 
  * 输入样例1（对应图1）：
- * 8
- * A 1 2
- * B 3 4
- * C 5 -
- * D - -
- * E 6 -
- * G 7 -
- * F - -
- * H - -
- * 8
- * G - 4
- * B 7 6
- * F - -
- * A 5 1
- * H - -
- * C 0 -
- * D - -
- * E 2 -
+8
+A 1 2
+B 3 4
+C 5 -
+D - -
+E 6 -
+G 7 -
+F - -
+H - -
+8
+G - 4
+B 7 6
+F - -
+A 5 1
+H - -
+C 0 -
+D - -
+E 2 -
  * 
  * 输出样例1:
  * Yes
  * 
  * 输入样例2（对应图2）：
- * 8
- * B 5 7
- * F - -
- * A 0 
- * 3
- * C 6 -
- * H - -
- * D - -
- * G 4 -
- * E 1 -
- * 8
- * D 6 -
- * B 5 -
- * E - -
- * H - -
- * C 0 2
- * G - 3
- * F - -
- * A 1 4
+8
+B 5 7
+F - -
+A 0 3
+C 6 -
+H - -
+D - -
+G 4 -
+E 1 -
+8
+D 6 -
+B 5 -
+E - -
+H - -
+C 0 2
+G - 3
+F - -
+A 1 4
  * 
  * 输出样例2:
  * No
  *
- **/
+ */
 
 /**
  * tip:所有的父子关系保持不变
@@ -90,26 +89,55 @@
  */
  
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
+
 int main()
 {
-    int a[1000];
-    char c;
-    int i=0;
-    int n=0;
-    while((c=getchar())!='\n')
+    char c[2][26], l[2][26], r[2][26];
+    int i[2][26];
+    
+    for(int tree = 0; tree < 2; tree++)
     {
-        if(isdigit(c))
+        int num;
+        scanf("%d", &num);
+        for(int n = 0; n < 26; n++) i[tree][n] = -1;
+        for(int n = 0; n < num; n++)
         {
-            ungetc(c,stdin);//将c送回输入流
-            scanf("%d",&a[n]); n++;
+            scanf("\n%c %c %c", &c[tree][n], &l[tree][n], &r[tree][n]);
+            if(isalpha(c[tree][n]))
+                i[tree][c[tree][n] - 'A'] = n;
         }
     }
-    for(i=0;i<n;i++)
+    
+    /* check parent-child relations */
+    int passed = 1;
+    for(char ch = 'A'; ch < 'Z'; ch++)
     {
-        printf("%d ",a[i]);
+        int pos1 = i[0][ch - 'A'];
+        int pos2 = i[1][ch - 'A'];
+        
+        /* in case there are different nodes in two trees */
+        if(((pos1==-1)&(pos2!=-1))||((pos1!=-1)&(pos2==-1)))
+        {
+            passed = 0;
+            break;
+        }
+        
+        /* ch is in both trees */
+        if((pos1!=-1)&&(pos2!=-1))
+        {
+            char l1 = l[0][pos1] == '-' ? l[0][pos1] : c[0][l[0][pos1] - '0'];
+            char r1 = r[0][pos1] == '-' ? r[0][pos1] : c[0][r[0][pos1] - '0'];
+            char l2 = l[1][pos2] == '-' ? l[1][pos2] : c[1][l[1][pos2] - '0'];
+            char r2 = r[1][pos2] == '-' ? r[1][pos2] : c[1][r[1][pos2] - '0'];
+            // printf("%c %c %c %c %c\n", ch, l1, r1, l2, r2);
+            if(!(((l1==l2)&&(r1==r2))||((l1==r2)&&(l2==r1))))
+            {
+                passed = 0;
+                break;
+            }
+        }
     }
+    printf("%s", passed == 1 ? "Yes" : "No");
     return 0;
 }
