@@ -19,12 +19,12 @@
  * pop sequence of the stack, or "NO" if not.
  * 
  * Sample Input:
- * 5 7 5
- * 1 2 3 4 5 6 7
- * 3 2 1 7 5 6 4
- * 7 6 5 4 3 2 1
- * 5 6 4 3 7 2 1
- * 1 7 6 5 4 3 2
+5 7 5
+1 2 3 4 5 6 7
+3 2 1 7 5 6 4
+7 6 5 4 3 2 1
+5 6 4 3 7 2 1
+1 7 6 5 4 3 2
  * 
  * Sample Output:
  * YES
@@ -42,9 +42,13 @@
  * 卡特殊错误算法（通过比较大小判断）
  **/
 
+/**
+ * tip: （FIXME: 不能通过最后一个测试点）
+ * 将数组“贪婪地”连续分割为降序排列（e.g.3 2 1 | 7 5 | 6 4）：
+ * 1.所有的降序子数组长度不能超过堆栈长度M
+ * 2.非隔一递减的子序列中跳过的数字（如上述7 5中跳过了6，6 4中跳过了5）必须在之前出现过
+ */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int main()
 {
@@ -52,19 +56,14 @@ int main()
     int N, M, K;
     scanf("%d %d %d\n", &M, &N, &K);
     
-    char sarray[20000];
-    int *num = (int*)malloc(N * sizeof(int));
+    int num[1000];
     /* loop K times to examine the samples */
     for(int sample = 0; sample < K; sample++)
-    {
-        /* examine one sample */
-        
+    {   
         /* read the line and parse the numbers */
-        fgets(sarray, 20000, stdin);
-        num[0] = atoi(strtok(sarray, " "));
-        for(int i = 1; i < N; i++)
+        for(int i = 0 ; i < N; i++)
         {
-            num[i] = atoi(strtok(NULL, " "));
+            scanf("%d", &num[i]);
         }
         
         /* find a decreasing sublist, record its length */
@@ -82,13 +81,14 @@ int main()
                     passed = 0;
                     break;
                 }
-                /* if there is a skipping number, it should appeared before */
+                /* if there is a skipped number, it should appeared before */
                 if (num[i - 1] - num[i] > 1)
                 {
                     int appeared = 0; /* 0 for not appeared, 1 for appeared */
                     /* for each skipped numbers */
                     for(int j = num[i] + 1; j < num[i - 1]; j++) 
                     {
+                        /* FIXME: may not be necessary sufficient */
                         /* find its appearance */
                         for(int k = 0; k < i; k++)
                         {
@@ -114,7 +114,6 @@ int main()
         /* print */
         printf("%s\n", passed == 1 ? "YES" : "NO");
     }
-    free(num);
     
     return 0;
 }
