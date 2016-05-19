@@ -64,7 +64,31 @@
  *
  **/
 
+/**
+ * tip:所有的父子关系保持不变
+ */
 
+/**
+ * pseudo code:
+ *  read
+ *      prepare 4 arrays: char c[26], int l[26], int r[26], int i[26] = {-1...}
+ *      read total num
+ *      for n = 0 -> num-1
+ *          read a line: "c[n] l[n] r[n]"
+ *          set corresponding i[]
+ *  check parent-child relations
+ *      from ch = 'A' -> 'Z'
+ *          find pos of ch in Tree1 & Tree2
+ *              pos1
+ *              pos2
+ *          get two childs of ch
+ *              l[pos1] r[pos1]
+ *              l[pos2] r[pos2]
+ *          if not l1=l2&r1=r2 or l1=r2&l2=r1
+ *              NO
+ *      all ch passed: YES
+ */
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
