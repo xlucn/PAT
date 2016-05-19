@@ -33,8 +33,7 @@
  * 100000个随机数
  **/
 
-#include <stdio.h>      /* printf ungetc */
-#include <ctype.h>      /* isdigit */
+#include <stdio.h>
 
 int main()
 {
@@ -46,22 +45,15 @@ int main()
     int sum = 0;
     int maxsum = 0;
     
-    char c;
-    for(int i = 0; (c=getchar())!='\n' && i < num; )
+    for(int i = 0; i < num; i++)
     {
-        if(isdigit(c) || c == '-')
-        {
-            ungetc(c,stdin);//将c送回输入流
-            scanf("%d",&current);
-            
-            sum += current;
-            if (sum > maxsum)
-                maxsum = sum;
-            else if (sum < 0)
-                sum = 0;
-            
-            i++;
-        }
+        scanf("%d", &current);
+        
+        sum += current;
+        if (sum > maxsum)
+            maxsum = sum;
+        else if (sum < 0)
+            sum = 0;
     }
     printf("%d", maxsum);
 
