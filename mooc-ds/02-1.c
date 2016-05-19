@@ -11,8 +11,8 @@
  * 隔，但结尾不能有多余空格。零多项式应输出0 0。
  * 
  * 输入样例:
- * 4 3 4 -5 2  6 1  -2 0
- * 3 5 20  -7 4  3 1
+4 3 4 -5 2  6 1  -2 0
+3 5 20 -7 4  3 1
  * 
  * 输出样例:
  * 15 24 -25 22 30 21 -10 20 -21 8 35 6 -33 5 14 4 -15 3 18 2 -6 1
@@ -26,29 +26,27 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#define STRINGLEN 20000
 #define POLYLEN 1001
 
-void readpoly(char sarray[], int array[])
+void readpoly(int array[])
 {
-    int index;
+    int num;
     int base;
-    fgets(sarray, STRINGLEN, stdin);
-    index = atoi(strtok(sarray, " "));
-    for(int i = 0; i < index; i++)
+    int index;
+    scanf("%d", &num);
+    for(int i = 0; i < num; i++)
     {
-        base = atoi(strtok(NULL, " "));
-        array[atoi(strtok(NULL, " "))] = base;
+        scanf("%d", &base);
+        scanf("%d", &index);
+        array[index] = base;
     }
 }
 
-void printpoly(int array[], int index)
+void printpoly(int array[], int length)
 {
-    int count = 0;
-    for(int i = index - 1; i >= 0; i--)
+    int count = 0; /* record the number of non-zero numbers */
+    for(int i = length - 1; i >= 0; i--)
     {
         if(array[i] != 0)
         {
@@ -63,7 +61,7 @@ void printpoly(int array[], int index)
             count++;
         }
     }
-    if(count == 0)
+    if(count == 0) /* it is a zero polynominal */
     {
         printf("0 0");
     }
@@ -91,19 +89,18 @@ void multipoly(int a[], int b[], int c[])
 
 int main()
 {
-    char sarray[STRINGLEN];
     int a[POLYLEN] = {0};
     int b[POLYLEN] = {0};
     int add[POLYLEN] = {0};
-    int mul[POLYLEN * 2] = {0};
+    int mul[POLYLEN * 2 - 1] = {0};
     
-    readpoly(sarray, a);
-    readpoly(sarray, b);
+    readpoly(a);
+    readpoly(b);
     
     addpoly(a, b, add);
     multipoly(a, b, mul);
     
-    printpoly(mul, POLYLEN * 2);
+    printpoly(mul, POLYLEN * 2 - 1);
     printpoly(add, POLYLEN);
     
     return 0;
