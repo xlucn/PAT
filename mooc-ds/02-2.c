@@ -22,13 +22,13 @@
  * a line, and is printed in the same format as in the input.
  * 
  * Sample Input:
- * 00100 6 4
- * 00000 4 99999
- * 00100 1 12309
- * 68237 6 -1
- * 33218 3 00000
- * 99999 5 68237
- * 12309 2 33218
+00100 6 4
+00000 4 99999
+00100 1 12309
+68237 6 -1
+33218 3 00000
+99999 5 68237
+12309 2 33218
  * 
  * Sample Output:
  * 00000 4 33218
@@ -50,29 +50,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#define LINELEN 20
 #define TOT 100000
 
 int main()
 {
     int data[TOT];
     int next[TOT];
-    char line[LINELEN];
     
-    fgets(line, LINELEN, stdin);
-    int initadd = atoi(strtok(line, " "));
-    int N = atoi(strtok(NULL, " "));
-    int K = atoi(strtok(NULL, " "));
+    int initadd;
+    int N;
+    int K;
+    scanf("%d %d %d", &initadd, &N, &K);
     
-    int add;
+    int add, _next, _data;
     for(int i = 0; i < N; i++)
     {
-        fgets(line, LINELEN, stdin);
-        add = atoi(strtok(line, " "));
-        data[add] = atoi(strtok(NULL, " "));
-        next[add] = atoi(strtok(NULL, " "));
+        scanf("%d %d %d", &add, &_data, &_next);
+        data[add] = _data;
+        next[add] = _next;
     }
     
     int localadd = initadd;

@@ -38,32 +38,29 @@
 
 int main()
 {
-    /* TODO:change the read procession */
     /* Get the number of list items */
     int num;
     scanf("%d\n", &num);
     
-    int count = 0;
     int current;
     int sum = 0;
     int maxsum = 0;
     
     char c;
-    while((c=getchar())!='\n')
+    for(int i = 0; (c=getchar())!='\n' && i < num; )
     {
         if(isdigit(c) || c == '-')
         {
             ungetc(c,stdin);//将c送回输入流
             scanf("%d",&current);
-            count++;
-            if (count > num)
-                break;
-            sum += current;
             
+            sum += current;
             if (sum > maxsum)
                 maxsum = sum;
             else if (sum < 0)
                 sum = 0;
+            
+            i++;
         }
     }
     printf("%d", maxsum);

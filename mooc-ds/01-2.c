@@ -40,9 +40,8 @@
  * 最大N
  **/
 
-#include <stdio.h>      /* printf fgets puts */
-#include <stdlib.h>     /* atoi */
-#include <string.h>     /* strtok */
+#include <stdio.h>      /* printf */
+#include <ctype.h>
 
 int main()
 {
@@ -58,39 +57,38 @@ int main()
     int last;
     int sum = 0;
     int maxsum = 0;
-    char sarray[2000000];
     
-    fgets(sarray, 2000000, stdin);
-    
-    for (int i = 0; i < num; i++)
+    char c;
+    for (int i = 0; i < num && (c = getchar()) != '\n'; )
     {
         /* read */
-        if (i == 0)
+        if(isdigit(c) || c == '-')
         {
-            current = atoi(strtok(sarray, " "));
-            first = current; /* record the first number of current maximum subsequence */
-        }
-        else
-        {
-            current = atoi(strtok(NULL, " "));
-        }
-        if(flag == 1 && current >= 0)
-        {
-            first = current;
-            flag = 0;
-        }
+            ungetc(c,stdin);//将c送回输入流
+            scanf("%d",&current);
         
-        sum += current;
-        if (sum > maxsum)
-        {
-            maxsum = sum;
-            maxfirst = first;
-            last = current;
-        }        
-        else if (sum < 0)
-        {
-            sum = 0;
-            flag = 1;
+            if (i == 0)/* record the first number of current maximum subsequence */
+                first = current; 
+            
+            if(flag == 1 && current >= 0)
+            {
+                first = current;
+                flag = 0;
+            }
+            
+            sum += current;
+            if (sum > maxsum)
+            {
+                maxsum = sum;
+                maxfirst = first;
+                last = current;
+            }        
+            else if (sum < 0)
+            {
+                sum = 0;
+                flag = 1;
+            }
+            i++;
         }
     }
     if (first < 0)
