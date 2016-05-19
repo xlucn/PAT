@@ -74,61 +74,43 @@ int main()
     int localadd = initadd;
     int *kadd = (int*)malloc(K * sizeof(int));
     /* each K numbers */
-    int flag = 0;
+    int flag = 0; /* if reach the end */
     while(flag == 0)
     {
-        int j = 0;
-        /* keep the k numbers */
-        kadd[0] = localadd;
-        for(j = 1; j < K; j++)
-        {
-            kadd[j] = next[kadd[j - 1]];
-            if (kadd[1] == -1) /* N = 1 case */
-            {
-                flag = 1;
-                j = 0;
-                break;
-            }
+        int j;
+        
+        /* keep the next k numbers */
+        for(j = 0; j < K && flag == 0; j++)
+        {   
+            if(j == 0)
+                kadd[0] = localadd;
+            else
+                kadd[j] = next[kadd[j - 1]];
             
             if (next[kadd[j]] == -1) /* this is the last number */
-            {
                 flag = 1;
-                break;
-            }
         }
-        if (K == 1 && next[kadd[0]] == -1) /* this is the last number */
-        {
-            flag = 1;
-            j = 0;
-        }
+        
         /* print */
-        if (j < K - 1) /* last round, print from 0 to j - 1 */
+        if (j < K) /* last round and not enough K, print from 0 to j - 1 */
         {
-            for(int l = 0; l <= j; l++)
+            for(int l = 0; l < j; l++)
             {
                 if (localadd == initadd && l == 0)
-                {
                     printf("%05d %d ", kadd[l], data[kadd[l]]);
-                }
                 else
-                {
                     printf("%05d\n%05d %d ", kadd[l], kadd[l], data[kadd[l]]);
-                }
             }
-            break;
+            /* flag is set to 1, so after this, the outer for loop will stop */
         }
         else /* not last round, print from K - 1 to 0 */
         {
             for(int l = K - 1; l >= 0; l--)
             {
                 if (localadd == initadd && l == K - 1)
-                {
                     printf("%05d %d ", kadd[l], data[kadd[l]]);
-                }
                 else
-                {
                     printf("%05d\n%05d %d ", kadd[l], kadd[l], data[kadd[l]]);
-                }
             }
             /* update */
             localadd = next[kadd[K - 1]];
