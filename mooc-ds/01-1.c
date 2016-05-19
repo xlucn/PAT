@@ -33,9 +33,8 @@
  * 100000个随机数
  **/
 
-#include <stdio.h>      /* printf fgets puts */
-#include <stdlib.h>     /* atoi */
-#include <string.h>     /* strtok */
+#include <stdio.h>      /* printf ungetc */
+#include <ctype.h>      /* isdigit */
 
 int main()
 {
@@ -44,33 +43,28 @@ int main()
     int num;
     scanf("%d\n", &num);
     
+    int count = 0;
     int current;
     int sum = 0;
     int maxsum = 0;
-    char sarray[2000000];
     
-    fgets(sarray, 2000000, stdin);
-    
-    for (int i = 0; i < num; i++)
+    char c;
+    while((c=getchar())!='\n')
     {
-        if (i == 0)
+        if(isdigit(c) || c == '-')
         {
-            current = atoi(strtok(sarray, " "));
+            ungetc(c,stdin);//将c送回输入流
+            scanf("%d",&current);
+            count++;
+            if (count > num)
+                break;
+            sum += current;
+            
+            if (sum > maxsum)
+                maxsum = sum;
+            else if (sum < 0)
+                sum = 0;
         }
-        else
-        {
-            current = atoi(strtok(NULL, " "));
-        }
-        sum += current;
-        if (sum > maxsum)
-        {
-            maxsum = sum;
-        }        
-        else if (sum < 0)
-        {
-            sum = 0;
-        }
-        
     }
     printf("%d", maxsum);
 
