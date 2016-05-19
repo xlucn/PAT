@@ -40,64 +40,54 @@
  * 最大N
  **/
 
-#include <stdio.h>      /* printf */
-#include <ctype.h>
+#include <stdio.h>
 
 int main()
 {
-    /* TODO:change the read procession */
-    /* Get the number of list items */
-    int num;
-    scanf("%d\n", &num);
-    
-    int flag = 0;
+    int flag = 0; /* mark if all the numbers are negative */
     int current;
     int first;
     int maxfirst;
-    int last;
+    int maxlast;
     int sum = 0;
     int maxsum = 0;
-    
-    char c;
-    for (int i = 0; i < num && (c = getchar()) != '\n'; )
+
+    /* Get the number of list items */
+    int num;
+    scanf("%d\n", &num);
+    for (int i = 0; i < num; i++)
     {
         /* read */
-        if(isdigit(c) || c == '-')
+        scanf("%d", &current);
+        /* record the first number of current maximum subsequence */
+        if (i == 0) first = current;
+
+        if(flag == 1 && current >= 0) /* the numbers before are all negative */
         {
-            ungetc(c,stdin);//将c送回输入流
-            scanf("%d",&current);
+            first = current;
+            flag = 0;
+        }
         
-            if (i == 0)/* record the first number of current maximum subsequence */
-                first = current; 
-            
-            if(flag == 1 && current >= 0)
-            {
-                first = current;
-                flag = 0;
-            }
-            
-            sum += current;
-            if (sum > maxsum)
-            {
-                maxsum = sum;
-                maxfirst = first;
-                last = current;
-            }        
-            else if (sum < 0)
-            {
-                sum = 0;
-                flag = 1;
-            }
-            i++;
+        sum += current;
+        if (sum > maxsum)
+        {
+            maxsum = sum;
+            maxfirst = first;
+            maxlast = current;
+        }        
+        else if (sum < 0)
+        {
+            sum = 0;
+            flag = 1;
         }
     }
     if (first < 0)
     {
         maxfirst = first;
-        last = current;
+        maxlast = current;
     }
     
-    printf("%d %d %d", maxsum, maxfirst, last);
+    printf("%d %d %d", maxsum, maxfirst, maxlast);
 
     return 0;
 }
