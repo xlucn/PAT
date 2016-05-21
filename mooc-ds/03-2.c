@@ -37,9 +37,62 @@
  * 
  */
 #include <stdio.h>
-#include <ctype.h>
+#include <stdlib.h>
+
+void _buildbt(int bt[], int node, char l[], char r[], int root)
+{
+    bt[node] = root;
+    if(l[root] != '-')
+        _buildbt(bt, node * 2, l, r, l[root] - '0');
+    if(r[root] != '-')
+        _buildbt(bt, node * 2 + 1, l, r, r[root] - '0');
+}
+
+void buildbt(int bt[], char l[], char r[], int root)
+{
+    _buildbt(bt, 1, l, r, root);
+}
+
 int main()
 {
+    char l[10], r[10];
+    int num;
+    scanf("%d", &num);
+    for(int i = 0; i < num; i++)
+    {
+        scanf("\n%c %c", &l[i], &r[i]);
+    }
     
+    /* find the line number of root node */
+    int root;
+    int arraynoroot[10] = {0};
+    for(int i = 0 ;i < 10; i++)
+    {
+        if(l[i] != '-') arraynoroot[l[i] - '0'] = 1;
+        if(r[i] != '-') arraynoroot[r[i] - '0'] = 1;
+    }
+    for(int i = 0; i < num; i++)
+        if(arraynoroot[i] == 0)
+            root = i;
+    
+    /* build a binary tree in a array */
+    int BTree[2048];
+    for(int i = 0; i < 2048; i++)
+    {
+        BTree[i] = -1;
+    }
+    buildbt(BTree, l, r, root);
+    
+    /* find the leaves */
+    int count = 0;
+    for(int i = 0; i < 1024; i++)
+    {
+        if(BTree[i] != -1 && BTree[2*i] == -1 && BTree[2*i+1] == -1)
+        {
+            count++;
+            printf("%s", count == 1 ? "" : " ");
+            printf("%d", BTree[i]);
+        }
+    }   
     return 0;
 }
