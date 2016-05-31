@@ -1,4 +1,4 @@
-/**
+/** passed
  * 05-树8 File Transfer   (25分)
  * We have a network of computers and a list of bi-directional connections. 
  * Each of these connections allows a file transfer from one computer to 

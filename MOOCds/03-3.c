@@ -1,4 +1,4 @@
-/**
+/** passed
  * 03-树3 Tree Traversals Again   (25分)
  * An inorder binary tree traversal can be implemented in a non-recursive way 
  * with a stack. For example, suppose that when a 6-node binary tree (with the 

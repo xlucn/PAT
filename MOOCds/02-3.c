@@ -1,4 +1,4 @@
-/**
+/** passed
  * 02-线性结构3 Pop Sequence   (25分)
  * 
  * Given a stack which can keep M numbers at most. Push N numbers in the order 

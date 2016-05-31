@@ -1,4 +1,4 @@
-/**
+/** passed
  * 10-排序5 PAT Judge   (25分)
  * The ranklist of PAT is generated from the status list, which shows the 
  * scores of the submittions. This time you are supposed to generate the 

@@ -1,4 +1,4 @@
-/**
+/** passed
  * 02-线性结构2 Reversing Linked List   (25分)
  * Given a constant K and a singly linked list L, you are supposed to reverse 
  * the links of every K elements on L. For example, given L being 1→2→3→4→5→6, 

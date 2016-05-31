@@ -1,4 +1,4 @@
-/**
+/** passed
  * 01-复杂度2 Maximum Subsequence Sum   (25分)
  * Given a sequence of K integers { N_1, N_2, ..., N_K}. A continuous subsequence 
  * is defined to be { N_i, N_{i+1}, ..., N_j} where 1≤i≤j≤K. The Maximum 

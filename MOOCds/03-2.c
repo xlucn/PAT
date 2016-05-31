@@ -1,4 +1,4 @@
-/**
+/** passed
  * 03-树2 List Leaves   (25分)
  * Given a tree, you are supposed to list all the leaves in the order of top 
  * down, and left to right.
