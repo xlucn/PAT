@@ -1,2 +1,0 @@
-# PTA
-PTA exercises
