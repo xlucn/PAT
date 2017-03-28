@@ -1,4 +1,7 @@
 MOOCds/*
+PTAAdvanced/*
+PTABasic/*
+PTATop/*
 !*.c
 !.gitignore
 !makefile
