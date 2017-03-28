@@ -1,4 +1,5 @@
-10-排序6 Sort with Swap(0, i)   (25分)
+/**
+ * 10-排序6 Sort with Swap(0, i)   (25分)
 Given any permutation of the numbers {0, 1, 2,..., N-1N−1}, it is easy to sort them in increasing order. But what if Swap(0, *) is the ONLY operation that is allowed to use? For example, to sort {4, 0, 2, 1, 3} we may apply the swap operations in the following way:
 
 Swap(0, 1) => {4, 1, 2, 0, 3}
@@ -23,3 +24,8 @@ Sample Input:
 Sample Output:
 
 9
+**/
+int main()
+{
+    return 0;
+}

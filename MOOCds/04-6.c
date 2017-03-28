@@ -49,17 +49,17 @@
  */
 void indexcbt(int index[], int root)
 {
-    int start = min(root, 
+    //int start = min(root, 
     int depth = 0;
-    for(int temp = num; temp > 1; depth++, temp >> 1);
-    int rem = i - (1 << depth) + 1;
+    //for(int temp = num; temp > 1; depth++, temp >> 1);
+    //int rem = i - (1 << depth) + 1;
 }
 
 int main()
 {
     int container[2001];    /* raw data */
     int sort[2001];         /* sorted list */
-    int cbt[2002]           /* array implemented CBT */
+    int cbt[2002];           /* array implemented CBT */
     int num, current;
     /* read and sort */
     scanf("%d", &num);

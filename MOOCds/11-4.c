@@ -1,4 +1,4 @@
-11-散列4 Hashing - Hard Version   (30分)
+/**11-散列4 Hashing - Hard Version   (30分)
 Given a hash table of size NN, we can define a hash function . Suppose that the linear probing is used to solve collisions, we can easily obtain the status of the hash table with a given sequence of input numbers.
 
 However, now you are asked to solve the reversed problem: reconstruct the input sequence from the given status of the hash table. Whenever there are multiple choices, the smallest number is always taken.
@@ -18,3 +18,8 @@ Sample Input:
 Sample Output:
 
 1 13 12 21 33 34 38 27 22 32
+**/
+int main()
+{
+    return 0;
+}

@@ -4,7 +4,11 @@ bin=$(basename $(src))
 all:$(bin)
 
 %:%.c
-	gcc -g -Wall -o $@ $< -lm
+	gcc -std=c11 -g -Wall -o $@ $< -lm
 
 test:
 	@echo $(src) $(bin)
+
+rebuild:
+	rm -f $(bin)
+	make

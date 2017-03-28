@@ -1,4 +1,5 @@
-09-排序3 Insertion or Heap Sort   (25分)
+/**
+ * 09-排序3 Insertion or Heap Sort   (25分)
 According to Wikipedia:
 
 Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. Each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.
@@ -33,3 +34,8 @@ Sample Output 2:
 
 Heap Sort
 5 4 3 1 0 2 6 7 8 9
+**/
+int main()
+{
+    return 0;
+}

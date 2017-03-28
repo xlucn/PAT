@@ -1,2 +1,2 @@
-mooc-ds/*
-!mooc-ds/*.c
+*
+!*/*.c

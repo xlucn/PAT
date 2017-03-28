@@ -1,4 +1,4 @@
-08-图8 How Long Does It Take   (25分)
+/**08-图8 How Long Does It Take   (25分)
 Given the relations of all the activities of a project, you are supposed to find the earliest completion time of the project.
 
 Input Specification:
@@ -38,3 +38,8 @@ Sample Input 2:
 Sample Output 2:
 
 Impossible
+**/
+int main()
+{
+    return 0;
+}
