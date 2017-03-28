@@ -1,0 +1,4 @@
+MOOCds/*
+!*.c
+!.gitignore
+!makefile
