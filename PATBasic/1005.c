@@ -23,3 +23,57 @@
  * 输出样例：
  * 7 6
  **/
+#include <stdio.h>
+int main()
+{
+    int num, integer;
+    int tabel[101] = {0};
+    scanf("%d", &num);
+    for(int i = 0; i < num; i++)
+    {
+        scanf("%d", &integer);
+        tabel[integer] = 1;
+    }
+    
+    for(int i = 1; i <= 100; i++)
+    {
+        if(tabel[i] == 1)
+        {
+            /* reuse var integer here */
+            integer = i;
+            while(integer > 1)
+            {
+                /* calculate one step */
+                if(integer % 2 == 0)
+                {
+                    integer /= 2;
+                }
+                else
+                {
+                    integer = (3 * integer + 1) / 2;
+                }
+                /* see if the new number is in those given */
+                if(integer <= 100 && tabel[integer] == 1)
+                {
+                    num--;
+                    tabel[integer] = 0;
+                    if(integer < i)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    for(int i = 100; i >= 1; i--)
+    {
+        if(tabel[i] == 1)
+        {
+            printf("%d%s", i, num > 1 ? " " : "");
+            num--;
+        }
+    }
+    
+    return 0;
+}
