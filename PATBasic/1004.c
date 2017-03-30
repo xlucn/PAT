@@ -63,5 +63,9 @@ int main()
         students[max]->name, students[max]->ID, 
         students[min]->name, students[min]->ID);
     
+    for(int i = 0; i < num; i++)
+        free(students + i);
+    free(students);
+    
     return 0;
 }

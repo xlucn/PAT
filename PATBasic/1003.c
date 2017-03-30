@@ -37,6 +37,8 @@
  * NO
  * NO
  * NO
+ * 
+ * (暂未全部通过)
  **/
 #include <stdio.h>
 #define YES 1
