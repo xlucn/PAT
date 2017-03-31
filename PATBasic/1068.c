@@ -96,14 +96,14 @@ int main()
     {
         for (int j = 0; j < M; j++)
         {
-            if((i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > TOL)
-            && (i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j    ]) > TOL)
-            && (i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > TOL)
-            && (j ==  0  ? 1 : D(fig[i][j], fig[i    ][j - 1]) > TOL)
-            && (j == M-1 ? 1 : D(fig[i][j], fig[i    ][j + 1]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j - 1]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j    ]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j + 1]) > TOL)
+            if((i ==  0  ? 1 : fabs(fig[i][j] - fig[i - 1][j - 1]) > TOL)
+            && (i ==  0  ? 1 : fabs(fig[i][j] - fig[i - 1][j    ]) > TOL)
+            && (i ==  0  ? 1 : fabs(fig[i][j] - fig[i - 1][j + 1]) > TOL)
+            && (j ==  0  ? 1 : fabs(fig[i][j] - fig[i    ][j - 1]) > TOL)
+            && (j == M-1 ? 1 : fabs(fig[i][j] - fig[i    ][j + 1]) > TOL)
+            && (i == N-1 ? 1 : fabs(fig[i][j] - fig[i + 1][j - 1]) > TOL)
+            && (i == N-1 ? 1 : fabs(fig[i][j] - fig[i + 1][j    ]) > TOL)
+            && (i == N-1 ? 1 : fabs(fig[i][j] - fig[i + 1][j + 1]) > TOL)
             && iUnique(fig, N, M, i, j))
             {
                 count++;
