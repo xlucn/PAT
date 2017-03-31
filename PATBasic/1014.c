@@ -43,7 +43,7 @@ int main()
     fgets(str3, 61, stdin);
     fgets(str4, 61, stdin);
     
-    /* Find day */
+    /* Find day, same character from [A-G] and same position from frist two lines */
     int DAY;
     char *weekdays[] = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     for(DAY = 0; str1[DAY] && str2[DAY]; DAY++)
@@ -53,7 +53,7 @@ int main()
             break;
         }
     
-    /* Find hour, picking up from DAY */
+    /* Find hour, picking up from DAY, same character and position, [A-N|0-9] */
     int HH;
     for(HH = DAY + 1; str1[HH] && str2[HH]; HH++)
         if(str1[HH] == str2[HH])
@@ -70,7 +70,7 @@ int main()
             }
         }
     
-    /* Find minute */
+    /* Find minute, same alphabet character from last two lines */
     int MM;
     for(MM = 0; str3[MM] && str4[MM]; MM++)
         if(str3[MM] == str4[MM] && ((str3[MM] >= 'a' && str3[MM] <= 'z')||
