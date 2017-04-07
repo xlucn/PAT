@@ -76,34 +76,32 @@ int iUnique(int **array, int x, int y, int x0, int y0)
 
 int main()
 {
-    int M, N, TOL, M0, N0;
+    int M, N, TOL;
     scanf("%d %d %d", &M, &N, &TOL);
     
     int **fig = (int**)malloc(N * sizeof(int*));
     for(int i = 0; i < N; i++)
-        fig[i] = (int*)calloc(M, sizeof(int));
-    
-    for(int i = 0; i < N; i++)                        /* read */
     {
+        fig[i] = (int*)calloc(M, sizeof(int));
         for(int j = 0; j < M; j++)
         {
             scanf("%d", *(fig + i) + j);
         }
     }
     
-    int count = 0;
+    int count = 0, M0, N0;
     for(int i = 0; i < N; i ++)
     {
         for (int j = 0; j < M; j++)
         {
-            if((i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > TOL)
-            && (i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j    ]) > TOL)
-            && (i ==  0  ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > TOL)
-            && (j ==  0  ? 1 : D(fig[i][j], fig[i    ][j - 1]) > TOL)
-            && (j == M-1 ? 1 : D(fig[i][j], fig[i    ][j + 1]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j - 1]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j    ]) > TOL)
-            && (i == N-1 ? 1 : D(fig[i][j], fig[i + 1][j + 1]) > TOL)
+            if((i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > TOL)
+            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j    ]) > TOL)
+            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > TOL)
+            && (j ==   0   ? 1 : D(fig[i][j], fig[i    ][j - 1]) > TOL)
+            && (j == M - 1 ? 1 : D(fig[i][j], fig[i    ][j + 1]) > TOL)
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j - 1]) > TOL)
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j    ]) > TOL)
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j + 1]) > TOL)
             && iUnique(fig, N, M, i, j))
             {
                 count++;
