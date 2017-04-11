@@ -29,19 +29,18 @@
  * d&Hyscvnm
  * 输出样例：
  * THU 14:04
- * 
- * （未全部通过）
  **/
 #include <stdio.h>
+#include <ctype.h>
 int main()
 {
     /* the length of string is not more than 60, so the length of 
-    character array should be at least 61 */
-    char str1[61], str2[61], str3[61], str4[61];
-    fgets(str1, 61, stdin);
-    fgets(str2, 61, stdin);
-    fgets(str3, 61, stdin);
-    fgets(str4, 61, stdin);
+    character array should be at least 62 */
+    char str1[62], str2[62], str3[62], str4[62];
+    fgets(str1, 62, stdin);
+    fgets(str2, 62, stdin);
+    fgets(str3, 62, stdin);
+    fgets(str4, 62, stdin);
     
     /* Find day, same character from [A-G] and same position from frist two lines */
     int DAY;
@@ -63,7 +62,7 @@ int main()
                 printf(" %02d", str1[HH] - 'A' + 10);
                 break;
             }
-            if(str1[HH] >= '0' && str1[HH] <= '9')
+            if(isdigit(str1[HH]))
             {
                 printf(" %02d", str1[HH] - '0');
                 break;
@@ -73,8 +72,7 @@ int main()
     /* Find minute, same alphabet character from last two lines */
     int MM;
     for(MM = 0; str3[MM] && str4[MM]; MM++)
-        if(str3[MM] == str4[MM] && ((str3[MM] >= 'a' && str3[MM] <= 'z')||
-                                    (str3[MM] >= 'A' && str3[MM] <= 'Z') ))
+        if(str3[MM] == str4[MM] && isalpha(str3[MM]))
         {
             printf(":%02d", MM);
             break;
