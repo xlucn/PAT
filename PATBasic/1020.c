@@ -56,4 +56,8 @@ int main()
         }
     }
     printf("%.2f", Total);
+    
+    free(Storage);
+    free(Price);
+    return 0;
 }

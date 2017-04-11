@@ -126,5 +126,6 @@ int main()
     for(int i = N - 1; i >= N - M; i--)
         printf("%d %d %d\n", students[i]->ID, students[i]->D, students[i]->C);
     
+    for(int i = 0; i < N; i++) free(students[i]);
     return 0;
 }

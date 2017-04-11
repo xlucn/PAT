@@ -41,7 +41,8 @@ int main()
     fgets(current, 18, stdin);
     sscanf(current, "%d", &N);
     
-    for(int i = 0; i < N; ){
+    for(int i = 0; i < N; )
+    {
         fgets(current, 18, stdin);                              /* read */
         for(current[18] = 0; *(current + current[18]) != ' '; current[18]++) ; /* record the position of ' ' */
         
@@ -65,12 +66,17 @@ int main()
             i++;
         }
         else                                                    /* illegal */
+        {
             N--;
+        }
     }
     
-    if(N){          /* use %.[precision]s to write first [precision] chars */
+    if(N)
+    {          /* use %.[precision]s to write first [precision] chars */
         printf("%d %.*s %.*s", N, eldest[18], eldest, youngest[18], youngest);
-    } else {
+    } 
+    else 
+    {
         printf("0");
     }
     
