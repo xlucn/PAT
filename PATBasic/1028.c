@@ -36,7 +36,7 @@
 int main()
 {
     int N;
-    /* "NAMES YYYY/MM/DD\n\0[s]" 18 chars is needed, the last one record the position of ' ' */
+    /* "NAMES YYYY/MM/DD\n\0[s]" 18 chars is needed, the 19th record the position of ' ' */
     char current[19] = {0}, eldest[19] = {0}, youngest[19] = {0};
     fgets(current, 18, stdin);
     sscanf(current, "%d", &N);
@@ -47,19 +47,19 @@ int main()
         for(current[18] = 0; *(current + current[18]) != ' '; current[18]++) ; /* record the position of ' ' */
         
         /* Luckily we just have to compare the string to know who is older or younger */
-        if(strcmp(date(current), "1814/09/06") >= 0 &&          
-           strcmp(date(current), "2014/09/06") <= 0)            /* legal */
+        if(strncmp(date(current), "1814/09/06", 10) >= 0 &&          
+           strncmp(date(current), "2014/09/06", 10) <= 0)       /* legal */
         {           
-            if(eldest[0] == '\0' || youngest[0] == '\0')            /* empty */ 
+            if(eldest[0] == '\0' || youngest[0] == '\0')                /* empty */ 
             {           
                 memcpy(eldest, current, 19);
                 memcpy(youngest, current, 19);
             } 
-            else if(strcmp(date(current), date(eldest)) <= 0)       /* older than eldest */
+            else if(strncmp(date(current), date(eldest), 10) <= 0)      /* older than eldest */
             {     
                 memcpy(eldest, current, 19);
             } 
-            else if(strcmp(date(current), date(youngest)) >= 0)     /* younger than youngest */
+            else if(strncmp(date(current), date(youngest), 10) >= 0)    /* younger than youngest */
             {   
                 memcpy(youngest, current, 19);
             }
@@ -71,14 +71,10 @@ int main()
         }
     }
     
-    if(N)
-    {          /* use %.[precision]s to write first [precision] chars */
+    if(N)           /* use %.[precision]s to write first [precision] chars */
         printf("%d %.*s %.*s", N, eldest[18], eldest, youngest[18], youngest);
-    } 
     else 
-    {
         printf("0");
-    }
     
     return 0;
 }
