@@ -37,69 +37,47 @@
  * NO
  * NO
  * NO
+ **/
+/*
+ * If the string is "correct", the number of As from
+ *   before P, 
+ *   between P&T and 
+ *   after T
+ * should satisfy the following relationship:
+ *   between * before = after
  * 
- * (暂未全部通过)
+ * Because according to the rule No.3, if a string is "correct", we insert
+ * an A before T, and copy everything before P at the end of the string,
+ * the new string will still be "correct", thus getting the relation above.
  **/
 #include <stdio.h>
-#define YES 1
-#define NO  0
-
 int main()
 {
     char c;
     int num;
-    int YESorNO;
     scanf("%d", &num);
     getchar();
     
     for(int i = 0; i < num; i++)
     {
-        YESorNO = YES;
         /* three numbers to count number of As: before P, between P&T and after T */
         int count[3] = {0, 0, 0};
-        /* index of the array above */
+        
         int pos = 0;
         while((c = getchar()) != '\n')
         {
-            if(c == 'A')
-            {
-                count[pos]++;
-            }
-            else if(c == 'P' && pos == 0)
-            {
-                pos = 1;
-            }
-            else if(c == 'T' && pos == 1)
-            {
-                pos = 2;
-            }
-            else
-            {
-                YESorNO = NO;
-            }
+            if(c == 'A')                    count[pos]++;
+            else if(c == 'P' && pos == 0)   pos = 1;        /* should have only one P and only before T */
+            else if(c == 'T' && pos == 1)   pos = 2;        /* should have only one T and only after P */
+            else                            break;
         }
-        /*
-         * If the string is "correct", the number of As from
-         *   before P, 
-         *   between P&T and 
-         *   after T
-         * should satisfy the following relationship:
-         *   (between - 1) * before <= after
-         * 
-         * Because according to the rule No.3, if a string is "correct", we insert
-         * an A before T, and copy everything before P at the end of the string,
-         * the new string will still be "correct", thus getting the relation above.
-         **/
-        if(YESorNO == YES && pos == 2 && 
-            (count[1] == 1 || 
-            (count[1] > 1 && count[2] >= count[0] * (count[1] - 1))))
-        {
+        
+        if(c == '\n' && pos == 2 && count[1] && count[2] == count[1] * count[0])
             puts("YES");
-        }
         else
-        {
             puts("NO");
-        }
+        
+        if(c != '\n') while((c = getchar()) != '\n');
     }
     return 0;
 }
