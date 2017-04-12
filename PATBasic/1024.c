@@ -32,8 +32,8 @@
 #include <string.h>
 int main()
 {
-    char line[10001], *p = line;
-    fgets(line, 10001, stdin);
+    char line[10000], *p = line;
+    scanf("%s", line);
     
     /* find the 'E' in the string, split string into two parts */
     char *Eindex = strchr(line, 'E');
@@ -41,24 +41,25 @@ int main()
     *Eindex = '\0';                     /* end the coefficient part with '\0' */
     
     /* print */
-    if(*(p++) == '-') putchar('-');     /* print the sign */
-    if(exponent >= 0){   /* print '.' later and probably add zeros in the end */
+    if(*p++ == '-') putchar('-');
+    if(exponent >= 0)   /* print '.' later or add zeros in the end */
+    {
         putchar(*p);
-        for(p += 2; exponent; exponent--){    /* print the integer part */
-            if(*p) putchar(*(p++));
-            else putchar('0');
-        }
-        if(*p){                               /* there is still fraction part */
+        for(p += 2; exponent; exponent--)    /* print the integer part */
+            putchar(*p ? *p++ : '0');
+        if(*p)                               /* there is still fraction part */
+        {
             putchar('.');
-            while(*p) putchar(*(p++));
+            while(*p) 
+                putchar(*p++);
         }
     }
-    if(exponent < 0){    /* add exponent zeros in the beginning */
+    if(exponent < 0)    /* add exponent zeros in the beginning */
+    {
         printf("0.");
-        for(exponent++;exponent;exponent++) {    /* add zeros */
+        for(exponent++; exponent; exponent++)       /* add zeros */
             putchar('0');
-        }
-        for(; *p; p++) if(*p != '.') putchar(*p);/* the rest */
+        for(; *p; p++) if(*p != '.') putchar(*p);   /* the rest */
     }
     
     return 0;

@@ -32,7 +32,6 @@
 int main()
 {
     int N;
-    float D, Total = 0;
     scanf("%d %f", &N, &D);
     float *Storage = (float*)malloc(N * sizeof(float));
     float *Price = (float*)malloc(N * sizeof(float));
@@ -40,17 +39,22 @@ int main()
     for(int i = 0; i < N; i++) scanf("%f", Storage + i);
     for(int i = 0; i < N; i++) scanf("%f", Price + i);
     
+    int max;
+    float D, Total = 0;
     while(D > 0)
     {
-        int max = 0;
-        for(int i = 0; i < N; i++)
+        for(int i = 0, max = 0; i < N; i++)
             if(Price[i] / Storage[i] > Price[max] / Storage[max])
                 max = i;
-        if(Storage[max] < D) {
+        
+        if(Storage[max] < D) 
+        {
             Total += Price[max];
             D -= Storage[max];
             Price[max] = 0;
-        } else {
+        } 
+        else 
+        {
             Total += Price[max] * D / Storage[max];
             D = 0;
         }

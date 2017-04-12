@@ -20,22 +20,19 @@ int main()
 {
     int N;
     scanf("%d", &N);
-    int paircount = 0;
-    /* record three successive numbers if they are prime numbers, start 
-    from 2, 3, 4 */
+    /* record three successive numbers if they are prime numbers, start from 2, 3, 4 */
     int iPrimeMinus2 = 1, iPrimeMinus1 = 1, iPrime;
-    /* record the prime numbers before 350, which is lt sqrt(100000) */
+    /* record the prime numbers before sqrt(10^5) */
     int primes[100] = {2, 3};
+    int paircount = 0;
     int primecount = 2;
     
     for (int i = 4; i <= N; i++)
     {
         iPrime = 1;
         /* test if i is a prime number */
-        int sqrt_i = (int)sqrt(i);
-        for(int j = 0; primes[j] <= sqrt_i && j < primecount; j++)
+        for(int j = 0; primes[j] <= sqrt(i); j++)
         {
-            /* only need to test on prime numbers before sqrt(i) */
             if(i % primes[j] == 0)
             {
                 iPrime = 0;
@@ -45,15 +42,14 @@ int main()
         {
             if(primecount < 100)
             {
-                primes[primecount] = i;
+                primes[primecount++] = i;
             }
-            primecount++;
-            if(iPrimeMinus2 == 1) /* a prime pair */
+            if(iPrimeMinus2 == 1) /* a prime pair found */
             {
                 paircount++;
             }
         }
-        /* shift the flags */
+        /* change the flags */
         iPrimeMinus2 = iPrimeMinus1;
         iPrimeMinus1 = iPrime;
     }

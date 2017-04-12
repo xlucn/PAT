@@ -28,7 +28,6 @@
  **/
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /* a struct type to store the name, ID and grade */
 struct _Student{
@@ -40,37 +39,23 @@ typedef struct _Student *Student;
 
 int main()
 {
-    int num;
-    int max = 0, min = 0;
-    scanf("%d", &num);
-    getchar();
-    Student *students = (Student*)malloc(num * sizeof(Student));
-    char line[27];
+    int N, max = 0, min = 0;
+    scanf("%d", &N);
     
-    for(int i = 0; i < num; i++)
+    Student *students = (Student*)malloc(N * sizeof(Student));
+    for(int i = 0; i < N; i++)
     {
-        fgets(line, 27, stdin);
         students[i] = (Student)malloc(sizeof(struct _Student));
-        strcpy(students[i]->name, strtok(line, " "));
-        strcpy(students[i]->ID, strtok(NULL, " "));
-        students[i]->grade = atoi(strtok(NULL, " "));
+        scanf("%s %s %d", students[i]->name, students[i]->ID, &students[i]->grade);
         
-        if(students[i]->grade > students[max]->grade)
-        {
-            max = i;
-        }
-        if(students[i]->grade < students[min]->grade)
-        {
-            min = i;
-        }
+        if(students[i]->grade > students[max]->grade)   max = i;
+        if(students[i]->grade < students[min]->grade)   min = i;
     }
-    printf("%s %s\n%s %s", 
-        students[max]->name, students[max]->ID, 
-        students[min]->name, students[min]->ID);
     
-    for(int i = 0; i < num; i++)
-        free(students + i);
-    free(students);
+    printf("%s %s\n%s %s", students[max]->name, students[max]->ID, 
+                           students[min]->name, students[min]->ID);
+    
+    for(int i = 0; i < N; i++) free(students[i]); free(students);
     
     return 0;
 }

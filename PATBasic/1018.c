@@ -39,8 +39,6 @@
  * B B
  */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 char max(int B, int C, int J)
 {
     if(B >= C && B >= J) return 'B';
@@ -50,15 +48,15 @@ char max(int B, int C, int J)
 int main()
 {
     int N;
-    char line[8]; /* "100000\n\0" is the longest possible input */
+    char line[5];
     int AwinB = 0, AwinC = 0, AwinJ = 0;
     int BwinB = 0, BwinC = 0, BwinJ = 0;
     
-    fgets(line, 10, stdin);
-    N = atoi(line);
+    scanf("%d", &N);
+    while(getchar() != '\n');
     for(int i = 0; i < N; i++)
     {
-        fgets(line, 10, stdin);
+        fgets(line, 5, stdin);
         if(line[0] == 'B' && line[2] == 'C') AwinB++;
         if(line[0] == 'C' && line[2] == 'J') AwinC++;
         if(line[0] == 'J' && line[2] == 'B') AwinJ++;

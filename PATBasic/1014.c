@@ -35,12 +35,9 @@
 int main()
 {
     /* the length of string is not more than 60, so the length of 
-    character array should be at least 62 */
-    char str1[62], str2[62], str3[62], str4[62];
-    fgets(str1, 62, stdin);
-    fgets(str2, 62, stdin);
-    fgets(str3, 62, stdin);
-    fgets(str4, 62, stdin);
+    character array should be at least 62: 60+\n\0 */
+    char str1[61], str2[61], str3[61], str4[61];
+    scanf("%s %s %s %s", str1, str2, str3, str4);
     
     /* Find day, same character from [A-G] and same position from frist two lines */
     int DAY;

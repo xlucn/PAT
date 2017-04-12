@@ -25,14 +25,16 @@
 #include <stdio.h>
 int main()
 {
-    int zero, current;
+    int zero, nonzero;
     scanf("%d", &zero);
-    for(int i = 1; i < 10; i++){
-        scanf("%d", &current);
-        while(current > 0){
+    for(int i = 1; i < 10; i++)
+    {
+        scanf("%d", &nonzero);
+        for(; nonzero; nonzero--)
+        {
             putc('0' + i, stdout);
-            if(zero) for(;zero;zero--) putc('0', stdout);
-            current--;
+            for(; zero; zero--)     /* after the first non-zero, print all the zeros */
+                putc('0', stdout);
         }
     }
     return 0;

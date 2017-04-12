@@ -35,44 +35,30 @@ int main()
         tabel[integer] = 1;
     }
     
-    for(int i = 1; i <= 100; i++)
+    for(int i = 1; i <= 100; i++) if(tabel[i] == 1)
     {
-        if(tabel[i] == 1)
+        /* reuse var integer here */
+        integer = i;
+        while(integer > 1)
         {
-            /* reuse var integer here */
-            integer = i;
-            while(integer > 1)
+            if(integer % 2 == 0)    integer /= 2;
+            else                    integer = (3 * integer + 1) / 2;
+            /* see if the new number is in given numbers */
+            if(integer <= 100 && tabel[integer])
             {
-                /* calculate one step */
-                if(integer % 2 == 0)
+                tabel[integer] = 0;
+                num--;                  /* one less number not 'covered' */
+                if(integer < i)         /* did this before, no need going on */
                 {
-                    integer /= 2;
-                }
-                else
-                {
-                    integer = (3 * integer + 1) / 2;
-                }
-                /* see if the new number is in those given */
-                if(integer <= 100 && tabel[integer] == 1)
-                {
-                    num--;
-                    tabel[integer] = 0;
-                    if(integer < i)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
     }
     
-    for(int i = 100; i >= 1; i--)
+    for(int i = 100; i >= 1; i--) if(tabel[i] == 1)
     {
-        if(tabel[i] == 1)
-        {
-            printf("%d%s", i, num > 1 ? " " : "");
-            num--;
-        }
+        printf("%d%s", i, num-- > 1 ? " " : "");
     }
     
     return 0;

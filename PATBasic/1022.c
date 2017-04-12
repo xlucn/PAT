@@ -16,27 +16,23 @@
  * 输出样例：
  * 1103
  */
+/*
+ * use Sum / D >= power to avoid using long int 
+ */
 #include <stdio.h>
 int main()
 {
-    long int A, B, D, Sum;
-    scanf("%ld %ld %ld", &A, &B, &D);
+    int A, B, D, Sum;
+    scanf("%d %d %d", &A, &B, &D);
     Sum = A + B;
     
-    if(Sum == 0) {
-        printf("0");
-        return 0;
-    }
-    
-    /* calculate the bits of Sum. E.g. If Sum is 4 bits in D-base, power will be 10000 in D-base */
-    long int power = 1;
-    while(Sum >= power) power *= D;
+    /* calculate the bits of Sum */
+    int power = 1;
+    while(Sum / D >= power) power *= D;
     
     /* calculate D-base number. print them on-the-fly */
-    for(power /= D; power > 0; power /= D){
-        printf("%ld", Sum / power);
-        Sum %= power;
-    }
+    for(; power > 0; Sum %= power, power /= D)
+        printf("%d", Sum / power);
     
     return 0;
 }

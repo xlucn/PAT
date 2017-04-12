@@ -72,7 +72,7 @@ int main()
         printf("%04d - %04d = %04d", N, reverse(N), N - reverse(N));
         N = N - reverse(N);
         if(N != 0 && N != 6174) printf("\n");
-        else break;
+        else                    break;
     }
     return 0;
 }

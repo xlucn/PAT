@@ -18,31 +18,23 @@ int main()
 {
     int sum = 0;
     char c;
-    while((c = getchar()) != EOF)
-    {
-        if(c >= '0' && c <= '9')
-        {
-            sum += c - '0';
-        }
-        if(c == '\n')
-        {
-            break;
-        }
-    }
+    while((c = getchar()) != '\n')  sum += c - '0';
     
-    char pinyin[13] = {'\0'};
-    char new[5], *pnew = new;
+    char pinyin[13] = {0};
     char *pinyins[] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
-    while(sum > 0)
+    
+    if(sum / 100)                           /* hundreds */
     {
-        strcpy(pnew, pinyins[sum % 10]);
-        if(pinyin[0] != '\0')
-        {
-            pnew = strcat(pnew, " ");
-        }
-        strcpy(pinyin, strcat(pnew, pinyin));
-        sum /= 10;
-    } 
+        strcat(pinyin, pinyins[sum/100]);
+        strcat(pinyin, " ");
+    }
+    if(sum / 10)                            /* tens */
+    {
+        strcat(pinyin, pinyins[sum/10%10]);
+        strcat(pinyin, " ");
+    }
+    strcat(pinyin, pinyins[sum%10]);        /* unit */
+    
     puts(pinyin);
     
     return 0;

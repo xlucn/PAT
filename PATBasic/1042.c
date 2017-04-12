@@ -26,18 +26,14 @@ int main()
     int count[26] = {0};
     
     while((c = getchar()) != '\n')
-    {
         if(isalpha(c))
-        {
             count[tolower(c) - 'a']++;
-        }
-    }
     
+    /* find forward from end in case there are multiple maximums */
     int max = 25;
-    for(int i = 25; i >= 0; i--) if(count[i] >= count[max])
-    {
-        max = i;
-    }
+    for(int i = 25; i >= 0; i--) 
+        if(count[i] >= count[max])
+            max = i;
     
     printf("%c %d", max + 'a', count[max]);
     return 0;

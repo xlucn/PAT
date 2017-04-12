@@ -38,28 +38,28 @@
 typedef struct student *Student;
 struct student{
     char ID[15];
-    int trial;
+    int test;
     int exam;
 };
 
 int main()
 {
-    int N, M, trial;
+    int N, M, test;
     
     scanf("%d", &N);
     Student *students = (Student*)malloc(N * sizeof(Student));
     for(int i = 0; i < N; i++)
     {
         Student s = (Student)malloc(sizeof(struct student));
-        scanf("%s %d %d", s->ID, &s->trial, &s->exam);
-        students[s->trial] = s;
+        scanf("%s %d %d", s->ID, &s->test, &s->exam);
+        students[s->test] = s;         /* set order by test number */
     }
     
     scanf("%d", &M);
     for(int i = 0; i < M; i ++)
     {
-        scanf("%d", &trial);
-        printf("%s %d\n", students[trial]->ID, students[trial]->exam);
+        scanf("%d", &test);
+        printf("%s %d\n", students[test]->ID, students[test]->exam);
     }
     
     for(int i = 0; i < N; i++) free(students[i]); free(students);

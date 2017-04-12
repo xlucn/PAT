@@ -62,10 +62,10 @@
 #include <stdlib.h>
 struct _Student{
     int ID;
-    int D;      /** de2: virtue */
+    int D;      /** de2 : virtue  */
     int C;      /** cai2: ability */
     int rank;
-    int sum;
+    int sum;    /** sum = D + C   */
 };
 
 typedef struct _Student *Student;
@@ -75,16 +75,11 @@ typedef struct _Student *Student;
  **/
 int rank(Student s, int H, int L)
 {
-    if(s->D < L || s->C < L)        /* failed */
-        return 1;
-    else if(s->D >= H && s->C >= H) /* first */
-        return 5;
-    else if(s->D >= H)              /* second */
-        return 4;
-    else if(s->D >= s->C)           /* third */
-        return 3;
-    else                            /* fourth */
-        return 2;
+    if(s->D < L || s->C < L)        return 0;   /* failed */
+    else if(s->D >= H && s->C >= H) return 4;   /* best */
+    else if(s->D >= H)              return 3;   /* second */
+    else if(s->D >= s->C)           return 2;   /* third */
+    else                            return 1;   /* fourth */
 }
 
 int comp(const void *a, const void *b)
@@ -92,16 +87,11 @@ int comp(const void *a, const void *b)
     Student s1 = *(Student*)a;
     Student s2 = *(Student*)b;
     
-    if(s1->rank != s2->rank)
-        return s1->rank - s2->rank;
-    else if(s1->sum != s2->sum)
-        return s1->sum - s2->sum;
-    else if(s1->D != s2->D)
-        return s1->D - s2->D;
-    else if(s1->ID != s2->ID)
-        return s2->ID - s1->ID;
-    else
-        return 0;
+    if(s1->rank != s2->rank)    return s1->rank - s2->rank;
+    else if(s1->sum != s2->sum) return s1->sum - s2->sum;
+    else if(s1->D != s2->D)     return s1->D - s2->D;
+    else if(s1->ID != s2->ID)   return s2->ID - s1->ID;
+    else                        return 0;
 }
 
 int main()
@@ -112,20 +102,21 @@ int main()
     scanf("%d %d %d", &N, &L, &H);
     for(int i = 0; i < N; i++)
     {
-        students[i] = (Student)malloc(sizeof(struct _Student));
-        Student s = students[i];
+        Student s = (Student)malloc(sizeof(struct _Student));
         scanf("%d %d %d", &s->ID, &s->D, &s->C);   /* attention the precedence */
-        if((s->rank = rank(s, H, L)) > 1)
-            M++;
         s->sum = s->D + s->C;
+        if((s->rank = rank(s, H, L)))
+            students[M++] = s;
+        else
+            free(s);
     }
 
-    qsort(students, N, sizeof(Student), comp);
+    qsort(students, M, sizeof(Student), comp);
     
     printf("%d\n", M);
-    for(int i = N - 1; i >= N - M; i--)
+    for(int i = M - 1; i >= 0; i--)
         printf("%d %d %d\n", students[i]->ID, students[i]->D, students[i]->C);
     
-    for(int i = 0; i < N; i++) free(students[i]);
+    for(int i = 0; i < M; i++) free(students[i]);
     return 0;
 }

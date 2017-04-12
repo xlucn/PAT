@@ -37,22 +37,12 @@
 int main()
 {
     char c;
-    int provide[62] = {0}, need[62] = {0};  /* [0-9] [a-z] [A-Z] in order */
-    while((c = getchar()) != '\n')
-    {
-        if(isdigit(c))  provide[c - '0']++;
-        if(islower(c))  provide[c - 'a' + 10]++;
-        if(isupper(c))  provide[c - 'A' + 36]++;
-    }
-    while((c = getchar()) != '\n')
-    {
-        if(isdigit(c))  need[c - '0']++;
-        if(islower(c))  need[c - 'a' + 10]++;
-        if(isupper(c))  need[c - 'A' + 36]++;
-    }
+    int provide[128] = {0}, need[128] = {0};  /* all ASCII characters */
+    while((c = getchar()) != '\n')  provide[(int)c]++;
+    while((c = getchar()) != '\n')  need[(int)c]++;
     
     int more = 0, less = 0;
-    for(int i = 0; i < 62; i++)
+    for(int i = 0; i < 128; i++)
     {
         if(provide[i] > need[i])    more += provide[i] - need[i];
         if(provide[i] < need[i])    less += need[i] - provide[i];

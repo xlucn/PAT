@@ -32,14 +32,7 @@ int main()
     {
         for(int j = 0; j < N; j++)
         {
-            if(i == 0 || i == (N - 1) / 2 || j == 0 || j == N - 1)
-            {
-                putchar(c);
-            }
-            else
-            {
-                putchar(' ');
-            }
+            putchar(i == 0 || i == (N - 1) / 2 || j == 0 || j == N - 1 ? c : ' ');
         }
         putchar('\n');
     }

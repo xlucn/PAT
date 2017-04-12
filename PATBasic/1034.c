@@ -44,12 +44,13 @@ long calcgcd(long a, long b)
     return b;
 }
 
-void printfrac(long n, long d)  /* numerator and dominator */
+/* print a fraction number, giving the numerator and dominator */
+void printfrac(long n, long d)
 {
     if(d == 0) { printf("Inf"); return; }
     
     /* record the sign and make them positive */
-    /* can not use d * n < 0 to determine the sign if using long type */
+    /* can not use d * n < 0 to determine the sign if only using long type */
     long inegative = (d < 0 && n >= 0) || (d > 0 && n < 0) ? 1 : 0; 
     n = n < 0 ? -n : n;
     d = d < 0 ? -d : d;
@@ -60,11 +61,11 @@ void printfrac(long n, long d)  /* numerator and dominator */
     d /= gcd;
     
     /* print */
-    if(inegative)           printf("(-");
-    if(n / d && n % d)      printf("%ld %ld/%ld", n / d, n % d, d); /* proper fractions */
-    else if(n % d)          printf("%ld/%ld", n % d, d);            /* improper fractions */
-    else                    printf("%ld", n / d);                   /* integers */
-    if(inegative)           printf(")");
+    if(inegative)        printf("(-");
+    if(n / d && n % d)   printf("%ld %ld/%ld", n / d, n % d, d); /* improper fractions */
+    else if(n % d)       printf("%ld/%ld", n % d, d);            /* proper fractions */
+    else                 printf("%ld", n / d);                   /* integers */
+    if(inegative)        printf(")");
 }
 
 int main()

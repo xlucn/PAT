@@ -27,6 +27,7 @@ int main()
         ungetc(c, stdin);
         scanf("%d %d", &coef, &index);
         count++;
+        
         /* zero polynomial or constant, the result is zero polynomial */
         if(count == 1 && (coef == 0 || index == 0))
         {
@@ -34,13 +35,10 @@ int main()
             break;
         }
         
-        /* constant terms results in zero term, so no output */
+        /* constant terms results in zero term, so no output for index = 0 */
         if(index != 0)
         {
-            if(count > 1)
-            {
-                putc(' ', stdout);
-            }
+            if(count > 1)  putchar(' ');
             printf("%d %d", coef * index, index - 1);
         }
     }

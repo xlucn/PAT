@@ -27,8 +27,8 @@ int main()
     char A[1001];
     
     /* read A and B */
-    int count = 0;
     char c;
+    int count = 0;
     while((c = getchar()) != ' ')
     {
         A[count++] = c;
@@ -39,13 +39,10 @@ int main()
     /* calculate */
     /* In consideration of reusability, the results are stored in A and B
     instead of printed out on-the-fly */
-    int tens, unit, twodigit;
-    int remainder = 0;
+    int twodigit, remainder = 0;
     for(int i = 0; A[i]; i ++)
     {
-        tens = remainder;
-        unit = A[i] - '0';
-        twodigit = tens * 10 + unit;
+        twodigit = remainder * 10 + (A[i] - '0');
         A[i] = twodigit / B + '0';
         remainder = twodigit % B;
     }

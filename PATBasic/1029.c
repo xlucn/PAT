@@ -26,20 +26,18 @@
 #include <string.h>
 int main()
 {
-    int bad[37] = {0}, index;
-    char complete[82], partial[82], c;
-    scanf("%s\n%s", complete, partial);
-    for(int i = 0; complete[i]; i++) 
+    int index, bad[37] = {0};
+    char c, complete[82], partial[82];
+    
+    scanf("%s %s", complete, partial);
+    for(char *p = complete; *p; p++) 
     {
-        c = toupper(complete[i]);
-        if(isdigit(c) || isalpha(c) || c == '_') /* digits or alphas or blankspace */
+        c = toupper(*p);
+        index = isdigit(c) ? c - '0' : isalpha(c) ? c - 'A' + 10 : 36;
+        if( !strchr(partial, c) && !strchr(partial, tolower(c)) && !bad[index])
         {
-            index = isdigit(c) ? c - '0' : isalpha(c) ? c - 'A' + 10 : 36;
-            if( !strchr(partial, c) && !strchr(partial, tolower(c)) && !bad[index])
-            {
-                putchar(c);
-                bad[index] = 1;
-            }
+            putchar(c);
+            bad[index] = 1;
         }
     }
     return 0;

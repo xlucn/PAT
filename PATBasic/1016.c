@@ -25,12 +25,9 @@
  **/
 #include <stdio.h>
 
-/* To contain a number within 0-10^10, we need 64-bit integer */
-typedef long int INT;
-
-INT part(INT A, int D_A)
+long DApart(long A, int D_A)
 {
-    INT P_A;
+    long P_A;
     for(P_A = 0; A; A /= 10)
         if(A % 10 == D_A)
             P_A = P_A * 10 + D_A;
@@ -39,10 +36,10 @@ INT part(INT A, int D_A)
 
 int main()
 {
-    INT A, B;
-    int P_A, P_B;
-    scanf("%ld %d %ld %d", &A, &P_A, &B, &P_B);
-    printf("%ld", part(A, P_A) + part(B, P_B));
+    long A, B;
+    int D_A, D_B;
+    scanf("%ld %d %ld %d", &A, &D_A, &B, &D_B);
+    printf("%ld", DApart(A, D_A) + DApart(B, D_B));
     
     return 0;
 }

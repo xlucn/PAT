@@ -43,11 +43,11 @@ int main()
         scanf("%d", &n);
         switch(n % 5)
         {
-        case 0: A1 += n % 2 ? 0 : n;                                break;
-        case 1: A2flag = A2flag == 1 ? -1 : 1; A2 += A2flag * n;    break;
-        case 2: A3 ++;                                              break;
-        case 3: A4 += n; A4count ++;                                break;
-        case 4: A5 = n > A5? n : A5;                                break;
+            case 0: A1 += n % 2 ? 0 : n;                                break;
+            case 1: A2flag = A2flag == 1 ? -1 : 1; A2 += A2flag * n;    break;
+            case 2: A3 ++;                                              break;
+            case 3: A4 += n; A4count ++;                                break;
+            case 4: A5 = n > A5? n : A5;                                break;
         }
     }
 

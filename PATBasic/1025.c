@@ -69,29 +69,35 @@ int main()
                                         /*                        !!!!      */
     /* reverse the list */
     int **p = nodes;
-    for(; N >= K; N -= K, p += K){              /* every K nodes */
-        for(int i = K - 1; i >= 0; i--){
+    for(; N >= K; N -= K, p += K)   /* 1. every K nodes */
+    {      
+        for(int i = K - 1; i >= 0; i--)
+        {
+            /* Adreess and Data */
             printf("%05d %d ", p[i][0], p[i][1]);
-            if(i == 0){ /* last node in K nodes */
-                if(N - K == 0){             /* this is the last node */
-                    printf("-1\n");
-                } else if(N - K >= K){       /* point to next K nodes */
+            /* Next */
+            if(i == 0)              /* 1.1. last node in every K nodes */
+            {
+                if(N - K >= K)      /* 1.1.1. point to the last in next K nodes */
                     printf("%05d\n", (*(p + 2 * K - 1))[0]);
-                } else {                    /* there is less then K nodes left */
+                else if(N - K > 0)  /* 1.1.2. there is less then K nodes left, point to the first in next group */
                     printf("%05d\n", (*(p + K))[0]);
-                }
-            } else {   /* not last in K nodes */
-                printf("%05d\n", p[i - 1][0]);
+                else                /* 1.1.3. this is the last node, point to -1 */
+                    printf("-1\n");                 
+            }
+            else                    /* 1.2. not last in every K nodes, point to the previous node */
+            {
+                printf("%05d\n", p[i - 1][0]); 
             }
         }
     }
-    for(; N; p++, N--){                         /* last nodes if there is any */
+    for(; N; p++, N--)              /* 2. last nodes if there is any */
+    {
         printf("%05d %d ", (*p)[0], (*p)[1]);
-        if(N > 1){      /* not last node */
+        if(N > 1)                   /* 2.1. not last node */
             printf("%05d\n", (*p)[2]);
-        } else {        /* last node */
+        else                        /* 2.2. last node */
             printf("-1\n");
-        }
     }
     
     return 0;

@@ -26,53 +26,39 @@
  * Steve 1967/11/20
  * 输出样例：
  * 3 Tom John
- *
- * (暂未全部通过)
  */
 #include <stdio.h>
 #include <string.h>
-#define date(S) (S + S[18] + 1) /* point to S[18] + 1 chars after S */
 
 int main()
 {
-    int N;
-    /* "NAMES YYYY/MM/DD\n\0[s]" 18 chars is needed, the 19th record the position of ' ' */
-    char current[19] = {0}, eldest[19] = {0}, youngest[19] = {0};
-    fgets(current, 18, stdin);
-    sscanf(current, "%d", &N);
+    int N, possible = 0;
+    char birthday[11] = {0}, eldest[11] = {'9'}, youngest[11] = {'0'};
+    char name[6], eldestname[6], youngestname[6];
     
-    for(int i = 0; i < N; )
+    scanf("%d", &N);
+    for(int i = 0; i < N; i++)
     {
-        fgets(current, 18, stdin);                              /* read */
-        for(current[18] = 0; *(current + current[18]) != ' '; current[18]++) ; /* record the position of ' ' */
+        scanf("%s %s", name, birthday);
         
-        /* Luckily we just have to compare the string to know who is older or younger */
-        if(strncmp(date(current), "1814/09/06", 10) >= 0 &&          
-           strncmp(date(current), "2014/09/06", 10) <= 0)       /* legal */
-        {           
-            if(eldest[0] == '\0' || youngest[0] == '\0')                /* empty */ 
-            {           
-                memcpy(eldest, current, 19);
-                memcpy(youngest, current, 19);
-            } 
-            else if(strncmp(date(current), date(eldest), 10) <= 0)      /* older than eldest */
-            {     
-                memcpy(eldest, current, 19);
-            } 
-            else if(strncmp(date(current), date(youngest), 10) >= 0)    /* younger than youngest */
-            {   
-                memcpy(youngest, current, 19);
-            }
-            i++;
-        }
-        else                                                    /* illegal */
+        if(strcmp(birthday, "1814/09/06") >= 0 && strcmp(birthday, "2014/09/06") <= 0) 
         {
-            N--;
+            if(strcmp(birthday, eldest) <= 0) 
+            {
+                strcpy(eldest, birthday);
+                strcpy(eldestname, name);
+            }
+            if(strcmp(birthday, youngest) >= 0)
+            {
+                strcpy(youngest, birthday);
+                strcpy(youngestname, name);
+            }
+            possible++;
         }
     }
     
-    if(N)           /* use %.[precision]s to write first [precision] chars */
-        printf("%d %.*s %.*s", N, eldest[18], eldest, youngest[18], youngest);
+    if(possible)
+        printf("%d %s %s", possible, eldestname, youngestname);
     else 
         printf("0");
     
