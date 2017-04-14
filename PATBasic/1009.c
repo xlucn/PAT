@@ -17,32 +17,16 @@
 #include <string.h>
 int main()
 {
-    char line[81], buffer1[81] = {0}, buffer2[81] = {0};
-    fgets(line, 81, stdin);
+    char line[82];
+    fgets(line, 82, stdin);
     
-    char *newline = buffer1, *word = buffer2, *temp;
-    strcpy(word, strtok(line, " \n"));
-    while(1)
+    for(int index = strlen(line) - 1; index >= 0; index--)
     {
-        /* swap */
-        temp = word;
-        word = newline;
-        newline = temp;
-        
-        strcat(newline, " ");
-        strcat(newline, word);
-        
-        if((temp = strtok(NULL, " \n")) != NULL)
-        {
-            strcpy(word, temp);
-        }
-        else
-        {
-            break;
-        }
+        while(index >= 0 && line[index] != ' ') index--;
+        int i = index + 1;
+        while(line[i] != ' ' && line[i] != '\n' && line[i]) putchar(line[i++]);
+        putchar(index == -1 ? '\0' : ' ');
     }
-    newline[strlen(newline) - 1] = '\0';
-    puts(newline);
     
     return 0;
 }

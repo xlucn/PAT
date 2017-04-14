@@ -16,26 +16,17 @@
 #include <string.h>
 int main()
 {
-    int sum = 0;
     char c;
+    int sum = 0;
     while((c = getchar()) != '\n')  sum += c - '0';
     
-    char pinyin[13] = {0};
     char *pinyins[] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
     
     if(sum / 100)                           /* hundreds */
-    {
-        strcat(pinyin, pinyins[sum/100]);
-        strcat(pinyin, " ");
-    }
+        printf("%s ", pinyins[sum/100]);
     if(sum / 10)                            /* tens */
-    {
-        strcat(pinyin, pinyins[sum/10%10]);
-        strcat(pinyin, " ");
-    }
-    strcat(pinyin, pinyins[sum%10]);        /* unit */
-    
-    puts(pinyin);
+        printf("%s ", pinyins[sum/10%10]);
+    printf("%s", pinyins[sum%10]);          /* unit */
     
     return 0;
 }

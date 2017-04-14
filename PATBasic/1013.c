@@ -18,7 +18,6 @@
  * 47 53 59 61 67 71 73 79 83 89
  * 97 101 103
  **/
-#include <math.h>
 #include <stdio.h>
 int main()
 {
@@ -30,7 +29,7 @@ int main()
     for(int n = 2, count = 0; count < N; n++)
     {
         int iprime = 1;
-        for(int j = 0; count > 0 && primes[j] <= sqrt(n); j++)
+        for(int j = 0; count > 0 && primes[j] * primes[j] <= n; j++)
             if(n % primes[j] == 0)
                 iprime = 0;
         if(iprime) primes[count++] = n;

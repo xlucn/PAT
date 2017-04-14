@@ -15,7 +15,6 @@
  * 4
  **/
 #include <stdio.h>
-#include <math.h>
 int main()
 {
     int N;
@@ -31,23 +30,16 @@ int main()
     {
         iPrime = 1;
         /* test if i is a prime number */
-        for(int j = 0; primes[j] <= sqrt(i); j++)
+        for(int j = 0; primes[j] * primes[j] <= i; j++) if(i % primes[j] == 0)
         {
-            if(i % primes[j] == 0)
-            {
-                iPrime = 0;
-            }
+            iPrime = 0;
+            break;
         }
+        /* i is a prime number */
         if(iPrime == 1)
         {
-            if(primecount < 100)
-            {
-                primes[primecount++] = i;
-            }
-            if(iPrimeMinus2 == 1) /* a prime pair found */
-            {
-                paircount++;
-            }
+            if(primecount < 100)    primes[primecount++] = i;
+            if(iPrimeMinus2 == 1)   paircount++;    /* a prime pair found */
         }
         /* change the flags */
         iPrimeMinus2 = iPrimeMinus1;

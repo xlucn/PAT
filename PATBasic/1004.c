@@ -27,35 +27,35 @@
  * Joe Math990112
  **/
 #include <stdio.h>
-#include <stdlib.h>
-
-/* a struct type to store the name, ID and grade */
-struct _Student{
-    char name[11];
-    char ID[11];
-    int grade;
-};
-typedef struct _Student *Student;
+#include <string.h>
 
 int main()
 {
-    int N, max = 0, min = 0;
+    int N;
     scanf("%d", &N);
     
-    Student *students = (Student*)malloc(N * sizeof(Student));
+    char name[2][11], id[2][11], curname[11], curid[11];
+    int grade[2] = {-1, 101}, curgrade;
+    
     for(int i = 0; i < N; i++)
     {
-        students[i] = (Student)malloc(sizeof(struct _Student));
-        scanf("%s %s %d", students[i]->name, students[i]->ID, &students[i]->grade);
+        scanf("%s %s %d", curname, curid, &curgrade);
         
-        if(students[i]->grade > students[max]->grade)   max = i;
-        if(students[i]->grade < students[min]->grade)   min = i;
+        if(curgrade > grade[0])
+        {
+            strcpy(name[0], curname);
+            strcpy(id[0], curid);
+            grade[0] = curgrade;
+        }
+        if(curgrade < grade[1])
+        {
+            strcpy(name[1], curname);
+            strcpy(id[1], curid);
+            grade[1] = curgrade;
+        }
     }
     
-    printf("%s %s\n%s %s", students[max]->name, students[max]->ID, 
-                           students[min]->name, students[min]->ID);
-    
-    for(int i = 0; i < N; i++) free(students[i]); free(students);
+    printf("%s %s\n%s %s", name[0], id[0], name[1], id[1]);
     
     return 0;
 }

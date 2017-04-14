@@ -16,32 +16,14 @@
 #include <stdio.h>
 int main()
 {
-    int coef;
-    int index;
-    int count = 0;
-    
-    char c;
-    while((c = getchar()) != '\n')
-    {
-        /* not the end of input */
-        ungetc(c, stdin);
-        scanf("%d %d", &coef, &index);
-        count++;
-        
-        /* zero polynomial or constant, the result is zero polynomial */
-        if(count == 1 && (coef == 0 || index == 0))
-        {
-            puts("0 0");
-            break;
-        }
-        
-        /* constant terms results in zero term, so no output for index = 0 */
-        if(index != 0)
-        {
-            if(count > 1)  putchar(' ');
-            printf("%d %d", coef * index, index - 1);
-        }
+    int coef, index, count = 0;
+
+    while(scanf("%d %d", &coef, &index) != EOF) if(index)
+    {   /* constant terms results in zero term, so no output for index = 0 */
+        printf("%c%d %d", count++ ? ' ' : '\0', coef * index, index - 1);
     }
+    /* zero polynomial or constant, the result is zero polynomial */
+    if(count == 0) puts("0 0");
     
     return 0;
 }

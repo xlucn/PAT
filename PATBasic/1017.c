@@ -37,8 +37,7 @@ int main()
     B = getchar() - '0';
     
     /* calculate */
-    /* In consideration of reusability, the results are stored in A and B
-    instead of printed out on-the-fly */
+    /* the results are stored in A and B instead of printed out on-the-fly */
     int twodigit, remainder = 0;
     for(int i = 0; A[i]; i ++)
     {

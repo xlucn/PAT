@@ -34,8 +34,6 @@
 #include <ctype.h>
 int main()
 {
-    /* the length of string is not more than 60, so the length of 
-    character array should be at least 62: 60+\n\0 */
     char str1[61], str2[61], str3[61], str4[61];
     scanf("%s %s %s %s", str1, str2, str3, str4);
     
