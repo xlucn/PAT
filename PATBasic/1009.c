@@ -14,19 +14,20 @@
  * Come I Here World Hello
  **/
 #include <stdio.h>
-#include <string.h>
+#include <ctype.h>
 int main()
 {
-    char line[82];
-    fgets(line, 82, stdin);
+    char line[81], *p = line, *i;
+    fgets(line, 81, stdin);
     
-    for(int index = strlen(line) - 1; index >= 0; index--)
+    while(*++p);                                        /* go to the end of the string */
+    while(p > line)
     {
-        while(index >= 0 && line[index] != ' ') index--;
-        int i = index + 1;
-        while(line[i] != ' ' && line[i] != '\n' && line[i]) putchar(line[i++]);
-        putchar(index == -1 ? '\0' : ' ');
+        while(isspace(*--p)) ;                          /* find the end of a word */
+        while(p > line && !isspace(*(p - 1))) p--;      /* find the start of the word */         
+        for(i = p; *i && !isspace(*i); putchar(*i++));  /* print the word */
+        putchar(p == line ? '\0' : ' ');
     }
-    
+
     return 0;
 }
