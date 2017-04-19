@@ -28,22 +28,18 @@
  * 94.50
  */
 #include <stdio.h>
-#include <stdlib.h>
 int main()
 {
-    int N;
+    int N, max;
+    float D, Storage[1000], Total = 0, Price[1000];    
     scanf("%d %f", &N, &D);
-    float *Storage = (float*)malloc(N * sizeof(float));
-    float *Price = (float*)malloc(N * sizeof(float));
-    
     for(int i = 0; i < N; i++) scanf("%f", Storage + i);
     for(int i = 0; i < N; i++) scanf("%f", Price + i);
     
-    int max;
-    float D, Total = 0;
     while(D > 0)
     {
-        for(int i = 0, max = 0; i < N; i++)
+        max = 0;
+        for(int i = 0; i < N; i++)
             if(Price[i] / Storage[i] > Price[max] / Storage[max])
                 max = i;
         
@@ -60,8 +56,6 @@ int main()
         }
     }
     printf("%.2f", Total);
-    
-    free(Storage);
-    free(Price);
+
     return 0;
 }

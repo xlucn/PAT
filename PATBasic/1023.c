@@ -30,11 +30,11 @@ int main()
     for(int i = 1; i < 10; i++)
     {
         scanf("%d", &nonzero);
-        for(; nonzero; nonzero--)
+        while(nonzero--)
         {
-            putc('0' + i, stdout);
+            putchar('0' + i);
             for(; zero; zero--)     /* after the first non-zero, print all the zeros */
-                putc('0', stdout);
+                putchar('0');
         }
     }
     return 0;

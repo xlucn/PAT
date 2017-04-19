@@ -38,22 +38,14 @@
  * 2222 - 2222 = 0000
  */
 #include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b) {return *(int*)b - *(int*)a;}
+
 int sort(int n)
 {
-    int temp;
     int digits[4] = {n/1000, n%1000/100, n%100/10, n%10};
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = i + 1; j < 4; j++)
-        {
-            if(digits[j] > digits[i])
-            {
-                temp = digits[i];
-                digits[i] = digits[j];
-                digits[j] = temp;
-            }
-        }
-    }
+    qsort(digits, 4, sizeof(int), cmp);
     return digits[0] * 1000 + digits[1] * 100 + digits[2] * 10 + digits[3];
 }
 
@@ -69,10 +61,11 @@ int main()
     while(1)
     {
         N = sort(N);
-        printf("%04d - %04d = %04d", N, reverse(N), N - reverse(N));
+        printf("%04d - %04d = %04d\n", N, reverse(N), N - reverse(N));
         N = N - reverse(N);
-        if(N != 0 && N != 6174) printf("\n");
-        else                    break;
+        
+        if(N == 0 || N == 6174) 
+            break;
     }
     return 0;
 }

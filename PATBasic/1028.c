@@ -32,33 +32,25 @@
 
 int main()
 {
-    int N, possible = 0;
-    char birthday[11] = {0}, eldest[11] = {'9'}, youngest[11] = {'0'};
-    char name[6], eldestname[6], youngestname[6];
+    int N, count = 0;
+    char current[17], eldest[17] = {'9'}, youngest[17] = {'0'};
     
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
-        scanf("%s %s", name, birthday);
-        
-        if(strcmp(birthday, "1814/09/06") >= 0 && strcmp(birthday, "2014/09/06") <= 0) 
+        scanf("%s %s", current + 11, current);
+        if(strcmp(current, "1814/09/06") >= 0 && strcmp(current, "2014/09/06") <= 0) 
         {
-            if(strcmp(birthday, eldest) <= 0) 
-            {
-                strcpy(eldest, birthday);
-                strcpy(eldestname, name);
-            }
-            if(strcmp(birthday, youngest) >= 0)
-            {
-                strcpy(youngest, birthday);
-                strcpy(youngestname, name);
-            }
-            possible++;
+            if(strcmp(current, eldest) <= 0) 
+                memcpy(eldest, current, 17);
+            if(strcmp(current, youngest) >= 0)
+                memcpy(youngest, current, 17);
+            count++;
         }
     }
     
-    if(possible)
-        printf("%d %s %s", possible, eldestname, youngestname);
+    if(count)
+        printf("%d %s %s", count, eldest + 11, youngest + 11);
     else 
         printf("0");
     

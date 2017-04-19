@@ -28,19 +28,12 @@
  * -12000000000
  */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 int main()
 {
+    int exponent;    /* the exponent part */
     char line[10000], *p = line;
-    scanf("%s", line);
-    
-    /* find the 'E' in the string, split string into two parts */
-    char *Eindex = strchr(line, 'E');
-    int exponent = atoi(Eindex + 1);    /* the exponent part */
-    *Eindex = '\0';                     /* end the coefficient part with '\0' */
-    
-    /* print */
+    scanf("%[^E]E%d", line, &exponent);
+
     if(*p++ == '-') putchar('-');
     if(exponent >= 0)   /* print '.' later or add zeros in the end */
     {

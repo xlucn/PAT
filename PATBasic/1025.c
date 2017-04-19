@@ -39,66 +39,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define SWAPNODE(A, B) {Node temp = A; A = B; B = temp;}
+
+typedef struct node *Node;
+
+struct node{
+    int addr;
+    int data;
+    int next;
+};
+
 int main()
 {
     int A, N, K;
-    scanf("%d %d %d", &A, &N, &K);
-    int **nodes = (int**)malloc(N * sizeof(int*));
+    Node *nodes, *p;
     
     /* read */
-    for(int i = 0; i < N; i++){   
-        nodes[i] = (int*)malloc(3 * sizeof(int)); /* Address, Data, Next */
-        scanf("%d %d %d", nodes[i], nodes[i] + 1, nodes[i] + 2);
+    scanf("%d %d %d", &A, &N, &K);
+    nodes = (Node*)malloc(N * sizeof(Node));
+    for(int i = 0; i < N; i++) 
+    {
+        nodes[i] = (Node)malloc(sizeof(struct node));
+        scanf("%d %d %d", &nodes[i]->addr, &nodes[i]->data, &nodes[i]->next);
     }
     
     /* link the list */
-    int *temp;
-    for(int i = 0; i < N - 1; i++){
-        for(int j = i; j < N; j++){
-            if(nodes[j][0] == (i ? nodes[i - 1][2] : A)){
-                temp = nodes[i]; 
-                nodes[i] = nodes[j]; 
-                nodes[j] = temp;
-                if(nodes[i][2] == -1){  /* there could be useless nodes ... */
-                    N = i + 1;          /*    AND                           */
-                }                       /*       NO             :-(         */
-                break;                  /*         ONE                      */
-            }                           /*            TOLD                  */
-        }                               /*                ME                */
-    }                                   /*                  BEFORE          */
-                                        /*                        !!!!      */
-    /* reverse the list */
-    int **p = nodes;
-    for(; N >= K; N -= K, p += K)   /* 1. every K nodes */
-    {      
-        for(int i = K - 1; i >= 0; i--)
+    for(int i = 0; i < N; i++)
+    {
+        for(int j = i; j < N; j++)
         {
-            /* Adreess and Data */
-            printf("%05d %d ", p[i][0], p[i][1]);
-            /* Next */
-            if(i == 0)              /* 1.1. last node in every K nodes */
+            if(nodes[j]->addr == (i ? nodes[i - 1]->next : A))
             {
-                if(N - K >= K)      /* 1.1.1. point to the last in next K nodes */
-                    printf("%05d\n", (*(p + 2 * K - 1))[0]);
-                else if(N - K > 0)  /* 1.1.2. there is less then K nodes left, point to the first in next group */
-                    printf("%05d\n", (*(p + K))[0]);
-                else                /* 1.1.3. this is the last node, point to -1 */
-                    printf("-1\n");                 
-            }
-            else                    /* 1.2. not last in every K nodes, point to the previous node */
-            {
-                printf("%05d\n", p[i - 1][0]); 
+                SWAPNODE(nodes[i], nodes[j]);
+                break;
             }
         }
+        if(nodes[i]->next == -1)   /* there could be useless nodes */
+            N = i + 1;
     }
-    for(; N; p++, N--)              /* 2. last nodes if there is any */
+
+    /* reverse the list */
+    for(int i = 0; i < N / K; i++)
     {
-        printf("%05d %d ", (*p)[0], (*p)[1]);
-        if(N > 1)                   /* 2.1. not last node */
-            printf("%05d\n", (*p)[2]);
-        else                        /* 2.2. last node */
-            printf("-1\n");
+        p = nodes + i * K;
+        for(int j = 0; j < K / 2; j++)
+        {
+            SWAPNODE(p[j], p[K - j - 1]);
+        }
     }
     
+    /* print the list */
+    for(int i = 0; i < N - 1; i++)
+    {
+        printf("%05d %d %05d\n", nodes[i]->addr, nodes[i]->data, nodes[i + 1]->addr);
+    }
+    printf("%05d %d -1\n", nodes[N - 1]->addr, nodes[N - 1]->data);
+
     return 0;
 }

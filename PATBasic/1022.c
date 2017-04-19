@@ -16,9 +16,7 @@
  * 输出样例：
  * 1103
  */
-/*
- * use Sum / D >= power to avoid using long int 
- */
+
 #include <stdio.h>
 int main()
 {
@@ -28,6 +26,7 @@ int main()
     
     /* calculate the bits of Sum */
     int power = 1;
+    /* use Sum / D >= power to avoid using long int */
     while(Sum / D >= power) power *= D;
     
     /* calculate D-base number. print them on-the-fly */

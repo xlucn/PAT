@@ -28,30 +28,14 @@
 int main()
 {
     char c;
-    int bad[41] = {0}; /* record keys: (A-Z 0-9 _ , . - +) are broken or not */
+    int bad[128] = {0}; /* record keys are broken or not */
     
-    /* read broken keys */
-    while((c = getchar()) != '\n')
-    {
-        if(isalpha(c))          bad[toupper(c) - 'A'] = 1;  /* alphabets */
-        else if(isdigit(c))     bad[c - '0' + 26] = 1;      /* digits */
-        else if(c == '_')       bad[36] = 1;                /* blank space */
-        else if(c == ',')       bad[37] = 1;                /* comma */
-        else if(c == '.')       bad[38] = 1;                /* period */
-        else if(c == '-')       bad[39] = 1;                /* hyphen */
-        else if(c == '+')       bad[40] = 1;                /* shift */
-    }
+    while((c = getchar()) != '\n')      /* read broken keys */
+        bad[toupper(c)] = 1;
     
-    /* read string and print */
-    while((c = getchar()) != '\n')
-    {
-        if((isalpha(c) && !bad[toupper(c) - 'A'] && !(isupper(c) && bad[40]))
-        || (isdigit(c) && !bad[c - '0' + 26])
-        || (c == '_' && !bad[36])
-        || (c == ',' && !bad[37])
-        || (c == '.' && !bad[38])
-        || (c == '-' && !bad[39]))      putchar(c);
-    }
+    while((c = getchar()) != '\n')      /* read string and print */
+        if(!bad[toupper(c)] && !(isupper(c) && bad['+']))
+              putchar(c);
     
     return 0;
 }
