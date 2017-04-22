@@ -46,10 +46,10 @@ int Mars2Earth(char *s)
 {
     if(s)
     {
-        for(int i = 0; i < 13; i++)
+        for(int i = 0; i < 13; i++)         /* units digits */
             if(strcmp(s, units[i]) == 0)
                 return i;
-        for(int i = 1; i < 13; i++)
+        for(int i = 1; i < 13; i++)         /* tens digits */
             if(strcmp(s, tens[i - 1]) == 0)
                 return i * 13;
     }
@@ -59,28 +59,26 @@ int Mars2Earth(char *s)
 int main()
 {
     int N, m;
-    char number[11];
+    char line[11];
     
-    fgets(number, 11, stdin);
-    sscanf(number, "%d", &N);
+    fgets(line, 11, stdin);
+    sscanf(line, "%d", &N);
     for(int i = 0; i < N; i++)
     {
-        fgets(number, 11, stdin);
-        if(isdigit(number[0]))                  /* Earth number */
+        fgets(line, 11, stdin);
+        if(isdigit(line[0]))                  /* Earth line */
         {
-            sscanf(number, "%d", &m);
+            sscanf(line, "%d", &m);
             if(m / 13 && m % 13)
                 printf("%s %s\n", tens[m / 13 - 1], units[m % 13]);
-            if(m / 13 == 0 && m % 13)
-                printf("%s\n", units[m % 13]);
             if(m / 13 && m % 13 == 0)
                 printf("%s\n", tens[m / 13 - 1]);
-            if(m / 13 == 0 && m % 13 == 0)
-                printf("%s\n", units[0]);
+            if(m / 13 == 0)
+                printf("%s\n", units[m % 13]);
         }
-        if(isalpha(number[0]))                  /* Mars number */
+        if(isalpha(line[0]))                  /* Mars line */
         {
-            m = Mars2Earth(strtok(number, " \n"));      /* higher digit */
+            m = Mars2Earth(strtok(line, " \n"));      /* higher digit */
             m += Mars2Earth(strtok(NULL, " \n"));       /* lower digit */
             printf("%d\n", m);
         }

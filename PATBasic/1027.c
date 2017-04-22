@@ -39,9 +39,9 @@ int main()
     int N, M;
     scanf("%d %c", &N, &c);
     
-    for(M = 1; 2 * M * M - 1 <= N; M++) ; M--;   /* determine the size of the pyramid */
+    for(M = 1; 2 * M * M - 1 <= N; M++) ; M--;   /* determine the size of the sandglass */
     
-    /* draw the pyramid */
+    /* draw the sandglass */
     for(int i = 0; i < 2 * M - 1; i ++){
         for(int j = 0; j < M - 1 - ABS(M - 1 - i); j++) putchar(' ');
         for(int j = 0; j < 2 * ABS(M - 1 - i) + 1; j++) putchar(c);

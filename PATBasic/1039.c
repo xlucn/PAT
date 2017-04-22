@@ -49,7 +49,7 @@ int main()
     }
     
     if(less)    printf("No %d", less);
-    if(!less)   printf("Yes %d", more);
+    else        printf("Yes %d", more);
     
     return 0;
 }
