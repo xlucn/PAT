@@ -23,20 +23,23 @@
  */
 #include <ctype.h>
 #include <stdio.h>
-#include <string.h>
 int main()
 {
-    int bad[128] = {0};
-    char c, complete[81], partial[81];
+    int printed[128] = {0};
+    char c, line[82];
     
-    scanf("%s %s", complete, partial);
-    for(char *p = complete; *p; p++) 
+    scanf("%s", line);
+    while((c = getchar()) != '\n') ;
+    while((c = getchar()) != '\n')
+        printed[toupper(c)]++;
+    
+    for(char *p = line; *p; p++) 
     {
         c = toupper(*p);
-        if( !strchr(partial, c) && !strchr(partial, tolower(c)) && !bad[(int)c])
+        if(printed[(int)c] == 0)
         {
             putchar(c);
-            bad[(int)c] = 1;
+            printed[(int)c] = -1;
         }
     }
     return 0;
