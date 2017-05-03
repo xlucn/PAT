@@ -28,12 +28,9 @@ int main()
     char c;
     while((c = getchar()) != '\n')
     {
-        switch(c)
-        {
-            case 'P':   P++;                        break;
-            case 'A':   PA = (PA + P) % LIM;        break;
-            case 'T':   PAT = (PAT + PA) % LIM;     break;
-        }
+        if(c == 'P')   P++;
+        if(c == 'A')   PA = (PA + P) % LIM;
+        if(c == 'T')   PAT = (PAT + PA) % LIM;
     }
     printf("%d", PAT);
     return 0;

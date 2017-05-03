@@ -34,7 +34,7 @@ int main()
         scanf("%lf", &ai);
         sum += ai * (i + 1) * (N - i);
     }
-    printf("%.2f", sum);
+    printf("%.2lf", sum);
     
     return 0;
 }
