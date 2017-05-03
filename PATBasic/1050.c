@@ -33,58 +33,42 @@ int main()
     int N, m, n;
     scanf("%d", &N);
     
-    for(m = 1; N > m * m || N % m; m++) ;
-    n = N / m;
-    
     int *array = (int*)malloc(N * sizeof(int));
     int *matrix = (int*)malloc(N * sizeof(int));
     for(int i = 0; i < N; i++)
-    {
         scanf("%d", array + i);
-    }
+
     qsort(array, N, sizeof(int), cmp);
     
-    int x = 0, y = 0, index = 0;
-    int virtical = n, horizontal = m;
-    enum {RIGHT, DOWN, LEFT, UP};
+    /* determine m and n */
+    for(m = 1; !(m * m >= N && N % m == 0); m++) ;
+    n = N / m;
     
-    for(int direction = RIGHT; horizontal && virtical; direction++)
+    int x = -1, y = 0, index = 0;
+    int horizontal = n, virtical = m;
+    
+    while(horizontal > 0 && virtical > 0)
     {
-        int sign;
-        switch(direction % 4)
-        {
-            case RIGHT:
-            case LEFT:
-                sign = 1 - direction % 4;
-                for(int i = 0; i < virtical; i++)
-                {
-                    matrix[y * n + x + sign * i] = array[index++];
-                }
-                x += sign * (virtical - 1);
-                y += sign;
-                horizontal--;
-                break;
-            case DOWN:
-            case UP:
-                sign = 2 - direction % 4;
-                for(int i = 0; i < horizontal; i++)
-                {
-                    matrix[(y + sign * i) * n + x] = array[index++];
-                }
-                y += sign * (horizontal - 1);
-                x -= sign;
-                virtical--;
-                break;
-        }
+        for(int i = 0; i < horizontal && virtical > 0; i++)  /* toward right */
+            matrix[y * n + ++x] = array[index++];
+        virtical--;
+
+        for(int i = 0; i < virtical && horizontal > 0; i++)  /* toward bottom */
+            matrix[++y * n + x] = array[index++];
+        horizontal--;
+
+        for(int i = 0; i < horizontal && virtical > 0; i++)  /* toward left */
+            matrix[y * n + --x] = array[index++];
+        virtical--;
+
+        for(int i = 0; i < virtical && horizontal > 0; i++)  /* toward top */
+            matrix[--y * n + x] = array[index++];
+        horizontal--;
     }
     
     for(int i = 0; i < m; i++)
-    {
         for(int j = 0; j < n; j++)
-        {
             printf("%d%c", matrix[i * n + j], j == n - 1 ? '\n' : ' ');
-        }
-    }
     
     return 0;
 }
