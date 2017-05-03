@@ -40,34 +40,28 @@
 /* https://en.wikipedia.org/wiki/Variable-width_encoding */
 int main()
 {
-    char c, symbols[3][10][13] = {0};
+    char c, symbols[3][10][5] = {0};
     for(int symbol = 0; symbol < 3; symbol++)
     {
-        int i, index = 0;
+        int index = 0;
         while((c = getchar()) != '\n') if(c == '[')
-        {
-            
-            for(i = 0; (c = getchar()) != ']'; i++)
-                symbols[symbol][index][i] = c;
-            symbols[symbol][index++][i] = '\0';
-        }
+            scanf("%[^]]", symbols[symbol][index++]);
     }
     
     int N, m[5];
-    char msg[] = "Are you kidding me? @\\/@";
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
         for(int i = 0; i < 5; i++)  scanf("%d", m + i);
-        if(symbols[0][m[0] - 1][0] && 
-            symbols[1][m[1] - 1][0] && 
-            symbols[2][m[2] - 1][0] && 
-            symbols[1][m[3] - 1][0] && 
-            symbols[0][m[4] - 1][0])
+        if(m[0] > 0 && m[0] <= 10 && *symbols[0][m[0] - 1] && 
+            m[1] > 0 && m[0] <= 10 && *symbols[1][m[1] - 1] && 
+            m[2] > 0 && m[0] <= 10 && *symbols[2][m[2] - 1] && 
+            m[3] > 0 && m[0] <= 10 && *symbols[1][m[3] - 1] && 
+            m[4] > 0 && m[0] <= 10 && *symbols[0][m[4] - 1])
             printf("%s(%s%s%s)%s\n", symbols[0][m[0] - 1], symbols[1][m[1] - 1], 
                 symbols[2][m[2] - 1], symbols[1][m[3] - 1], symbols[0][m[4] - 1]);
         else
-            puts(msg);
+            puts("Are you kidding me? @\\/@");
     }
     
     return 0;
