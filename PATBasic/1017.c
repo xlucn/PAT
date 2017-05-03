@@ -17,26 +17,16 @@
  * 输出样例：
  * 17636684150141093474 3
  **/
+/* read 2 digits from highest digit of A, do manual division, get the quotient
+ and remainder. Read one more digit, combine this with the last remainder to
+get a new 2-digits number. Do this until read to the end of A */
 #include <stdio.h>
 int main()
 {
-    /* read 2 digits from highest digit of A, do manual division, get the quotient
-     and remainder. Read one more digit, combine this with the last remainder to
-    get a new 2-digits number. Do this until read to the end of A */
     int B;
-    char A[1001];
+    char A[1001], *p = A;
+    scanf("%s %d", A, &B);
     
-    /* read A and B */
-    char c;
-    int count = 0;
-    while((c = getchar()) != ' ')
-    {
-        A[count++] = c;
-    }
-    A[count] = '\0';
-    B = getchar() - '0';
-    
-    /* calculate */
     /* the results are stored in A and B instead of printed out on-the-fly */
     int twodigit, remainder = 0;
     for(int i = 0; A[i]; i ++)
@@ -48,11 +38,8 @@ int main()
     B = remainder;
     
     /* print */
-    if(A[0] == '0' && A[1] != '\0')
-        printf("%s", A + 1);
-    else
-        printf("%s", A);
-    printf(" %d", B);
+    if(A[0] == '0' && A[1] != '\0') p++;
+    printf("%s %d", p, B);
     
     return 0;
 }
