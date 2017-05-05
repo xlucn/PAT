@@ -34,9 +34,6 @@
  * 输出样例2：
  * Merge Sort
  * 1 2 3 8 4 5 7 9 0 6
- * 
- ****
- * 暂未全部通过
  */
 
 #include <stdio.h>
@@ -44,54 +41,54 @@
 
 int comp(const void *a, const void *b){ return *(int*)a - *(int*)b;}
 
-/* pick the easy one :-) */
-int isInsertion(int origin[], int halfsort[], int N)
+void MergeStep(int array[], int N, int length)
 {
-    for(N--; origin[N] == halfsort[N]; N--);
-    for( ; N && halfsort[N] >= halfsort[N - 1]; N--);
-    return N ? 0 : 1;
+    int i;
+    for(i = 0; i < N / length; i++)
+        qsort(array + i * length, length, sizeof(int), comp);
+    qsort(array + i * length, N % length, sizeof(int), comp);
 }
 
-void InsertionStep(int origin[], int halfsort[], int N)
+int InsertionLength(int origin[], int halfsort[], int N)
 {
-    puts("Insertion Sort");
-    int i, j, temp;
-    for(i = 1; halfsort[i] >= halfsort[i - 1]; i++);    /* find first unsorted */
-    for(j = 0; halfsort[j] < halfsort[i]; j++);         /* find insert point */
-    temp = halfsort[i];
-    for(; i > j; i--) halfsort[i] = halfsort[i - 1];    /* right shift one */
-    halfsort[j] = temp;                                 /* insert */
+    int i, length;
+    for(i = 0; i < N - 1 && halfsort[i] <= halfsort[i + 1]; i++) ;
+    for(length = ++i; i < N && halfsort[i] == origin[i]; i++) ;
+    return i == N ? length + 1 : 0;
 }
 
-void MergeStep(int origin[], int halfsort[], int N)
+void MergeLength(int origin[], int halfsort[], int N)
 {
-    puts("Merge Sort");
-    int length = N;
-    for(int i = 0, j = 0; j < N; i = j)     /* find the length of every sorted clip */
+    int length, i = 0;
+    for(length = 1; i < N && length <= N; length *= 2)
     {
-        for(j++; j < N && halfsort[j] > halfsort[j - 1]; j++);
-        if(j < N && length > j - i) length = j - i;
+        for(i = 0; i < N && origin[i] == halfsort[i]; i++) ;
+        MergeStep(origin, N, length);
     }
-    length *= 2;
-    
-    for(int i = 0; i < N; i += length)      /* cheat the online judge :-) */
-        qsort(halfsort + i, length > N - i ? N - i : length, sizeof(int), comp);
 }
 
 int main()
 {
-    int N, origin[100], halfsort[100];
+    int N, origin[100], halfsort[100], ilength;
     scanf("%d", &N);
     for(int i = 0; i < N; i++) scanf("%d", origin + i);
     for(int i = 0; i < N; i++) scanf("%d", halfsort + i);
     
-    if(isInsertion(origin, halfsort, N))    /* Insertion method */
-        InsertionStep(origin, halfsort, N);
-    else                                    /* Merge method */
-        MergeStep(origin, halfsort, N);
+    ilength = InsertionLength(origin, halfsort, N);
+    
+    if(ilength)
+    {
+        puts("Insertion Sort");
+        qsort(origin, ilength, sizeof(int), comp);
+    }
+    else
+    {
+        puts("Merge Sort");
+        MergeLength(origin, halfsort, N);
+    }
     
     for(int i = 0; i < N; i++) 
-        printf("%d%c", halfsort[i], i == N - 1 ? '\n' : ' ');
+        printf("%d%c", origin[i], i == N - 1 ? '\n' : ' ');
     
     return 0;
 }
