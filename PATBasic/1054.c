@@ -42,44 +42,32 @@ int main()
     int count = 0, N;
     double f, sum = 0;
     /* Maxium scenario: -1000.00. So just need to read 8 chars(+ '\0' = 9) */
-    char strnum[9], *pEnd, *pDot, c;
+    char s[9], *pEnd, *pDot, c;
     
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
-        /* Just read 8 chars */
-        scanf("%8s", strnum);
+        scanf("%8s", s);                /* Just read 8 chars */
         
-        /* If there is still non-white chars following, it is not legal */
-        if(!isspace(ungetc(getchar(), stdin)))
+        c = ungetc(getchar(), stdin);   /* If the next is non-white char, it is too long */
+        f = strtod(s, &pEnd);           /* pEnd points to '\0' for a floating number */
+        pDot = strchr(s, '.');          /* find the decimal point */
+        
+        if(!isspace(c)                          /* more than 8 chars */
+        || *pEnd                                /* not floating number */
+        || (f > 1000 || f < -1000)              /* out of range */
+        || (pDot && pDot - s < strlen(s) - 3))  /* precision too high */
         {
-            printf("ERROR: %s", strnum);
+            printf("ERROR: %s", s);
             /* this can avoid array overflow(we don't know how long input is) */
             while(!isspace(c = getchar())) putchar(c);
             printf(" is not a legal number\n");
-            continue;
         }
-        
-        /* If this string is not a floating number, pEnd won't point to '\0' */
-        f = strtod(strnum, &pEnd);
-        /* convertion has left some chars or number is out of range */
-        if(*pEnd || f > 1000 || f < -1000)
-        {
-            printf("ERROR: %s is not a legal number\n", strnum);
-            continue;
+        else
+        {   /* legel number */
+            count++;
+            sum += f;
         }
-        
-        /* if the precision is more than two digits, it is not legal */
-        pDot = strchr(strnum, '.');
-        if(pDot && pDot - strnum < strlen(strnum) - 3)
-        {
-            printf("ERROR: %s is not a legal number\n", strnum);
-            continue;
-        }
-        
-        /* legel number */
-        count++;
-        sum += f;
     }
     
     if(count == 0)  printf("The average of 0 numbers is Undefined\n");
