@@ -56,16 +56,15 @@
  **/
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 
 #define SQR(X) ((X)*(X))
 #define R(COLOR) ((COLOR & 0XFF0000) >> 16)
 #define G(COLOR) ((COLOR & 0X00FF00) >> 8)
 #define B(COLOR) (COLOR & 0X0000FF)
-#define D(C1, C2) (sqrt(SQR(R(C1) - R(C2)) + SQR(G(C1) - G(C2)) +  SQR(B(C1) - B(C2))))
+#define D(C1, C2) (SQR(R(C1) - R(C2)) + SQR(G(C1) - G(C2)) +  SQR(B(C1) - B(C2)))
 
-int iUnique(int **array, int x, int y, int x0, int y0)
+int iUnique(int array[][1000], int x, int y, int x0, int y0)
 {
     for(int i = 0; i < x; i++)
         for(int j = 0; j < y; j++)
@@ -79,29 +78,24 @@ int main()
     int M, N, TOL;
     scanf("%d %d %d", &M, &N, &TOL);
     
-    int **fig = (int**)malloc(N * sizeof(int*));
+    int fig[1000][1000];
     for(int i = 0; i < N; i++)
-    {
-        fig[i] = (int*)calloc(M, sizeof(int));
         for(int j = 0; j < M; j++)
-        {
-            scanf("%d", *(fig + i) + j);
-        }
-    }
+            scanf("%d", &fig[i][j]);
     
     int count = 0, M0, N0;
     for(int i = 0; i < N; i ++)
     {
         for (int j = 0; j < M; j++)
         {
-            if((i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > TOL)
-            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j    ]) > TOL)
-            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > TOL)
-            && (j ==   0   ? 1 : D(fig[i][j], fig[i    ][j - 1]) > TOL)
-            && (j == M - 1 ? 1 : D(fig[i][j], fig[i    ][j + 1]) > TOL)
-            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j - 1]) > TOL)
-            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j    ]) > TOL)
-            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j + 1]) > TOL)
+            if((i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > SQR(TOL))
+            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j    ]) > SQR(TOL))
+            && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > SQR(TOL))
+            && (j ==   0   ? 1 : D(fig[i][j], fig[i    ][j - 1]) > SQR(TOL))
+            && (j == M - 1 ? 1 : D(fig[i][j], fig[i    ][j + 1]) > SQR(TOL))
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j - 1]) > SQR(TOL))
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j    ]) > SQR(TOL))
+            && (i == N - 1 ? 1 : D(fig[i][j], fig[i + 1][j + 1]) > SQR(TOL))
             && iUnique(fig, N, M, i, j))
             {
                 count++;
@@ -111,16 +105,11 @@ int main()
         }
     }
     if(count == 0)
-    {
         puts("Not Exist");
-    }
     else if(count == 1)
-    {
         printf("(%d, %d): %d", M0 + 1, N0 + 1, fig[N0][M0]);
-    }
     else
-    {
         puts("Not Unique");
-    }
+
     return 0;
 }
