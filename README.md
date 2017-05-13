@@ -5,3 +5,4 @@ PAT exercises in C language
 
 * 简书中写了代码的解释 http://www.jianshu.com/u/6d7ea07c8f6e
 * PAT Basic: https://www.patest.cn/contests/pat-b-practise
+* PAT Advanced: https://www.patest.cn/contests/pat-a-practise
