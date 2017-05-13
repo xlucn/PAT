@@ -56,7 +56,6 @@
  **/
 
 #include <stdio.h>
-#include <math.h>
 
 #define SQR(X) ((X)*(X))
 #define R(COLOR) ((COLOR & 0XFF0000) >> 16)
@@ -85,9 +84,7 @@ int main()
     
     int count = 0, M0, N0;
     for(int i = 0; i < N; i ++)
-    {
         for (int j = 0; j < M; j++)
-        {
             if((i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j - 1]) > SQR(TOL))
             && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j    ]) > SQR(TOL))
             && (i ==   0   ? 1 : D(fig[i][j], fig[i - 1][j + 1]) > SQR(TOL))
@@ -102,14 +99,10 @@ int main()
                 N0 = i;
                 M0 = j;
             }
-        }
-    }
-    if(count == 0)
-        puts("Not Exist");
-    else if(count == 1)
-        printf("(%d, %d): %d", M0 + 1, N0 + 1, fig[N0][M0]);
-    else
-        puts("Not Unique");
+    
+    if(count == 0)  printf("Not Exist");
+    if(count == 1)  printf("(%d, %d): %d", M0 + 1, N0 + 1, fig[N0][M0]);
+    if(count >= 2)  printf("Not Unique");
 
     return 0;
 }

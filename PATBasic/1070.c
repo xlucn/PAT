@@ -34,7 +34,7 @@ int main()
     for(i = 0; i < 10001; i++)                  /* find the shortest, special case */
         if(l[i]) {length = i; break;}
     
-    for(i = 0; i < 10001; i++)                  /* make new ropes */
+    for(; i < 10001; i++)                       /* make new ropes */
         while(l[i]--) length = (length + i) / 2;
     
     printf("%d", (int)length);
