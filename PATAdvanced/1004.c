@@ -37,11 +37,10 @@
 
 #define MAX 999
 
-typedef struct Node *Node;
+typedef struct Member *Member;
 typedef struct Child *Child;
 
-struct Node{
-    int nchild;
+struct Member{
     int level;
     Child child;
 };
@@ -54,7 +53,7 @@ struct Child{
 int main()
 {
     int N, M, ID, cID, K;
-    struct Node nodes[100];
+    struct Member nodes[100];
     struct Child children[100];
     
     /* Read data and initiate a adjacent list */
