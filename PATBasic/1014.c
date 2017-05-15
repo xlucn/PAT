@@ -37,7 +37,7 @@ int main()
     char str1[61], str2[61], str3[61], str4[61];
     scanf("%s %s %s %s", str1, str2, str3, str4);
     
-    /* Find day, same character from [A-G] and same position from frist two lines */
+    /* Find day, same char from [A-G] and same position in frist two lines */
     int DAY;
     char *weekdays[] = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     for(DAY = 0; str1[DAY] && str2[DAY]; DAY++)

@@ -53,7 +53,7 @@ int main()
     while(getchar() != '\n');
     while(N--)
     {
-        scanf("%20[^\n]", user);
+        scanf("%20[^\n]", user); /* avoid overflow */
         c = ungetc(getchar(), stdin);
         if(!strcmp(user, "#") && c == '\n')
         {

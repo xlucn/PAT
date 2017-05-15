@@ -20,12 +20,12 @@ int main()
     char line[81], *p = line, *i;
     fgets(line, 81, stdin);
     
-    while(*++p);                                        /* go to the end of the string */
-    while(p > line)
+    while(*++p);                               /* go to the end of the string */
+    while(p > line)                  /* break when at the start of the string */
     {
-        while(isspace(*--p)) ;                          /* find the end of a word */
-        while(p > line && !isspace(*(p - 1))) p--;      /* find the start of the word */         
-        for(i = p; *i && !isspace(*i); putchar(*i++));  /* print the word */
+        while(isspace(*--p)) ;                          /* find end of a word */
+        while(p > line && !isspace(*(p - 1))) p--;  /* find start of the word */         
+        for(i = p; *i && !isspace(*i); putchar(*i++));      /* print the word */
         putchar(p == line ? '\0' : ' ');
     }
 

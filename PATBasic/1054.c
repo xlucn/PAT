@@ -47,19 +47,19 @@ int main()
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
-        scanf("%8s", s);                /* Just read 8 chars */
+        scanf("%8s", s);              /* Just read 8 chars */
         
-        c = ungetc(getchar(), stdin);   /* If the next is non-white char, it is too long */
-        f = strtod(s, &pEnd);           /* pEnd points to '\0' for a floating number */
-        pDot = strchr(s, '.');          /* find the decimal point */
+        c = ungetc(getchar(), stdin); 
+        f = strtod(s, &pEnd);
+        pDot = strchr(s, '.');
         
-        if(!isspace(c)                          /* more than 8 chars */
+        if(!isspace(c)                          /* string too long */
         || *pEnd                                /* not floating number */
         || (f > 1000 || f < -1000)              /* out of range */
         || (pDot && pDot - s < strlen(s) - 3))  /* precision too high */
         {
             printf("ERROR: %s", s);
-            /* this can avoid array overflow(we don't know how long input is) */
+            /* this can avoid overflow (we don't know how long input is) */
             while(!isspace(c = getchar())) putchar(c);
             printf(" is not a legal number\n");
         }

@@ -34,8 +34,8 @@ int main()
     char line[10000], *p = line;
     scanf("%[^E]E%d", line, &exponent);
 
-    if(*p++ == '-') putchar('-');
-    if(exponent >= 0)   /* print '.' later or add zeros in the end */
+    if(*p++ == '-') putchar('-');       /* no print if it's '+' */
+    if(exponent >= 0)           /* print '.' later or add zeros in the end */
     {
         putchar(*p);
         for(p += 2; exponent; exponent--)    /* print the integer part */
@@ -43,11 +43,10 @@ int main()
         if(*p)                               /* there is still fraction part */
         {
             putchar('.');
-            while(*p) 
-                putchar(*p++);
+            while(*p) putchar(*p++);
         }
     }
-    if(exponent < 0)    /* add exponent zeros in the beginning */
+    if(exponent < 0)            /* add exponent zeros in the beginning */
     {
         printf("0.");
         for(exponent++; exponent; exponent++)       /* add zeros */

@@ -20,7 +20,8 @@ int main()
     int sum = 0;
     while((c = getchar()) != '\n')  sum += c - '0';
     
-    char *pinyins[] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
+    char *pinyins[] = {"ling", "yi", "er", "san", "si", 
+                       "wu", "liu", "qi", "ba", "jiu"};
     
     if(sum / 100)                           /* hundreds */
         printf("%s ", pinyins[sum/100]);

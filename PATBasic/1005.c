@@ -38,26 +38,23 @@ int main()
     /* find numbers needed to test */
     for(int i = 1; i <= 100; i++) if(tabel[i])
     {
-        /* reuse variable n here */
-        for(n = i; n > 1; )
+        for(int j = i; j > 1; )
         {
             /* calculate one step */
-            if(n % 2)      n = (3 * n + 1) / 2;
-            else           n /= 2;
+            if(j % 2)      j = (3 * j + 1) / 2;
+            else           j /= 2;
             /* see if the new number is in given numbers */
-            if(n <= 100 && tabel[n])
+            if(j <= 100 && tabel[j])
             {
-                tabel[n] = 0;
+                tabel[j] = 0;
                 K--;                    /* one less number not 'covered' */
-                if(n < i) break;        /* did this before, no need going on */
+                if(j < i) break;        /* did this before, no need going on */
             }
         }
     }
     
     for(int i = 100; i >= 1; i--) if(tabel[i] == 1)
-    {
         printf("%d%c", i, --K ? ' ' : '\0');
-    }
     
     return 0;
 }

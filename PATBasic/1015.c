@@ -103,11 +103,11 @@ int main()
     for(int i = 0; i < N; i++)
     {
         Student s = (Student)malloc(sizeof(struct _Student));
-        scanf("%d %d %d", &s->ID, &s->D, &s->C);   /* attention the precedence */
+        scanf("%d %d %d", &s->ID, &s->D, &s->C); 
         s->sum = s->D + s->C;
         if((s->rank = rank(s, H, L)))
             students[M++] = s;
-        else
+        else /* failed, don't record this */
             free(s);
     }
 

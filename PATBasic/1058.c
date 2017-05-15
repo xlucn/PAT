@@ -82,7 +82,7 @@ int main()
             while(getchar() != '(');
             if(readanswer() == probs[j].answer) /* If it is right */
                 score += probs[j].score;
-            else if(max < ++probs[j].wrong)     /* If most students got it wrong */
+            else if(max < ++probs[j].wrong)  /* If most students got it wrong */
                 max = probs[j].wrong;
             while(getchar() != ')');
         }

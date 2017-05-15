@@ -39,7 +39,7 @@ int main()
     int N, M;
     scanf("%d %c", &N, &c);
     
-    for(M = 1; 2 * M * M - 1 <= N; M++) ; M--;   /* determine the size of the sandglass */
+    for(M = 1; 2 * M * M - 1 <= N; M++) ; M--;   /* determine the size */
     
     /* draw the sandglass */
     for(int i = 0; i < 2 * M - 1; i ++){

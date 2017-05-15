@@ -29,11 +29,8 @@ int main()
     while((c = getchar()) != '\n') if(isalpha(c))
         sum += tolower(c) - 'a' + 1;
     
-    while(sum)
-    {
+    for(; sum; sum >>= 1)
         count[sum & 1]++;
-        sum >>= 1;
-    }
     
     printf("%d %d", count[0], count[1]);
 }

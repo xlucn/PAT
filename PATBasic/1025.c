@@ -67,13 +67,11 @@ int main()
     for(int i = 0; i < N; i++)
     {
         for(int j = i; j < N; j++)
-        {
             if(nodes[j]->addr == (i ? nodes[i - 1]->next : A))
             {
                 SWAPNODE(nodes[i], nodes[j]);
                 break;
             }
-        }
         if(nodes[i]->next == -1)   /* there could be useless nodes */
             N = i + 1;
     }
@@ -83,16 +81,13 @@ int main()
     {
         p = nodes + i * K;
         for(int j = 0; j < K / 2; j++)
-        {
             SWAPNODE(p[j], p[K - j - 1]);
-        }
     }
     
     /* print the list */
     for(int i = 0; i < N - 1; i++)
-    {
-        printf("%05d %d %05d\n", nodes[i]->addr, nodes[i]->data, nodes[i + 1]->addr);
-    }
+        printf("%05d %d %05d\n", 
+               nodes[i]->addr, nodes[i]->data, nodes[i + 1]->addr);
     printf("%05d %d -1\n", nodes[N - 1]->addr, nodes[N - 1]->data);
 
     return 0;

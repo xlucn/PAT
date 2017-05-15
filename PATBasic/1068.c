@@ -47,11 +47,11 @@
 
 /**
  * 颜色差异 Color difference: https://en.wikipedia.org/wiki/Color_difference
- * 定义为 D_12 = sqrt((r1 - r2)^2 + (g1 - g2)^2 + (b1 - b2)^2)
+ * 定义为 Diff_12 = sqrt((r1 - r2)^2 + (g1 - g2)^2 + (b1 - b2)^2)
  * 
  * Tips:
- * 1. The pixel should have the color differences higher than TOL with all pixels
- * around it. Including the pixels on the edge.
+ * 1. The pixel should have the color differences higher than TOL with all 
+ * pixels around it. Including the pixels on the edge.
  * 2. And this color should only appears only ONCE in the figure.
  **/
 

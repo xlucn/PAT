@@ -42,8 +42,8 @@ int main()
         couple[ID2] = ID1;
     }
     
-    /* Record those who come. If one has a mate then set 0(which means signed in), 
-     * else(means he is not even in the 'couple-list') set -1(which means bachelor) */
+    /* Record those who come. If one has a mate then set 0 (means signed in), 
+     * else (means not even in the 'couple-list') set -1 (means bachelor) */
     scanf("%d", &M);
     for(int i = 0; i < M; i++)
     {

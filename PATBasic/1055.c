@@ -79,6 +79,7 @@ int main()
     }
     qsort(students, N, sizeof(Student), cmp);
     
+    /* print */
     printrow(p, N - N / K * (K - 1));
     for(p += N - N / K * (K - 1); p < students + N; p += N / K)
         printrow(p, N / K);

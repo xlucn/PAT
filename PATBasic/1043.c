@@ -22,25 +22,18 @@
 #include <stdio.h>
 int main()
 {
-    char c;
-    int count[128] = {0};       /* for each ASCII char */
-    int str[] = "PATest";       /* use as index for count[] */
+    char c, str[] = "PATest";               /* use as index for count[] */
+    int i, flag = 1, count[128] = {0};      /* for each ASCII char */
     
     /* read any char and count their numbers */
     while((c = getchar()) != '\n')
         count[(int)c]++;
     
-    /* among "PATest" find the most frequent char and asign its count to max */
-    int max = 0;
-    for(int i = 0; i < 6; i++)
-        if(max < count[str[i]])
-            max = count[str[i]];
-    
     /* before "max" prints, print any char in "PATest" if it is still left */
-    while(max--)
-        for(int j = 0; j < 6; j++) 
-            if(count[str[j]]-- > 0)
-                putchar(str[j]);
+    while(flag)
+        for(i = 0, flag = 0; i < 6; i++) 
+            if(count[(int)str[i]]-- > 0)
+                putchar(str[i]), flag = 1;
     
     return 0;
 }
