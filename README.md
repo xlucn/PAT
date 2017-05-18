@@ -9,7 +9,7 @@ PAT exercises in C language
 (PAT B已经刷完1001-1070，PAT A刚刚开始)
 
 * 简书中写了代码的解释 
- * PAT Basic: http://www.jianshu.com/nb/11728776
- * PAT Advanced: http://www.jianshu.com/nb/12511746
+  * PAT Basic: http://www.jianshu.com/nb/11728776
+  * PAT Advanced: http://www.jianshu.com/nb/12511746
 * PAT Basic: https://www.patest.cn/contests/pat-b-practise
 * PAT Advanced: https://www.patest.cn/contests/pat-a-practise
