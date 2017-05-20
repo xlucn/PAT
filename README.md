@@ -10,6 +10,6 @@ PAT exercises (https://www.patest.cn/contests) in C language
 
 * 简书中写了代码的解释 
   * PAT Basic: http://www.jianshu.com/p/c2b557516b50
-  * PAT Advanced: http://www.jianshu.com/nb/12511746
+  * PAT Advanced: http://www.jianshu.com/p/8944b15f8194
 * PAT Basic: https://www.patest.cn/contests/pat-b-practise
 * PAT Advanced: https://www.patest.cn/contests/pat-a-practise
