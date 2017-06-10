@@ -30,15 +30,14 @@
 #include <stdio.h>
 int main()
 {
-    int N, time = 0, cur, pre = 0;
+    int N, time, cur, pre;
     
     scanf("%d", &N);
-    while(N--)
+    for(pre = 0, time = 0; N--; pre = cur)
     {
         scanf("%d", &cur);
         if(cur > pre)   time += (cur - pre) * 6 + 5;
         else            time += (pre - cur) * 4 + 5;
-        pre = cur;
     }
     
     printf("%d", time);

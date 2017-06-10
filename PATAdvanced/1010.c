@@ -69,8 +69,8 @@ long long binsearch(char *s, long long n, long long rmin, long long rmax)
     long long r, m;
     while(rmax >= rmin)
     {
-        r = rmin + (rmax - rmin) / 2; /* avoid overflow when rmax + rmin      */
-        if((m = base10(s, r)) > n || m == OVERFLOW)  /*           > LLONG_MAX */
+        r = rmin + (rmax - rmin) / 2; /* avoid overflow */
+        if((m = base10(s, r)) > n || m == OVERFLOW) 
             rmax = r - 1;
         else if(m < n)
             rmin = r + 1;
