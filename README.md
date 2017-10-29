@@ -6,7 +6,7 @@ PAT exercises (https://www.patest.cn/contests) in C language
 
 欢迎讨论 Outlook: oliver_lew@outlook.com
 
-(PAT B已经刷完1001-1070，PAT A刚刚开始)
+(PAT B已经刷完1001-1075，PAT A刚刚开始)
 
 * 简书中写了代码的解释 
   * PAT Basic: http://www.jianshu.com/p/c2b557516b50
