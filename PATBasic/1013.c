@@ -13,12 +13,15 @@
  * 
  * 输入样例：
  * 5 27
+ * 
  * 输出样例：
  * 11 13 17 19 23 29 31 37 41 43
  * 47 53 59 61 67 71 73 79 83 89
  * 97 101 103
  **/
+
 #include <stdio.h>
+
 int main()
 {
     
@@ -28,13 +31,18 @@ int main()
     
     for(int n = 2, count = 0; count < N; n++)
     {
+        /* Check if n is prime number */
         int iprime = 1;
         for(int j = 0; count > 0 && primes[j] * primes[j] <= n; j++)
             if(n % primes[j] == 0)
                 iprime = 0;
-        if(iprime) primes[count++] = n;
+        
+        /* Record */
+        if(iprime) 
+            primes[count++] = n;
     }
     
+    /* Print */
     for(int i = M; i < N; i++)
     {
         printf("%d", primes[i - 1]);

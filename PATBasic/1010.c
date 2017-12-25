@@ -1,5 +1,6 @@
 /**
  * 1010. 一元多项式求导
+ * 
  * 设计函数求一元多项式的导数。（注：x^n（n为整数）的一阶导数为n*x^n-1。）
  * 
  * 输入格式：以指数递降方式输入多项式非零项系数和指数（绝对值均为不超过1000的整数）。
@@ -10,20 +11,24 @@
  * 
  * 输入样例：
  * 3 4 -5 2 6 1 -2 0
+ * 
  * 输出样例：
  * 12 3 -10 1 6 0
  **/
+
 #include <stdio.h>
+
 int main()
 {
     int coef, index, count = 0;
 
-    while(scanf("%d %d", &coef, &index) != EOF) if(index)
-    {   /* constant terms results in zero term, so no output for index = 0 */
-        printf("%c%d %d", count++ ? ' ' : '\0', coef * index, index - 1);
-    }
-    /* zero polynomial or constant, the result is zero polynomial */
-    if(count == 0) puts("0 0");
+    while(scanf("%d %d", &coef, &index) != EOF) 
+        if(index) /* Constant terms result in zero, so no output for 0 index */
+            printf("%c%d %d", count++ ? ' ' : '\0', coef * index, index - 1);
+
+    /* For zero polynomial or constant, the result is zero polynomial */
+    if(count == 0) 
+        puts("0 0");
     
     return 0;
 }
