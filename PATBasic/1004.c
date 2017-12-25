@@ -22,10 +22,12 @@
  * Joe Math990112 89
  * Mike CS991301 100
  * Mary EE990830 95
+ * 
  * 输出样例：
  * Mike CS991301
  * Joe Math990112
  **/
+
 #include <stdio.h>
 #include <string.h>
 
@@ -34,28 +36,29 @@ int main()
     int N;
     scanf("%d", &N);
     
-    char name[2][11], id[2][11], curname[11], curid[11];
-    int grade[2] = {-1, 101}, curgrade;
+    char maxname[11], minname[11], curname[11], 
+		maxid[11], minid[11], curid[11];
+    int maxgrade = -1, mingrade = 101, curgrade;
     
     for(int i = 0; i < N; i++)
     {
         scanf("%s %s %d", curname, curid, &curgrade);
         
-        if(curgrade > grade[0])
+        if(curgrade > maxgrade)
         {
-            strcpy(name[0], curname);
-            strcpy(id[0], curid);
-            grade[0] = curgrade;
+            strcpy(maxname, curname);
+            strcpy(maxid, curid);
+            maxgrade = curgrade;
         }
-        if(curgrade < grade[1])
+        if(curgrade < mingrade)
         {
-            strcpy(name[1], curname);
-            strcpy(id[1], curid);
-            grade[1] = curgrade;
+            strcpy(minname, curname);
+            strcpy(minid, curid);
+            mingrade = curgrade;
         }
     }
     
-    printf("%s %s\n%s %s", name[0], id[0], name[1], id[1]);
+    printf("%s %s\n%s %s", maxname, maxid, minname, minid);
     
     return 0;
 }

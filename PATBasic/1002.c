@@ -9,25 +9,28 @@
  * 
  * 输入样例：
  * 1234567890987654321123456789
+ * 
  * 输出样例：
  * yi san wu
  **/
+
 #include <stdio.h>
 #include <string.h>
+
 int main()
 {
-    char c;
     int sum = 0;
-    while((c = getchar()) != '\n')  sum += c - '0';
-    
-    char *pinyins[] = {"ling", "yi", "er", "san", "si", 
-                       "wu", "liu", "qi", "ba", "jiu"};
+    char c, *pinyins[] = {"ling", "yi", "er", "san", "si", 
+						  "wu", "liu", "qi", "ba", "jiu"};
+
+    while((c = getchar()) != '\n')  
+		sum += c - '0';
     
     if(sum / 100)                           /* hundreds */
-        printf("%s ", pinyins[sum/100]);
+        printf("%s ", pinyins[sum / 100]);
     if(sum / 10)                            /* tens */
-        printf("%s ", pinyins[sum/10%10]);
-    printf("%s", pinyins[sum%10]);          /* unit */
+        printf("%s ", pinyins[sum / 10 % 10]);
+    printf("%s", pinyins[sum % 10]);          /* units */
     
     return 0;
 }
