@@ -27,11 +27,14 @@
  * 2984akDfkkkkggEdsb 
  * s&hgsfdk 
  * d&Hyscvnm
+ * 
  * 输出样例：
  * THU 14:04
  **/
+
 #include <stdio.h>
 #include <ctype.h>
+
 int main()
 {
     char str1[61], str2[61], str3[61], str4[61];

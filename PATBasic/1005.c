@@ -1,5 +1,6 @@
 /**
  * 1005. 继续(3n+1)猜想
+ * 
  * 卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。
  * 
  * 当我们验证卡拉兹猜想的时候，为了避免重复计算，可以记录下递推过程中遇到的每一个数。
@@ -20,14 +21,17 @@
  * 输入样例：
  * 6
  * 3 5 6 7 8 11
+ * 
  * 输出样例：
  * 7 6
  **/
+
 #include <stdio.h>
+
 int main()
 {
-    int K, n;
-    int tabel[101] = {0};
+    int K, n, tabel[101] = {0};
+    
     scanf("%d", &K);
     for(int i = 0; i < K; i++)
     {
@@ -36,25 +40,26 @@ int main()
     }
     
     /* find numbers needed to test */
-    for(int i = 1; i <= 100; i++) if(tabel[i])
-    {
-        for(int j = i; j > 1; )
-        {
-            /* calculate one step */
-            if(j % 2)      j = (3 * j + 1) / 2;
-            else           j /= 2;
-            /* see if the new number is in given numbers */
-            if(j <= 100 && tabel[j])
+    for(int i = 1; i <= 100; i++) 
+        if(tabel[i])
+            for(int j = i; j > 1; )
             {
-                tabel[j] = 0;
-                K--;                    /* one less number not 'covered' */
-                if(j < i) break;        /* did this before, no need going on */
+                /* calculate for one step */
+                if(j % 2)      j = (3 * j + 1) / 2;
+                else           j /= 2;
+                
+                /* see if the new number is in given numbers */
+                if(j <= 100 && tabel[j])
+                {
+                    tabel[j] = 0;       /* 'covered' this number */
+                    K--;                /* one less number not 'covered' */
+                    if(j < i) break;    /* did this before, no need going on */
+                }
             }
-        }
-    }
     
-    for(int i = 100; i >= 1; i--) if(tabel[i] == 1)
-        printf("%d%c", i, --K ? ' ' : '\0');
+    for(int i = 100; i >= 1; i--) 
+        if(tabel[i] == 1)
+            printf("%d%c", i, --K ? ' ' : '\0');
     
     return 0;
 }

@@ -1,5 +1,6 @@
 /**
  * 1008. 数组元素循环右移问题 
+ * 
  * 一个数组A中存有N（N>0）个整数，在不允许使用另外数组的前提下，将每个整数循环向
  * 右移M（M>=0）个位置，即将A中的数据由（A0 A1……AN-1）变换为
  * （AN-M …… AN-1 A0 A1……AN-M-1）（最后M个数循环移至最前面的M个位置）。如果需要
@@ -14,26 +15,30 @@
  * 输入样例：
  * 6 2
  * 1 2 3 4 5 6
+ * 
  * 输出样例：
  * 5 6 1 2 3 4
  **/
+
 #include <stdio.h>
+
 int main()
 {
     int N, M, numbers[100];
+
     scanf("%d %d", &N, &M);
     M %= N; /* M could be larger than N */
 
-    for(int i = 0; i < N; i++)          /* read all */
-        scanf("%d", numbers + i);
+    /* Read */
+    for(int i = 0; i < N; i++)
+        scanf("%d", &numbers[i]);
     
-    for(int i = N - M; i < N; i++)      /* print N - M to N - 1 */
+    /* Print */
+    for(int i = N - M; i < N; i++)      /* Print N - M to N - 1 */
         printf("%d ", numbers[i]);
-
-    for(int i = 0; i < N - M - 1; i++)  /* print 0 to N - M - 2 */
+    for(int i = 0; i < N - M - 1; i++)  /* Print 0 to N - M - 2 */
         printf("%d ", numbers[i]);
-
-    printf("%d", numbers[N - M - 1]);   /* print N - M - 1, no blankspace */
+    printf("%d", numbers[N - M - 1]);   /* Print N - M - 1, no blankspace */
     
     return 0;
 }
