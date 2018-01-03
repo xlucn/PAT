@@ -55,7 +55,7 @@
  * 输出样例：
  * missing 400 -1 99 99
  * ydjh2 200 98 82 88
- * dx86w 220 88 81 84 
+ * dx86w 220 88 81 84
  * wehu8 300 55 84 84
  **/
 
@@ -71,12 +71,25 @@ typedef struct {
     int total_mark;
 } Score;
 
-int cmp(const void *a, const void *b)
+int cmp_sort_total(const void *a, const void *b)
 {
     Score *s1 = *(Score**)a, *s2 = *(Score**)b;
     if(s2->total_mark - s1->total_mark)
         return s2->total_mark - s1->total_mark;
     return strcmp(s1->name, s2->name);
+}
+
+int cmp_sort_name(const void *a, const void *b)
+{
+    Score *s1 = *(Score**)a, *s2 = *(Score**)b;
+    return strcmp(s1->name, s2->name);
+}
+
+int cmp_bsearch(const void *strptr, const void *scoreptr)
+{
+    Score *s = *(Score**)scoreptr;
+    char *name = (char*)strptr;
+    return strcmp(name, s->name);
 }
 
 int main()
@@ -86,65 +99,57 @@ int main()
     
     int score, count = 0;
     char name[21];
-    Score scores[10000];
+    Score buf[10000], *scores[10000] = {0}, *s = buf;
     
     for(int i = 0; i < P; i++)  /* Read programming grade */
     {
         scanf("%s %d", name, &score);
         if(score >= 200)        /* Only record if score >= 200 */
         {
-            strcpy(scores[count].name, name);
-            scores[count].programming = score;
-            scores[count].midterm = -1;
-            scores[count].finalexam = -1;
-            count++;
+            strcpy(s->name, name);
+            s->programming = score;
+            s->midterm = -1;
+            s->finalexam = -1;
+            s->total_mark = 0;
+            scores[count++] = s++;
         }
     }
     
+    /* Sort by name for future searchings using bsearch */
+    qsort(scores, count, sizeof(Score*), cmp_sort_name);
+
+    void *result;
     for(int i = 0; i < M; i++)  /* Read midterm grade */
     {
         scanf("%s %d", name, &score);
-        for(int j = 0; j < count; j++)
-            if(strcmp(name, scores[j].name) == 0)
-            {
-                scores[j].midterm = score;
-                break;
-            }
+        result = bsearch(name, scores, count, sizeof(Score*), cmp_bsearch);
+        if(result != NULL)      /* If name is in the list, then record */
+            (*(Score**)result)->midterm = score;
     }
-    
+
     for(int i = 0; i < N; i++)  /* Read final exam grade */
     {
         scanf("%s %d", name, &score);
-        for(int j = 0; j < count; j++)
-            if(strcmp(name, scores[j].name) == 0)
-            {
-                scores[j].finalexam = score;
-                
-                /* Calculate total mark */
-                double total_mark;
-                if(scores[j].finalexam >= scores[j].midterm)
-                    total_mark = scores[j].finalexam;
-                else if(scores[j].finalexam != -1)
-                    total_mark = 0.6 * scores[j].finalexam +
-                                 0.4 * scores[j].midterm;
-                else
-                    total_mark = 0.4 * scores[j].midterm;
-                scores[j].total_mark = (int)(total_mark + 0.5);
-                
-                break;
-            }
+        result = bsearch(name, scores, count, sizeof(Score*), cmp_bsearch);
+        if(result != NULL)
+        {
+            s = *(Score**)result;
+            s->finalexam = score;
+
+            /* Calculate total mark */
+            if(s->finalexam >= s->midterm)      /* final exam grade higher */
+                s->total_mark = s->finalexam;
+            else                                /* midterm grade higher */
+                s->total_mark = 0.6 * s->finalexam + 0.4 * s->midterm + 0.5;
+        }
     }
-    
-    /* Sort scores */
-    Score *ptrscores[10000];
-    for(int i = 0; i < count; i++)
-        ptrscores[i] = scores + i;
-    qsort(ptrscores, count, sizeof(Score*), cmp);
-    
-    for(int i = 0; i < count && ptrscores[i]->total_mark >= 60; i++)
-        printf("%s %d %d %d %d\n", ptrscores[i]->name, 
-               ptrscores[i]->programming, ptrscores[i]->midterm, 
-               ptrscores[i]->finalexam, ptrscores[i]->total_mark);
-    
+
+    /* Sort by total mark */
+    qsort(scores, count, sizeof(Score*), cmp_sort_total);
+
+    for(Score **p = scores; *p && (*p)->total_mark >= 60; p++)
+        printf("%s %d %d %d %d\n", (*p)->name, (*p)->programming,
+               (*p)->midterm, (*p)->finalexam, (*p)->total_mark);
+
     return 0;
 }
