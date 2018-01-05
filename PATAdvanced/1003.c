@@ -48,40 +48,41 @@
 #define Inf INT_MAX
 
 typedef struct Vertex *Vertex, *Vertexes;
-typedef struct Edge *Edge, *Edges;
+typedef struct Adj *Adj, *Adjs;
 typedef struct Graph *Graph;
 
 struct Vertex{
-    int id;
-    int known;
-    int dist;
-    int nrescue;
-    int totrescue;
-    int npath;
-    Edge adj;
+    int id;         /* Unique id of a vertex */
+    int known;      /* If the vertex has been traversed */
+    int dist;       /* the distance along the path from start point */
+    int nrescue;    /* Rescue teams in this city */
+    int totrescue;  /* Total rescue teams along the path */
+    int npath;      /* Length of the path */
+    Adj adj;        /* Pointer to the next vertex */
 };
 
-struct Edge{
-    int id;
-    int length;
-    Edge iter;
+struct Adj{
+    int id;         /* The city's id it is connected to */
+    int length;     /* The length of the edge */
+    Adj iter;       /* Pointer to the next adjacent city */
 };
 
 struct Graph{
     Vertexes vs;
-    Edges es;
+    Adjs es;
     int nvertex;
-    int nedge;
+    int nadj;
 };
 
 /* Read the graph */
 void Read(Graph G)
 {
-    int nrescue, length, i = 0, j;
-    for(Vertex v = G->vs; v < &G->vs[G->nvertex]; v++)
+    int nrescue;
+    for(int i = 0; i < G->nvertex; i++)
     {
+        Vertex v = G->vs + i;
         scanf("%d", &nrescue);
-        v->id        = i++;
+        v->id        = i;
         v->known     = 0;
         v->dist      = Inf;
         v->nrescue   = nrescue;
@@ -89,10 +90,17 @@ void Read(Graph G)
         v->npath     = 0;
         v->adj       = NULL;
     }
-    for(Edge e = G->es; e < &G->es[G->nedge]; e++)
+    
+    int id1, id2, length;
+    for(int i = 0; i < G->nadj; i++)
     {
-        scanf("%d %d %d", &i, &j, &length);
-        e->id        = j;
+        scanf("%d %d %d", &id1, &id2, &length);
+        /* From id1 to id2 */
+        Adj e = G->es + i;
+        e->id        = id2;
+        e->length    = length;
+        e->iter      = G->vs[id1].adj;
+        G->vs[id1].adj = e;
         e->length    = length;
         e->iter      = G->vs[i].adj;
         G->vs[i].adj = e;
@@ -119,7 +127,7 @@ void ModifiedDijkstra(Graph G)
         if(v == NULL) break;
         
         v->known = 1;
-        for(Edge e = v->adj; e; e = e->iter) if(!G->vs[e->id].known)
+        for(Adj e = v->adj; e; e = e->iter) if(!G->vs[e->id].known)
         {
             w = G->vs + e->id; /* w is every adjacent vertex to v */
             /* find shorter distance */
@@ -147,8 +155,8 @@ int main()
     
     /* Create graph */
     Vertexes vs = (Vertexes)malloc(N * sizeof(struct Vertex));
-    Edges es = (Edges)malloc(M * sizeof(struct Edge));
-    struct Graph sG = {.vs = vs, .es = es, .nvertex = N, .nedge = M};
+    Adjs es = (Adjs)malloc(M * 2 * sizeof(struct Adj));
+    struct Graph sG = {.vs = vs, .es = es, .nvertex = N, .nadj = M * 2};
     Graph G = &sG;
     
     /* Read all the data and build the graph */
