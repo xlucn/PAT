@@ -6,8 +6,6 @@
 
 欢迎讨论 oliver_lew@outlook.com
 
-(PAT B已经刷完1001-1080，PAT A刚刚开始)
-
 * 简书中写了代码的解释
-  * [PAT Basic](https://www.patest.cn/contests/pat-b-practise): http://www.jianshu.com/p/c2b557516b50
-  * [PAT Advanced](https://www.patest.cn/contests/pat-a-practise): http://www.jianshu.com/p/8944b15f8194
+  * [PAT Basic](https://www.patest.cn/contests/pat-b-practise) (已经刷完1001-1080): http://www.jianshu.com/p/c2b557516b50
+  * [PAT Advanced](https://www.patest.cn/contests/pat-a-practise) (刚刚开始): http://www.jianshu.com/p/8944b15f8194
