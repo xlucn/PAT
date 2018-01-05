@@ -101,9 +101,12 @@ void Read(Graph G)
         e->length    = length;
         e->iter      = G->vs[id1].adj;
         G->vs[id1].adj = e;
+        /* The other direction */
+        e++, i++;
+        e->id        = id1;
         e->length    = length;
-        e->iter      = G->vs[i].adj;
-        G->vs[i].adj = e;
+        e->iter      = G->vs[id2].adj;
+        G->vs[id2].adj = e;
     }
 }
 
