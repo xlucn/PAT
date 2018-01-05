@@ -52,11 +52,11 @@ int main()
         /* Transform corresponding digit to integers */
         a = nA <= i ? 0 : sA[nA - i - 1] - '0';
         b = nB <= i ? 0 : sB[nB - i - 1] - '0';
-        base = sBase[nBase - i - 1] - '0';
-        base = base == 0 ? 10 : base;
+        base = sBase[nBase - i - 1] == '0' ? 10 : sBase[nBase - i - 1] - '0';
+        
         /* Calculate ith digit A + B, temperately store integers here */
         sSum[nS - i - 1] += a + b;
-        sSum[nS - i - 2] += sSum[nS - i - 1] / base;
+        sSum[nS - i - 2] += sSum[nS - i - 1] / base;	/* carry */
         sSum[nS - i - 1] = sSum[nS - i - 1] % base;
     }
     
@@ -71,6 +71,7 @@ int main()
             puts(sSum + first);
             return 0;
         }
+    
     /* If A + B = 0, then all bits are zero */
     printf("0");
     return 0;
