@@ -38,9 +38,12 @@ int main()
     Poly A, B, sum;
     
     scanf("%d", &KA);
-    for(int i = 0; i < KA; i++) scanf("%d %lf", &A[i].exp, &A[i].coef);
+    for(int i = 0; i < KA; i++) 
+        scanf("%d %lf", &A[i].exp, &A[i].coef);
+    
     scanf("%d", &KB);
-    for(int i = 0; i < KB; i++) scanf("%d %lf", &B[i].exp, &B[i].coef);
+    for(int i = 0; i < KB; i++) 
+        scanf("%d %lf", &B[i].exp, &B[i].coef);
     
     int i = 0, j = 0;
     while(i < KA || j < KB)
