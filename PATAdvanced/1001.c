@@ -23,22 +23,22 @@
  */
 
 #include <stdio.h>
+#include <string.h>
+
 int main()
 {
-    int a, b, sum, count, dec;
+    int a, b, pos;
+    char num[11];
+    
     scanf("%d%d", &a, &b);
-    sum = a + b;
+    sprintf(num, "%d", a + b);
     
-    if(sum == 0) putchar('0');
-    if(sum < 0) { putchar('-'); sum = -sum; }
-    
-    for(count = 0, dec = 1; sum >= dec; count++, dec *= 10) ;
-    
-    for(int c = count; c; c--, sum %= dec)
+    for(pos = strlen(num) - 3; pos > 0 && num[pos - 1] != '-'; pos -= 3)
     {
-        if(c < count && c % 3 == 0 && c) putchar(',');
-        putchar('0' + sum / (dec /= 10));
+        memmove(num + pos + 1, num + pos, strlen(num) - pos + 1);
+        num[pos] = ',';
     }
     
+    puts(num);
     return 0;
 }
