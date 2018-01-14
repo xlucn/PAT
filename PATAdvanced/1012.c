@@ -69,7 +69,10 @@ typedef struct Student{ int ID, score[4]; } Student;
 
 int main()
 {
+    /* scores array stores the number of students of any score */
     int N, M, ID, scores[4][102] = {{0}};
+    
+    /* Setting a score of 101 is to make it easy to calculate rank */
     scores[0][101] = scores[1][101] = scores[2][101] = scores[3][101] = 1;
     Student students[2000];
     
@@ -92,10 +95,12 @@ int main()
         if(stu == N) { puts("N/A"); continue;}
         
         for(int j = 3; j >= 0; j--)
-        {   /* calculate the rank = sum the count from 101 to score + 1 */
+        {   /* calculate the rank: sum the counts from score + 1 to 101 */
+            /* e.g. score 100 will have rank 1, since scores[101] is 1 */
             for(int score = 100; score >= students[stu].score[j]; score--)
                 ranks[j] += scores[j][score + 1];
-            if(ranks[j] <= ranks[max]) max = j;
+            if(ranks[j] <= ranks[max]) /* The best rank with highest priority */
+                max = j;
         }
         printf("%d %c\n", ranks[max], "ACME"[max]);
     }
