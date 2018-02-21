@@ -40,6 +40,8 @@ int main()
             last++;
         if(max < last - first) 
             max = last - first;
+        if(max > N - first)
+            break;
     }
     printf("%d", max);
 
