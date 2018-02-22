@@ -34,7 +34,7 @@ int main()
     qsort(data, N, sizeof(int), comp);                                /* sort */
 
     int max = 0;                                                      /* find */
-    for(int first = 0, last = 0; last < N; first++)
+    for(int first = 0, last = 0; last < N && max < N - first; first++)
     {
         while(last < N && data[last] <= 1L * data[first] * p)
             last++;
