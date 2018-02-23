@@ -68,52 +68,51 @@
 #include <stdio.h>
 
 #define FORWARD(I, M) ((I) = ((I) == (M - 1)) ? 0 : ((I) + 1))
-#define FRONT(I) queue[I][qi[I].front]
-#define REAR(I) queue[I][qi[I].rear]
-
-typedef struct {
-    int front, rear, length;
-} queue_info;
+#define TIME_FRONT(I) time[queue[I][front[I]]]
+#define REAR(I) queue[I][rear[I]]
 
 int main()
 {
     int N, M, K, Q, query;
     int time[1000] = {0}, total_time = 0, queue[20][10] = {{0}};
-    queue_info qi[20] = {0};
+    int front[20] = {0}, rear[20] = {0}, length[20] = {0};
     
     scanf("%d %d %d %d", &N, &M, &K, &Q);
     for(int i = 0; i < K; i++)
         scanf("%d", time + i);
     
-    /* Dequeue and enqueue */
+    /* Doing dequeues and enqueues for every customer */
     int count = (K < M * N) ? (2 * K) : (K + M * N);
     for(int i = 0; i < count; i++)
     {
         if(i >= count - K)      /* Dequeue */
         {
-            int time_span=9999, fastest;
+            /* Find the next customer who's going to finish */
+            int time_span = 9999, next;
             for(int j = 0; j < N; j++)
-                if(qi[j].length && time[FRONT(j)] < time_span)
-                    fastest = j, time_span = time[FRONT(j)];
-            for(int j = 0; j < N; j++)
-                if(qi[j].length)
-                    time[FRONT(j)] -= time_span;
-            total_time += time_span;
+                if(length[j] && TIME_FRONT(j) < time_span)
+                    next = j, time_span = TIME_FRONT(j);
             /* Update time */
-            time[FRONT(fastest)] = total_time;
+            for(int j = 0; j < N; j++)
+                if(length[j])
+                    TIME_FRONT(j) -= time_span;
+            total_time += time_span;
+            TIME_FRONT(next) = total_time;
             /* Dequeue */
-            FORWARD(qi[fastest].front, M);
-            qi[fastest].length--;
+            FORWARD(front[next], M);
+            length[next]--;
         }
         if(i < K)               /* Enqueue */
         {
+            /* Find shortest queue */
             int shortest = 0;
             for(int j = 0; j < N; j++)
-                if(qi[shortest].length > qi[j].length)
+                if(length[shortest] > length[j])
                     shortest = j;
+            /* Enqueue customer of index i */
             REAR(shortest) = i;
-            FORWARD(qi[shortest].rear, M);
-            qi[shortest].length++;
+            FORWARD(rear[shortest], M);
+            length[shortest]++;
         }
     }
     
