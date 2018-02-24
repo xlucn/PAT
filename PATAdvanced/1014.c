@@ -74,7 +74,7 @@
 int main()
 {
     int N, M, K, Q, query;
-    int time[1000] = {0}, total_time = 0, queue[20][10] = {{0}};
+    int time[1000], total_time = 0, queue[20][10];
     int front[20] = {0}, rear[20] = {0}, length[20] = {0};
     
     scanf("%d %d %d %d", &N, &M, &K, &Q);
@@ -96,8 +96,12 @@ int main()
             for(int j = 0; j < N; j++)
                 if(length[j])
                     TIME_FRONT(j) -= time_span;
-            total_time += time_span;
-            TIME_FRONT(next) = total_time;
+            /* If the time is at or after 17:00, the rest customers cannot
+             * be served */
+            if(total_time >= 9 * 60)
+                TIME_FRONT(next) = -1;
+            else
+                TIME_FRONT(next) = (total_time += time_span);
             /* Dequeue */
             FORWARD(front[next], M);
             length[next]--;
@@ -120,8 +124,7 @@ int main()
     for(int i = 0; i < Q; i++)
     {
         scanf("%d", &query);
-        query--;
-        if(time[query] <= 540)
+        if(time[--query] >= 0)
             printf("%02d:%02d\n", 8 + time[query] / 60, time[query] % 60);
         else
             printf("Sorry\n");
