@@ -67,6 +67,7 @@
 
 #include <stdio.h>
 
+#define LATE_FLAG -1
 #define FORWARD(I, M) ((I) = ((I) == (M - 1)) ? 0 : ((I) + 1))
 #define TIME_FRONT(I) time[queue[I][front[I]]]
 #define REAR(I) queue[I][rear[I]]
@@ -81,32 +82,40 @@ int main()
     for(int i = 0; i < K; i++)
         scanf("%d", time + i);
     
-    /* Doing dequeues and enqueues for every customer */
+    /* Total number of operations */
     int count = (K < M * N) ? (2 * K) : (K + M * N);
+    /* Doing dequeues and enqueues for every customer */
     for(int i = 0; i < count; i++)
     {
-        if(i >= count - K)      /* Dequeue */
+        if(i >= count - K)      /* Dequeue in the last K operations */
         {
-            /* Find the next customer who's going to finish */
-            int time_span = 9999, next;
-            for(int j = 0; j < N; j++)
-                if(length[j] && TIME_FRONT(j) < time_span)
-                    next = j, time_span = TIME_FRONT(j);
-            /* Update time */
+            /* Find the next customer */
+            int time_span = 9999, next = -1;
             for(int j = 0; j < N; j++)
                 if(length[j])
-                    TIME_FRONT(j) -= time_span;
-            /* If the time is at or after 17:00, the rest customers cannot
-             * be served */
-            if(total_time >= 9 * 60)
-                TIME_FRONT(next) = -1;
-            else
-                TIME_FRONT(next) = (total_time += time_span);
+                    if(TIME_FRONT(j) < time_span)
+                        next = j, time_span = TIME_FRONT(j);
+                    else if(next == -1 && TIME_FRONT(j) == LATE_FLAG)
+                        next = j;
+            if(time_span != LATE_FLAG)
+            {
+                /* Update time */
+                for(int j = 0; j < N; j++)
+                    if(length[j])
+                        TIME_FRONT(j) -= time_span;
+                total_time += time_span;
+                if(TIME_FRONT(next) != LATE_FLAG)
+                    TIME_FRONT(next) = total_time;
+            }
+                                                            //printf("Dequque: No.%d, finishing at %d min\n", queue[next][front[next]], total_time);
             /* Dequeue */
             FORWARD(front[next], M);
             length[next]--;
+            /* If the time is >= 17:00, the customer cannot be served */
+            if(total_time >= 9 * 60 && length[next])
+                TIME_FRONT(next) = LATE_FLAG;
         }
-        if(i < K)               /* Enqueue */
+        if(i < K)               /* Enqueue in the first K operations */
         {
             /* Find shortest queue */
             int shortest = 0;
@@ -115,6 +124,8 @@ int main()
                     shortest = j;
             /* Enqueue customer of index i */
             REAR(shortest) = i;
+            if(total_time >= 9 * 60)
+                time[i] = LATE_FLAG;
             FORWARD(rear[shortest], M);
             length[shortest]++;
         }
@@ -124,7 +135,7 @@ int main()
     for(int i = 0; i < Q; i++)
     {
         scanf("%d", &query);
-        if(time[--query] >= 0)
+        if(time[--query] != LATE_FLAG)
             printf("%02d:%02d\n", 8 + time[query] / 60, time[query] % 60);
         else
             printf("Sorry\n");
