@@ -23,10 +23,13 @@ int main()
     int coef, index, count = 0;
 
     while(scanf("%d %d", &coef, &index) != EOF) 
-        if(index) /* Constant terms result in zero, so no output for 0 index */
-            printf("%c%d %d", count++ ? ' ' : '\0', coef * index, index - 1);
+        if(index) /* Constant terms result in zero */
+        {
+            if(count++) putchar(' ');
+            printf("%d %d", coef * index, index - 1);
+        }
 
-    /* For zero polynomial or constant, the result is zero polynomial */
+    /* Zero polynomial or constant */
     if(count == 0) 
         puts("0 0");
     

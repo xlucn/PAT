@@ -51,10 +51,10 @@ int main()
     {
         for(int i = 0; i < 5; i++)  scanf("%d", m + i);
         if(m[0] > 0 && m[0] <= 10 && *symbols[0][--m[0]]
-        && m[1] > 0 && m[0] <= 10 && *symbols[1][--m[1]]
-        && m[2] > 0 && m[0] <= 10 && *symbols[2][--m[2]]
-        && m[3] > 0 && m[0] <= 10 && *symbols[1][--m[3]]
-        && m[4] > 0 && m[0] <= 10 && *symbols[0][--m[4]])
+        && m[1] > 0 && m[1] <= 10 && *symbols[1][--m[1]]
+        && m[2] > 0 && m[2] <= 10 && *symbols[2][--m[2]]
+        && m[3] > 0 && m[3] <= 10 && *symbols[1][--m[3]]
+        && m[4] > 0 && m[4] <= 10 && *symbols[0][--m[4]])
             printf("%s(%s%s%s)%s\n", symbols[0][m[0]], symbols[1][m[1]],
                    symbols[2][m[2]], symbols[1][m[3]], symbols[0][m[4]]);
         else

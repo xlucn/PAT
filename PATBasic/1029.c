@@ -28,8 +28,7 @@ int main()
     int printed[128] = {0};
     char c, line[82];
     
-    scanf("%s", line);
-    while((c = getchar()) != '\n') ;
+    gets(line);
     while((c = getchar()) != '\n')
         printed[toupper(c)]++;
     
