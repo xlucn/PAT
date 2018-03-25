@@ -4,7 +4,8 @@ import os
 
 from bs4 import BeautifulSoup
 
-from config import *
+from config import indexes, code_dir, md_dir, html_dir, analysis_dir
+
 
 def build_file(category, index, filename):
     
