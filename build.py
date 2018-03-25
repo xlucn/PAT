@@ -62,7 +62,7 @@ usage = """to be continued."""
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
-        for c in indexes.keys:
+        for c in list(indexes.keys()):
             for i in indexes[c]:
                 try:
                     build_file(c, i)
