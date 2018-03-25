@@ -1,16 +1,18 @@
 #! /usr/bin/env python3
 
-import os
+import os, sys, re
 
 from bs4 import BeautifulSoup
 
 from config import indexes, code_dir, md_dir, html_dir, analysis_dir
 
 
-def build_file(category, index, filename):
+def build_file(category, index):
     """
     build markdown files.
     """
+    filename = "{}/{}{}.md".format(md_dir, c, i)
+    
     # parse using bs4
     html = "{}/{}{}.html".format(html_dir, category, index)
     content = open(html).read()
@@ -54,10 +56,23 @@ code_dirs = {
     't': 'PATTop'
 }
 
-for c in "abt":
-        for i in indexes[c]:
-            md = "{}/{}{}.md".format(md_dir, c, i)
-            try:
-                build_file(c, i, md)
-            except FileNotFoundError:
-                pass
+usage = """to be continued."""
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        for c in indexes.keys:
+            for i in indexes[c]:
+                try:
+                    build_file(c, i)
+                except FileNotFoundError:
+                    pass
+    if len(sys.argv) == 2:
+        if sys.argv[1] == '-h' or sys.argv[1] == '--help':
+            print(usage)
+        elif re.match(r"[abt]\d{4}", sys.argv[1]):
+            category = sys.argv[1][0]
+            index = int(sys.argv[1][1:])
+            if index in indexes[category]:
+                build_file(category, index)
+        else:
+            print(usage)
