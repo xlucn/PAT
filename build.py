@@ -36,16 +36,17 @@ def build_file(category, index, filename):
         f.write(expl)
         
         # write code
-        file_rel_path = "{}/{}.c".format(dirs[category], index)
-        github_repo = "https://github.com/OliverLew/PAT/blob/master"
-        file_github_path = "{}/{}".format(github_repo, file_rel_path)
-        raw_code = open(os.path.join(code_dir, file_rel_path)).read()
+        code_rel_path = "{}/{}.c".format(code_dirs[category], index)
+        repo_url = "https://github.com/OliverLew/PAT/blob/master"
+        file_github_path = "{}/{}".format(repo_url, code_rel_path)
+        raw_code = open(os.path.join(code_dir, code_rel_path)).read()
         code = raw_code[raw_code.index("#include"):]
         f.write("\n## 代码\n\n")
         f.write("[最新代码@github]("+ file_github_path + ")，欢迎交流\n")
         f.write("```c\n{}\n```".format(code))
 
-dirs = {
+
+code_dirs = {
     'a': 'PATAdvanced',
     'b': 'PATBasic',
     't': 'PATTop'
