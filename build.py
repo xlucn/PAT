@@ -8,7 +8,9 @@ from config import indexes, code_dir, md_dir, html_dir, analysis_dir
 
 
 def build_file(category, index, filename):
-    
+    """
+    build markdown files.
+    """
     # parse using bs4
     html = "{}/{}{}.html".format(html_dir, category, index)
     content = open(html).read()
