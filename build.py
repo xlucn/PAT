@@ -20,9 +20,11 @@ def build_file(category, index, filename):
     h1 = soup.find('h1')
     pc = soup.find(id='problemContent')
     
+    print("Building {}".format(filename))
+    
     # write everything into a file
     with open(filename, 'w') as f:
-        f.write("{}\n\n".format(soup.find('h1')))
+        f.write("{}\n\n".format(h1))
         
         # write problem content
         f.write("## 题目\n\n")
@@ -42,7 +44,7 @@ def build_file(category, index, filename):
         raw_code = open(os.path.join(code_dir, code_rel_path)).read()
         code = raw_code[raw_code.index("#include"):]
         f.write("\n## 代码\n\n")
-        f.write("[最新代码@github]("+ file_github_path + ")，欢迎交流\n")
+        f.write("[最新代码@github](" + file_github_path + ")，欢迎交流\n")
         f.write("```c\n{}\n```".format(code))
 
 
