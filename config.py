@@ -14,3 +14,7 @@ md_dir = "md"
 analysis_dir = "analysis"
 
 code_dir = "../PAT"
+
+configs = {
+    "quote_text": True
+}

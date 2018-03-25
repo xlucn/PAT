@@ -4,7 +4,7 @@ import os, sys, re
 
 from bs4 import BeautifulSoup
 
-from config import indexes, code_dir, md_dir, html_dir, analysis_dir
+from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs
 
 
 def build_file(category, index):
@@ -32,7 +32,9 @@ def build_file(category, index):
         f.write("## 题目\n\n")
         lines = "{}".format(pc).split('\n')
         for line in lines:
-            f.write("> " + line + "\n")
+            if configs["quote_text"]:
+                f.write("> ")
+            f.write(line + "\n")
         
         # write explanation
         expl = open("{}/{}{}.md".format(analysis_dir, category, index)).read()
