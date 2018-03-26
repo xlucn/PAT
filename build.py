@@ -7,20 +7,26 @@ from bs4 import BeautifulSoup
 from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs
 
 
-def build_file(category, index):
+def build_file_(category, index):
     """
     build markdown files.
     """
-    filename = "{}/{}{}.md".format(md_dir, c, i)
+    filename = "{}/{}{:04}.md".format(md_dir, category, index)
     
-    # parse using bs4
+    # parse using bs4 and find title and problem content
     html = "{}/{}{}.html".format(html_dir, category, index)
     content = open(html).read()
     soup = BeautifulSoup(content, "lxml")
-    
-    # find title and problem content
     h1 = soup.find('h1')
     pc = soup.find(id='problemContent')
+    
+    # code related
+    code_rel_path = "{}/{}.c".format(code_dirs[category], index)
+    repo_url = "https://github.com/OliverLew/PAT/blob/master"
+    file_github_path = "{}/{}".format(repo_url, code_rel_path)
+    raw_code = open(os.path.join(code_dir, code_rel_path)).read()
+    code = raw_code[raw_code.index("#include"):]
+
     
     print("Building {}".format(filename))
     
@@ -42,15 +48,16 @@ def build_file(category, index):
         f.write(expl)
         
         # write code
-        code_rel_path = "{}/{}.c".format(code_dirs[category], index)
-        repo_url = "https://github.com/OliverLew/PAT/blob/master"
-        file_github_path = "{}/{}".format(repo_url, code_rel_path)
-        raw_code = open(os.path.join(code_dir, code_rel_path)).read()
-        code = raw_code[raw_code.index("#include"):]
         f.write("\n## 代码\n\n")
         f.write("[最新代码@github](" + file_github_path + ")，欢迎交流\n")
         f.write("```c\n{}\n```".format(code))
 
+
+def build_file(c, i):
+    try:
+        build_file_(c, i)
+    except FileNotFoundError:
+        pass
 
 code_dirs = {
     'a': 'PATAdvanced',
@@ -61,13 +68,12 @@ code_dirs = {
 usage = """to be continued."""
 
 if __name__ == "__main__":
+    if(not os.path.exists(md_dir)):
+        os.mkdir(md_dir)
     if len(sys.argv) == 1:
         for c in list(indexes.keys()):
             for i in indexes[c]:
-                try:
-                    build_file(c, i)
-                except FileNotFoundError:
-                    pass
+                build_file(c, i)
     if len(sys.argv) == 2:
         if sys.argv[1] == '-h' or sys.argv[1] == '--help':
             print(usage)
