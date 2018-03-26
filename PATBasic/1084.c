@@ -34,34 +34,27 @@ int main()
     int N, count;
     char string1[100000] = {0}, string2[100000] = {0};
     char *s1 = string1, *s2 = string2, *temp;
-    char *p1, *p2, c = '\0';
+    char *p1, *p2;
     
     scanf("%s", s1);
     scanf("%d", &N);
     
-    for(int i = 1; i < N; i++)
+    for(int i = 1; i < N; i++)  /* Loop through nth string */
     {
-        /* Loop through nth string */
-        for(p1 = s1, p2 = s2, count = 1, c = '\0'; *p1; p1++)
+        for(p1 = s1 + 1, p2 = s2, count = 1; *(p1 - 1); p1++)
         {
-            if(*p1 == c) /* Same char, increase count */
+            if(*p1 != *(p1 - 1))    /* New char or end */
+            {
+                *p2++ = *(p1 - 1);  /* Record into s2 */
+                *p2++ = count + '0';
+                count = 1;          /* Reset count */
+            }
+            else                    /* Same char, increase count */
             {
                 count++;
             }
-            else    /* New char, reset count & record */
-            {
-                if(c)
-                {
-                    *p2++ = c;
-                    *p2++ = count + '0';
-                }
-                count = 1;
-            }
-            
-            c = *p1; /* Record the previous char into c */
         }
-        *p2 = c;
-        *++p2 = count + '0';
+        
         /* Swap */
         temp = s1, s1 = s2, s2 = temp;
     }
