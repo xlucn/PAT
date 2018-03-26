@@ -15,7 +15,7 @@ $(ANA_DIR)/%.md:
 	touch $@
 
 clean:
-	rm -rf $(MD_DIR)/
+	rm $(MD)
 
 test:
 	@echo -e $(MD)
