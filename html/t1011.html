@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1011. Cut Rectangles (35)</h1>
+<div id="problemContent">
+<p>When a rectangle is cut by a straight line, we can easily obtain two polygons as the result.  But the reversed problem is harder: given two polygons, your task is to check whether or not they could be obtained by cutting a rectangle.</p>
+<p>To give you more trouble, the input polygons are possibly moved, rotated (90 degrees, 180 degrees, or 270 degrees counter-clockwise), or even flipped (mirrored).</p>
+<p>
+It is assumed that the original rectangle's edges are parallel to the axis.
+</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line gives a positive integer N(&lt;=20), and then N pairs of polygons are given.  Each polygon is described in the format:</p>
+<p>
+k x<sub>1</sub> y<sub>1</sub> ... x<sub>k</sub> y<sub>k</sub>
+</p>
+<p>
+where k (2 &lt; k &lt;= 10) is the number of vertices on the polygon, and (x<sub>i</sub>, y<sub>i</sub>) (0 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= 10<sup>8</sup>) are the coordinates of the vertices, given in either clockwise or counter-clockwise order.
+</p>
+<p>
+Note: there is no redundant vertex.  That is, it is guaranteed that all the vertices are distinct for each polygon, and that no three consecutive vertices are on the same line.
+</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each pair of polygons, print in a line either "YES" or "NO" as the answer.
+</p>
+<b>Sample Input:</b><pre>
+8
+3 0 0 1 0 1 1
+3 0 0 1 1 0 1
+3 0 0 1 0 1 1
+3 0 0 1 1 0 2
+4 0 4 1 4 1 0 0 0
+4 4 0 4 1 0 1 0 0
+3 0 0 1 1 0 1
+4 2 3 1 4 1 7 2 7
+5 10 10 10 12 12 12 14 11 14 10
+3 28 35 29 35 29 37
+3 7 9 8 11 8 9
+5 87 26 92 26 92 23 90 22 87 22
+5 0 0 2 0 1 1 1 2 0 2
+4 0 0 1 1 2 1 2 0
+4 0 0 0 1 1 1 2 0
+4 0 0 0 1 1 1 2 0
+</pre>
+<b>Sample Output:</b><pre>
+YES
+NO
+YES
+YES
+YES
+YES
+NO
+YES
+</pre>
+</div>

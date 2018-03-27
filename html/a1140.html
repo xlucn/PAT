@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1140. Look-and-say Sequence (20)</h1>
+<div id="problemContent">
+<p><b>Look-and-say sequence</b> is a sequence of integers as the following:
+</p><pre>
+D, D1, D111, D113, D11231, D112213111, ...
+</pre><p>
+where D is in [0, 9] except 1. The (n+1)st number is a kind of description of the nth number. For example, the 2nd number means that there is one D in the 1st number, and hence it is D1; the 2nd number consists of one D (corresponding to D1) and one 1 (corresponding to 11), therefore the 3rd number is D111; or since the 4th number is D113, it consists of one D, two 1's, and one 3, so the next number must be D11231. This definition works for D = 1 as well. Now you are supposed to calculate the Nth number in a look-and-say sequence of a given digit D.
+</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case, which gives D (in [0, 9]) and a positive integer N (&lt;=40), separated by a space.
+</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>Print in a line the Nth number in a look-and-say sequence of D.
+</p>
+<b>Sample Input:</b><pre>
+1 8
+</pre>
+<b>Sample Output:</b><pre>
+1123123111
+</pre>
+</div>

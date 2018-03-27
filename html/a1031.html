@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1031. Hello World for U (20)</h1>
+<div id="problemContent">
+<p>Given any string of N (&gt;=5) characters, you are asked to form the characters into the shape of U.  For example, "helloworld" can be printed as:<pre>
+h  d
+e  l
+l  r
+lowo
+</pre>
+
+That is, the characters must be printed in the original order, starting top-down from the left vertical line with n<sub>1</sub> characters, then left to right along the bottom line with n<sub>2</sub> characters, and finally bottom-up along the vertical line with n<sub>3</sub> characters.  And more, we would like U to be as squared as possible -- that is, it must be satisfied that n<sub>1</sub> = n<sub>3</sub> = max { k| k &lt;= n<sub>2</sub> for all 3 &lt;= n<sub>2</sub> &lt;= N } with n<sub>1</sub> + n<sub>2</sub> + n<sub>3</sub> - 2 = N.</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  Each case contains one string with no less than 5 and no more than 80 characters in a line.  The string contains no white space.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each test case, print the input string in the shape of U as specified in the description.</p>
+<b>Sample Input:</b><pre>
+helloworld!
+</pre>
+<b>Sample Output:</b><pre>
+h   !
+e   d
+l   l
+lowor
+</pre>
+</div>

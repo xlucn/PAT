@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1021. Deepest Root (25)</h1>
+<div id="problemContent">
+<p>A graph which is connected and acyclic can be considered a tree.  The height of the tree depends on the selected root.  Now you are supposed to find the root that results in a highest tree.  Such a root is called <i>the deepest root</i>.</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line contains a positive integer N (&lt;=10000) which is the number of nodes, and hence the nodes are numbered from 1 to N.  Then N-1 lines follow, each describes an edge by given the two adjacent nodes' numbers.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each test case, print each of the deepest roots in a line.  If such a root is not unique, print them in increasing order of their numbers.  In case that the given graph is not a tree, print "Error: K components" where K is the number of connected components in the graph.</p>
+<b>Sample Input 1:</b><pre>
+5
+1 2
+1 3
+1 4
+2 5
+</pre>
+<b>Sample Output 1:</b><pre>
+3
+4
+5
+</pre>
+<b>Sample Input 2:</b><pre>
+5
+1 3
+1 4
+2 5
+3 4
+</pre>
+<b>Sample Output 2:</b><pre>
+Error: 2 components
+</pre>
+</div>
