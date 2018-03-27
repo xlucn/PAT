@@ -2,6 +2,7 @@
 
 import requests, os, sys, re
 from config import *
+from bs4 import BeautifulSoup
 
 usage = """Usage: python download [-f]/[id]. 
 
@@ -14,14 +15,23 @@ When an id is provided, force download is by default."""
 
 def download_html(category, index):
     
-    # build url
+    # build url and download
     baseurl = "https://www.patest.cn/contests"
     contest_name = 'pat-' + category + '-practise'
     url = "{}/{}/{}".format(baseurl, contest_name, index)
     resp = requests.get(url)
+    
+    # parse and get only the problem content part of the text
+    html_content = resp.content
+    soup = BeautifulSoup(html_content, "html.parser")
+    h1 = soup.find('h1')
+    pc = soup.find(id='problemContent')
+    
     filename = "{}/{}{}.html".format(html_dir, category, index)
     with open(filename, 'w') as f:
-        f.write(resp.text)
+        f.write("""<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{}\n{}""".format(h1, pc))
 
 def download(force=False):
     if not os.path.exists(html_dir):
