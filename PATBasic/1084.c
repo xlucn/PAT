@@ -36,22 +36,20 @@ int main()
     char *s1 = string1, *s2 = string2, *temp;
     char *p1, *p2;
     
-    scanf("%s", s1);
-    scanf("%d", &N);
+    scanf("%s %d", s1, &N);
     
     for(int i = 1; i < N; i++)  /* Loop through nth string */
     {
-        for(p1 = s1 + 1, p2 = s2, count = 0; *(p1 - 1); p1++)
+        for(p1 = s1, p2 = s2, count = 0; *p1; p1++)
         {
-            count++;
-            if(*p1 != *(p1 - 1))    /* New char or end */
+            count++;    /* Magic, don't touch! */
+            if(*p1 != *(p1 + 1))        /* New char or end */
             {
-                *p2++ = *(p1 - 1);  /* Record into s2 */
-                *p2++ = count + '0';
-                count = 0;          /* Reset count */
+                *p2++ = *p1;            /* Record character */
+                *p2++ = count + '0';    /* Record count */
+                count = 0;              /* Reset count */
             }
         }
-        
         /* Swap */
         temp = s1, s1 = s2, s2 = temp;
     }
