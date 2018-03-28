@@ -2,6 +2,7 @@
 
 import os, sys, re
 
+from subprocess import run, PIPE, CalledProcessError
 from bs4 import BeautifulSoup
 
 from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs
@@ -19,9 +20,10 @@ def build_file_(category, index):
     
     # code related
     code_rel_path = "{}/{}.c".format(code_dirs[category], index)
-    repo_url = "https://github.com/OliverLew/PAT/blob/master"
-    file_github_path = "{}/{}".format(repo_url, code_rel_path)
-    raw_code = open(os.path.join(code_dir, code_rel_path)).read()
+    remote_url = "https://github.com/OliverLew/PAT/blob/master"
+    file_github_path = "{}/{}".format(remote_url, code_rel_path)
+    raw_code = run(["git", "show", "master:" + code_rel_path],
+                   check=True, stdout=PIPE, stderr=PIPE).stdout.decode("utf-8")
     code = raw_code[raw_code.index("#include"):]
 
     
