@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 
-import os, sys, re
-
+import os
+import sys
+import re
 from subprocess import run, PIPE, CalledProcessError
 from bs4 import BeautifulSoup
-
 from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs
 
 
