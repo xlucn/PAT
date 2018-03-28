@@ -54,7 +54,7 @@ def build_file_(category, index):
 def build_file(c, i):
     try:
         build_file_(c, i)
-    except FileNotFoundError:
+    except (FileNotFoundError, CalledProcessError) as e:
         pass
 
 code_dirs = {
