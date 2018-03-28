@@ -14,9 +14,9 @@ def build_file_(category, index):
     """
     filename = "{}/{}{:04}.md".format(md_dir, category, index)
     
-    # parse using bs4 and find title and problem content
+    # open the html file and read into lines
     html = "{}/{}{}.html".format(html_dir, category, index)
-    lines = open(html).read().split('\n')
+    lines = open(html).readlines()
     
     # code related
     code_rel_path = "{}/{}.c".format(code_dirs[category], index)
@@ -31,18 +31,18 @@ def build_file_(category, index):
     
     # write everything into a file
     with open(filename, 'w') as f:
-        f.write("{}\n\n".format(lines[2]))
+        f.write("{}\n".format(lines[2]))
         
         # write problem content
         f.write("## 题目\n\n")
         for line in lines[3:]:
             if configs["quote_text"] is True:
                 f.write("> ")
-            f.write(line + "\n")
+            f.write(line)
         
         # write explanation
         expl = open("{}/{}{}.md".format(analysis_dir, category, index)).read()
-        f.write("\n## 思路\n\n")
+        f.write("\n\n## 思路\n\n")
         f.write(expl)
         
         # write code
