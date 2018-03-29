@@ -27,43 +27,50 @@
  * 5
  * 10000 23333 44444 55555 88888
  */
+
 #include <stdio.h>
+
+#define BLANK -1
+#define SIGNED -2
+#define SINGLE -3
+
 int main()
 {
-    int couple[100001] = {0}, N, ID1, ID2, M, count = 0;
+    int couple[100000], count = 0, N, M, ID1, ID2;
+    for(int i = 0; i < 100000; i++) 
+        couple[i] = BLANK;
     
-    /* every pair of 'index' and 'value' are a couple.
-     * record ID + 1 to avoid '00000' conflict with 0 */
+    /* Read 'couple-list', every pair of 'index' and 'value' are a couple. */
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
-        scanf("%d %d", &ID1, &ID2); ID1++; ID2++;
+        scanf("%d %d", &ID1, &ID2);
         couple[ID1] = ID2;
         couple[ID2] = ID1;
     }
     
-    /* Record those who come. If one has a mate then set 0 (means signed in), 
-     * else (means not even in the 'couple-list') set -1 (means bachelor) */
     scanf("%d", &M);
-    for(int i = 0; i < M; i++)
+    for(int i = 0; i < M; i++)          /* Read guest list. */
     {
-        scanf("%d", &ID1); ID1++;
-        if(couple[ID1]) couple[ID1] = 0;
-        else            {couple[ID1] = -1; count++;}
+        scanf("%d", &ID1);
+        if(couple[ID1] >= 0)                /* If one has a mate */
+            couple[ID1] = SIGNED;           /*   set SIGNED */
+        else                                /* Else: not in the 'couple-list' */
+            couple[ID1] = SINGLE, count++;  /*   set SINGLE */
     }
     
-    /* If couple[ID] is positive but couple[couple[ID]] is zero, 
-     * it means 'ID' didn't come but his/her mate did(signed in). */
-    for(int i = 0; i < 100001; i++) if(couple[i] > 0 && !couple[couple[i]]) 
-    {
-        couple[couple[i]] = -1;
-        count++;
-    }
-    
-    /* Those whose value is -1 is a bachelor or came alone */
+    /* If couple[ID] is >= 0 (but not signed) but couple[couple[ID]] == SIGNED
+     * (signed in), this means 'ID' didn't come but his/her mate did.
+     * So his/her mate is alone in the party, set to SINGLE. */
+    for(int i = 0; i < 100000; i++) 
+        if(couple[i] >= 0 && couple[couple[i]] == SIGNED) 
+            couple[couple[i]] = SINGLE, count++;
+
+    /* Those whose value is SINGLE is either a bachelor or came alone */
     printf("%d\n", count);
-    for(int i = 0; i < 100001; i++) if(couple[i] == -1)
-        printf("%05d%c", i - 1, --count ? ' ' : '\0');
+    for(int i = 0; i < 100000; i++) 
+        if(couple[i] == SINGLE)
+            printf("%05d%c", i, --count ? ' ' : '\0');
     
     return 0;
 }
