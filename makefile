@@ -16,7 +16,7 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 	@id=$(notdir $(basename $@));                                           \
 	case $${id:0:1} in                                                      \
 	'a')                                                                    \
-	    codefile=PATAdvanced/$${id:1:4}.c                                   \
+	    codefile=PATAdvanced/$${id:1:4}.c;                                  \
 	    ;;                                                                  \
 	'b')                                                                    \
 	    codefile=PATBasic/$${id:1:4}.c;                                     \
@@ -35,8 +35,8 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 	            ./build.py $$id; break;                                     \
 	        fi;                                                             \
 	    done;                                                               \
-    else                                                                    \
-        echo $$codefile not exist;                                          \
+	else                                                                    \
+	    echo $$codefile not exist;                                          \
 	fi
 
 $(ANA_DIR)/%.md:
