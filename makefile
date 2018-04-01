@@ -2,9 +2,9 @@ HTML_DIR=html
 ANA_DIR=analysis
 MD_DIR=md
 
-HTML=$(wildcard $(HTML_DIR)/*.html)
-ANA=$(addprefix $(ANA_DIR)/,$(notdir $(HTML:.html=.md)))
-MD=$(addprefix $(MD_DIR)/,$(notdir $(HTML:.html=.md)))
+ANA=$(wildcard $(ANA_DIR)/*.md)
+HTML=$(addprefix $(HTML_DIR)/,$(notdir $(ANA:.md=.html)))
+MD=$(addprefix $(MD_DIR)/,$(notdir $(ANA)))
 MASTER=$(shell git ls-tree -r --name-only master)
 
 DL_PY=download.py
