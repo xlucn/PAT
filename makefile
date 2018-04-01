@@ -48,5 +48,7 @@ $(HTML_DIR)/%.html: $(DL_PY)
 clean:
 	rm $(MD)
 
+rebuild: clean all
+
 test:
 	@echo -e $(MD)
