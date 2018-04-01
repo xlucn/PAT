@@ -25,7 +25,7 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 	    codefile=PATTop/$${id:1:4}.c;                                       \
 	    ;;                                                                  \
 	*)                                                                      \
-	    echo something wrong;                                               \
+	    echo file name wrong: $@;                                           \
 	esac;                                                                   \
 	if [[ "$(MASTER)" == *$$codefile* ]]; then                              \
 	    for f in $^; do                                                     \
@@ -35,8 +35,8 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 	            ./build.py $$id; break;                                     \
 	        fi;                                                             \
 	    done;                                                               \
-#    else                                                                   \
-#        echo $$codefile not exist;                                         \
+    else                                                                    \
+        echo $$codefile not exist;                                          \
 	fi
 
 $(ANA_DIR)/%.md:
