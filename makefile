@@ -50,5 +50,11 @@ clean:
 
 rebuild: clean all
 
+download:
+	./download.py
+
+force-download:
+	./download.py -f
+
 test:
 	@echo -e $(MD)
