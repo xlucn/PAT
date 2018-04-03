@@ -22,26 +22,26 @@
  * 7TI
  */
 
-#include <ctype.h>
 #include <stdio.h>
+#include <ctype.h>
 
-int main()
+int main(void)
 {
-    int printed[128] = {0};
-    char c, line[82];
+    int ascii[128] = {0};
+    char line[81], *p = line, c;
     
-    fgets(line, 81, stdin);
-    while((c = getchar()) != '\n')
-        printed[toupper(c)]++;
+    scanf("%[^\n]s", line);
+    getchar();
+    while ((c = getchar()) != '\n')
+        ascii[toupper(c)]++;
     
-    for(char *p = line; *p; p++) 
-    {
+    while (*p) {
         c = toupper(*p);
-        if(printed[(int)c] == 0)
-        {
+        if (ascii[c] == 0) {
             putchar(c);
-            printed[(int)c] = -1;
+            ascii[c] = -1;
         }
+        p++;
     }
     return 0;
 }
