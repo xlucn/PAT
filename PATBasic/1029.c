@@ -30,7 +30,7 @@ int main(void)
     int ascii[128] = {0};
     char line[81], *p = line, c;
     
-    scanf("%[^\n]s", line);
+    scanf("%[^\n]", line);
     getchar();
     while ((c = getchar()) != '\n')
         ascii[toupper(c)]++;
