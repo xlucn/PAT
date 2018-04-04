@@ -22,26 +22,26 @@
  * 7TI
  */
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
-int main(void)
+int main()
 {
-    int ascii[128] = {0};
-    char line[81], *p = line, c;
+    int printed[128] = {0};
+    char c, line[80];
     
-    scanf("%[^\n]", line);
-    getchar();
-    while ((c = getchar()) != '\n')
-        ascii[toupper(c)]++;
+    gets(line); /* the newline was replaced with '\0' */
+    while((c = getchar()) != '\n')
+        printed[toupper(c)]++;
     
-    while (*p) {
+    for(char *p = line; *p; p++) 
+    {
         c = toupper(*p);
-        if (ascii[c] == 0) {
+        if(printed[(int)c] == 0)
+        {
             putchar(c);
-            ascii[c] = -1;
+            printed[(int)c] = -1;
         }
-        p++;
     }
     return 0;
 }
