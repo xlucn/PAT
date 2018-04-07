@@ -7,12 +7,21 @@
 * PAT Basic ([原题链接](https://www.patest.cn/contests/pat-b-practise)，已经刷完1001-1085): 
 * PAT Advanced ([原题链接](https://www.patest.cn/contests/pat-a-practise)，刚刚开始): 
 
-欢迎讨论 oliver_lew@outlook.com
-
+欢迎讨论 oliver_lew@outlook.com ,
 发现问题/题目讨论也欢迎提交[issue](https://github.com/OliverLew/PAT/issues)或者[pull request](https://github.com/OliverLew/PAT/pulls)
+
+曾经有好心同学发现（#5, #7）PAT的检测结果可能会发生变化，也就是说他们改过测试点，所以我只能保证这
+些代码在最后有实质性改变的一个版本的当时是能全部通过的。所以大家如果同样发现我的代码通不过现在的测试
+点，请提交issue或pr，非常感谢！
+
+## 解题说明
+
+在简书上写了代码的解释，[B级](http://www.jianshu.com/p/c2b557516b50) ，
+[A级](http://www.jianshu.com/p/8944b15f8194)。 （暂不更新，最新内容见下面）
 
 note: 以后打算迁移至github pages，所以有问题可以通过
 [issue](https://github.com/OliverLew/PAT/issues)系统/将来在github pages页面和我讨论。
+现在已经可以查看[gh-pages](https://github.com/OliverLew/PAT/tree/gh-pages)分支，
+md文件夹中的文件，我现在已经暂时放弃更新简书内容，这里的是最新的。
 
-**解题说明**: 在简书上写了代码的解释，[B级](http://www.jianshu.com/p/c2b557516b50)，
-[A级](http://www.jianshu.com/p/8944b15f8194)。(虽如上述，迁移至github pages后，简书会继续保留)
+(虽如上述，成功迁移至github pages后，简书会同步更新)
