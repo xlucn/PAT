@@ -14,6 +14,15 @@ e.g. a1001 for problem 1001 in PAT Advanced problem set.
 When an id is provided, force download is by default."""
 
 def download_html(category, index):
+    """Download html file for one problem.
+    
+    Only reserve useful part: h1 title and div with id problemContent.
+    
+    Parameters:
+        category: one character, possible options: 'a' for advanced, 'b' for basic,
+            't' for Top.
+        index: four digit number starting from 1001.
+    """
     
     # build url and download
     baseurl = "https://www.patest.cn/contests"
@@ -34,6 +43,11 @@ def download_html(category, index):
 {}\n{}""".format(h1, pc))
 
 def download(force=False):
+    """Download all html files
+    
+    Attributes:
+        force: boolean, weather to download files that already exists.
+    """
     if not os.path.exists(html_dir):
         os.mkdir(html_dir)
     for c in "abt":
