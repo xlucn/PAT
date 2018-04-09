@@ -33,7 +33,7 @@
 
 #include <stdio.h>
 
-/* take all positive values as params */
+/* Both parameters take positive value */
 long calcgcd(long a, long b)
 {
     long r;

@@ -59,19 +59,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-struct _Student{
+
+typedef struct _Student{
     int ID;
     int D;      /** de2 : virtue  */
     int C;      /** cai2: ability */
     int rank;
     int sum;    /** sum = D + C   */
-};
+}sStudent, *Student;
 
-typedef struct _Student *Student;
-
-/**
- * larger the number, higher the rank
- **/
+/* larger the number, higher the rank */
 int rank(Student s, int H, int L)
 {
     if(s->D < L || s->C < L)        return 0;   /* failed */

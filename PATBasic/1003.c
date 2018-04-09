@@ -62,7 +62,6 @@ int main()
             else                          break;        /* 'wrong' string */
         }
         
-        /* Check conditions */
         if(c == '\n'                        /* 1. no other characters at end */
         && pos == 2                         /* 2. appearance of 'P' and 'T'  */
         && count[1]                         /* 3. existance of 'A'           */

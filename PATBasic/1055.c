@@ -59,11 +59,15 @@ int cmp(const void *a, const void *b)
     return strcmp(s1->name, s2->name);
 }
 
+/**
+ * Print one row
+ * Return the address of the beginning of next line
+ **/
 void printrow(Student s[], int num)
 {
-    for(int i = num / 2 * 2 - 1; i > 0; i -= 2)     /* on the left */
+    for(int i = num / 2 * 2 - 1; i > 0; i -= 2)  /* the left half */
         printf("%s ", s[i]->name);
-    for(int i = 0; i < num; i += 2)                 /* on the right */
+    for(int i = 0; i < num; i += 2)              /* the right half */
         printf("%s%c", s[i]->name, i + 2 < num ? ' ' : '\n');
 }
 

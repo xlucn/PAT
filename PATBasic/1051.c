@@ -34,7 +34,7 @@ int main()
     A = R1 * R2 * cos(P1 + P2);     /* doesn't matter how you calculate */
     B = R1 * R2 * sin(P1 + P2);
     
-    if(A < 0 && A > -0.005) A = 0;
+    if(A < 0 && A > -0.005) A = 0;  /* Rounding */
     if(B < 0 && B > -0.005) B = 0;
     
     printf("%.2lf%+.2lfi", A, B);

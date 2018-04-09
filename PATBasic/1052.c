@@ -39,7 +39,8 @@
 
 #include <stdio.h>
 
-/* https://en.wikipedia.org/wiki/Variable-width_encoding */
+/* About special characters, see:
+ * https://en.wikipedia.org/wiki/Variable-width_encoding */
 
 int main()
 {
