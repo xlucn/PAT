@@ -29,13 +29,12 @@
 
 #include <stdio.h>
 
-#include <stdlib.h>
 int main()
 {
     int N, iSchool, score, imax = 0;
     scanf("%d", &N);
     
-    int *schools = (int*)calloc(N, sizeof(int));
+    int schools[100000] = {0};
     for(int i = 0; i < N; i++)
     {
         scanf("%d %d", &iSchool, &score);

@@ -51,43 +51,42 @@ typedef struct node{
 int main()
 {
     int A, N, K;
-    Node *nodes, *p;
+    node nodes[100000] = {0};
+    Node np[100000] = {0}, *p;
     
     /* read */
     scanf("%d %d %d", &A, &N, &K);
-    nodes = (Node*)malloc(N * sizeof(Node));
     for(int i = 0; i < N; i++) 
     {
-        nodes[i] = (Node)malloc(sizeof(struct node));
-        scanf("%d %d %d", &nodes[i]->addr, &nodes[i]->data, &nodes[i]->next);
+        np[i] = nodes + i;
+        scanf("%d %d %d", &np[i]->addr, &np[i]->data, &np[i]->next);
     }
     
     /* link the list */
     for(int i = 0; i < N; i++)
     {
         for(int j = i; j < N; j++)
-            if(nodes[j]->addr == (i ? nodes[i - 1]->next : A))
+            if(np[j]->addr == (i ? np[i - 1]->next : A))
             {
-                SWAPNODE(nodes[i], nodes[j]);
+                SWAPNODE(np[i], np[j]);
                 break;
             }
-        if(nodes[i]->next == -1)   /* there could be useless nodes */
+        if(np[i]->next == -1)   /* there could be useless nodes */
             N = i + 1;
     }
 
     /* reverse the list */
     for(int i = 0; i < N / K; i++)
     {
-        p = nodes + i * K;
+        p = np + i * K;
         for(int j = 0; j < K / 2; j++)
             SWAPNODE(p[j], p[K - j - 1]);
     }
     
     /* print the list */
     for(int i = 0; i < N - 1; i++)
-        printf("%05d %d %05d\n", 
-               nodes[i]->addr, nodes[i]->data, nodes[i + 1]->addr);
-    printf("%05d %d -1\n", nodes[N - 1]->addr, nodes[N - 1]->data);
+        printf("%05d %d %05d\n", np[i]->addr, np[i]->data, np[i + 1]->addr);
+    printf("%05d %d -1\n", np[N - 1]->addr, np[N - 1]->data);
 
     return 0;
 }

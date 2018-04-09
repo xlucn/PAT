@@ -35,10 +35,9 @@ int cmp(const void *a, const void *b)
 int main()
 {
     int N, m, n;
-    scanf("%d", &N);
+    int array[10000] = {0}, matrix[10000] = {0};
     
-    int *array = (int*)malloc(N * sizeof(int));
-    int *matrix = (int*)malloc(N * sizeof(int));
+    scanf("%d", &N);
     for(int i = 0; i < N; i++)
         scanf("%d", array + i);
 

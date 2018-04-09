@@ -40,7 +40,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 typedef struct student{
@@ -73,16 +72,17 @@ int main()
 {
     /* read and sort data */
     int N, K;
+    student students[10000] = {0};
+    Student sp[10000] = {0}, *p = sp;
     
     scanf("%d %d", &N, &K);
-    Student *students = (Student*)malloc(N * sizeof(Student)), *p = students;
     for(int i = 0; i < N; i++)
     {
-        students[i] = (Student)malloc(sizeof(struct student));
-        scanf("%s %d", students[i]->name, &students[i]->height);
+        sp[i] = students + i;
+        scanf("%s %d", sp[i]->name, &sp[i]->height);
     }
     
-    qsort(students, N, sizeof(Student), cmp);
+    qsort(sp, N, sizeof(Student), cmp);
     
     /* print */
     printrow(p, N - N / K * (K - 1));
