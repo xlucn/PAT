@@ -28,7 +28,6 @@
  **/
 
 #include <stdio.h>
-#include <inttypes.h>
 
 int main()
 {

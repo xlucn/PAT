@@ -36,4 +36,6 @@ int main()
         count[sum & 1]++;
     
     printf("%d %d", count[0], count[1]);
+    
+    return 0;
 }
