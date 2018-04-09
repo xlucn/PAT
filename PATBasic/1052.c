@@ -44,13 +44,13 @@
 
 int main()
 {
+    int N, m[5];
     char c, symbols[3][10][5] = {0};
 
     for(int symbol = 0; symbol < 3; symbol++)
         for(int index = 0; (c = getchar()) != '\n'; )
             if(c == '[') scanf("%[^]]", symbols[symbol][index++]);
     
-    int N, m[5];
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {

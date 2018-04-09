@@ -28,8 +28,9 @@ int main()
     char c;
     int sum = 0, count[2] = {0};
     
-    while((c = getchar()) != '\n') if(isalpha(c))
-        sum += tolower(c) - 'a' + 1;
+    while((c = getchar()) != '\n') 
+        if(isalpha(c))
+            sum += tolower(c) - 'a' + 1;
     
     for(; sum; sum >>= 1)
         count[sum & 1]++;

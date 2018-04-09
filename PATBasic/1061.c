@@ -35,8 +35,10 @@ int main()
     int score, choice;
     
     scanf("%d %d", &N, &M);
-    for(int i = 0; i < M; i++)  scanf("%d", fullmark + i);
-    for(int i = 0; i < M; i++)  scanf("%d", answer + i);
+    for(int i = 0; i < M; i++)  
+        scanf("%d", fullmark + i);
+    for(int i = 0; i < M; i++)  
+        scanf("%d", answer + i);
     
     for(int i = 0; i < N; i++)
     {

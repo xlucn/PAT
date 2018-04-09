@@ -24,7 +24,7 @@
 
 int main()
 {
-    char c, str[] = "PATest";               /* use as index for count[] */
+    char c, *str = "PATest";                /* use as index for count[] */
     int i, flag = 1, count[128] = {0};      /* for each ASCII char */
     
     /* Read and count numbers for every character */

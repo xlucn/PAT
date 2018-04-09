@@ -43,12 +43,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct student *Student;
-
-struct student{
+typedef struct student{
     char name[9];
     int height;
-};
+}student, *Student;
 
 int cmp(const void *a, const void *b)
 {

@@ -42,13 +42,11 @@
 
 #define SWAPNODE(A, B) {Node temp = A; A = B; B = temp;}
 
-typedef struct node *Node;
-
-struct node{
+typedef struct node{
     int addr;
     int data;
     int next;
-};
+}node, *Node;
 
 int main()
 {

@@ -53,7 +53,7 @@ int readanswer()
     scanf("%d", &count);
     for(int k = 0; k < count; k++)
     {
-        while((c = getchar()) == ' ');
+        while((c = getchar()) == ' ') ;
         answer |= 1 << (c - 'a');
     }
     return answer;
@@ -95,8 +95,9 @@ int main()
     else
     {
         printf("%d", max);
-        for(int i = 0; i < M; i++) if(probs[i].wrong == max)
-            printf(" %d", i + 1);
+        for(int i = 0; i < M; i++) 
+            if(probs[i].wrong == max)
+                printf(" %d", i + 1);
     }
     
     return 0;

@@ -41,7 +41,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmp(const void *a, const void *b) {return *(int*)b - *(int*)a;}
+int cmp(const void *a, const void *b) 
+{
+    return *(int*)b - *(int*)a;
+}
 
 int sort(int n)
 {
@@ -58,15 +61,14 @@ int reverse(int n)
 int main()
 {
     int N;
+    
     scanf("%d", &N);
-    while(1)
+    do
     {
         N = sort(N);
         printf("%04d - %04d = %04d\n", N, reverse(N), N - reverse(N));
         N = N - reverse(N);
-        
-        if(N == 0 || N == 6174) 
-            break;
-    }
+    }while(N != 0 && N != 6174) ;
+    
     return 0;
 }
