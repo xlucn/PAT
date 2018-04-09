@@ -23,7 +23,9 @@
  * 4
  * 3 6 9 26
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, m, sum, friendID[37] = {0}, count = 0;

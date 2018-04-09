@@ -28,7 +28,7 @@ int main()
             if(count++) putchar(' ');
             printf("%d %d", coef * index, index - 1);
         }
-
+    
     /* Zero polynomial or constant */
     if(count == 0) 
         puts("0 0");

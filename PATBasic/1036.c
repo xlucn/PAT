@@ -21,7 +21,9 @@
  * a        a
  * aaaaaaaaaa
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N;

@@ -22,6 +22,7 @@
  * 输出样例：
  * 5/12 7/12
  */
+
 #include <stdio.h>
 
 int gcd(int a, int b)

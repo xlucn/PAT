@@ -19,7 +19,9 @@
  * 输出样例：
  * PATestPATestPTetPTePePee
  */
+
 #include <stdio.h>
+
 int main()
 {
     char c, str[] = "PATest";               /* use as index for count[] */

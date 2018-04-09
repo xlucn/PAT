@@ -40,7 +40,9 @@
  * 输出样例2：
  * All passed
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N;

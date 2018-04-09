@@ -22,10 +22,13 @@
  * 输出样例：
  * 10015558
  */
+
 #include <stdio.h>
+
 int main()
 {
     int zero, nonzero;
+    
     scanf("%d", &zero);
     for(int i = 1; i < 10; i++)
     {
@@ -37,5 +40,6 @@ int main()
                 putchar('0');
         }
     }
+    
     return 0;
 }

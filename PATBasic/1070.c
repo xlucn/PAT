@@ -22,7 +22,9 @@
  * 输出样例：
  * 14
  */
+
 #include <stdio.h>
+
 int main()
 {
     int l[10001] = {0}, N, i;

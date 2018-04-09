@@ -30,7 +30,9 @@
  * 3
  * 1 4 5
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, count = 0;

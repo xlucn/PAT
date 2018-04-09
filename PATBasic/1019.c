@@ -37,6 +37,7 @@
  * 输出样例2：
  * 2222 - 2222 = 0000
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 

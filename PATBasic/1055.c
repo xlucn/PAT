@@ -38,6 +38,7 @@
  * Ann Mike Eva
  * Tim Amy John
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -70,6 +71,7 @@ int main()
 {
     /* read and sort data */
     int N, K;
+    
     scanf("%d %d", &N, &K);
     Student *students = (Student*)malloc(N * sizeof(Student)), *p = students;
     for(int i = 0; i < N; i++)
@@ -77,6 +79,7 @@ int main()
         students[i] = (Student)malloc(sizeof(struct student));
         scanf("%s %d", students[i]->name, &students[i]->height);
     }
+    
     qsort(students, N, sizeof(Student), cmp);
     
     /* print */

@@ -33,10 +33,12 @@
  * ERROR: -9999 is not a legal number
  * The average of 0 numbers is Undefined
  */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 int main()
 {
     int count = 0, N;

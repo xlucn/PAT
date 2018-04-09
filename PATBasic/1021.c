@@ -22,7 +22,9 @@
  * 1:3
  * 3:1
  */
+
 #include <stdio.h>
+
 int main()
 {
     char c;

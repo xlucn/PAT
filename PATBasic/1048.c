@@ -19,8 +19,10 @@
  * 输出样例：
  * 3695Q8118
  */
+
 #include <stdio.h>
 #include <string.h>
+
 int main()
 {
     char A[101], B[101];

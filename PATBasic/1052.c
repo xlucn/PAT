@@ -36,11 +36,15 @@
  * o(^ε^)o
  * Are you kidding me? @\/@
  */
+
 #include <stdio.h>
+
 /* https://en.wikipedia.org/wiki/Variable-width_encoding */
+
 int main()
 {
     char c, symbols[3][10][5] = {0};
+
     for(int symbol = 0; symbol < 3; symbol++)
         for(int index = 0; (c = getchar()) != '\n'; )
             if(c == '[') scanf("%[^]]", symbols[symbol][index++]);

@@ -30,6 +30,7 @@
  * 1 2/3 * 0 = 0
  * 1 2/3 / 0 = Inf
  */
+
 #include <stdio.h>
 
 /* take all positive values as params */

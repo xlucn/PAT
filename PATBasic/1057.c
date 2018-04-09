@@ -19,8 +19,10 @@
  * 输出样例：
  * 3 4
  */
+
 #include <stdio.h>
 #include <ctype.h>
+
 int main()
 {
     char c;

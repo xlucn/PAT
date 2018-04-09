@@ -17,10 +17,13 @@
  * 输出样例：
  * 17636684150141093474 3
  **/
+
+#include <stdio.h>
+
 /* read 2 digits from highest digit of A, do manual division, get the quotient
  and remainder. Read one more digit, combine this with the last remainder to
 get a new 2-digits number. Do this until read to the end of A */
-#include <stdio.h>
+
 int main()
 {
     int B;

@@ -26,7 +26,9 @@
  * 输出样例：
  * 2 150
  */
+
 #include <stdio.h>
+
 #include <stdlib.h>
 int main()
 {

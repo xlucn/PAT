@@ -75,5 +75,6 @@ int main()
         if(c != '\n')   
             while(getchar() != '\n'); 
     }
+    
     return 0;
 }

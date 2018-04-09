@@ -38,13 +38,16 @@
  * 2 3 5
  * B B
  */
+
 #include <stdio.h>
+
 char max(int B, int C, int J)
 {
     if(B >= C && B >= J) return 'B';
     if(C >  B && C >= J) return 'C';
     /* J > B && J > C */ return 'J';
 }
+
 int main()
 {
     int N;
@@ -70,5 +73,6 @@ int main()
     printf("%d %d %d\n", Awin, Tie, Bwin);
     printf("%d %d %d\n", Bwin, Tie, Awin);
     printf("%c %c", max(AwinB, AwinC, AwinJ), max(BwinB, BwinC, BwinJ));
+
     return 0;
 }

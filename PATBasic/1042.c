@@ -18,8 +18,10 @@
  * 输出样例：
  * e 7
  */
+
 #include <stdio.h>
 #include <ctype.h>
+
 int main()
 {
     char c;
@@ -33,5 +35,6 @@ int main()
         max = i;
     
     printf("%c %d", max + 'a', count[max]);
+
     return 0;
 }

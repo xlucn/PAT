@@ -23,8 +23,10 @@
  * 输出样例：
  * _hs_s_a_tst
  */
+
 #include <stdio.h>
 #include <ctype.h>
+
 int main()
 {
     char c;

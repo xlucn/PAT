@@ -27,6 +27,7 @@
  * 输出样例：
  * 3 Tom John
  */
+
 #include <stdio.h>
 #include <string.h>
 

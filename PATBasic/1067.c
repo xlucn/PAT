@@ -41,9 +41,11 @@
  * Wrong password: coollady@gplt
  * Welcome in
  */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+
 int main()
 {
     int N;

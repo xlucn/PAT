@@ -21,6 +21,7 @@
  * 输出样例：
  * 6
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
