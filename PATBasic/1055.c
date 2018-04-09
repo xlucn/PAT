@@ -60,12 +60,13 @@ int cmp(const void *a, const void *b)
  * Print one row
  * Return the address of the beginning of next line
  **/
-void printrow(Student s[], int num)
+Student *printrow(Student *s, int num)
 {
     for(int i = num / 2 * 2 - 1; i > 0; i -= 2)  /* the left half */
         printf("%s ", s[i]->name);
     for(int i = 0; i < num; i += 2)              /* the right half */
         printf("%s%c", s[i]->name, i + 2 < num ? ' ' : '\n');
+    return s + num;
 }
 
 int main()
@@ -85,9 +86,9 @@ int main()
     qsort(sp, N, sizeof(Student), cmp);
     
     /* print */
-    printrow(p, N - N / K * (K - 1));
-    for(p += N - N / K * (K - 1); p < students + N; p += N / K)
-        printrow(p, N / K);
+    p = printrow(p, N - N / K * (K - 1));   /* the last row */
+    while(p < sp + N)
+        p = printrow(p, N / K);
     
     return 0;
 }
