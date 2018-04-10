@@ -5,7 +5,7 @@ import sys
 import re
 from subprocess import run, PIPE, CalledProcessError
 from bs4 import BeautifulSoup
-from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs
+from config import indexes, code_dir, md_dir, html_dir, analysis_dir, configs, code_dirs
 
 
 def build_file_(category, index):
@@ -56,12 +56,6 @@ def build_file(c, i):
         build_file_(c, i)
     except (FileNotFoundError, CalledProcessError) as e:
         pass
-
-code_dirs = {
-    'a': 'PATAdvanced',
-    'b': 'PATBasic',
-    't': 'PATTop'
-}
 
 usage = """to be continued."""
 

@@ -14,6 +14,12 @@ analysis_dir = "analysis"   # The dir of md files of only analysis text
 
 code_dir = "../PAT"         # Where the code is(the master branch)
 
+code_dirs = {               # Children folders of code_dir
+    'a': 'PATAdvanced',
+    'b': 'PATBasic',
+    't': 'PATTop'
+}
+
 configs = {
     "quote_text": True  # If add '> ' to problem text in markdown file
 }
