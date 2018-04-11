@@ -46,7 +46,7 @@ class FileBuilder:
         expl_file = os.path.join(dirs.analysis, "{}{}.md".format(self.c, index))
         return open(expl_file).read()
 
-    def build(self):
+    def __build(self):
         """
         write everything to a final markdown file
         """
@@ -76,13 +76,13 @@ class FileBuilder:
             f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
             f.write("```c\n{}\n```".format(code))
       
-  
-def build_file(c, i):
-    try:
-        builder = FileBuilder(c, i)
-        builder.build()
-    except (FileNotFoundError, CalledProcessError) as e:
-        pass
+    def build(self):
+        try:
+            self.__build()
+        except FileNotFoundError as e:
+            pass
+        except CalledProcessError as e:
+            pass
 
 usage = """to be continued."""
 
@@ -92,7 +92,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         for c in list(indexes.keys()):
             for i in indexes[c]:
-                build_file(c, i)
+                builder = FileBuilder(c, i)
+                builder.build()
     if len(sys.argv) == 2:
         if sys.argv[1] == '-h' or sys.argv[1] == '--help':
             print(usage)
@@ -100,6 +101,7 @@ if __name__ == "__main__":
             category = sys.argv[1][0]
             index = int(sys.argv[1][1:])
             if index in indexes[category]:
-                build_file(category, index)
+                builder = FileBuilder(category, index)
+                builder.build()
         else:
             print(usage)
