@@ -6,20 +6,21 @@ indexes = {                 # Problem indexes for each level
     't': [i + 1001 for i in range(23)]
 }
 
-md_dir = "md"               # The dir of final generated markdown file
+class dirs:
+    md = "md"               # The dir of final generated markdown file
+    html = "html"           # The dir of html file from patest.cn
+    analysis = "analysis"   # The dir of md files of only analysis text
+    code = {                # Children folders of code_dir
+        'a': 'PATAdvanced',
+        'b': 'PATBasic',
+        't': 'PATTop'
+    }
+    
+    def __init__(self):
+        pass
 
-html_dir = "html"           # The dir of html file from patest.cn
+class configs:
+    quote_text = True   # If add '> ' to problem text in markdown file
 
-analysis_dir = "analysis"   # The dir of md files of only analysis text
-
-code_dir = "../PAT"         # Where the code is(the master branch)
-
-code_dirs = {               # Children folders of code_dir
-    'a': 'PATAdvanced',
-    'b': 'PATBasic',
-    't': 'PATTop'
-}
-
-configs = {
-    "quote_text": True  # If add '> ' to problem text in markdown file
-}
+    def __init__(self):
+        pass
