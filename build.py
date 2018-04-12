@@ -12,11 +12,9 @@ class FileBuilder:
     """
     build markdown files.
     """
-    def __init__(self, category, index):
+    def __init__(self):
         self.quote_text = configs.quote_text
         self.github = "https://github.com/OliverLew/PAT/blob/master"
-        self.c = category
-        self.i = index
         
     
     def read_html(self):
@@ -76,7 +74,9 @@ class FileBuilder:
             f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
             f.write("```c\n{}\n```".format(code))
       
-    def build(self):
+    def build(self, category, index):
+        self.c = category
+        self.i = index
         try:
             self.__build()
         except FileNotFoundError as e:
@@ -87,13 +87,13 @@ class FileBuilder:
 usage = """to be continued."""
 
 if __name__ == "__main__":
+    builder = FileBuilder()
     if(not os.path.exists(dirs.md)):
         os.mkdir(dirs.md)
     if len(sys.argv) == 1:
         for c in list(indexes.keys()):
             for i in indexes[c]:
-                builder = FileBuilder(c, i)
-                builder.build()
+                builder.build(c, i)
     if len(sys.argv) == 2:
         if sys.argv[1] == '-h' or sys.argv[1] == '--help':
             print(usage)
@@ -101,7 +101,6 @@ if __name__ == "__main__":
             category = sys.argv[1][0]
             index = int(sys.argv[1][1:])
             if index in indexes[category]:
-                builder = FileBuilder(category, index)
-                builder.build()
+                builder.build(category, index)
         else:
             print(usage)
