@@ -7,14 +7,12 @@ import re
 import config
 from bs4 import BeautifulSoup
 
-usage = """Usage: python download [-f]/[id]. 
-
-Use -f to force redownload
-
-[id] is the combination of a category indicator 'a/b/t' and a 4-digit number,
+usage = """Usage: ./download.py [-f]/[id]. 
+\nUse -f to force redownload
+\n[id] is the combination of a category indicator 'a/b/t' and a 4-digit number,
 e.g. a1001 for problem 1001 in PAT Advanced problem set.
+\nWhen an id is provided, force download is default."""
 
-When an id is provided, force download is by default."""
 
 def download_html(category, index):
     """Download html file for one problem.
