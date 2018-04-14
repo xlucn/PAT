@@ -1,7 +1,10 @@
 #! /usr/bin/env python3
 
-import requests, os, sys, re
-from config import *
+import requests
+import os
+import sys
+import re
+import config
 from bs4 import BeautifulSoup
 
 usage = """Usage: python download [-f]/[id]. 
