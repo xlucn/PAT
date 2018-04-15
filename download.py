@@ -97,7 +97,7 @@ if __name__ == "__main__":
         elif re.match(r"[abt]\d{4}", sys.argv[1]):
             category = sys.argv[1][0]
             index = int(sys.argv[1][1:])
-            if index in indexes[category]:
+            if index in config.indexes[category]:
                 dl.download(category, index)
         else:
             print(usage)
