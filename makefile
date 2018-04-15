@@ -42,7 +42,7 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 $(ANA_DIR)/%.md:
 	touch $@
 
-$(HTML_DIR)/%.html: $(DL_PY)
+$(HTML_DIR)/%.html:
 	./download.py $(notdir $(basename $@))
 
 clean:
