@@ -83,7 +83,7 @@ class PATDownloader:
         """
         download one html file
         """
-        self.download_all({category: index}, force)
+        self.download_all({category: [index]}, force)
 
 if __name__ == "__main__":
     dl = PATDownloader()
