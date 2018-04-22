@@ -2,7 +2,7 @@
 
 http://oliverlew.github.io/PAT/
 
-还没有准备好，但是大家可以通过上面的文件管理浏览[md](md/)文件夹中的文件，这是最终将会放在博客里的文件
+还没有准备好，但是大家可以通过上面的文件管理浏览[md](md)文件夹中的文件，这是最终将会放在博客里的文件
 
 浙江大学PAT纯C语言题解说明 PAT exercises in C language 
 
