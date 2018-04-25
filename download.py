@@ -1,13 +1,13 @@
 #! /usr/bin/env python3
 
-import requests
 import os
 import sys
 import re
-import config
+import requests
 from bs4 import BeautifulSoup
+import config
 
-usage = """Usage: ./download.py [-f]/[id]. 
+usage = """Usage: ./download.py [-f]/[id].
 \nUse -f to force redownload
 \n[id] is the combination of a category indicator 'a/b/t' and a 4-digit number,
 e.g. a1001 for problem 1001 in PAT Advanced problem set.
@@ -16,16 +16,19 @@ e.g. a1001 for problem 1001 in PAT Advanced problem set.
 class PATDownloader:
     baseurl = "https://www.patest.cn/contests"
     doctype = '<!DOCTYPE html>'
-    meta = '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
-    
+    meta = '<meta http-equiv="Content-Type" \
+            content="text/html; charset=UTF-8" />'
+
     def download_html(self, category, index):
         """Download html file for one problem.
-        
+
         Parameters:
-            category: one character, possible options: 'a' for advanced, 'b' for basic,
-                't' for Top.
+            category: one character, possible options:
+                      'a' for advanced,
+                      'b' for basic,
+                      't' for Top.
             index: four digit number starting from 1001.
-        
+
         Return:
             html content
         """
@@ -33,14 +36,14 @@ class PATDownloader:
         url = "{}/{}/{}".format(self.baseurl, contest_name, index)
         resp = requests.get(url)
         return resp.content
-    
+
     def parse_html(self, content):
         """
         parse html file and find h1 tag and div with id 'problemContent'
-        
-        :param content: 
+
+        :param content:
             html content
-        
+
         :return:
             h1 tag and div tag with id 'problemContent'
         """
@@ -48,7 +51,7 @@ class PATDownloader:
         h1 = soup.find('h1')
         pc = soup.find(id='problemContent')
         return h1, pc
-    
+
     def write_html(self, category, index, h1, pc):
         """
         write h1 tag and problem content div into a new html file
@@ -61,10 +64,10 @@ class PATDownloader:
         content = self.download_html(category, index)
         h1, pc = self.parse_html(content)
         self.write_html(category, index, h1, pc)
-    
+
     def download_all(self, indexes=config.indexes, force=False):
         """Download all html files
-        
+
         Attributes:
             force: boolean, weather to redownload files that already exists.
         """
