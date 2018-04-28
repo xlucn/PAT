@@ -16,8 +16,8 @@ e.g. a1001 for problem 1001 in PAT Advanced problem set.
 class PATDownloader:
     baseurl = "https://www.patest.cn/contests"
     doctype = '<!DOCTYPE html>'
-    meta = '<meta http-equiv="Content-Type" \
-            content="text/html; charset=UTF-8" />'
+    meta = '<meta http-equiv="Content-Type" content="text/html; \
+charset=UTF-8" />'
 
     def download_html(self, category, index):
         """Download html file for one problem.
@@ -56,7 +56,8 @@ class PATDownloader:
         """
         write h1 tag and problem content div into a new html file
         """
-        filename = os.path.join(config.html_dir, "{}{}.html".format(category, index))
+        filename = os.path.join(config.html_dir,
+                                "{}{}.html".format(category, index))
         with open(filename, 'w') as f:
             f.write("{}\n{}\n{}\n{}".format(self.doctype, self.meta, h1, pc))
 
@@ -76,7 +77,8 @@ class PATDownloader:
         for c in indexes.keys():
             for i in indexes[c]:
                 html = "{}/{}{}.html".format(config.html_dir, c, i)
-                if force is True or (force is False and not os.path.exists(html)):
+                if force is True or \
+                (force is False and not os.path.exists(html)):
                     print("downloading " + html)
                     self.__download(c, i)
                 else:
