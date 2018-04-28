@@ -12,6 +12,14 @@ class FileBuilder:
     """
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
+        self.yaml_frontmatter = """\
+---
+layout: post
+title:  "{}"
+categories: {}
+tags: [{}]
+---
+"""
 
     def read_html(self):
         """
@@ -50,10 +58,15 @@ class FileBuilder:
         code, code_url = self.read_code()
         expl = self.read_expl()
 
+        indexl = h1_tag.find("<h1>") + len("<h1>")
+        indexr = h1_tag.rfind("</h1>")
+        h1 = h1_tag[indexl: indexr]
+        tag = config.tag[self.c]
+
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            f.write("{}\n".format(h1_tag))
+            f.write(self.yaml_frontmatter.format(h1, tag, tag))
 
             # write problem content
             f.write("## 题目\n\n")
@@ -72,6 +85,9 @@ class FileBuilder:
             f.write("```c\n{}\n```".format(code))
 
     def build(self, c, i):
+        """
+        build a file with error handling
+        """
         self.c = c
         self.i = i
         try:

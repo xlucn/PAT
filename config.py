@@ -9,6 +9,12 @@ code_dir = {                # Children folders of code_dir
     't': 'PATTop'
 }
 
+tag = {
+    'a': "PAT-A",
+    'b': "PAT-B",
+    't': "PAT-T"
+}
+
 indexes = {                 # Problem indexes for each level
     'a': [i + 1001 for i in range(147)],
     'b': [i + 1001 for i in range(85)],
