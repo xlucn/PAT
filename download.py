@@ -82,7 +82,7 @@ class PATDownloader:
                 else:
                     print(html + " exists")
 
-    def download(self, category, index, force=False):
+    def download(self, category, index, force=True):
         """
         download one html file
         """
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     dl = PATDownloader()
     if len(sys.argv) == 1:
         dl.download_all()
-    if len(sys.argv) == 2:
+    elif len(sys.argv) == 2:
         if sys.argv[1] == '-f':
             dl.download_all(force=True)
         elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
@@ -104,3 +104,5 @@ if __name__ == "__main__":
                 dl.download(category, index)
         else:
             print(usage)
+    else:
+        print(usage)
