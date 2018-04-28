@@ -18,7 +18,7 @@ layout: post
 title:  "{}"
 categories: {}
 tags: [{}]
----
+---\n
 """
 
     def read_html(self):
