@@ -2,7 +2,7 @@
 
 http://oliverlew.github.io/PAT/
 
-还没有准备好，但是大家可以通过上面的文件管理浏览[md](md)文件夹中的文件，这是最终将会放在博客里的文件
+还没有准备好，但是大家可以通过上面的文件管理浏览[md][md]文件夹中的文件，这是最终将会放在博客里的文件
 
 浙江大学PAT纯C语言题解说明 PAT exercises in C language 
 
@@ -20,3 +20,5 @@ http://oliverlew.github.io/PAT/
 - config.py: 把一些可能会变得量放在这里，包括题目数量，文件夹名称，最终markdown微调参数等。
 - download.py: 下载PAT网站题目网页
 - makefile: 执行生成、清理文件的任务
+
+[md]: https://github.com/OliverLew/PAT/tree/gh-pages/md
