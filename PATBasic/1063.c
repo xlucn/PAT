@@ -26,8 +26,10 @@
  * 输出样例：
  * 4.24
  */
+
 #include <stdio.h>
 #include <math.h>
+
 int main()
 {
     int N, R, I, norm = 0;

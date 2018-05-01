@@ -45,6 +45,7 @@
  * 8888: Checked
  * 2222: Are you kidding?
  */
+
 #include <stdio.h>
 
 int isPrime(int n)

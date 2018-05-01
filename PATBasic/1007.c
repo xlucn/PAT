@@ -16,7 +16,9 @@
  * 输出样例：
  * 4
  **/
+
 #include <stdio.h>
+
 int main()
 {
     int N;

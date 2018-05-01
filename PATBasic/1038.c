@@ -21,7 +21,9 @@
  * 输出样例：
  * 3 2 0
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, M, score, count[101] = {0};

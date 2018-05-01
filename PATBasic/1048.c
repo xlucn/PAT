@@ -19,8 +19,10 @@
  * 输出样例：
  * 3695Q8118
  */
+
 #include <stdio.h>
 #include <string.h>
+
 int main()
 {
     char A[101], B[101];
@@ -36,9 +38,12 @@ int main()
     {
         a = lenA + i - maxlen < 0 ? 0 : A[lenA + i - maxlen] - '0';
         b = lenB + i - maxlen < 0 ? 0 : B[lenB + i - maxlen] - '0';
-        if((maxlen - i) % 2)    putchar(encrypt[(a + b) % 13]);
-        else                    putchar('0' + (b - a < 0 ? b - a + 10 : b - a));
-    }
         
+        if((maxlen - i) % 2)
+            putchar(encrypt[(a + b) % 13]);
+        else
+            putchar('0' + (b - a < 0 ? b - a + 10 : b - a));
+    }
+
     return 0;
 }

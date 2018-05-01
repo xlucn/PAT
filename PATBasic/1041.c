@@ -32,36 +32,36 @@
  * 10120150912002 2
  * 10120150912119 1
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct student *Student;
-struct student{
+typedef struct student{
     char ID[15];
-    int test;
-    int exam;
-};
+    int test_seat;
+    int exam_seat;
+}Student, *pStudent;
 
 int main()
 {
     int N, M, test;
+    Student students[1001] = {0};       /* N >= 1000 */
+    pStudent sp[1001] = {0};
     
     scanf("%d", &N);
-    Student *students = (Student*)malloc(N * sizeof(Student));
     for(int i = 0; i < N; i++)
     {
-        Student s = (Student)malloc(sizeof(struct student));
-        scanf("%s %d %d", s->ID, &s->test, &s->exam);
-        students[s->test] = s;         /* set order by test number */
+        pStudent s = students + i;      /* fill in the ith in the array */
+        scanf("%s %d %d", s->ID, &s->test_seat, &s->exam_seat);
+        sp[s->test_seat] = s;           /* set index same as test number */
     }
     
     scanf("%d", &M);
     for(int i = 0; i < M; i ++)
     {
         scanf("%d", &test);
-        printf("%s %d\n", students[test]->ID, students[test]->exam);
+        printf("%s %d\n", sp[test]->ID, sp[test]->exam_seat);
     }
     
-    for(int i = 0; i < N; i++) free(students[i]); free(students);
     return 0;
 }

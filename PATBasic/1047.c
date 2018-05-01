@@ -27,10 +27,13 @@
  * 输出样例：
  * 11 176
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, team, member, score, highest = 0, teams[1000] = {0};
+    
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {

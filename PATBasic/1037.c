@@ -25,7 +25,9 @@
  * 输出样例2：
  * -3.2.1
  */
+
 #include <stdio.h>
+
 int main()
 {
     int Galleon, Sickle, Knut, P, A, change;

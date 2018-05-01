@@ -23,6 +23,7 @@
  * 输出样例2：
  * 0
  **/
+
 #include <stdio.h>
 
 long Dpart(long A, int D_A)

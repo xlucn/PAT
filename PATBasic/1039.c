@@ -32,7 +32,9 @@
  * 输出样例2：
  * No 2
  */
+
 #include <stdio.h>
+
 int main()
 {
     char c;

@@ -23,18 +23,21 @@
  * 53 20 76
  * 58 60 76
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmp(const void *a, const void *b) {return *(int*)b - *(int*)a;}
+int cmp(const void *a, const void *b) 
+{
+    return *(int*)b - *(int*)a;
+}
 
 int main()
 {
     int N, m, n;
-    scanf("%d", &N);
+    int array[10000] = {0}, matrix[10000] = {0};
     
-    int *array = (int*)malloc(N * sizeof(int));
-    int *matrix = (int*)malloc(N * sizeof(int));
+    scanf("%d", &N);
     for(int i = 0; i < N; i++)
         scanf("%d", array + i);
 

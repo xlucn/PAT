@@ -22,6 +22,7 @@
  * 输出样例：
  * 5/12 7/12
  */
+
 #include <stdio.h>
 
 int gcd(int a, int b)
@@ -41,8 +42,9 @@ int main()
         L = M1, M1 = M2, M2 = L;
     }
     
-    for(L = N1 * K / M1 + 1; N2 * K > M2 * L; L++)  if(gcd(L, K) == 1)
-        printf("%s%d/%d", count++ ? " " : "", L, K);
+    for(L = N1 * K / M1 + 1; N2 * K > M2 * L; L++)  
+        if(gcd(L, K) == 1)
+            printf("%s%d/%d", count++ ? " " : "", L, K);
             
     return 0;
 }

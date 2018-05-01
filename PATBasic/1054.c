@@ -33,10 +33,12 @@
  * ERROR: -9999 is not a legal number
  * The average of 0 numbers is Undefined
  */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 int main()
 {
     int count = 0, N;
@@ -47,11 +49,11 @@ int main()
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
     {
-        scanf("%8s", s);              /* Just read 8 chars */
+        scanf("%8s", s);                /* Just read up to 8 chars */
         
-        c = ungetc(getchar(), stdin); 
-        f = strtod(s, &pEnd);
-        pDot = strchr(s, '.');
+        c = ungetc(getchar(), stdin);   /* Read next char and push back */
+        f = strtod(s, &pEnd);           /* pEnd -> converted floating number */
+        pDot = strchr(s, '.');          /* pDot -> (first) decimal point */
         
         if(!isspace(c)                          /* string too long */
         || *pEnd                                /* not floating number */
@@ -63,8 +65,8 @@ int main()
             while(!isspace(c = getchar())) putchar(c);
             printf(" is not a legal number\n");
         }
-        else
-        {   /* legel number */
+        else                                    /* legel number */
+        {
             count++;
             sum += f;
         }

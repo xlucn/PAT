@@ -21,7 +21,9 @@
  * a        a
  * aaaaaaaaaa
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N;
@@ -32,7 +34,10 @@ int main()
     {
         for(int j = 0; j < N; j++)
         {
-            putchar(i == 0 || i == (N - 1) / 2 || j == 0 || j == N - 1 ? c : ' ');
+            if(i == 0 || i == (N - 1) / 2 || j == 0 || j == N - 1)
+                putchar(c);
+            else
+                putchar(' ');
         }
         putchar('\n');
     }

@@ -19,11 +19,11 @@
  * 
  * 输入样例1：
  * 8 6 200
- * 0 	 0 	  0 	   0	    0 	     0 	      0        0
- * 65280 	 65280    65280    16711479 65280    65280    65280    65280
+ * 0     0    0        0        0        0        0        0
+ * 65280     65280    65280    16711479 65280    65280    65280    65280
  * 16711479 65280    65280    65280    16711680 65280    65280    65280
- * 65280 	 65280    65280    65280    65280    65280    165280   165280
- * 65280 	 65280 	  16777015 65280    65280    165280   65480    165280
+ * 65280     65280    65280    65280    65280    65280    165280   165280
+ * 65280     65280    16777015 65280    65280    165280   65480    165280
  * 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215
  * 输出样例1：
  * (5, 3): 16711680
@@ -46,11 +46,11 @@
  **/
 
 /**
- * 颜色差异 Color difference: https://en.wikipedia.org/wiki/Color_difference
- * 定义为 Diff_12 = sqrt((r1 - r2)^2 + (g1 - g2)^2 + (b1 - b2)^2)
+ * Color difference, see: https://en.wikipedia.org/wiki/Color_difference
+ * Definition: Diff_12 = sqrt((r1 - r2)^2 + (g1 - g2)^2 + (b1 - b2)^2)
  * 
  * Tips:
- * 1. The pixel should have the color differences higher than TOL with all 
+ * 1. The pixel should have the color differences higher than TOL with ALL 
  * pixels around it. Including the pixels on the edge.
  * 2. And this color should only appears only ONCE in the figure.
  **/

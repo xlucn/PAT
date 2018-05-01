@@ -33,6 +33,7 @@
  * 115
  * 13
  */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -66,7 +67,7 @@ int main()
     for(int i = 0; i < N; i++)
     {
         fgets(line, 11, stdin);
-        if(isdigit(line[0]))                  /* Earth line */
+        if(isdigit(line[0]))                  /* Earth number */
         {
             sscanf(line, "%d", &m);
             if(m / 13 && m % 13)
@@ -76,9 +77,9 @@ int main()
             if(m / 13 == 0)
                 printf("%s\n", units[m % 13]);
         }
-        if(isalpha(line[0]))                  /* Mars line */
+        if(isalpha(line[0]))                  /* Mars number */
         {
-            m = Mars2Earth(strtok(line, " \n"));      /* higher digit */
+            m = Mars2Earth(strtok(line, " \n"));        /* higher digit */
             m += Mars2Earth(strtok(NULL, " \n"));       /* lower digit */
             printf("%d\n", m);
         }

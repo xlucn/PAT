@@ -21,14 +21,16 @@
  * 输出样例：
  * 7TI
  */
+
 #include <ctype.h>
 #include <stdio.h>
+
 int main()
 {
     int printed[128] = {0};
-    char c, line[82];
+    char c, line[80];
     
-    gets(line);
+    gets(line); /* the newline was replaced with '\0' */
     while((c = getchar()) != '\n')
         printed[toupper(c)]++;
     

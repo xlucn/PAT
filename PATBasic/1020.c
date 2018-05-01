@@ -27,11 +27,14 @@
  * 输出样例：
  * 94.50
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, max;
     float D, Storage[1000], Total = 0, Price[1000];    
+    
     scanf("%d %f", &N, &D);
     for(int i = 0; i < N; i++) scanf("%f", Storage + i);
     for(int i = 0; i < N; i++) scanf("%f", Price + i);

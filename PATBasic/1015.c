@@ -59,19 +59,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-struct _Student{
+
+typedef struct _Student{
     int ID;
     int D;      /** de2 : virtue  */
     int C;      /** cai2: ability */
     int rank;
     int sum;    /** sum = D + C   */
-};
+}sStudent, *Student;
 
-typedef struct _Student *Student;
-
-/**
- * larger the number, higher the rank
- **/
+/* larger the number, higher the rank */
 int rank(Student s, int H, int L)
 {
     if(s->D < L || s->C < L)        return 0;   /* failed */
@@ -96,18 +93,17 @@ int comp(const void *a, const void *b)
 int main()
 {
     int N, L, H, M = 0;
-    Student students[100000];
+    Student students[100000] = {0};
+    sStudent buffer[100000];
     
     scanf("%d %d %d", &N, &L, &H);
     for(int i = 0; i < N; i++)
     {
-        Student s = (Student)malloc(sizeof(struct _Student));
+        Student s = buffer + i;
         scanf("%d %d %d", &s->ID, &s->D, &s->C); 
         s->sum = s->D + s->C;
-        if((s->rank = rank(s, H, L)))
+        if((s->rank = rank(s, H, L)) != 0) /* record if passed */
             students[M++] = s;
-        else /* failed, don't record this */
-            free(s);
     }
 
     qsort(students, M, sizeof(Student), comp);
@@ -116,6 +112,5 @@ int main()
     for(int i = M - 1; i >= 0; i--)
         printf("%d %d %d\n", students[i]->ID, students[i]->D, students[i]->C);
     
-    for(int i = 0; i < M; i++) free(students[i]);
     return 0;
 }

@@ -25,7 +25,9 @@
  * 000 233 151 099 000
  * 088 000 000 000 255
  */
+
 #include <stdio.h>
+
 int main()
 {
     int N, M, A, B, C, D;

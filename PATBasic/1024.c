@@ -27,7 +27,9 @@
  * 输出样例2：
  * -12000000000
  */
+
 #include <stdio.h>
+
 int main()
 {
     int exponent;    /* the exponent part */
