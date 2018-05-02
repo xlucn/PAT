@@ -56,23 +56,18 @@ int main()
         int pos = 0, count[3] = {0, 0, 0};
         while((c = getchar()) != '\n')
         {
-            if(c == 'A')                  count[pos]++; /* count 'A's     */
-            else if(c == 'P' && pos == 0) pos = 1;      /* one P before T */
-            else if(c == 'T' && pos == 1) pos = 2;      /* one T after P  */
-            else                          break;        /* 'wrong' string */
+            if(c == 'A')                  count[pos]++;                          /* count 'A's     */
+            else if(c == 'P' && pos == 0) pos = 1;                               /* one P before T */
+            else if(c == 'T' && pos == 1) pos = 2;                               /* one T after P  */
+            else                          {while(getchar() != '\n'); break;}     /* 'wrong' string */
         }
         
-        if(c == '\n'                        /* 1. no other characters at end */
-        && pos == 2                         /* 2. appearance of 'P' and 'T'  */
-        && count[1]                         /* 3. existance of 'A'           */
-        && count[2] == count[1] * count[0]) /* 4. relation between numbers   */   
+        if(pos == 2                         /* 1. appearance of 'P' and 'T'  */
+        && count[1]                         /* 2. existance of 'A'           */
+        && count[2] == count[1] * count[0]) /* 3. relation between numbers   */   
             puts("YES");
         else
             puts("NO");
-        
-        /* read the rest of the line */
-        if(c != '\n')   
-            while(getchar() != '\n'); 
     }
     
     return 0;
