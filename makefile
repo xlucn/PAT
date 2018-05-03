@@ -1,16 +1,21 @@
 HTML_DIR=html
 ANA_DIR=analysis
 MD_DIR=md
+POST_DIR=_posts
 
 ANA=$(wildcard $(ANA_DIR)/*.md)
 HTML=$(addprefix $(HTML_DIR)/,$(notdir $(ANA:.md=.html)))
 MD=$(addprefix $(MD_DIR)/,$(notdir $(ANA)))
+POST=$(addprefix $(POST_DIR)/2018-05-03-,$(notdir $(MD)))
 MASTER=$(shell git ls-tree -r --name-only master)
 
 DL_PY=download.py
 BD_PY=build.py
 
-all:$(MD)
+all:$(POST)
+
+$(POST_DIR)/2018-05-03-%.md:$(MD_DIR)/%.md
+	ln -f $< $@
 
 $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
 	@id=$(notdir $(basename $@));                                           \
