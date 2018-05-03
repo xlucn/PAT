@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1023. The Best Polygon (35)</h1>
+<div id="problemContent">
+<p>An <b>n-gon</b> is a polygon with <b>n</b> sides.  For example, a triangle is a 3-gon.  Now you are asked to find the best n-gon in a given convex N-gon.  The vertices of the n-gon are selected from vertices of the N-gon.  The n-gon you are supposed to find must have the largest area among all possible n-gons, which means that it approximates the N-gon the best. The figure below shows the best 6-gon (the shaded part) in a 10-gon.</p>
+<center><img src="http://nos.patest.cn/qm_p5m3pehmubj.JPG"/></center>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line gives a positive integer N ( 6 &lt;= N &lt;= 300 ) which is the total number of vertices of the convex N-gon, and n ( 6 &lt;= n &lt;= min(10, N) ) which is the total number of vertices of the approximating convex n-gon.  Then N lines follow, the i-th line gives the 2-D coordinates (x, y) of the i-th vertex ( i = 0, ... , N-1 ). The x and y coordinates in a line are real numbers with their absolute values no more than 1000, and they are separated by a space.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>Print in a line all the vertex indices of the best n-gon in descending order.  All the numbers are separated by a space and there must be no extra space at the beginning or the end of the line.  It is guaranteed that the solution is unique.
+</p>
+<b>Sample Input:</b><pre>
+10 6
+133.0 1.0
+544.0 71.0
+558.0 206.0
+536.0 338.0
+463.0 436.0
+330.0 503.0
+188.0 499.0
+305.0 2.0
+55.0 410.0
+2.0 140.0
+</pre>
+<b>Sample Output:</b><pre>
+9 8 5 3 1 0
+</pre>
+</div>

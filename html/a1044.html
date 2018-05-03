@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1044. Shopping in Mars (25)</h1>
+<div id="problemContent">
+<p>Shopping in Mars is quite a different experience.  The Mars people pay by chained diamonds.  Each diamond has a value (in Mars dollars M$).  When making the payment, the chain can be cut at any position for only once and some of the diamonds are taken off the chain one by one.  Once a diamond is off the chain, it cannot be taken back.  For example, if we have a chain of 8 diamonds with values M$3, 2, 1, 5, 4, 6, 8, 7, and we must pay M$15.  We may have 3 options:</p>
+<p>
+1. Cut the chain between 4 and 6, and take off the diamonds from the position 1 to 5 (with values 3+2+1+5+4=15).<br/>
+2. Cut before 5 or after 6, and take off the diamonds from the position 4 to 6 (with values 5+4+6=15).<br/>
+3. Cut before 8, and take off the diamonds from the position 7 to 8 (with values 8+7=15).<br/>
+</p>
+<p>Now given the chain of diamond values and the amount that a customer has to pay, you are supposed to list all the paying options for the customer.</p>
+<p>If it is impossible to pay the exact amount, you must suggest solutions with minimum lost. </p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line contains 2 numbers: N (&lt;=10<sup>5</sup>), the total number of diamonds on the chain, and M (&lt;=10<sup>8</sup>), the amount that the customer has to pay.  Then the next line contains N positive numbers D<sub>1</sub> ... D<sub>N</sub> (D<sub>i</sub>&lt;=10<sup>3</sup> for all i=1, ..., N) which are the values of the diamonds.  All the numbers in a line are separated by a space.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each test case, print "i-j" in a line for each pair of i &lt;= j such that D<sub>i</sub> + ... + D<sub>j</sub> = M.  Note that if there are more than one solution, all the solutions must be printed in increasing order of i.</p>
+<p>If there is no solution, output "i-j" for pairs of i &lt;= j such that  D<sub>i</sub> + ... + D<sub>j</sub> &gt; M with (D<sub>i</sub> + ... + D<sub>j</sub> - M) minimized.  Again all the solutions must be printed in increasing order of i.</p>
+<p>It is guaranteed that the total value of diamonds is sufficient to pay the given amount. </p>
+<b>Sample Input 1:</b><pre>
+16 15
+3 2 1 5 4 6 8 7 16 10 15 11 9 12 14 13
+</pre>
+<b>Sample Output 1:</b><pre>
+1-5
+4-6
+7-8
+11-11
+</pre>
+<b>Sample Input 2:</b><pre>
+5 13
+2 4 5 7 9
+</pre>
+<b>Sample Output 2:</b><pre>
+2-4
+4-5
+</pre>
+</div>

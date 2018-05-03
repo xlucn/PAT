@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1010. Radix (25)</h1>
+<div id="problemContent">
+<p>Given a pair of positive integers, for example, 6 and 110, can this equation 6 = 110 be true?  The answer is "yes", if 6 is a decimal number and 110 is a binary number.
+</p>
+<p>
+Now for any pair of positive integers N1 and N2, your task is to find the radix of one number while that of the other is given.</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case. Each case occupies a line which contains 4 positive integers:<br/>
+N1 N2 tag radix<br/>
+Here N1 and N2 each has no more than 10 digits.  A digit is less than its radix and is chosen from the set {0-9, a-z} where 0-9 represent the decimal numbers 0-9, and a-z represent the decimal numbers 10-35.  The last number "radix" is the radix of N1 if "tag" is 1, or of N2 if "tag" is 2. </p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each test case, print in one line the radix of the other number so that the equation N1 = N2 is true.  If the equation is impossible, print "Impossible".  If the solution is not unique, output the smallest possible radix.
+</p>
+<b>Sample Input 1:</b><pre>
+6 110 1 10
+</pre>
+<b>Sample Output 1:</b><pre>
+2
+</pre>
+<b>Sample Input 2:</b><pre>
+1 ab 1 2
+</pre>
+<b>Sample Output 2:</b><pre>
+Impossible
+</pre>
+</div>

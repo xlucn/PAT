@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1145. Hashing - Average Search Time (25)</h1>
+<div id="problemContent">
+<p>The task of this problem is simple: insert a sequence of distinct positive integers into a hash table first.  Then try to find another sequence of integer keys from the table and output the average search time (the number of comparisons made to find whether or not the key is in the table). The hash function is defined to be "H(key) = key % TSize" where TSize is the maximum size of the hash table.  Quadratic probing (with positive increments only) is used to solve the collisions.</p>
+<p>Note that the table size is better to be prime.  If the maximum size given by the user is not prime, you must re-define the table size to be the smallest prime number which is larger than the size given by the user.</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line contains two positive numbers: MSize, N, and M,  which are the user-defined table size, the number of input numbers, and the number of keys to be found, respectively. All the three numbers are no more than 10<sup>4</sup>.  Then N distinct positive integers are given in the next line.  All the numbers in a line are separated by a space and are no more than 10<sup>5</sup>.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each test case, in case it is impossible to insert some number, print in a line "X cannot be inserted." where X is the input number.  Finally print in a line the average search time for all the M keys, accurate up to 1 decimal place.  
+</p>
+<b>Sample Input:</b><pre>
+4 5 4
+10 6 4 15 11
+11 4 15 2
+</pre>
+<b>Sample Output:</b><pre>
+15 cannot be inserted.
+2.8
+</pre>
+</div>

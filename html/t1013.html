@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1013. Image Segmentation (35)</h1>
+<div id="problemContent">
+<p>Image segmentation is usually formulated as a graph partition problem, where each segment corresponds to a connected component. Moreover, each pixel is the vertex of the graph. Each edge has a weight, which is a non-negative dissimilarity between neighboring pixels. So, the goal of image segmentation is to decompose the image graph into several disconnected components, where the elements in a component are similar and the elements in the different components are dissimilar. </p>
+<p>The components are defined as follows: </p>
+<ul>
+<li>A component is made of a set of connected vertices;
+<li>Any two components have no shared vertices;
+<li>The dissimilarity <b>D(C1, C2)</b> of any two components <b>C1</b> and <b>C2</b> is larger than the confidence <b>H</b> of any of <b>C1</b> and <b>C2</b>. 
+<li>The dissimilarity <b>D(C1, C2)</b> is defined to be the minimum edge weight of all the edges connecting <b>C1</b> and <b>C2</b>, or infinity if no such edge exists;
+<li>The confidence of a component <b>C</b>, <b>H(C)</b>, is defined to be the maximum edge weight of the minimum spanning tree of <b>C</b>, plus a function <b>f(C) = c/|C|</b> where <b>c</b> is a positive constant and <b>|C|</b> is the size of the component <b>C</b>;
+<li>A set of vertices must not be treated as a component if they can be partitioned into two or more components.
+</li></li></li></li></li></li></ul></div>

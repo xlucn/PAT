@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1012. Greedy Snake (35)</h1>
+<div id="problemContent">
+<p>Have you ever played the game "Greedy Snake"?  In the game, we control the movements of the snake to eat the fruits scattered in the game field, while the snake's body gets longer whenever it eats a fruit.  The goal of the game is to make the snake eat as many fruits as possible, before its head has no where to go.  It would be a real challenge to let you program this game, right now.</p>
+<center><img src="http://nos.patest.cn/m7_ocgeybeufay.jpg"/></center>
+<p>But hey! Relax!  This time you are only asked to program a simplified version of the game.  In this simple version, the fruits are all over the place except at some extra obstacle cells.  The snake's body will extend all the way along the path while it eats the fruits.  You may take any fruit cell as the starting position of the snake.  Then you have four directions to choose from: UP, DOWN, LEFT or RIGHT.  Once you pick up a direction for the snake, it must keep going until it hits an obstacle or its own body.  This procedure repeats until the head of the snake has no where to go -- that is, every adjacent cell of its head is either an obstacle or its own body.  Your task is to minimize the number of fruits left.</p>
+<p>For example, let's define the game field to be a 6 by 6 maze, surrounded by obstacle cells "#", with one extra obstacle "@".  "S" is the starting position of the snake.  All the fruits are represented by dots.</p>
+<pre>
+######
+#..S@#
+#....#
+#....#
+#....#
+######
+</pre>
+<p>
+Then if you decide to move DOWN, RIGHT, and UP, the results are shown below.
+</p>
+<pre>
+######
+#..*@#
+#..*.#
+#..*.#
+#..S.#
+######
+
+######
+#..*@#
+#..*.#
+#..*.#
+#..*S#
+######
+
+######
+#..*@#
+#..*S#
+#..**#
+#..**#
+######
+</pre>
+<p>
+Now the snake is stucked, the game is over, and there are 8 fruits left.  However, by carefully changing your moves or choosing another starting position, you can actually control the snake to eat up all the fruits. Try it out!
+</p>
+<p>
+Task 1: minimize the number of fruits left, and count the number of starting positions that can lead to the optimal solution.
+</p>
+<p>
+Task 2: To make things more interesting, you may replace one fruit cell by an obstacle, to obtain a better result, and count the number of ways to add an obstacle that leads to the better result.  In case there is no way to improve the result by adding one obstacle, you should point out this situation.
+</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case.  For each case, the first line contains two integers N (4 &lt;= N &lt;= 15), the size of the game field, and K (0 &lt;= K &lt;= 2), the number of extra obstacles.  Then K lines follow, each gives the coordinates of an obstacle in the format "x<sub>i</sub> y<sub>i</sub>" where 2 &lt;= x<sub>i</sub>, y<sub>i</sub> &lt;= N-1.</p>
+<p><b>
+Output Specification:
+</b></p>
+<p>For each case, print the results in two lines.  In the first line print the minimal number of fruits left, and the number of different optimal starting positions.  Then in the second line, either print -1 if there is no way to improve the result, or two integers: the better result and the number of optimal ways to add an obstacle.
+</p>
+<b>Sample Input 1:</b><pre>
+6 1
+2 5
+</pre>
+<b>Sample Output 1:</b><pre>
+0 4
+-1
+</pre>
+<b>Sample Input 2:</b><pre>
+6 2
+2 2
+3 3
+</pre>
+<b>Sample Output 2:</b><pre>
+2 1
+0 2
+</pre>
+</div>

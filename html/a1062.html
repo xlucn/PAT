@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h1>1062. Talent and Virtue (25)</h1>
+<div id="problemContent">
+<p>
+About 900 years ago, a Chinese philosopher Sima Guang wrote a history book in which he talked about people's talent and virtue.  According to his theory, a man being outstanding in both talent and virtue must be a "sage（圣人）"; being less excellent but with one's virtue outweighs talent can be called a "nobleman（君子）"; being good in neither is a "fool man（愚人）"; yet a fool man is better than a "small man（小人）" who prefers talent than virtue.
+</p>
+<p>
+Now given the grades of talent and virtue of a group of people, you are supposed to rank them according to Sima Guang's theory.
+</p>
+<p><b>
+Input Specification:
+</b></p>
+<p>Each input file contains one test case. Each case first gives 3 positive integers in a line: N (&lt;=10<sup>5</sup>), the total number of people to be ranked; L (&gt;=60), the lower bound of the qualified grades -- that is, only the ones whose grades of talent and virtue are both not below this line will be ranked; and H (&lt;100), the higher line of qualification -- that is, those with both grades not below this line are considered as the "sages", and will be ranked in non-increasing order according to their total grades.  Those with talent grades below H but virtue grades not are cosidered as the "noblemen", and are also ranked in non-increasing order according to their total grades, but they are listed after the "sages".  Those with both grades below H, but with virtue not lower than talent are considered as the "fool men".  They are ranked in the same way but after the "noblemen".  The rest of people whose grades both pass the L line are ranked after the "fool men".
+</p>
+<p>Then N lines follow, each gives the information of a person in the format:</p><pre>
+ID_Number Virtue_Grade Talent_Grade
+</pre>
+where ID_Number is an 8-digit number, and both grades are integers in [0, 100].  All the numbers are separated by a space.
+</div>
