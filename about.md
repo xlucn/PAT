@@ -4,23 +4,43 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+本文集是浙江大学在线测试系统PAT题目集解答说明，
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+题目链接：[PAT (Basic Level) Practise （中文）](https://www.patest.cn/contests/pat-b-practise)
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+所有代码都托管在[Github](https://github.com/OliverLew/PAT)上，欢迎前往浏览
 
+欢迎点赞，关注，star，follow
 
-[jekyll-organization]: https://github.com/jekyll
+## 关于
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+关于代码：
+
+- 所有写在这里的代码都已通过PAT全部测试点
+
+- 建议参考github链接中最新版本(github pages中的代码应该也是最新的)，我经常会改进之前的代码，尤其是可读性会有提高（我每篇文章都会放一个直达链接，一键就搞定）
+
+- 我写C是认真的，写解释也是认真的。并且觉得自己的代码质量还是很高，希望至少能给在初学C语言的朋友们一点点的启发，甚至还能让C语言高手们眼前一亮
+
+- 如果有我查看了别人的代码才写出的代码，我一定会在文中明显地说明（好像目前为止就两三个），除此之外，代码是我独立写出的，只是某些代码会经过不断地修改，不是我最初AC的代码
+
+关于语言/语言：
+
+- 所有代码都是纯C代码，并且会使用各种库函数，我发现巧妙运用一些库函数会非常方便（虽然远没有C++库函数那么强大，也因为这个原因我确实觉得C++更适合PAT这样的考试）
+
+- 我代码里的注释都是英文的，算是一种练习吧，希望写的大家能看懂（迷之目标。。），代码里的变量名也是用了一点心思，尽量做到这一点上的可读性
+
+关于优化/性能/逻辑：
+
+- 我会在不耗费太多脑细胞的情况下，对程序尽量优化，不增加时间的前提下尽量少的申请内存，比如能逐字符读取的不会开一个大数组读取
+
+- 我会尽量简化代码逻辑+优化代码分布所决定的可读性。简化逻辑这一点，我觉得在[1033. 旧键盘打字](http://www.jianshu.com/p/2f9ed47a3d17)这题上做的不错
+
+- 尽量严谨，每一个字符串需要多长，整型需要多大，浮点精度要多少，某些数学问题的推导，不明显的话都会给出分析证明
+
+关于风格/习惯：
+
+- 注释全部用/**/
+
+- 有时候抽风，会来个很奇特风格的代码，比如[1009. 说反话](http://www.jianshu.com/p/fcc3dabefd6e)
+
