@@ -44,6 +44,8 @@ Pages为主(方便与代码协同更新, 以及主题格式美观). 在其他地
 
 - 注释全部用/**/
 
+- 代码尽量控制在每行80字符以内, 保持良好可读性
+
 - 有时候抽风，会来个很奇特风格的代码，比如[1009. 说反话](http://www.jianshu.com/p/fcc3dabefd6e)
 
 [PAT]: https://www.patest.cn/contests
