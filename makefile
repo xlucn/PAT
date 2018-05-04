@@ -12,7 +12,7 @@ MASTER=$(shell git ls-tree -r --name-only master)
 DL_PY=download.py
 BD_PY=build.py
 
-all:$(POST)
+all:$(POST) $(MD)
 
 $(POST_DIR)/2018-05-03-%.md:$(MD_DIR)/%.md
 	ln -f $< $@
@@ -51,7 +51,7 @@ $(HTML_DIR)/%.html:
 	./download.py $(notdir $(basename $@))
 
 clean:
-	rm $(MD)
+	rm -f $(MD) $(POST)
 
 rebuild: clean all
 
