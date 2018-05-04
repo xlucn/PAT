@@ -11,8 +11,8 @@ permalink: /about/
 所有代码都托管在[Github][]上，欢迎前往浏览
 
 计划在[Github Pages][gh-pages], [CSDN博客][CSDN]和[简书][Jianshu]同步, 以Github
-Pages为主(方便与代码协同更新). 在其他地方/博客账号出现未经允许者均为侵权,
-需转载请与我联系.
+Pages为主(方便与代码协同更新, 以及主题格式美观). 在其他地方/
+博客账号出现未经允许者均为侵权, 需转载请与我联系.
 
 欢迎点赞，关注，star，follow
 
