@@ -4,21 +4,23 @@ title: About
 permalink: /about/
 ---
 
-本文集是浙江大学在线测试系统PAT题目集解答说明，
+本博客是浙江大学在线测试系统PAT题目集解答说明，所有代码均仅使用C语言.
 
-题目链接：[PAT (Basic Level) Practise （中文）](https://www.patest.cn/contests/pat-b-practise)
+题目链接：[题目集列表 \| Programming Ability Test][PAT]
 
-所有代码都托管在[Github](https://github.com/OliverLew/PAT)上，欢迎前往浏览
+所有代码都托管在[Github][]上，欢迎前往浏览
+
+计划在[Github Pages][gh-pages], [CSDN博客][CSDN]和[简书][Jianshu]同步, 以Github
+Pages为主(方便与代码协同更新). 在其他地方/博客账号出现未经允许者均为侵权,
+需转载请与我联系.
 
 欢迎点赞，关注，star，follow
-
-## 关于
 
 关于代码：
 
 - 所有写在这里的代码都已通过PAT全部测试点
 
-- 建议参考github链接中最新版本(github pages中的代码应该也是最新的)，我经常会改进之前的代码，尤其是可读性会有提高（我每篇文章都会放一个直达链接，一键就搞定）
+- 建议参考github链接中最新版本(github pages中的代码也是最新的)，我经常会改进之前的代码，尤其是可读性会有提高（我每篇文章都会放一个直达链接，一键就搞定）
 
 - 我写C是认真的，写解释也是认真的。并且觉得自己的代码质量还是很高，希望至少能给在初学C语言的朋友们一点点的启发，甚至还能让C语言高手们眼前一亮
 
@@ -44,3 +46,8 @@ permalink: /about/
 
 - 有时候抽风，会来个很奇特风格的代码，比如[1009. 说反话](http://www.jianshu.com/p/fcc3dabefd6e)
 
+[PAT]: https://www.patest.cn/contests
+[Github]: https://github.com/OliverLew/PAT
+[gh-pages]: https://oliverlew.github.io/PAT/
+[CSDN]: https://blog.csdn.net/Oliver__Lew
+[Jianshu]: https://www.jianshu.com/u/6d7ea07c8f6e
