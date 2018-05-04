@@ -17,4 +17,4 @@ kramdown:
 #jailed: false
 gfm_quirks: paragraph_end
 theme: minima
-exclude: [html/, md/, analysis/]
+exclude: [html/, md/, analysis/, PATAdvanced/, PATBasic/, build.py, config.py, download.py, makefile, Gemfile, Gemfile.lock]
