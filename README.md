@@ -6,9 +6,9 @@ Github Pages + Jekyll搭建的静态博客, 内容是[PAT](https://www.patest.cn
 
 ### Todo list
 
-- [x] Get it running (a06f099b2a64138612128b2c9227b2b2514ff617)
+- [x] Get it running (https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617)
 - [ ] Add correct date to filenames
 - [ ] Use tags/categories to manage posts
 - [ ] Add commenting system
-  - [ ] Disquz
+  - [ ] Disqus
   - [ ] Gittalk
