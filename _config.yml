@@ -13,7 +13,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-#future: true
+future: true
 #jailed: false
 gfm_quirks: paragraph_end
 theme: minima
