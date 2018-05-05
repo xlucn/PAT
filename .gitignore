@@ -1,5 +1,4 @@
 */*
-!PATBasic/*.c
-!PATAdvanced/*.c
-!README.md
-!**/makefile
+!/PATBasic/*.c
+!/PATAdvanced/*.c
+!/README.md
