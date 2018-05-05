@@ -23,12 +23,20 @@
 
 ## 解题说明
 
-在简书上写了代码的解释, [B级/乙级][jianshu-b], [A级/甲级][jianshu-a]. (暂不更新, 最新内容见下面)
+按最初计划, 已成功初步在Github Pages上建立了博客, 用这个主要是因为Github的高亮很棒, 并且可以用markdown写文章,
+还能用git进行管理. 所以以后最先更新的是这里的文章.
 
-**note:** 以后打算迁移至github pages, 所以有问题可以通过[issue][issues]系统/将来在github pages页面和我讨论.
-现在已经可以查看[gh-pages][gh-pages]分支, md文件夹中的文件, 我现在已经暂时放弃更新简书内容, 这里的是最新的.
+最新解题说明: https://oliverlew.github.io/PAT/
 
-(虽如上述, 成功迁移至github pages后, 简书会同步更新)
+其它(暂未同步更新)网站:
+
+- 简书: [B级/乙级][jianshu-b], [A级/甲级][jianshu-a]
+- [CSDN](https://blog.csdn.net/Oliver__Lew)
+
+**note:** ~以后打算迁移至github pages~(已经迁移, 但是评论系统还没加进去), 所以有问题可以通过
+[issue][issues] 系统/将来在github pages页面和我讨论.
+
+(~虽如上述, 成功迁移至github pages后, 简书会同步更新~ Not yet)
 
 ##
 [gh-pages]: https://github.com/OliverLew/PAT/tree/gh-pages
