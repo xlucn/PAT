@@ -12,14 +12,32 @@ class FileBuilder:
     """
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
-        self.yaml_frontmatter = """\
----
-layout: post
-title:  "{}"
-categories: {}
-tags: [{}]
----\n
-"""
+
+    def yaml_frontmatter(self, date=None, title=None, categories=None, tags=None):
+        """
+        create the yaml front matter for markdown files
+        """
+        # Check validity
+        if re.match(r'', date) is None:
+            print("date should be in the pattern of 'YYYY-MM-DD HH:MM:SS +/-TTTT'")
+            exit(1)
+        if type(title) is not str:
+            print("title should be string")
+            exit(1)
+        if type(categories) is not str:
+            print("categories should be a string")
+            exit(1)
+        if type(tags) is not list:
+            print("tags should be a list")
+            exit(1)
+        frontmatter = "---\n"
+        frontmatter += "layout: post\n"
+        frontmatter += "date: {}\n".format(date)
+        frontmatter += "title:  \"{}\"\n".format(title)
+        frontmatter += "categories: {}\n".format(categories)
+        frontmatter += "tags: [{}]\n".format(', '.join(tags))
+        frontmatter += "---\n\n"
+        return frontmatter
 
     def read_html(self):
         """
@@ -66,7 +84,8 @@ tags: [{}]
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            f.write(self.yaml_frontmatter.format(h1, tag, tag))
+            yaml = self.yaml_frontmatter(date, h1, tag, [tag])
+            f.write(yaml)
 
             # write problem content
             f.write("## 题目\n\n")
