@@ -61,11 +61,25 @@ class FileBuilder:
 
     def read_expl(self):
         """
-        read explanation
+        read explanation.
+        The file contains the date at the first line and a blank line after it.
+        Hence the return has two parts.
         """
         expl_file = os.path.join(config.analysis_dir,
                                  "{}{}.md".format(self.c, self.i))
-        return open(expl_file).read()
+        expl = open(expl_file).readlines()
+        if len(expl) < 3:
+            print(expl_file + ": ")
+            print("analysis file should be at least 3 lines long:")
+            print("date, blank, and content")
+            exit(1)
+        date = expl[0].strip('\n')
+        if re.match(r'', date) is None:
+            print("date should be in the pattern of")
+            print("'YYYY-MM-DD HH:MM:SS +/-TTTT'")
+            exit(1)
+
+        return date, "".join(expl[2:])
 
     def __build(self):
         """
@@ -74,7 +88,7 @@ class FileBuilder:
         filename = "{}/{}{:04}.md".format(config.md_dir, self.c, self.i)
         h1_tag, problem_div = self.read_html()
         code, code_url = self.read_code()
-        expl = self.read_expl()
+        date, expl = self.read_expl()
 
         indexl = h1_tag.find("<h1>") + len("<h1>")
         indexr = h1_tag.rfind("</h1>")
