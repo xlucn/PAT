@@ -1,13 +1,13 @@
 HTML_DIR=html
 ANA_DIR=analysis
 MD_DIR=md
-POST_DIR=_posts
+POST_DIR=../_posts
 
 ANA=$(wildcard $(ANA_DIR)/*.md)
 HTML=$(addprefix $(HTML_DIR)/,$(notdir $(ANA:.md=.html)))
 MD=$(addprefix $(MD_DIR)/,$(notdir $(ANA)))
 POST=$(addprefix $(POST_DIR)/2018-05-03-,$(notdir $(MD)))
-MASTER=$(shell git ls-tree -r --name-only master)
+MASTER=$(shell git ls-tree -r --name-only --full-tree master)
 
 DL_PY=download.py
 BD_PY=build.py
