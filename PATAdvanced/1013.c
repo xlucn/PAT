@@ -39,93 +39,40 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 
-typedef struct Edge{
-    int id;
-    struct Edge *iter;
-} *Edge;
+#define MAX 1000
 
-typedef struct Vertex{
-    int known;
-    Edge adj;
-} *Vertex;
-
-typedef struct Graph{
-    int nvertex;
-    int nedge;
-    Vertex vs;
-    Edge es;
-} *Graph;
-
-Graph ReadGraph(int nvertex, int nedge)
+void DFS(int v, int known[], int G[][MAX])
 {
-    /* create new graph */
-    Graph G = (Graph)malloc(sizeof(struct Graph));
-    G->nvertex = nvertex;
-    G->nedge = nedge;
-    G->vs = (Vertex)malloc(nvertex * sizeof(struct Vertex));
-    G->es = (Edge)malloc(nedge * sizeof(struct Edge));
-    for(int i = 0; i < G->nvertex; i++)
-        G->vs[i].adj = NULL;
-    /* read */
-    int start, end;
-    for(int i = 0; i < G->nedge; i++)
-    {
-        scanf("%d %d", &start, &end);
-        start--, end--;
-        if(start > end) {int temp = start; start = end; end = temp;}
-        G->es[i].id = end;
-        G->es[i].iter = G->vs[start].adj;
-        G->vs[start].adj = &G->es[i];
-    }
-    return G;
-}
-
-typedef struct Queue{
-    int front;
-    int rear;
-    Vertex list[1000];
-} *Queue;
-
-void Traversal(Graph G, Vertex start)
-{
-    Queue Q = (Queue)malloc(sizeof(struct Queue));
-    Q->rear = Q->front = 0;
-    Q->list[++Q->front] = start;
-    start->known = 1;
-    
-    while(Q->front != Q->rear)
-    {
-        Q->rear = Q->rear == 999 ? 0 : Q->rear + 1;
-        Vertex v = Q->list[Q->rear];
-        for(Edge e = v->adj; e; e = e->iter) if(!G->vs[e->id].known)
-        {
-            Q->front = Q->front == 999 ? 0 : Q->front + 1;
-            Q->list[Q->front] = &G->vs[e->id];
-            G->vs[e->id].known = 1;
-        }
-    }
-    free(Q);
+    known[v] = 1;
+    for(int i = 0; i < MAX; i++)
+        if((G[v][i] || G[i][v]) && !known[i])
+            DFS(i, known, G);
 }
 
 int main()
 {
-    int N, M, K, lostcity, count;
+    int N, M, K;
     scanf("%d %d %d", &N, &M, &K);
-    Graph G = ReadGraph(N, M);
+
+    int Graph[MAX][MAX] = {{0}};
+
+    int city1, city2;
+    for(int i = 0; i < M; i++)
+    {
+        scanf("%d %d", &city1, &city2);
+        Graph[city1][city2] = 1;
+    }
+
     for(int i = 0; i < K; i++)
     {
+        int known[MAX] = {0}, lostcity, count = 0;
         scanf("%d", &lostcity);
-        /* Reset the graph */
-        lostcity--, count = 0;
-        for(int i = 0; i < G->nvertex; i++)
-            G->vs[i].known = 0;
-        /* Traversal */
-        G->vs[lostcity].known = 1;
-        for(int i = 0; i < G->nvertex; i++) if(!G->vs[i].known)
+
+        known[lostcity] = 1;
+        for(int i = 1; i <= N; i++) if(!known[i])
         {
-            Traversal(G, &G->vs[i]);
+            DFS(i, known, Graph);
             count++;
         }
         printf("%d\n", count - 1);
