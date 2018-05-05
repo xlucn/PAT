@@ -11,13 +11,14 @@ MASTER=$(shell git ls-tree -r --name-only --full-tree master)
 
 DL_PY=download.py
 BD_PY=build.py
+CONF=config.py
 
 all:$(POST) $(MD)
 
 $(POST_DIR)/2018-05-03-%.md:$(MD_DIR)/%.md
 	ln -f $< $@
 
-$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY)
+$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY) $(CONF)
 	@id=$(notdir $(basename $@));                                           \
 	case $${id:0:1} in                                                      \
 	'a')                                                                    \
