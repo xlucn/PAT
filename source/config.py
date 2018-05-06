@@ -15,6 +15,12 @@ tag = {
     't': "PAT-T"
 }
 
+cat_string = {
+    'a': "PAT Advanced",
+    'b': "PAT Basic",
+    't': "PAT Top"
+}
+
 indexes = {                 # Problem indexes for each level
     'a': [i + 1001 for i in range(147)],
     'b': [i + 1001 for i in range(85)],

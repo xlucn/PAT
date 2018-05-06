@@ -45,7 +45,15 @@ class FileBuilder:
         """
         html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
         lines = open(html).readlines()
-        return lines[2], lines[3:]
+        
+        h1_tag = lines[2]
+        indexl = h1_tag.find("<h1>") + len("<h1>")
+        indexr = h1_tag.rfind("</h1>")
+        h1 = h1_tag[indexl: indexr]
+
+        title = config.cat_string[self.c] + " " + h1 + " (C语言实现)"
+        content = lines[3:]
+        return title, content
 
     def read_code(self):
         """
@@ -86,19 +94,16 @@ class FileBuilder:
         write everything to a final markdown file
         """
         filename = "{}/{}{:04}.md".format(config.md_dir, self.c, self.i)
-        h1_tag, problem_div = self.read_html()
+        title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
 
-        indexl = h1_tag.find("<h1>") + len("<h1>")
-        indexr = h1_tag.rfind("</h1>")
-        h1 = h1_tag[indexl: indexr]
         tag = config.tag[self.c]
 
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            yaml = self.yaml_frontmatter(date, h1, tag, [tag])
+            yaml = self.yaml_frontmatter(date, title, tag, [tag])
             f.write(yaml)
 
             # write problem content
