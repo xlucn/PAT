@@ -21,13 +21,13 @@ class FileBuilder:
         if re.match(r'', date) is None:
             print("date should be in the pattern of 'YYYY-MM-DD HH:MM:SS +/-TTTT'")
             exit(1)
-        if type(title) is not str:
+        if not isinstance(title, str):
             print("title should be string")
             exit(1)
-        if type(categories) is not str:
+        if not isinstance(categories, str):
             print("categories should be a string")
             exit(1)
-        if type(tags) is not list:
+        if not isinstance(tags, list):
             print("tags should be a list")
             exit(1)
         frontmatter = "---\n"
