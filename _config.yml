@@ -6,6 +6,11 @@ baseurl: "/PAT" # the subpath of your site, e.g. /blog
 url: "http://oliverlew.github.io/PAT/" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 github_username:  oliverlew
+rss: rss
+
+plugins:
+  - jekyll-feed
+
 # Build settings
 github: [metadata]
 encoding: UTF-8
