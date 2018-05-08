@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+**具体每篇文章的URL暂时视为随时可能变更，首页网址不会变： https://oliverlew.github.io/PAT/**
+
 本博客是浙江大学在线测试系统PAT题目集解答说明，所有代码均仅使用C语言.
 
 题目链接：[题目集列表 \| Programming Ability Test][PAT]
