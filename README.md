@@ -9,6 +9,7 @@ Github Pages + Jekyll搭建的静态博客, 内容是[PAT](https://www.patest.cn
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
 - [ ] Use tags/categories to manage posts. Or/and consider using collections(so no restriction on filename)
+- [ ] Add page analysis tool
 - [ ] Add commenting system
   - [ ] Disqus
   - [ ] Gittalk
