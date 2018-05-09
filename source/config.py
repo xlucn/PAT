@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-md_dir = "md"               # The dir of final generated markdown file
+md_dir = "../_articles"               # The dir of final generated markdown file
 html_dir = "html"           # The dir of html file from patest.cn
 analysis_dir = "analysis"   # The dir of md files of only analysis text
 code_dir = {                # Children folders of code_dir
