@@ -23,3 +23,11 @@ future: true
 gfm_quirks: paragraph_end
 theme: minima
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source]
+
+# collections
+collections:
+  articles:
+    output: true
+    permalink: /:path
+
+# vim:tabstop=2:softtabstop=2:shiftwidth=2
