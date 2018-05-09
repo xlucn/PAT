@@ -28,6 +28,6 @@ exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source]
 collections:
   articles:
     output: true
-    permalink: /:path
+    permalink: /:path:output_ext
 
 # vim:tabstop=2:softtabstop=2:shiftwidth=2
