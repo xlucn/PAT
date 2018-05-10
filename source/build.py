@@ -19,16 +19,24 @@ class FileBuilder:
         """
         # Check validity
         if re.match(r'', date) is None:
+            print("{}{}:".format(self.c, self.i))
             print("date should be in the pattern of 'YYYY-MM-DD HH:MM:SS +/-TTTT'")
+            print("date is now: {}".format(date))
             exit(1)
         if not isinstance(title, str):
+            print("{}{}:".format(self.c, self.i))
             print("title should be string")
+            print("title is now: {}".format(title))
             exit(1)
         if not isinstance(categories, str):
+            print("{}{}:".format(self.c, self.i))
             print("categories should be a string")
+            print("categories is now: {}".format(categories))
             exit(1)
         if not isinstance(tags, list):
+            print("{}{}:".format(self.c, self.i))
             print("tags should be a list")
+            print("tags is now: {}".format(tags))
             exit(1)
         frontmatter = "---\n"
         frontmatter += "layout: post\n"
