@@ -5,13 +5,17 @@ layout: default
 <div class="home">
 
     {{ content }}
+    {%- assign sortedBasic = site.Basic | sort: 'title' -%}
+    {%- assign sortedAdvanced = site.Advanced | sort: 'title' -%}
+    {%- assign sortedTop = site.Top | sort: 'title' -%}
+    {%- assign sortedArticlesByName = sortedBasic | concat: sortedAdvanced | concat: sortedTop -%}
+    {%- assign sortedArticlesByDate = sortedArticlesByName | sort: "date" | reverse -%}
 
-    {%- if site.articles.size > 0 -%}
+    {%- if sortedArticlesByDate.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Articles" }}</h2>
     <ul class="post-list">
-        {% assign sortedArticles = site.articles | sort: 'title' %}
-        {% for item in sortedArticles %}
-      <li>
+        {%- for item in sortedArticlesByDate -%}
+        <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ item.date | date: date_format }}</span>
         <h3>
