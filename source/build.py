@@ -104,14 +104,13 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = "{}/{}{:04}.md".format(config.md_dir, self.c, self.i)
+        tag = config.tag[self.c]
         category = config.category[self.c]
 
+        filename = os.path.join(config.md_dir, "_" + category, "{:04}.md".format(self.i))
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
-
-        tag = config.tag[self.c]
 
         print("Building {}".format(filename))
 
