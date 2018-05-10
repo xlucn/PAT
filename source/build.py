@@ -148,10 +148,21 @@ class FileBuilder:
 
 usage = """to be continued."""
 
+def check_category_folder(folder, subfolder_list):
+    """
+    Check the folders for each category and create if neccesary
+    """
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    for subfolder in subfolder_list:
+        subfolder_path = os.path.join(folder, "_" + subfolder)
+        if not os.path.exists(subfolder_path):
+            os.mkdir(subfolder_path)
+
 if __name__ == "__main__":
     builder = FileBuilder()
-    if not os.path.exists(config.md_dir):
-        os.mkdir(config.md_dir)
+    check_category_folder(config.md_dir, config.category.values())
+
     if len(sys.argv) == 1:
         for c in list(config.indexes.keys()):
             for i in config.indexes[c]:
