@@ -4,7 +4,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   浙江大学编程能力测试(PAT)C语言题解说明
 baseurl: "/PAT" # the subpath of your site, e.g. /blog
 url: "http://oliverlew.github.io/PAT/" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
+
 github_username:  oliverlew
 rss: rss
 
@@ -19,7 +19,9 @@ kramdown:
   input: GFM
   hard_wrap: false
 future: true
-#jailed: false
-gfm_quirks: paragraph_end
+show_excerpts: false
+
 theme: minima
+#remote-theme: benbalter/retlab
+
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source]
