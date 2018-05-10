@@ -105,6 +105,8 @@ class FileBuilder:
         write everything to a final markdown file
         """
         filename = "{}/{}{:04}.md".format(config.md_dir, self.c, self.i)
+        category = config.category[self.c]
+
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
@@ -114,7 +116,7 @@ class FileBuilder:
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            yaml = self.yaml_frontmatter(date, title, tag, [tag])
+            yaml = self.yaml_frontmatter(date, title, category, tag)
             f.write(yaml)
 
             # write problem content

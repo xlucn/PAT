@@ -10,9 +10,15 @@ code_dir = {                # Children folders of code_dir
 }
 
 tag = {
-    'a': "PAT-A",
-    'b': "PAT-B",
-    't': "PAT-T"
+    'a': ['PAT-A'],
+    'b': ['PAT-B'],
+    't': ['PAT-T']
+}
+
+category = {
+    'a': 'Advanced',
+    'b': 'Basic',
+    't': 'Top'
 }
 
 cat_string = {
