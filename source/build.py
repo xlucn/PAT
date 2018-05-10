@@ -56,7 +56,7 @@ class FileBuilder:
         """
         html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
         lines = open(html).readlines()
-        
+
         h1_tag = lines[2]
         indexl = h1_tag.find("<h1>") + len("<h1>")
         indexr = h1_tag.rfind("</h1>")
