@@ -27,6 +27,7 @@ theme: minima
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source]
 
 # collections
+collections_dir: _articles
 collections:
   Advanced:
     output: true
