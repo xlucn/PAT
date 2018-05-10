@@ -17,15 +17,15 @@ permalink: /content/
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ item.date | date: date_format }}</span>
         <h3>
-          <a class="post-link" href="{{ item.url | relative_url }}">
-            {{ item.title | escape }}
-          </a>
+            <a class="post-link" href="{{ item.url | relative_url }}">
+                {{ item.title | escape }}
+            </a>
         </h3>
         {%- if site.show_excerpts -%}
-          {{ item.excerpt }}
+            {{ item.excerpt }}
         {%- endif -%}
-      </li>
-      {%- endfor -%}
+        </li>
+        {%- endfor -%}
     </ul>
 
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
