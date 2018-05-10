@@ -1,4 +1,7 @@
 #! /usr/bin/env python3
+"""
+Build markdown files from different sources
+"""
 
 import os
 import sys
