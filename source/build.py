@@ -148,7 +148,18 @@ class FileBuilder:
         except CalledProcessError:
             pass
 
-usage = """to be continued."""
+usage = """Usage:
+    python3 ./build.py [-h/--help] [<problem-id>]
+
+    -h/--help: show this message
+
+    Without <problem-id>, this script will build all the markdown files.
+
+    <problem-id>: should be like [abt]xxxx, meaning starting with a, b or t and
+        followed by a four digit number. 'a', 'b' and 't' stand for 'Advanced',
+        'Basic' and 'Top', which are the names of problem sets. The four digit
+        number is the problem id.
+"""
 
 def check_category_folder(folder, subfolder_list):
     """
