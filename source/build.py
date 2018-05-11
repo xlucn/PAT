@@ -16,10 +16,13 @@ class FileBuilder:
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
 
-    def yaml_frontmatter(self, date=None, title=None, categories=None, tags=None):
+    def yaml_frontmatter(self, date=None, title=None):
         """
         create the yaml front matter for markdown files
         """
+        tags = config.tag[self.c]
+        categories = config.category[self.c]
+
         # Check validity
         if re.match(r'', date) is None:
             print("{}{}:".format(self.c, self.i))
@@ -104,18 +107,16 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        tag = config.tag[self.c]
-        category = config.category[self.c]
-
         filename = os.path.join(config.md_dir, "_" + category, "{:04}.md".format(self.i))
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
+        yaml = self.yaml_frontmatter(date, title)
 
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            yaml = self.yaml_frontmatter(date, title, category, tag)
+            # write the yaml front matter
             f.write(yaml)
 
             # write problem content
