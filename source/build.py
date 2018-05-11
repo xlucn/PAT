@@ -104,17 +104,18 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = "{}/{}{:04}.md".format(config.md_dir, self.c, self.i)
+        tag = config.tag[self.c]
+        category = config.category[self.c]
+
+        filename = os.path.join(config.md_dir, "_" + category, "{:04}.md".format(self.i))
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
 
-        tag = config.tag[self.c]
-
         print("Building {}".format(filename))
 
         with open(filename, 'w') as f:
-            yaml = self.yaml_frontmatter(date, title, tag, [tag])
+            yaml = self.yaml_frontmatter(date, title, category, tag)
             f.write(yaml)
 
             # write problem content
@@ -148,10 +149,21 @@ class FileBuilder:
 
 usage = """to be continued."""
 
+def check_category_folder(folder, subfolder_list):
+    """
+    Check the folders for each category and create if neccesary
+    """
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    for subfolder in subfolder_list:
+        subfolder_path = os.path.join(folder, "_" + subfolder)
+        if not os.path.exists(subfolder_path):
+            os.mkdir(subfolder_path)
+
 if __name__ == "__main__":
     builder = FileBuilder()
-    if not os.path.exists(config.md_dir):
-        os.mkdir(config.md_dir)
+    check_category_folder(config.md_dir, config.category.values())
+
     if len(sys.argv) == 1:
         for c in list(config.indexes.keys()):
             for i in config.indexes[c]:

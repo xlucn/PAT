@@ -1,22 +1,17 @@
 HTML_DIR=html
 ANA_DIR=analysis
-MD_DIR=md
-POST_DIR=../_posts
+MD_DIR=../_articles
 
 ANA=$(wildcard $(ANA_DIR)/*.md)
 HTML=$(addprefix $(HTML_DIR)/,$(notdir $(ANA:.md=.html)))
 MD=$(addprefix $(MD_DIR)/,$(notdir $(ANA)))
-POST=$(addprefix $(POST_DIR)/2018-05-03-,$(notdir $(MD)))
 MASTER=$(shell git ls-tree -r --name-only --full-tree master)
 
 DL_PY=download.py
 BD_PY=build.py
 CONF=config.py
 
-all:$(POST) $(MD)
-
-$(POST_DIR)/2018-05-03-%.md:$(MD_DIR)/%.md
-	ln -f $< $@
+all: $(MD)
 
 $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY) $(CONF)
 	@id=$(notdir $(basename $@));                                           \

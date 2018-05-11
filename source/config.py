@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-md_dir = "md"               # The dir of final generated markdown file
+md_dir = "../_articles"               # The dir of final generated markdown file
 html_dir = "html"           # The dir of html file from patest.cn
 analysis_dir = "analysis"   # The dir of md files of only analysis text
 code_dir = {                # Children folders of code_dir
@@ -10,9 +10,15 @@ code_dir = {                # Children folders of code_dir
 }
 
 tag = {
-    'a': "PAT-A",
-    'b': "PAT-B",
-    't': "PAT-T"
+    'a': ['PAT-A'],
+    'b': ['PAT-B'],
+    't': ['PAT-T']
+}
+
+category = {
+    'a': 'Advanced',
+    'b': 'Basic',
+    't': 'Top'
 }
 
 cat_string = {
