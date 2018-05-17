@@ -107,7 +107,8 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = os.path.join(config.md_dir, "_" + category, "{:04}.md".format(self.i))
+        filename = os.path.join(config.md_dir, "_" + config.category[self.c],
+                                "{:04}.md".format(self.i))
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
