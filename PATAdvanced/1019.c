@@ -55,7 +55,8 @@ int main()
     char b_base[30] = {0};
 
     scanf("%d %d", &N, &b);
-    /* Actually store the number reversely */
+
+    /* Calculate N in b-base, actually storing the number reversely */
     for(c = 0; N; N /= b)
         b_base[c++] = N % b;
 
