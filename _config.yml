@@ -24,7 +24,7 @@ show_excerpts: false
 theme: minima
 #remote-theme: benbalter/retlab
 
-exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source]
+exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source, README.md]
 
 # collections
 collections_dir: _articles
