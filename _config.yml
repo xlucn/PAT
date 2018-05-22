@@ -23,6 +23,8 @@ show_excerpts: false
 
 theme: minima
 #remote-theme: benbalter/retlab
+header_pages:
+  - about.md
 
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source, README.md]
 
