@@ -5,7 +5,7 @@ layout: default
 <div class="home">
 
     {{ content }}
-    {%- assign Articles = site.Basic | concat: site.Advanced | concat: site.Top | sort: "date" | reverse -%}
+    {%- assign Articles = site.articles | sort: "date" | reverse -%}
 
     {%- if Articles.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Articles" }}</h2>

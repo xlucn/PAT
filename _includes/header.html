@@ -2,7 +2,7 @@
 <header class="site-header" role="banner">
 
   <div class="wrapper">
-    {%- assign all_pages = site.pages | concat: site.Basic | concat: site.Advanced | concat: site.Top -%}
+    {%- assign all_pages = site.pages | concat: site.articles -%}
     {%- assign default_paths = all_pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
