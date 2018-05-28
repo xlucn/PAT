@@ -4,9 +4,7 @@ title: About
 permalink: /about/
 ---
 
-本博客是浙江大学在线测试系统PAT题目集解答说明，所有代码均仅使用C语言.
-
-题目链接：[题目集列表 \| Programming Ability Test][PAT]
+本博客是[浙江大学在线测试系统PAT题目集][PAT]解答说明，所有代码均仅使用C语言.
 
 所有代码都托管在[Github][]上，欢迎前往浏览
 
@@ -48,7 +46,7 @@ Pages为主(方便与代码协同更新, 以及主题格式美观). 在其他地
 
 - 有时候抽风，会来个很奇特风格的代码，比如[1009. 说反话](http://www.jianshu.com/p/fcc3dabefd6e)
 
-[PAT]: https://www.patest.cn/contests
+[PAT]: https://pintia.cn/problem-sets
 [Github]: https://github.com/OliverLew/PAT
 [gh-pages]: https://oliverlew.github.io/PAT/
 [CSDN]: https://blog.csdn.net/Oliver__Lew
