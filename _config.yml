@@ -22,7 +22,7 @@ future: true
 show_excerpts: false
 
 theme: minima
-#remote-theme: benbalter/retlab
+
 header_pages:
   - Basic.md
   - Advanced.md
