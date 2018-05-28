@@ -1,11 +1,5 @@
 # PAT题解说明
 
-http://oliverlew.github.io/PAT/
-
-浙江大学PAT纯C语言题解说明 PAT exercises in C language 
-
-利用github pages+jekyll搭建静态博客（当前计划），相关说明：
-
 **文件夹**
 
 - analysis: 放置题解说明的markdown文件
@@ -18,5 +12,3 @@ http://oliverlew.github.io/PAT/
 - config.py: 把一些可能会变得量放在这里，包括题目数量，文件夹名称，最终markdown微调参数等。
 - download.py: 下载PAT网站题目网页
 - makefile: 执行生成、清理文件的任务
-
-[md]: https://github.com/OliverLew/PAT/tree/gh-pages/md

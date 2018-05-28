@@ -50,8 +50,12 @@ class FileBuilder:
         frontmatter += "title:  \"{}\"\n".format(title)
         frontmatter += "categories: {}\n".format(categories)
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
+        frontmatter += "permalink: {}/{:04}.html\n".format(categories, self.i)
         frontmatter += "---\n\n"
         return frontmatter
+
+    def filename(self):
+        return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
 
     def read_html(self):
         """
@@ -107,8 +111,7 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = os.path.join(config.md_dir, "_" + config.category[self.c],
-                                "{:04}.md".format(self.i))
+        filename = self.filename()
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
@@ -175,7 +178,7 @@ def check_category_folder(folder, subfolder_list):
 
 if __name__ == "__main__":
     builder = FileBuilder()
-    check_category_folder(config.md_dir, config.category.values())
+    check_category_folder(config.md_dir, [])
 
     if len(sys.argv) == 1:
         for c in list(config.indexes.keys()):
