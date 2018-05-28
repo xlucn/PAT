@@ -2,7 +2,7 @@
 
 https://oliverlew.github.io/PAT
 
-Github Pages + Jekyll搭建的静态博客, 内容是[PAT](https://www.patest.cn/contests)在线编程测试题目解答(C语言).
+Github Pages + Jekyll搭建的静态博客
 
 ### Todo list
 
