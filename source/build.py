@@ -50,6 +50,7 @@ class FileBuilder:
         frontmatter += "title:  \"{}\"\n".format(title)
         frontmatter += "categories: {}\n".format(categories)
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
+        frontmatter += "permalink: {}/{:04}.html\n".format(categories, self.i)
         frontmatter += "---\n\n"
         return frontmatter
 
