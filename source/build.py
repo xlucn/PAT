@@ -178,7 +178,7 @@ def check_category_folder(folder, subfolder_list):
 
 if __name__ == "__main__":
     builder = FileBuilder()
-    check_category_folder(config.md_dir, config.category.values())
+    check_category_folder(config.md_dir, [])
 
     if len(sys.argv) == 1:
         for c in list(config.indexes.keys()):
