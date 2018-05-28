@@ -29,16 +29,8 @@ header_pages:
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source, README.md]
 
 # collections
-collections_dir: _articles
 collections:
-  Advanced:
+  articles:
     output: true
-    permalink: /:collection/:path:output_ext
-  Basic:
-    output: true
-    permalink: /:collection/:path:output_ext
-  Top:
-    output: true
-    permalink: /:collection/:path:output_ext
 
 # vim:tabstop=2:softtabstop=2:shiftwidth=2
