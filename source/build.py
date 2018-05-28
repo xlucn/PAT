@@ -54,6 +54,9 @@ class FileBuilder:
         frontmatter += "---\n\n"
         return frontmatter
 
+    def filename(self):
+        return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
+
     def read_html(self):
         """
         Open the html file and read into lines
@@ -108,8 +111,7 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = os.path.join(config.md_dir, "_" + config.category[self.c],
-                                "{:04}.md".format(self.i))
+        filename = self.filename()
         title, problem_div = self.read_html()
         code, code_url = self.read_code()
         date, expl = self.read_expl()
