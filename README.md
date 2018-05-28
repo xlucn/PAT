@@ -12,7 +12,7 @@ Github Pages + Jekyll搭建的静态博客
 - [ ] Use tags/categories to manage posts.
 - [ ] Add commenting system
   - [ ] Disqus
-  - [ ] Gittalk
+  - [ ] Gitalk
 - [ ] Add page analysis tool
 
 [first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
