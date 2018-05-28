@@ -4,8 +4,8 @@
 
 全部用C语言编写, 尽量达到代码的简洁和可读性, 尽量用注释(可能是英文)将思路写明.
 
-* PAT Basic ([原题链接][pat-b], 已经刷完1001-1085):
-* PAT Advanced ([原题链接][pat-a], 刚刚开始):
+* PAT Basic (已经刷完1001-1085):
+* PAT Advanced (刚刚开始):
 
 ## 讨论/交流
 
@@ -47,9 +47,7 @@
 [commit-#5]: https://github.com/OliverLew/PAT/commit/76f072258e295ad5ccf5b3ec3196c72679c22c93#diff-77516117cde8132f56ef044da2238e08
 [commit-#7]: https://github.com/OliverLew/PAT/commit/e029c2b78f85356500fedfbc667d02e5a229f62e#diff-9cadb2a99b3bab7cfdb9e19fdef3f9ad
 
-[pat]: https://www.patest.cn/contests
-[pat-a]: https://www.patest.cn/contests/pat-a-practise
-[pat-b]: https://www.patest.cn/contests/pat-b-practise
+[pat]: https://pintia.cn/problem-sets
 
 [jianshu-a]: http://www.jianshu.com/p/8944b15f8194
 [jianshu-b]: http://www.jianshu.com/p/c2b557516b50
