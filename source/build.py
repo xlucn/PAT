@@ -124,12 +124,12 @@ class FileBuilder:
             f.write(yaml)
 
             # write problem content
-            f.write("## 题目\n\n")
+            f.write("## 题目\n\n{% raw %}")
             for line in problem_div:
                 if config.quote_text is True:
                     f.write("> ")
                 f.write(line)
-            f.write("\n\n")
+            f.write("{% endraw %}\n\n")
 
             # write explanation
             f.write("## 思路\n\n{}\n".format(expl))
@@ -137,7 +137,7 @@ class FileBuilder:
             # write code
             f.write("## 代码\n\n")
             f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
-            f.write("```c\n{}\n```".format(code))
+            f.write("```c\n{{% raw %}}{}{{% endraw %}}\n```".format(code))
 
     def build(self, c, i):
         """
