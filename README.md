@@ -9,7 +9,7 @@ Github Pages + Jekyll搭建的静态博客
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
 - [x] Consider using collections(so no restriction on filename), done in [this pull request][use collections]
-- [ ] Add MathJax support.
+- [x] Add MathJax support in [this pull request][add mathjax]
 - [ ] Use tags/categories to manage posts.
   - [x] Add indexes of each category in [this commit][add categories]
 - [ ] Add commenting system
@@ -22,3 +22,4 @@ Github Pages + Jekyll搭建的静态博客
 [use collections]: https://github.com/OliverLew/PAT/pull/10
 [add categories]: https://github.com/OliverLew/PAT/commit/2f74e56775f5ec7c1ab31c27f23d3071b178784f
 [add GA]: https://github.com/OliverLew/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
+[add mathjax]: https://github.com/OliverLew/PAT/pull/12
