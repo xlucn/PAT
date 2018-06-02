@@ -56,13 +56,9 @@ int Rev(int N, int D)
 int main()
 {
     int N, D;
-    scanf("%d", &N);
-    while(N >= 0)
-    {
-        scanf("%d", &D);
+
+    while(scanf("%d %d", &N, &D) == 2)
         puts(iPrime(N) && iPrime(Rev(N, D)) ? "Yes" : "No");
-        scanf("%d", &N);
-    }
-    
+
     return 0;
 }
