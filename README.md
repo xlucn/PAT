@@ -9,6 +9,7 @@ Github Pages + Jekyll搭建的静态博客
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
 - [x] Consider using collections(so no restriction on filename), done in [this pull request][use collections]
+- [ ] Add MathJax support.
 - [ ] Use tags/categories to manage posts.
   - [x] Add indexes of each category in [this commit][add categories]
 - [ ] Add commenting system
