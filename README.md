@@ -14,9 +14,10 @@ Github Pages + Jekyll搭建的静态博客
 - [ ] Add commenting system
   - [ ] Disqus
   - [ ] Gitalk
-- [ ] Add page analysis tool
+- [x] Add page analysis tool, added Google analytics in [this commit][add GA]
 
 [first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
 [add date]: https://github.com/OliverLew/PAT/commit/e6e23b82b4f12b895d2504602f8b4a6b9e912f41
 [use collections]: https://github.com/OliverLew/PAT/pull/10
 [add categories]: https://github.com/OliverLew/PAT/commit/2f74e56775f5ec7c1ab31c27f23d3071b178784f
+[add GA]: https://github.com/OliverLew/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
