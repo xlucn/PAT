@@ -36,4 +36,7 @@ collections:
   articles:
     output: true
 
+# Google Analytics
+google_analytics: UA-118900116-1
+
 # vim:tabstop=2:softtabstop=2:shiftwidth=2
