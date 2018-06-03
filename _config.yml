@@ -25,9 +25,9 @@ show_excerpts: false
 theme: minima
 
 header_pages:
-  - Basic.md
-  - Advanced.md
-  - Top.md
+  - categories/Basic.md
+  - categories/Advanced.md
+  - categories/Top.md
   - about.md
 
 exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source, README.md]
