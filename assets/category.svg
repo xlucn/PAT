@@ -1,1 +1,13 @@
-<?xml version="1.0" ?><svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#157EFB" id="icon-94-folder"><path d="M17,11 L15,7 L4.00276013,7 C2.89666625,7 2,7.88967395 2,8.991155 L2,27.008845 C2,28.1085295 2.89971268,29 3.99328744,29 L29.0067126,29 C30.1075748,29 31,28.1073772 31,27.0049107 L31,12.9950893 C31,11.8932319 30.1029399,11 28.9941413,11 L17,11 Z" id="folder"/></g></g></svg>
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+ <title/>
+ <desc/>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path fill="#007fff" id="folder" d="m16.540239,7.781675l-2,-3.999999l-10.99724,0c-1.10609,0 -2.00276,0.889669 -2.00276,1.99115l0,18.017692c0,1.099689 0.89971,1.991158 1.99329,1.991158l25.01342,0c1.100861,0 1.99329,-0.89262 1.99329,-1.99509l0,-14.009819c0,-1.10186 -0.89706,-1.99509 -2.005859,-1.99509l-11.994141,0z"/>
+ </g>
+</svg>
