@@ -1,0 +1,30 @@
+{%- assign curpage = include.page -%}
+<style>
+    .meta-category {
+    }
+
+    .meta-tags {
+
+    }
+</style>
+<p class="post-meta" style="color: #555555">
+  <img src="{{ '/assets/date.svg' | relative_url }}" alt="date" class="svg-icon">
+  <time class="dt-published" datetime="{{ curpage.date | date_to_xmlschema }}" itemprop="datePublished">
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    {{ curpage.date | date: date_format }}
+  </time>
+  {%- if curpage.author -%}
+    <img src="{{ '/assets/author.svg' | relative_url }}" alt="author" class="svg-icon">
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ curpage.author }}</span></span>
+  {%- endif -%}
+  <span class="category" style="margin-left: 16px">
+    <img src="{{ '/assets/category.svg' | relative_url }}" alt="category" class="svg-icon">
+    <a href="{{ curpage.categories | first | relative_url }}">{{ curpage.categories }}</a>
+  </span>
+  <span class="tags" style="margin-left: 16px">
+    <img src="{{ '/assets/tag.svg' | relative_url }}" alt="tag" class="svg-icon">
+    {%- for tag in curpage.tags -%}
+      <a class="tag" style="margin-right:4px" href=""> {{ tag }} </a>
+    {%- endfor -%}
+  </span>
+</p>

@@ -16,13 +16,12 @@ layout: default
             {% assign pc = page.category %}
             {% if ic == pc %}
                 <li>
-                    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-                    <span class="post-meta">{{ item.date | date: date_format }}</span>
-                    <h3>
+                    <h3 style="margin-top:16px;margin-bottom:0px">
                         <a class="post-link" href="{{ item.url | relative_url }}">
                             {{ item.title | escape }}
                         </a>
                     </h3>
+                    {%- include post-meta.html page=item -%}
                     {%- if site.show_excerpts -%}
                         {{ item.excerpt }}
                     {%- endif -%}
