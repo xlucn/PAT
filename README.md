@@ -8,6 +8,7 @@ Github Pages + Jekyll搭建的静态博客
 
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
+- [ ] Use include to reduce code duplication
 - [x] Consider using collections(so no restriction on filename), done in [this pull request][use collections]
 - [x] Add MathJax support in [this pull request][add mathjax]
 - [ ] Use tags/categories to manage posts.
