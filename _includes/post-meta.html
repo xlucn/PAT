@@ -1,10 +1,10 @@
 {%- assign curpage = include.page -%}
-<style>
-    .meta-category {
+<style type="text/css">
+    .meta-tags, .meta-category {
+        margin-left: 16px;
     }
-
-    .meta-tags {
-
+    .tag-string {
+        margin-right: 4px;
     }
 </style>
 <p class="post-meta" style="color: #555555">
@@ -17,14 +17,14 @@
     <img src="{{ '/assets/author.svg' | relative_url }}" alt="author" class="svg-icon">
     <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ curpage.author }}</span></span>
   {%- endif -%}
-  <span class="category" style="margin-left: 16px">
+  <span class="meta-category">
     <img src="{{ '/assets/category.svg' | relative_url }}" alt="category" class="svg-icon">
-    <a href="{{ curpage.categories | first | relative_url }}">{{ curpage.categories }}</a>
+    <a href="{{ curpage.categories | first | relative_url }}" class="category-string">{{ curpage.categories }}</a>
   </span>
-  <span class="tags" style="margin-left: 16px">
+  <span class="meta-tags">
     <img src="{{ '/assets/tag.svg' | relative_url }}" alt="tag" class="svg-icon">
     {%- for tag in curpage.tags -%}
-      <a class="tag" style="margin-right:4px" href=""> {{ tag }} </a>
+      <a href="" class="tag-string"> {{ tag }} </a>
     {%- endfor -%}
   </span>
 </p>
