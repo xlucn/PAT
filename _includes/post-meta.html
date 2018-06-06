@@ -13,10 +13,6 @@
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     {{ curpage.date | date: date_format }}
   </time>
-  {%- if curpage.author -%}
-    <img src="{{ '/assets/author.svg' | relative_url }}" alt="author" class="svg-icon">
-    <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ curpage.author }}</span></span>
-  {%- endif -%}
   <span class="meta-category">
     <img src="{{ '/assets/category.svg' | relative_url }}" alt="category" class="svg-icon">
     <a href="{{ curpage.categories | first | relative_url }}" class="category-string">{{ curpage.categories }}</a>
