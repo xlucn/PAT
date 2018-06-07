@@ -20,7 +20,7 @@ class FileBuilder:
         """
         create the yaml front matter for markdown files
         """
-        tags = config.tag[self.c]
+        tags = []
         categories = config.category[self.c]
 
         # Check validity
