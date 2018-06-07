@@ -30,7 +30,15 @@ header_pages:
   - categories/Top.md
   - about.md
 
-exclude: [PATAdvanced/, PATBasic/, Gemfile, Gemfile.lock, source, README.md]
+exclude: 
+  - PATAdvanced/
+  - PATBasic/
+  - Gemfile
+  - Gemfile.lock
+  - source
+  - README.md
+  - _articles/html
+  - _articles/analysis
 
 # collections
 collections:
