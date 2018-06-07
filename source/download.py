@@ -1,4 +1,13 @@
 #! /usr/bin/env python3
+"""
+ARCHIVED
+
+This script is for downloading the html files containing problem content of PAT
+problem sets. Since it is written before PAT migrate to new site pintia.cn,
+this script might not be used again. The original html file is already in the
+repo, the newer html files have to be manually copied from the site in the
+developer tools.
+"""
 
 import os
 import sys
