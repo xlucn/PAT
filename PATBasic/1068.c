@@ -67,7 +67,7 @@ int iUnique(int array[][1000], int x, int y, int x0, int y0)
 {
     for(int i = 0; i < x; i++)
         for(int j = 0; j < y; j++)
-            if(array[i][j] == array[x0][y0] && i != x0 && j != y0)
+            if(array[i][j] == array[x0][y0] && !(i == x0 && j == y0))
                 return 0;
     return 1;
 }
