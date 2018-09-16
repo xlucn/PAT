@@ -42,7 +42,7 @@ int main()
 {
     int N, HH, MM, SS;
     int firsttime = 86400, lasttime = -1, time;
-    char firstname[15], lastname[15], name[15];
+    char firstname[16], lastname[16], name[16];
     
     scanf("%d", &N);
     for(int i = 0; i < N; i++)
