@@ -48,7 +48,7 @@ int main()
     for(int i = 0; i < N; i++)
     {
         scanf("%s %d:%d:%d", name, &HH, &MM, &SS);
-        time = (HH * 24 + MM) * 60 + SS;
+        time = (HH * 60 + MM) * 60 + SS;
         if(time < firsttime)
         {
             firsttime = time;
@@ -56,7 +56,7 @@ int main()
         }
         
         scanf("%d:%d:%d", &HH, &MM, &SS);
-        time = (HH * 24 + MM) * 60 + SS;
+        time = (HH * 60 + MM) * 60 + SS;
         if(time > lasttime)
         {    
             lasttime = time;
