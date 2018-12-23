@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1045. Favorite Color Stripe (30)</h1>
-<div id="problemContent">
-<p>Eva is trying to make her own color stripe out of a given one.  She would like to keep only her favorite colors in her favorite order by cutting off those unwanted pieces and sewing the remaining parts together to form her favorite color stripe.</p>
-<p>It is said that a normal human eye can distinguish about less than 200 different colors, so Eva's favorite colors are limited.  However the original stripe could be very long, and Eva would like to have the remaining favorite stripe with the maximum length.  So she needs your help to find her the best result.</p>
-<p>Note that the solution might not be unique, but you only have to tell her the maximum length.  For example, given a stripe of colors {2 2 4 1 5 5 6 3 1 1 5 6}.  If Eva's favorite colors are given in her favorite order as {2 3 1 5 6}, then she has 4 possible best solutions {2 2 1 1 1 5 6}, {2 2 1 5 5 5 6}, {2 2 1 5 5 6 6}, and {2 2 3 1 1 5 6}.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains a positive integer N (&lt;=200) which is the total number of colors involved (and hence the colors are numbered from 1 to N).  Then the next line starts with a positive integer M (&lt;=200) followed by M Eva's favorite color numbers given in her favorite order.  Finally the third line starts with a positive integer L (&lt;=10000) which is the length of the given stripe, followed by L colors on the stripe.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Favorite Color Stripe</h1>
+<div class="ques-view"><p>Eva is trying to make her own color stripe out of a given one. She would like to keep only her favorite colors in her favorite order by cutting off those unwanted pieces and sewing the remaining parts together to form her favorite color stripe.</p>
+<p>It is said that a normal human eye can distinguish about less than 200 different colors, so Eva's favorite colors are limited. However the original stripe could be very long, and Eva would like to have the remaining favorite stripe with the maximum length. So she needs your help to find her the best result.</p>
+<p>Note that the solution might not be unique, but you only have to tell her the maximum length. For example, given a stripe of colors {2 2 4 1 5 5 6 3 1 1 5 6}. If Eva's favorite colors are given in her favorite order as {2 3 1 5 6}, then she has 4 possible best solutions {2 2 1 1 1 5 6}, {2 2 1 5 5 5 6}, {2 2 1 5 5 6 6}, and {2 2 3 1 1 5 6}.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mn>0</mn><mn>0</mn></mrow>\le 200</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>) which is the total number of colors involved (and hence the colors are numbered from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>). Then the next line starts with a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mn>0</mn><mn>0</mn></mrow>\le 200</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>) followed by <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> Eva's favorite color numbers given in her favorite order. Finally the third line starts with a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>L</mi></mrow>L</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) which is the length of the given stripe, followed by <span class="katex"><span class="katex-mathml"><math><mrow><mi>L</mi></mrow>L</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span> colors on the stripe. All the numbers in a line a separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case, simply print in a line the maximum length of Eva's favorite stripe.</p>
-<b>Sample Input:</b><pre>
-6
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">6
 5 2 3 1 5 6
 12 2 2 4 1 5 5 6 3 1 1 5 6
-</pre>
-<b>Sample Output:</b><pre>
-7
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">7
+</code></pre>
 </div>

@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1140. Look-and-say Sequence (20)</h1>
-<div id="problemContent">
-<p><b>Look-and-say sequence</b> is a sequence of integers as the following:
-</p><pre>
-D, D1, D111, D113, D11231, D112213111, ...
-</pre><p>
-where D is in [0, 9] except 1. The (n+1)st number is a kind of description of the nth number. For example, the 2nd number means that there is one D in the 1st number, and hence it is D1; the 2nd number consists of one D (corresponding to D1) and one 1 (corresponding to 11), therefore the 3rd number is D111; or since the 4th number is D113, it consists of one D, two 1's, and one 3, so the next number must be D11231. This definition works for D = 1 as well. Now you are supposed to calculate the Nth number in a look-and-say sequence of a given digit D.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case, which gives D (in [0, 9]) and a positive integer N (&lt;=40), separated by a space.
-</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>Print in a line the Nth number in a look-and-say sequence of D.
-</p>
-<b>Sample Input:</b><pre>
-1 8
-</pre>
-<b>Sample Output:</b><pre>
-1123123111
-</pre>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Look-and-say Sequence</h1>
+<div class="ques-view"><p>Look-and-say sequence is a sequence of integers as the following:</p>
+<pre><code>D, D1, D111, D113, D11231, D112213111, ...
+</code></pre><p>where <code>D</code> is in [0, 9] except 1. The (n+1)st number is a kind of description of the nth number. For example, the 2nd number means that there is one <code>D</code> in the 1st number, and hence it is <code>D1</code>; the 2nd number consists of one <code>D</code> (corresponding to <code>D1</code>) and one 1 (corresponding to 11), therefore the 3rd number is <code>D111</code>; or since the 4th number is <code>D113</code>, it consists of one <code>D</code>, two 1's, and one 3, so the next number must be <code>D11231</code>. This definition works for <code>D</code> = 1 as well. Now you are supposed to calculate the Nth number in a look-and-say sequence of a given digit <code>D</code>.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case, which gives <code>D</code> (in [0, 9]) and a positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 40), separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>Print in a line the Nth number in a look-and-say sequence of <code>D</code>.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">1 8
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">1123123111
+</code></pre>
 </div>

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1029. Median (25)</h1>
-<div id="problemContent">
-<p>Given an increasing sequence S of N integers, the <i>median</i> is the number at the middle position.  For example, the median of S1={11, 12, 13, 14} is 12, and the median of S2={9, 10, 15, 16, 17} is 15.  The median of two sequences is defined to be the median of the nondecreasing sequence which contains all the elements of both sequences.  For example, the median of S1 and S2 is 13.</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Median</h1>
+<div class="ques-view"><p>Given an increasing sequence S of N integers, the median is the number at the middle position. For example, the median of S1 = { 11, 12, 13, 14 } is 12, and the median of S2 = { 9, 10, 15, 16, 17 } is 15. The median of two sequences is defined to be the median of the nondecreasing sequence which contains all the elements of both sequences. For example, the median of S1 and S2 is 13.</p>
 <p>Given two increasing sequences of integers, you are asked to find their median.</p>
-<p><b>Input</b></p>
-<p>Each input file contains one test case.  Each case occupies 2 lines, each gives the information of a sequence.  For each sequence, the first positive integer N (&lt;=1000000) is the size of that sequence.  Then N integers follow, separated by a space.  It is guaranteed that all the integers are in the range of <b>long int</b>.</p>
-<p><b>Output</b></p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. Each case occupies 2 lines, each gives the information of a sequence. For each sequence, the first positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 2\times 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mbin">×</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) is the size of that sequence. Then N integers follow, separated by a space. It is guaranteed that all the integers are in the range of <strong>long int</strong>.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case you should output the median of the two given sequences in a line.</p>
-<b>Sample Input</b><pre>
-4 11 12 13 14
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">4 11 12 13 14
 5 9 10 15 16 17
-</pre>
-<b>Sample Output</b><pre>
-13
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">13
+</code></pre>
 </div>

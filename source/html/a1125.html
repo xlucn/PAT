@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1125. Chain the Ropes (25)</h1>
-<div id="problemContent">
-<p>Given some segments of rope, you are supposed to chain them into one rope.  Each time you may only fold two segments into loops and chain them into one piece, as shown by the figure.  The resulting chain will be treated as another segment of rope and can be folded again.  After each chaining, the lengths of the original two segments will be halved.
-</p>
-<center><img src="http://nos.patest.cn/na_ol5x4jo19qm.jpg"/></center>
-<p>
-Your job is to make the longest possible rope out of N given segments.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (2 &lt;= N &lt;= 10<sup>4</sup>).  Then N positive integer lengths of the segments are given in the next line, separated by spaces.  All the integers are no more than 10<sup>4</sup>.
-</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, print in a line the length of the longest possible rope that can be made by the given segments.  The result must be rounded to the nearest integer that is no greater than the maximum length.
-</p>
-<b>Sample Input:</b><pre>
-8
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Chain the Ropes</h1>
+<div class="ques-view"><p>Given some segments of rope, you are supposed to chain them into one rope. Each time you may only fold two segments into loops and chain them into one piece, as shown by the figure. The resulting chain will be treated as another segment of rope and can be folded again. After each chaining, the lengths of the original two segments will be halved.</p>
+<p><img alt="rope.jpg" src="https://images.ptausercontent.com/46293e57-aa0e-414b-b5c3-7c4b2d5201e2.jpg"/></p>
+<p>Your job is to make the longest possible rope out of <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> given segments.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mn>2</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>2 \le N \le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span><span class="mrel">≤</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>). Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> positive integer lengths of the segments are given in the next line, separated by spaces. All the integers are no more than <span class="katex"><span class="katex-mathml"><math><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, print in a line the length of the longest possible rope that can be made by the given segments. The result must be rounded to the nearest integer that is no greater than the maximum length.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">8
 10 15 12 3 4 13 1 15
-</pre>
-<b>Sample Output:</b><pre>
-14
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">14
+</code></pre>
 </div>

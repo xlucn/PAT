@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1078. Hashing (25)</h1>
-<div id="problemContent">
-<p>The task of this problem is simple: insert a sequence of distinct positive integers into a hash table, and output the positions of the input numbers.  The hash function is defined to be "H(key) = key % TSize" where TSize is the maximum size of the hash table.  Quadratic probing (with positive increments only) is used to solve the collisions.</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Hashing</h1>
+<div class="ques-view"><p>The task of this problem is simple: insert a sequence of distinct positive integers into a hash table, and output the positions of the input numbers.  The hash function is defined to be <span class="katex"><span class="katex-mathml"><math><mrow><mi>H</mi><mo>(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo>)</mo><mo>=</mo><mi>k</mi><mi>e</mi><mi>y</mi><mi mathvariant="normal">%</mi><mi>T</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow>H(key) = key \% TSize</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mord mathrm">%</span><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mord mathit">e</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math><mrow><mi>T</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow>TSize</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mord mathit">e</span></span></span></span> is the maximum size of the hash table.  Quadratic probing (with positive increments only) is used to solve the collisions.</p>
 <p>Note that the table size is better to be prime.  If the maximum size given by the user is not prime, you must re-define the table size to be the smallest prime number which is larger than the size given by the user.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains two positive numbers: MSize (&lt;=10<sup>4</sup>) and N (&lt;=MSize) which are the user-defined table size and the number of input numbers, respectively.  Then N distinct positive integers are given in the next line.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, print the corresponding positions (index starts from 0) of the input numbers in one line.  All the numbers in a line are separated by a space, and there must be no extra space at the end of the line.  In case it is impossible to insert the number, print "-" instead.
-</p>
-<b>Sample Input:</b><pre>
-4 4
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line contains two positive numbers: <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow>MSize</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mord mathit">e</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) and <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mi>M</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow>\le MSize</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mord mathit">e</span></span></span></span>) which are the user-defined table size and the number of input numbers, respectively.  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> distinct positive integers are given in the next line.  All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print the corresponding positions (index starts from 0) of the input numbers in one line.  All the numbers in a line are separated by a space, and there must be no extra space at the end of the line.  In case it is impossible to insert the number, print "-" instead.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">4 4
 10 6 4 15
-</pre>
-<b>Sample Output:</b><pre>
-0 1 4 -
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">0 1 4 -
+</code></pre>
 </div>

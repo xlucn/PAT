@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1108. Finding Average (20)</h1>
-<div id="problemContent">
-<p>The basic task is simple: given N real numbers, you are supposed to calculate their average.  But what makes it complicated is that some of the input numbers might not be legal.  A "legal" input is a real number in [-1000, 1000] and is accurate up to no more than 2 decimal places.  When you calculate the average, those illegal numbers must not be counted in.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (&lt;=100).  Then N numbers are given in the next line, separated by one space.
-</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each illegal input number, print in a line "ERROR: X is not a legal number" where X is the input.  Then finally print in a line the result: "The average of K numbers is Y" where K is the number of legal inputs and Y is their average, accurate to 2 decimal places.  In case the average cannot be calculated, output "Undefined" instead of Y.  In case K is only 1, output "The average of 1 number is Y" instead.
-</p>
-<b>Sample Input 1:</b><pre>
-7
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Finding Average</h1>
+<div class="ques-view"><p>The basic task is simple: given <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> real numbers, you are supposed to calculate their average. But what makes it complicated is that some of the input numbers might not be legal. A <strong>legal</strong> input is a real number in [<span class="katex"><span class="katex-mathml"><math><mrow><mo>−</mo><mn>1</mn><mn>0</mn><mn>0</mn><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow>-1000, 1000</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>] and is accurate up to no more than 2 decimal places. When you calculate the average, those illegal numbers must not be counted in.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>\le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>). Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> numbers are given in the next line, separated by one space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each illegal input number, print in a line <code>ERROR: X is not a legal number</code> where <code>X</code> is the input. Then finally print in a line the result: <code>The average of K numbers is Y</code> where <code>K</code> is the number of legal inputs and <code>Y</code> is their average, accurate to 2 decimal places. In case the average cannot be calculated, output <code>Undefined</code> instead of <code>Y</code>. In case <code>K</code> is only 1, output <code>The average of 1 number is Y</code> instead.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">7
 5 -3.2 aaa 9999 2.3.4 7.123 2.35
-</pre>
-<b>Sample Output 1:</b><pre>
-ERROR: aaa is not a legal number
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">ERROR: aaa is not a legal number
 ERROR: 9999 is not a legal number
 ERROR: 2.3.4 is not a legal number
 ERROR: 7.123 is not a legal number
 The average of 3 numbers is 1.38
-</pre>
-<b>Sample Input 2:</b><pre>
-2
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">2
 aaa -9999
-</pre>
-<b>Sample Output 2:</b><pre>
-ERROR: aaa is not a legal number
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">ERROR: aaa is not a legal number
 ERROR: -9999 is not a legal number
 The average of 0 numbers is Undefined
-</pre>
+</code></pre>
 </div>

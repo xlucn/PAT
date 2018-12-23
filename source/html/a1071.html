@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1071. Speech Patterns (25)</h1>
-<div id="problemContent">
-<p>
-People often have a preference among synonyms of the same word. For example, some may prefer "the police", while others may prefer "the cops". Analyzing such patterns can help to narrow down a speaker's identity, which is useful when validating, for example, whether it's still the same person behind an online avatar.</p>
-<p>
-Now given a paragraph of text sampled from someone's speech, can you find the person's most commonly used word?</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>
-Each input file contains one test case. For each case, there is one line of text no more than 1048576 characters in length, terminated by a carriage return '\n'. The input contains at least one alphanumerical character, i.e., one character from the set [0-9 A-Z a-z].</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>
-For each test case, print in one line the most commonly occurring word in the input text, followed by a space and the number of times it has occurred in the input. If there are more than one such words, print the lexicographically smallest one. The word should be printed in all lower case. Here a "word" is defined as a continuous sequence of alphanumerical characters separated by non-alphanumerical characters or the line beginning/end.</p>
-<p>
-Note that words are case <b>insensitive</b>. </p>
-<b>Sample Input:</b><pre>
-Can1: "Can a can can a can?  It can!"
-</pre>
-<b>Sample Output:</b><pre>
-can 5
-</pre>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Speech Patterns</h1>
+<div class="ques-view"><p>People often have a preference among synonyms of the same word. For example, some may prefer "the police", while others may prefer "the cops". Analyzing such patterns can help to narrow down a speaker's identity, which is useful when validating, for example, whether it's still the same person behind an online avatar.</p>
+<p>Now given a paragraph of text sampled from someone's speech, can you find the person's most commonly used word?</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, there is one line of text no more than 1048576 characters in length, terminated by a carriage return <code>\n</code>. The input contains at least one alphanumerical character, i.e., one character from the set [<code>0-9 A-Z a-z</code>].</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print in one line the most commonly occurring word in the input text, followed by a space and the number of times it has occurred in the input. If there are more than one such words, print the lexicographically smallest one. The word should be printed in all lower case. Here a "word" is defined as a continuous sequence of alphanumerical characters separated by non-alphanumerical characters or the line beginning/end.</p>
+<p>Note that words are case <strong>insensitive</strong>.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">Can1: "Can a can can a can?  It can!"
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">can 5
+</code></pre>
 </div>

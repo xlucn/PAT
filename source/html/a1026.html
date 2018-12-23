@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1026. Table Tennis (30)</h1>
-<div id="problemContent">
-<p>A table tennis club has N tables available to the public.  The tables are numbered from 1 to N.  For any pair of players, if there are some tables open when they arrive, they will be assigned to the available table with the smallest number.  If all the tables are occupied, they will have to wait in a queue.  It is assumed that every pair of players can play for at most 2 hours.</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Table Tennis</h1>
+<div class="ques-view"><p>A table tennis club has N tables available to the public.  The tables are numbered from 1 to N.  For any pair of players, if there are some tables open when they arrive, they will be assigned to the available table with the smallest number.  If all the tables are occupied, they will have to wait in a queue.  It is assumed that every pair of players can play for at most 2 hours.</p>
 <p>Your job is to count for everyone in queue their waiting time, and for each table the number of players it has served for the day.</p>
 <p>One thing that makes this procedure a bit complicated is that the club reserves some tables for their VIP members.  When a VIP table is open, the first VIP pair in the queue will have the priviledge to take it.  However, if there is no VIP in the queue, the next pair of players can take it.  On the other hand, if when it is the turn of a VIP pair, yet no VIP table is available, they can be assigned as any ordinary players.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case. For each case, the first line contains an integer N (&lt;=10000) - the total number of pairs of players.  Then N lines follow, each contains 2 times and a VIP tag: HH:MM:SS - the arriving time, P - the playing time in minutes of a pair of players, and tag - which is 1 if they hold a VIP card, or 0 if not.  It is guaranteed that the arriving time is between 08:00:00 and 21:00:00 while the club is open.  It is assumed that no two customers arrives at the same time.  Following the players' info, there are 2 positive integers: K (&lt;=100) - the number of tables, and M (&lt; K) - the number of VIP tables.  The last line contains M table numbers.</p>
-<p><b>
-Output Specification:
-</b></p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains an integer <code>N</code> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span>10000) - the total number of pairs of players.  Then <code>N</code> lines follow, each contains 2 times and a VIP tag: <code>HH:MM:SS</code> - the arriving time, <code>P</code> - the playing time in minutes of a pair of players, and <code>tag</code> - which is 1 if they hold a VIP card, or 0 if not.  It is guaranteed that the arriving time is between 08:00:00 and 21:00:00 while the club is open.  It is assumed that no two customers arrives at the same time.  Following the players' info, there are 2 positive integers: <code>K</code> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span>100) - the number of tables, and <code>M</code> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo></mrow>&lt;</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span></span></span></span> K) - the number of VIP tables.  The last line contains <code>M</code> table numbers.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case, first print the arriving time, serving time and the waiting time for each pair of players in the format shown by the sample.  Then print in a line the number of players served by each table.  Notice that the output must be listed in chronological order of the serving time.  The waiting time must be rounded up to an integer minute(s).  If one cannot get a table before the closing time, their information must NOT be printed.</p>
-<b>Sample Input:</b><pre>
-9
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">9
 20:52:00 10 0
 08:00:00 20 0
 08:02:00 30 0
@@ -26,9 +26,9 @@ Output Specification:
 20:53:00 10 1
 3 1
 2
-</pre>
-<b>Sample Output:</b><pre>
-08:00:00 08:00:00 0
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">08:00:00 08:00:00 0
 08:01:30 08:01:30 0
 08:02:00 08:02:00 0
 08:12:00 08:16:30 5
@@ -37,5 +37,5 @@ Output Specification:
 20:51:00 20:51:00 0
 20:52:00 20:52:00 0
 3 3 2
-</pre>
+</code></pre>
 </div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Heap Paths</h1>
+<div class="ques-view"><p>In computer science, a <strong>heap</strong> is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of P is either greater than or equal to (in a max heap) or less than or equal to (in a min heap) the key of C. A common implementation of a heap is the binary heap, in which the tree is a complete binary tree. (Quoted from Wikipedia at <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">https://en.wikipedia.org/wiki/Heap_(data_structure</a>))</p>
+<p>One thing for sure is that all the keys along any path from the root to a leaf in a max/min heap must be in non-increasing/non-decreasing order.</p>
+<p>Your job is to check every path in a given complete binary tree, in order to tell if it is a heap or not.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mn>1</mn><mo>&lt;</mo><mi>N</mi><mo>≤</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mn>0</mn><mn>0</mn></mrow>1 &lt; N \le 1,000</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mrel">&lt;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>), the number of keys in the tree. Then the next line contains <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> distinct integer keys (all in the range of <strong>int</strong>), which gives the level order traversal sequence of a complete binary tree.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each given tree, first print all the paths from the root to the leaves.  Each path occupies a line, with all the numbers separated by a space, and no extra space at the beginning or the end of the line.  The paths must be printed in the following order: for each node in the tree, all the paths in its right subtree must be printed before those in its left subtree.</p>
+<p>Finally print in a line <code>Max Heap</code> if it is a max heap, or <code>Min Heap</code> for a min heap, or <code>Not Heap</code> if it is not a heap at all.  </p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">8
+98 72 86 60 65 12 23 50
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">98 86 23
+98 86 12
+98 72 65
+98 72 60 50
+Max Heap
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">8
+8 38 25 58 52 82 70 60
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">8 25 70
+8 25 82
+8 38 52
+8 38 58 60
+Min Heap
+</code></pre>
+<h3 id="sample-input-3-">Sample Input 3:</h3>
+<pre><code class="lang-in">8
+10 28 15 12 34 9 8 56
+</code></pre>
+<h3 id="sample-output-3-">Sample Output 3:</h3>
+<pre><code class="lang-out">10 15 8
+10 15 9
+10 28 34
+10 28 12 56
+Not Heap
+</code></pre>
+</div>

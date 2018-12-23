@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1127. ZigZagging on a Tree (30)</h1>
-<div id="problemContent">
-<p>Suppose that all the keys in a binary tree are distinct positive integers.  A unique binary tree can be determined by a given pair of postorder and inorder traversal sequences.  And it is a simple standard routine to print the numbers in level-order.  However, if you think the problem is too simple, then you are too naive.  This time you are supposed to print the numbers in "zigzagging order" -- that is, starting from the root, print the numbers level-by-level, alternating between left to right and right to left.  For example, for the following tree you must output: 1 11 5 8 17 12 20 15.</p>
-<center><img src="http://nos.patest.cn/nc_ol5xekjcdy4.jpg"/></center>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (&lt;= 30), the total number of nodes in the binary tree.  The second line gives the inorder sequence and the third line gives the postorder sequence.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>ZigZagging on a Tree</h1>
+<div class="ques-view"><p>Suppose that all the keys in a binary tree are distinct positive integers.  A unique binary tree can be determined by a given pair of postorder and inorder traversal sequences.  And it is a simple standard routine to print the numbers in level-order.  However, if you think the problem is too simple, then you are too naive.  This time you are supposed to print the numbers in "zigzagging order" -- that is, starting from the root, print the numbers level-by-level, alternating between left to right and right to left.  For example, for the following tree you must output: 1 11 5 8 17 12 20 15.</p>
+<p><img alt="zigzag.jpg" src="https://images.ptausercontent.com/337cbfb0-a7b2-4500-9664-318e9ffc870e.jpg"/></p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span>30), the total number of nodes in the binary tree.  The second line gives the inorder sequence and the third line gives the postorder sequence.  All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case, print the zigzagging sequence of the tree in a line.  All the numbers in a line must be separated by exactly one space, and there must be no extra space at the end of the line.</p>
-<b>Sample Input:</b><pre>
-8
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">8
 12 11 20 17 1 15 8 5
 12 20 17 11 15 8 5 1
-</pre>
-<b>Sample Output:</b><pre>
-1 11 5 8 17 12 20 15
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">1 11 5 8 17 12 20 15
+</code></pre>
 </div>

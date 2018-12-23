@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1028. List Sorting (25)</h1>
-<div id="problemContent">
-<p>Excel can sort records according to any column.  Now you are supposed to imitate this function.</p>
-<p><b>Input</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains two integers N (&lt;=100000) and C, where N is the number of records and C is the column that you are supposed to sort the records with.  Then N lines follow, each contains a record of a student.  A student's record consists of his or her distinct ID (a 6-digit number), name (a string with no more than 8 characters without space), and grade (an integer between 0 and 100, inclusive).</p>
-<p><b>Output</b></p>
-<p>For each test case, output the sorting result in N lines.  That is, if C = 1 then the records must be sorted in increasing order according to ID's; if C = 2 then the records must be sorted in non-decreasing order according to names; and if C = 3 then the records must be sorted in non-decreasing order according to grades.  If there are several students who have the same name or grade, they must be sorted according to their ID's in increasing order.</p>
-<b>Sample Input 1</b><pre>
-3 1
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>List Sorting</h1>
+<div class="ques-view"><p>Excel can sort records according to any column. Now you are supposed to imitate this function.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains two integers <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) and <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> is the number of records and <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span> is the column that you are supposed to sort the records with. Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines follow, each contains a record of a student. A student's record consists of his or her distinct ID (a 6-digit number), name (a string with no more than 8 characters without space), and grade (an integer between 0 and 100, inclusive).</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, output the sorting result in <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines. That is, if <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span> = 1 then the records must be sorted in increasing order according to ID's; if <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span> = 2 then the records must be sorted in non-decreasing order according to names; and if <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span> = 3 then the records must be sorted in non-decreasing order according to grades. If there are several students who have the same name or grade, they must be sorted according to their ID's in increasing order.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">3 1
 000007 James 85
 000010 Amy 90
 000001 Zoe 60
-</pre>
-<b>Sample Output 1</b><pre>
-000001 Zoe 60
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">000001 Zoe 60
 000007 James 85
 000010 Amy 90
-</pre>
-<b>Sample Input 2</b><pre>
-4 2
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">4 2
 000007 James 85
 000010 Amy 90
 000001 Zoe 60
 000002 James 98
-</pre>
-<b>Sample Output 2</b><pre>
-000010 Amy 90
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">000010 Amy 90
 000002 James 98
 000007 James 85
 000001 Zoe 60
-</pre>
-<b>Sample Input 3</b><pre>
-4 3
+</code></pre>
+<h3 id="sample-input-3-">Sample Input 3:</h3>
+<pre><code class="lang-in">4 3
 000007 James 85
 000010 Amy 90
 000001 Zoe 60
 000002 James 90
-</pre>
-<b>Sample Output 3</b><pre>
-000001 Zoe 60
+</code></pre>
+<h3 id="sample-output-3-">Sample Output 3:</h3>
+<pre><code class="lang-out">000001 Zoe 60
 000007 James 85
 000002 James 90
 000010 Amy 90
-</pre>
+</code></pre>
 </div>

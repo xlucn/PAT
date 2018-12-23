@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1101. Quick Sort (25)</h1>
-<div id="problemContent">
-<p>There is a classical process named <i>partition</i> in the famous quick sort algorithm. In this process we typically choose one element as the pivot.  Then the elements less than the pivot are moved to its left and those larger than the pivot to its right. 
-Given N distinct positive integers after a run of partition, could you tell how many elements could be the selected pivot for this partition?</p>
-<p>For example, given N = 5 and the numbers 1, 3, 2, 4, and 5.  We have:</p>
-<p>
-<li>1 could be the pivot since there is no element to its left and all the elements to its right are larger than it;<br/>
-<li>3 must not be the pivot since although all the elements to its left are smaller, the number 2 to its right is less than it as well;<br/>
-<li>2 must not be the pivot since although all the elements to its right are larger, the number 3 to its left is larger than it as well;<br/>
-<li>and for the similar reason, 4 and 5 could also be the pivot.<br/>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Quick Sort</h1>
+<div class="ques-view"><p>There is a classical process named <strong>partition</strong> in the famous quick sort algorithm. In this process we typically choose one element as the pivot. Then the elements less than the pivot are moved to its left and those larger than the pivot to its right. Given <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> distinct positive integers after a run of partition, could you tell how many elements could be the selected pivot for this partition?</p>
+<p>For example, given <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi><mo>=</mo><mn>5</mn></mrow>N = 5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">=</span><span class="mord mathrm">5</span></span></span></span> and the numbers 1, 3, 2, 4, and 5. We have:</p>
+<ul>
+<li>1 could be the pivot since there is no element to its left and all the elements to its right are larger than it;</li>
+<li>3 must not be the pivot since although all the elements to its left are smaller, the number 2 to its right is less than it as well;</li>
+<li>2 must not be the pivot since although all the elements to its right are larger, the number 3 to its left is larger than it as well;</li>
+<li>and for the similar reason, 4 and 5 could also be the pivot.</li>
+</ul>
 <p>Hence in total there are 3 pivot candidates.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (&lt;= 10<sup>5</sup>).  Then the next line contains N distinct positive integers no larger than 10<sup>9</sup>.  The numbers in a line are separated by spaces.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, output in the first line the number of pivot candidates.  Then in the next line print these candidates in increasing order.  There must be exactly 1 space between two adjacent numbers, and no extra space at the end of each line.</p>
-<b>Sample Input: </b><pre>
-5
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>). Then the next line contains <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> distinct positive integers no larger than <span class="katex"><span class="katex-mathml"><math><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow>10^9</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">9</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>. The numbers in a line are separated by spaces.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, output in the first line the number of pivot candidates. Then in the next line print these candidates in increasing order. There must be exactly 1 space between two adjacent numbers, and no extra space at the end of each line.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">5
 1 3 2 4 5
-</pre>
-<b>Sample Output:</b><pre>
-3
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">3
 1 4 5
-</pre>
-</li></li></li></li></p></div>
+</code></pre>
+</div>

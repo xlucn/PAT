@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1006. Tree Traversals - Hard Version (35)</h1>
-<div id="problemContent">
-<p>Given the partial results of a binary tree's traversals in in-order, pre-order, and post-order.  You are supposed to output the complete results and the level order traversal sequence of the corresponding tree.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, a positive integer N (&lt;=100) is given in the first line.  Then three lines follow, containing the incomplete in-order, pre-order and post-order traversal sequences, respectively.  It is assumed that the tree nodes are numbered from 1 to N and no number is given out of the range.  A "-" represents a missing number.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, print in four lines the complete in-order, pre-order and post-order traversal sequences, together with the level order traversal sequence of the corresponding tree.  The numbers must be separated by a space, and there must be no extra space at the end of each line.  If it is impossible to reconstruct the unique tree from the given information, simply print "Impossible".
-</p>
-<b>Sample Input 1:</b><pre>
-9
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Tree Traversals - Hard Version</h1>
+<div class="ques-view"><p>Given the partial results of a binary tree's traversals in in-order, pre-order, and post-order. You are supposed to output the complete results and the level order traversal sequence of the corresponding tree.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>\le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>) is given in the first line. Then three lines follow, containing the incomplete in-order, pre-order and post-order traversal sequences, respectively. It is assumed that the tree nodes are numbered from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> and no number is given out of the range. A <code>-</code> represents a missing number.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, print in four lines the complete in-order, pre-order and post-order traversal sequences, together with the level order traversal sequence of the corresponding tree. The numbers must be separated by a space, and there must be no extra space at the beginning or the end of each line. If it is impossible to reconstruct the unique tree from the given information, simply print <code>Impossible</code>.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">9
 3 - 2 1 7 9 - 4 6
 9 - 5 3 2 1 - 6 4
 3 1 - - 7 - 6 8 -
-</pre>
-<b>Sample Output 1:</b><pre>
-3 5 2 1 7 9 8 4 6
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">3 5 2 1 7 9 8 4 6
 9 7 5 3 2 1 8 6 4
 3 1 2 5 7 4 6 8 9
 9 7 8 5 6 3 2 4 1
-</pre>
-<b>Sample Input 2:</b><pre>
-3
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">3
 - - -
 - 1 -
 1 - -
-</pre>
-<b>Sample Output 2:</b><pre>
-Impossible
-</pre>
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">Impossible
+</code></pre>
 </div>

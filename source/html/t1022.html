@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1022. Werewolf (35)</h1>
-<div id="problemContent">
-<p>Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewolves and the human beings.  Suppose that in a game,</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Werewolf</h1>
+<div class="ques-view"><p>Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewolves and the human beings. Suppose that in a game,</p>
 <ul>
-<li>player #1 said: "Player #2 is a werewolf.";
-<li>player #2 said: "Player #3 is a human.";
-<li>player #3 said: "Player #4 is a werewolf.";
-<li>player #4 said: "Player #5 is a human."; and
-<li>player #5 said: "Player #4 is a human.".
-</li></li></li></li></li></ul>
-<p>
-Given that there were 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liers.  Can you point out the werewolves?
-</p>
-<p>
-Now you are asked to solve a harder vertion of this problem: given that there were N players, with M werewolves among them, at least one but not all the werewolves were lying, and there were exactly L liers.  You are supposed to point out the werewolves.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives three positive integer N (5 &lt;= N &lt;= 100), M and L (2 &lt;= M，L &lt; N).  Then N lines follow and the i-th line gives the statement of the i-th player (1 &lt;= i &lt;= N), which is represented by the index of the player with a positive sign for a human and a negative sign for a werewolf.
-</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>If a solution exists, print in a line in descending order the indices of the M werewolves.  The numbers must be separated by exactly one space with no extra spaces at the beginning or the end of the line.  If there are more than one solution, you must output the largest solution sequence -- that is, for two sequences A = { a[1], ..., a[M] } and B = { b[1], ..., b[M] }, if there exists 0 &lt;= k &lt; M such that a[i]=b[i] (i &lt;= k) and a[k+1]&gt;b[k+1], then A is said to be larger than B.  In case there is no solution, simply print "No Solution".</p>
-<b>Sample Input 1:</b><pre>
-5 2 2
+<li>player #1 said: "Player #2 is a werewolf.";</li>
+<li>player #2 said: "Player #3 is a human.";</li>
+<li>player #3 said: "Player #4 is a werewolf.";</li>
+<li>player #4 said: "Player #5 is a human."; and</li>
+<li>player #5 said: "Player #4 is a human.".</li>
+</ul>
+<p>Given that there were 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. Can you point out the werewolves?</p>
+<p>Now you are asked to solve a harder vertion of this problem: given that there were N players, with M werewolves among them, at least one but not all the werewolves were lying, and there were exactly L liars. You are supposed to point out the werewolves.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives three positive integer N (5 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> N <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 100), M and L (2 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> M，L <span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo></mrow>&lt;</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span></span></span></span> N). Then N lines follow and the i-th line gives the statement of the i-th player (1 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> i <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> N), which is represented by the index of the player with a positive sign for a human and a negative sign for a werewolf.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>If a solution exists, print in a line in descending order the indices of the M werewolves. The numbers must be separated by exactly one space with no extra spaces at the beginning or the end of the line. If there are more than one solution, you must output the largest solution sequence -- that is, for two sequences A = { a[1], ..., a[M] } and B = { b[1], ..., b[M] }, if there exists 0 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> k <span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo></mrow>&lt;</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span></span></span></span> M such that a[i] = b[i] (i <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> k) and a[k+1]<span class="katex"><span class="katex-mathml"><math><mrow><mo>&gt;</mo></mrow>&gt;</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&gt;</span></span></span></span>b[k+1], then A is said to be larger than B. In case there is no solution, simply print <code>No Solution</code>.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">5 2 2
 -2
 +3
 -4
 +5
 +4
-</pre>
-<b>Sample Output 1:</b><pre>
-4 1
-</pre>
-<b>Sample Input 2:</b><pre>
-6 2 3
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">4 1
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">6 2 3
 -2
 +3
 -4
 +5
 +4
 -3
-</pre>
-<b>Sample Output 2 (the solution is not unique):</b><pre>
-6 4
-</pre>
-<b>Sample Input 3:</b><pre>
-6 2 5
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">6 4
+</code></pre>
+<h3 id="sample-input-3-">Sample Input 3:</h3>
+<pre><code class="lang-in">6 2 5
 -2
 +3
 -4
 +5
 +4
 +6
-</pre>
-<b>Sample Output 3:</b><pre>
-No Solution
-</pre>
+</code></pre>
+<h3 id="sample-output-3-">Sample Output 3:</h3>
+<pre><code class="lang-out">No Solution
+</code></pre>
 </div>

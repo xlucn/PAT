@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1039. Course List for Student (25)</h1>
-<div id="problemContent">
-<p>Zhejiang University has 40000 students and provides 2500 courses. Now given the student name lists of all the courses, you are supposed to output the registered course list for each student who comes for a query.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains 2 positive integers: N (&lt;=40000), the number of students who look for their course lists, and K (&lt;=2500), the total number of courses.  Then the student name lists are given for the courses (numbered from 1 to K) in the following format: for each course <i>i</i>, first the course index <i>i</i> and the number of registered students N<sub><i>i</i></sub> (&lt;= 200) are given in a line.  Then in the next line, N<sub><i>i</i></sub> student names are given.  A student name consists of 3 capital English letters plus a one-digit number.  Finally the last line contains the N names of students who come for a query.  All the names and numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, print your results in N lines.  Each line corresponds to one student, in the following format:  first print the student's name, then the total number of registered courses of that student, and finally the indices of the courses in increasing order.  The query results must be printed in the same order as input.  All the data in a line must be separated by a space, with no extra space at the end of the line.
-</p>
-<b>Sample Input:</b><pre>
-11 5
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Course List for Student</h1>
+<div class="ques-view"><p>Zhejiang University has 40000 students and provides 2500 courses. Now given the student name lists of all the courses, you are supposed to output the registered course list for each student who comes for a query.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains 2 positive integers: <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>4</mn><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mn>0</mn><mn>0</mn></mrow>\le 40,000</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">4</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>), the number of students who look for their course lists, and <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mo separator="true">,</mo><mn>5</mn><mn>0</mn><mn>0</mn></mrow>\le 2,500</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mpunct">,</span><span class="mord mathrm">5</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>), the total number of courses. Then the student name lists are given for the courses (numbered from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span>) in the following format: for each course <span class="katex"><span class="katex-mathml"><math><mrow><mi>i</mi></mrow>i</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.65952em;"></span><span class="strut bottom" style="height:0.65952em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">i</span></span></span></span>, first the course index <span class="katex"><span class="katex-mathml"><math><mrow><mi>i</mi></mrow>i</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.65952em;"></span><span class="strut bottom" style="height:0.65952em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">i</span></span></span></span> and the number of registered students <span class="katex"><span class="katex-mathml"><math><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow>N_i</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mn>0</mn><mn>0</mn></mrow>\le 200</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>) are given in a line. Then in the next line, <span class="katex"><span class="katex-mathml"><math><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow>N_i</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span> student names are given. A student name consists of 3 capital English letters plus a one-digit number. Finally the last line contains the <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> names of students who come for a query. All the names and numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print your results in <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines. Each line corresponds to one student, in the following format: first print the student's name, then the total number of registered courses of that student, and finally the indices of the courses in increasing order. The query results must be printed in the same order as input. All the data in a line must be separated by a space, with no extra space at the end of the line.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">11 5
 4 7
 BOB5 DON2 FRA8 JAY9 KAT3 LOR6 ZOE1
 1 4
@@ -25,9 +24,9 @@ BOB5
 5 9
 AMY7 ANN0 BOB5 DON2 FRA8 JAY9 KAT3 LOR6 ZOE1
 ZOE1 ANN0 BOB5 JOE4 JAY9 FRA8 DON2 AMY7 KAT3 LOR6 NON9
-</pre>
-<b>Sample Output:</b><pre>
-ZOE1 2 4 5
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">ZOE1 2 4 5
 ANN0 3 1 2 5
 BOB5 5 1 2 3 4 5
 JOE4 1 2
@@ -38,5 +37,5 @@ AMY7 1 5
 KAT3 3 2 4 5
 LOR6 4 1 2 4 5
 NON9 0
-</pre>
+</code></pre>
 </div>

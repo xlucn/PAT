@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1051. Pop Sequence (25)</h1>
-<div id="problemContent">
-<p>Given a stack which can keep M numbers at most.  Push N numbers in the order of 1, 2, 3, ..., N and pop randomly.  You are supposed to tell if a given sequence of numbers is a possible pop sequence of the stack.  For example, if M is 5 and N is 7, we can obtain 1, 2, 3, 4, 5, 6, 7 from the stack, but not 3, 2, 1, 7, 5, 6, 4.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains 3 numbers (all no more than 1000): M (the maximum capacity of the stack), N (the length of push sequence), and K (the number of pop sequences to be checked).  Then K lines follow, each contains a pop sequence of N numbers.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Pop Sequence</h1>
+<div class="ques-view"><p>Given a stack which can keep <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> numbers at most.  Push <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> numbers in the order of 1, 2, 3, ..., <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> and pop randomly.  You are supposed to tell if a given sequence of numbers is a possible pop sequence of the stack.  For example, if <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> is 5 and <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> is 7, we can obtain 1, 2, 3, 4, 5, 6, 7 from the stack, but not 3, 2, 1, 7, 5, 6, 4.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line contains 3 numbers (all no more than 1000): <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> (the maximum capacity of the stack), <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (the length of push sequence), and <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (the number of pop sequences to be checked).  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> lines follow, each contains a pop sequence of <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> numbers.  All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each pop sequence, print in one line "YES" if it is indeed a possible pop sequence of the stack, or "NO" if not.</p>
-<b>Sample Input:</b><pre>
-5 7 5
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">5 7 5
 1 2 3 4 5 6 7
 3 2 1 7 5 6 4
 7 6 5 4 3 2 1
 5 6 4 3 7 2 1
 1 7 6 5 4 3 2
-</pre>
-<b>Sample Output:</b><pre>
-YES
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">YES
 NO
 NO
 YES
 NO
-</pre>
+</code></pre>
 </div>

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1034. Head of a Gang (30)</h1>
-<div id="problemContent">
-<p>One way that the police finds the head of a gang is to check people's phone calls.  If there is a phone call between A and B, we say that A and B is related.  The weight of a relation is defined to be the total time length of all the phone calls made between the two persons.  A "Gang" is a cluster of more than 2 persons who are related to each other with total relation weight being greater than a given threshold K.  In each gang, the one with maximum total weight is the head.  Now given a list of phone calls, you are supposed to find the gangs and the heads.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains two positive numbers N and K (both less than or equal to 1000), the number of phone calls and the weight threshold, respectively.  Then N lines follow, each in the following format:</p>
-<p>Name1 Name2 Time</p>
-<p>where Name1 and Name2 are the names of people at the two ends of the call, and Time is the length of the call.  A name is a string of three capital letters chosen from A-Z.  A time length is a positive integer which is no more than 1000 minutes.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, first print in a line the total number of gangs.   Then for each gang, print in a line the name of the head and the total number of the members.  It is guaranteed that the head is unique for each gang.  The output must be sorted according to the alphabetical order of the names of the heads.</p>
-<b>Sample Input 1:</b><pre>
-8 59
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Head of a Gang</h1>
+<div class="ques-view"><p>One way that the police finds the head of a gang is to check people's phone calls. If there is a phone call between <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span>, we say that <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span> is related. The weight of a relation is defined to be the total time length of all the phone calls made between the two persons. A "Gang" is a cluster of more than 2 persons who are related to each other with total relation weight being greater than a given threthold <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span>. In each gang, the one with maximum total weight is the head. Now given a list of phone calls, you are supposed to find the gangs and the heads.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains two positive numbers <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (both less than or equal to 1000), the number of phone calls and the weight threthold, respectively. Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines follow, each in the following format:</p>
+<pre><code>Name1 Name2 Time
+</code></pre><p>where <code>Name1</code> and <code>Name2</code> are the names of people at the two ends of the call, and <code>Time</code> is the length of the call. A name is a string of three capital letters chosen from <code>A</code>-<code>Z</code>. A time length is a positive integer which is no more than 1000 minutes.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, first print in a line the total number of gangs. Then for each gang, print in a line the name of the head and the total number of the members. It is guaranteed that the head is unique for each gang. The output must be sorted according to the alphabetical order of the names of the heads.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">8 59
 AAA BBB 10
 BBB AAA 20
 AAA CCC 40
@@ -23,14 +23,14 @@ EEE DDD 70
 FFF GGG 30
 GGG HHH 20
 HHH FFF 10
-</pre>
-<b>Sample Output 1:</b><pre>
-2
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">2
 AAA 3
 GGG 3
-</pre>
-<b>Sample Input 2:</b><pre>
-8 70
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">8 70
 AAA BBB 10
 BBB AAA 20
 AAA CCC 40
@@ -39,8 +39,8 @@ EEE DDD 70
 FFF GGG 30
 GGG HHH 20
 HHH FFF 10
-</pre>
-<b>Sample Output 2:</b><pre>
-0
-</pre>
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">0
+</code></pre>
 </div>

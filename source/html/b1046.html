@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1046. 划拳(15)</h1>
-<div id="problemContent">
-<p>
-划拳是古老中国酒文化的一个有趣的组成部分。酒桌上两人划拳的方法为：每人口中喊出一个数字，同时用手比划出一个数字。如果谁比划出的数字正好等于两人喊出的数字之和，谁就赢了，输家罚一杯酒。两人同赢或两人同输则继续下一轮，直到唯一的赢家出现。
-</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>划拳</h1>
+<div class="ques-view"><p>划拳是古老中国酒文化的一个有趣的组成部分。酒桌上两人划拳的方法为：每人口中喊出一个数字，同时用手比划出一个数字。如果谁比划出的数字正好等于两人喊出的数字之和，谁就赢了，输家罚一杯酒。两人同赢或两人同输则继续下一轮，直到唯一的赢家出现。</p>
 <p>下面给出甲、乙两人的划拳记录，请你统计他们最后分别喝了多少杯酒。</p>
-<p><b>
-输入格式：
-</b></p>
-<p>
-输入第一行先给出一个正整数N（&lt;=100），随后N行，每行给出一轮划拳的记录，格式为：</p>
-<p>甲喊 甲划 乙喊 乙划</p>
-<p>其中“喊”是喊出的数字，“划”是划出的数字，均为不超过100的正整数（两只手一起划）。
-</p>
-<p><b>
-输出格式：
-</b></p>
-<p>
-在一行中先后输出甲、乙两人喝酒的杯数，其间以一个空格分隔。</p>
-<b>输入样例：</b><pre>
-5
+<h3 id="-">输入格式：</h3>
+<p>输入第一行先给出一个正整数 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>\le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>），随后 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> 行，每行给出一轮划拳的记录，格式为：</p>
+<pre><code>甲喊 甲划 乙喊 乙划
+</code></pre><p>其中<code>喊</code>是喊出的数字，<code>划</code>是划出的数字，均为不超过 100 的正整数（两只手一起划）。</p>
+<h3 id="-">输出格式：</h3>
+<p>在一行中先后输出甲、乙两人喝酒的杯数，其间以一个空格分隔。</p>
+<h3 id="-">输入样例：</h3>
+<pre><code class="lang-in">5
 8 10 9 12
 5 10 5 10
 3 8 5 12
 12 18 1 13
 4 16 12 15
-</pre>
-<b>输出样例：</b><pre>
-1 2
-</pre>
+</code></pre>
+<h3 id="-">输出样例：</h3>
+<pre><code class="lang-out">1 2
+</code></pre>
 </div>

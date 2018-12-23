@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1065. A+B and C (64bit) (20)</h1>
-<div id="problemContent">
-<p>Given three integers A, B and C in [-2<sup>63</sup>, 2<sup>63</sup>], you are supposed to tell whether A+B &gt; C.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>The first line of the input gives the positive number of test cases, T (&lt;=10).  Then T test cases follow, each consists of a single line containing three integers A, B and C, separated by single spaces.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, output in one line "Case #X: true" if A+B&amp;gtC;, or "Case #X: false" otherwise, where X is the case number (starting from 1). 
-
-</p>
-<b>Sample Input:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>A+B and C (64bit)</h1>
+<div class="ques-view"><p>Given three integers <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span> in [<span class="katex"><span class="katex-mathml"><math><mrow><mo>−</mo><msup><mn>2</mn><mrow><mn>6</mn><mn>3</mn></mrow></msup><mo separator="true">,</mo><msup><mn>2</mn><mrow><mn>6</mn><mn>3</mn></mrow></msup></mrow>-2^{63}, 2^{63}</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord">−</span><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">6</span><span class="mord mathrm mtight">3</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">6</span><span class="mord mathrm mtight">3</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>], you are supposed to tell whether <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>&gt;</mo><mi>C</mi></mrow>A+B &gt; C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mrel">&gt;</span><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span>.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>The first line of the input gives the positive number of test cases, <span class="katex"><span class="katex-mathml"><math><mrow><mi>T</mi></mrow>T</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn></mrow>\le 10</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span></span></span></span>). Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>T</mi></mrow>T</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span></span> test cases follow, each consists of a single line containing three integers <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><mrow><mi>C</mi></mrow>C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span>, separated by single spaces.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, output in one line <code>Case #X: true</code> if <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>&gt;</mo><mi>C</mi></mrow>A+B&gt;C</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mrel">&gt;</span><span class="mord mathit" style="margin-right:0.07153em;">C</span></span></span></span>, or <code>Case #X: false</code> otherwise, where <span class="katex"><span class="katex-mathml"><math><mrow><mi>X</mi></mrow>X</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07847em;">X</span></span></span></span> is the case number (starting from 1).</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">3
 1 2 3
 2 3 4
 9223372036854775807 -9223372036854775808 0
-</pre>
-<b>Sample Output:</b><pre>
-Case #1: false
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">Case #1: false
 Case #2: true
 Case #3: false
-</pre>
+</code></pre>
 </div>
