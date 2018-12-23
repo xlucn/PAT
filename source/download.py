@@ -1,81 +1,84 @@
 #! /usr/bin/env python3
-"""
-ARCHIVED
-
-This script is for downloading the html files containing problem content of PAT
-problem sets. Since it is written before PAT migrate to new site pintia.cn,
-this script might not be used again. The original html file is already in the
-repo, the newer html files have to be manually copied from the site in the
-developer tools.
-"""
-
 import os
 import sys
 import re
-import requests
+import time
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+import argparse
+import logging
 import config
 
-usage = """Usage: ./download.py [-f]/[id].
-\nUse -f to force redownload
-\n[id] is the combination of a category indicator 'a/b/t' and a 4-digit number,
-e.g. a1001 for problem 1001 in PAT Advanced problem set.
-\nWhen an id is provided, force download is default."""
-
 class PATDownloader:
-    baseurl = "https://www.patest.cn/contests"
-    doctype = '<!DOCTYPE html>'
-    meta = '<meta http-equiv="Content-Type" content="text/html; \
-charset=UTF-8" />'
+    def __init__(self, force):
+        self._force = force
+        options = Options()
+        options.headless = True
+        self._phantomBrowser = webdriver.Firefox(options=options)
+        self._baseUrl = "https://pintia.cn"
+        self._problemSetsUrl = self._baseUrl + "/problem-sets"
+        # the number in the website url
+        self._ProblemID = {
+                'b': "994805260223102976",
+                'a': "994805342720868352",
+                't': "994805148990160896"
+                }
 
-    def download_html(self, category, index):
-        """Download html file for one problem.
+        self._doctype = '<!DOCTYPE html>'
+        self._meta = '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
+        self._style = '''<style type=\"text/css\">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>'''
 
-        Parameters:
-            category: one character, possible options:
-                      'a' for advanced,
-                      'b' for basic,
-                      't' for Top.
-            index: four digit number starting from 1001.
+    def __del__(self):
+        self._phantomBrowser.quit()
 
-        Return:
-            html content
-        """
-        contest_name = 'pat-{}-practise'.format(category)
-        url = "{}/{}/{}".format(self.baseurl, contest_name, index)
-        resp = requests.get(url)
-        return resp.content
+    def _phantomParseSoup(self, url):
+        browser = self._phantomBrowser
+        browser.get(url)
+        # check return here
+        html = browser.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        return soup
 
-    def parse_html(self, content):
-        """
-        parse html file and find h1 tag and div with id 'problemContent'
+    def _parseCatatory(self, category):
+        categoryUrl = "{baseurl}/{ID}/problems".format(baseurl=self._problemSetsUrl,
+                      ID=self._ProblemID[category])
+        logging.info('requesting page \'{}\''.format(categoryUrl))
+        soup = self._phantomParseSoup(categoryUrl)
+        table = soup.find('tbody')
+        if table == None:
+            logging.warning('requesting page \'{}\' failed, will retry (table returned None)'.format(categoryUrl))
+            return None
 
-        :param content:
-            html content
+        rows = table.find_all('tr')
 
-        :return:
-            h1 tag and div tag with id 'problemContent'
-        """
-        soup = BeautifulSoup(content, "html.parser")
-        h1 = soup.find('h1')
-        pc = soup.find(id='problemContent')
-        return h1, pc
+        # request failed
+        if len(rows) < len(config.indexes[category]):
+            logging.warning('requesting page \'{}\' failed, will retry (rows length not enough)'.format(categoryUrl))
+            return None
 
-    def write_html(self, category, index, h1, pc):
-        """
-        write h1 tag and problem content div into a new html file
-        """
-        filename = os.path.join(config.html_dir,
-                                "{}{}.html".format(category, index))
-        with open(filename, 'w') as f:
-            f.write("{}\n{}\n{}\n{}".format(self.doctype, self.meta, h1, pc))
+        problemList = []
+        for row in rows:
+            tdlist = row.find_all('td')
+            link = tdlist[2].find('a')
+            problemList.append({
+                'index': tdlist[1].contents[0],
+                'title': '<h1>{}</h1>'.format(link.contents[0]),
+                'link': self._baseUrl + link['href']
+            })
 
-    def __download(self, category, index, force=False):
-        content = self.download_html(category, index)
-        h1, pc = self.parse_html(content)
-        self.write_html(category, index, h1, pc)
+        return problemList
 
-    def download_all(self, indexes=config.indexes, force=False):
+    def _parseProblem(self, url):
+        soup = self._phantomParseSoup(url)
+        pc = soup.find_all('div', 'ques-view')[1]
+        return pc
+
+    def download(self, indexes=config.indexes):
         """Download all html files
 
         Attributes:
@@ -84,36 +87,67 @@ charset=UTF-8" />'
         if not os.path.exists(config.html_dir):
             os.mkdir(config.html_dir)
         for c in indexes.keys():
-            for i in indexes[c]:
-                html = "{}/{}{}.html".format(config.html_dir, c, i)
-                if force is True or \
-                (force is False and not os.path.exists(html)):
-                    print("downloading " + html)
-                    self.__download(c, i)
-                else:
-                    print(html + " exists")
+            if len(indexes[c]) == 0:
+                continue
 
-    def download(self, category, index, force=True):
-        """
-        download one html file
-        """
-        self.download_all({category: [index]}, force)
+            url_list = None
+            while url_list == None:
+                url_list = self._parseCatatory(c)
+                if url_list == None:
+                    time.sleep(5)
+
+            for url in url_list:
+                if int(url['index']) not in indexes[c]:
+                    continue
+
+                htmlfile = "{}/{}{}.html".format(config.html_dir, c, url['index'])
+                if self._force is True or\
+                  (self._force is False and not os.path.exists(htmlfile)):
+                    logging.info("downloading " + htmlfile)
+                    pc = self._parseProblem(url['link'])
+                    with open(htmlfile, 'w') as f:
+                        f.write("{}\n{}\n{}\n{}\n{}".format(
+                                self._doctype,
+                                self._meta,
+                                self._style,
+                                url['title'],
+                                pc
+                            ))
+                else:
+                    logging.info(htmlfile + " exists")
 
 if __name__ == "__main__":
-    dl = PATDownloader()
-    if len(sys.argv) == 1:
-        dl.download_all()
-    elif len(sys.argv) == 2:
-        if sys.argv[1] == '-f':
-            dl.download_all(force=True)
-        elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
-            print(usage)
-        elif re.match(r"[abt]\d{4}", sys.argv[1]):
-            category = sys.argv[1][0]
-            index = int(sys.argv[1][1:])
-            if index in config.indexes[category]:
-                dl.download(category, index)
-        else:
-            print(usage)
-    else:
-        print(usage)
+    # parse arguments
+    parser = argparse.ArgumentParser(description='''Python script to download
+        problem content from PAT website. I will include the downloaded files
+        in the repo, so this script does not need to be executed.''')
+    parser.add_argument('ids', nargs='*',
+                        metavar='<problem id>',
+                        help='the id of the problem, e.g. 1001 for the first problem')
+    parser.add_argument('-f', '--force-download',
+                        action='store_true',
+                        help='force download html file again even if it exists')
+    args = parser.parse_args()
+
+    # setting logging
+    logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s',
+                        level=logging.INFO)
+
+    dl = PATDownloader(force=args.force_download)
+
+    dlIndexes = {'a': [], 'b': [], 't': []}
+    if len(args.ids) == 0:
+        dlIndexes = config.indexes
+
+    for ID in args.ids:
+        if not re.match(r"[abt]\d{4}", ID):
+            logging.error('This id is not valid: {}'.format(ID))
+            exit(0)
+        category = ID[0]
+        index = int(ID[1:])
+        if index not in config.indexes[category]:
+            logging.error('Index out of range: {}'.format(index))
+            exit(0)
+        dlIndexes[category].append(index)
+
+    dl.download(dlIndexes)
