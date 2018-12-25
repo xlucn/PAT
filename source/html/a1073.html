@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1073. Scientific Notation (20)</h1>
-<div id="problemContent">
-<p>
-Scientific notation is the way that scientists easily handle very large numbers or very small numbers.  The notation matches the regular expression [+-][1-9]"."[0-9]+E[+-][0-9]+ which means that the integer portion has exactly one digit, there is at least one digit in the fractional portion, and the number and its exponent's signs are always provided even when they are positive.</p>
-<p>
-Now given a real number A in scientific notation, you are supposed to print A in the conventional notation while keeping all the significant figures.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>
-Each input file contains one test case. For each case, there is one line containing the real number A in scientific notation. The number is no more than 9999 bytes in length and the exponent's absolute value is no more than 9999. </p>
-<p><b>
-Output Specification:
-</b></p>
-<p>
-For each test case, print in one line the input number A in the conventional notation, with all the significant figures kept, including trailing zeros,</p>
-<b>Sample Input 1:</b><pre>
-+1.23400E-03
-</pre>
-<b>Sample Output 1:</b><pre>
-0.00123400
-</pre>
-<b>Sample Input 2:</b><pre>
--1.2E+10
-</pre>
-<b>Sample Output 2:</b><pre>
--12000000000
-</pre>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Scientific Notation</h1>
+<div class="ques-view"><p>Scientific notation is the way that scientists easily handle very large numbers or very small numbers. The notation matches the regular expression [+-][1-9]<code>.</code>[0-9]+E[+-][0-9]+ which means that the integer portion has exactly one digit, there is at least one digit in the fractional portion, and the number and its exponent's signs are always provided even when they are positive.</p>
+<p>Now given a real number <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> in scientific notation, you are supposed to print <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> in the conventional notation while keeping all the significant figures.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input contains one test case. For each case, there is one line containing the real number <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> in scientific notation. The number is no more than 9999 bytes in length and the exponent's absolute value is no more than 9999.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print in one line the input number <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> in the conventional notation, with all the significant figures kept, including trailing zeros.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">+1.23400E-03
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">0.00123400
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">-1.2E+10
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">-12000000000
+</code></pre>
 </div>

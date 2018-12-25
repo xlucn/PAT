@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1119. Pre- and Post-order Traversals (30)</h1>
-<div id="problemContent">
-<p>Suppose that all the keys in a binary tree are distinct positive integers.  A unique binary tree can be determined by a given pair of postorder and inorder traversal sequences, or preorder and inorder traversal sequences.  However, if only the postorder and preorder traversal sequences are given, the corresponding tree may no longer be unique.</p>
-<p>Now given a pair of postorder and preorder traversal sequences, you are supposed to output the corresponding inorder traversal sequence of the tree.  If the tree is not unique, simply output any one of them.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (&lt;=30), the total number of nodes in the binary tree.  The second line gives the preorder sequence and the third line gives the postorder sequence.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, first printf in a line "Yes" if the tree is unique, or "No" if not.  Then print in the next line the inorder traversal sequence of the corresponding binary tree.  If the solution is not unique, any answer would do. It is guaranteed that at least one solution exists.  All the numbers in a line must be separated by exactly one space, and there must be no extra space at the end of the line.</p>
-<b>Sample Input 1:</b><pre>
-7
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Pre- and Post-order Traversals</h1>
+<div class="ques-view"><p>Suppose that all the keys in a binary tree are distinct positive integers. A unique binary tree can be determined by a given pair of postorder and inorder traversal sequences, or preorder and inorder traversal sequences. However, if only the postorder and preorder traversal sequences are given, the corresponding tree may no longer be unique.</p>
+<p>Now given a pair of postorder and preorder traversal sequences, you are supposed to output the corresponding inorder traversal sequence of the tree. If the tree is not unique, simply output any one of them.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 30), the total number of nodes in the binary tree. The second line gives the preorder sequence and the third line gives the postorder sequence. All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, first printf in a line <code>Yes</code> if the tree is unique, or <code>No</code> if not. Then print in the next line the inorder traversal sequence of the corresponding binary tree. If the solution is not unique, any answer would do. It is guaranteed that at least one solution exists. All the numbers in a line must be separated by exactly one space, and there must be no extra space at the end of the line.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">7
 1 2 3 4 6 7 5
 2 6 7 4 5 3 1
-</pre>
-<b>Sample Output 1:</b><pre>
-Yes
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">Yes
 2 1 6 4 7 3 5
-</pre>
-<b>Sample Input 2:</b><pre>
-4
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">4
 1 2 3 4
 2 4 3 1
-</pre>
-<b>Sample Output 2:</b><pre>
-No
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">No
 2 1 3 4
-</pre>
+</code></pre>
 </div>

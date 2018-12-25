@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1096. Consecutive Factors (20)</h1>
-<div id="problemContent">
-<p>Among all the factors of a positive integer N, there may exist several consecutive numbers.  For example, 630 can be factored as 3*5*6*7, where 5, 6, and 7 are the three consecutive numbers.  Now given any positive N, you are supposed to find the maximum number of consecutive factors, and list the smallest sequence of the consecutive factors.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case, which gives the integer N (1&lt;N&lt;2<sup>31</sup>).</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, print in the first line the maximum number of consecutive factors.  Then in the second line, print the smallest sequence of the consecutive factors in the format "factor[1]*factor[2]*...*factor[k]", where the factors are listed in increasing order, and 1 is NOT included.
-</p>
-<b>Sample Input:</b><pre>
-630
-</pre>
-<b>Sample Output:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Consecutive Factors</h1>
+<div class="ques-view"><p>Among all the factors of a positive integer N, there may exist several consecutive numbers.  For example, 630 can be factored as 3<span class="katex"><span class="katex-mathml"><math><mrow><mo>×</mo></mrow>\times</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.58333em;"></span><span class="strut bottom" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">×</span></span></span></span>5<span class="katex"><span class="katex-mathml"><math><mrow><mo>×</mo></mrow>\times</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.58333em;"></span><span class="strut bottom" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">×</span></span></span></span>6<span class="katex"><span class="katex-mathml"><math><mrow><mo>×</mo></mrow>\times</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.58333em;"></span><span class="strut bottom" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">×</span></span></span></span>7, where 5, 6, and 7 are the three consecutive numbers.  Now given any positive N, you are supposed to find the maximum number of consecutive factors, and list the smallest sequence of the consecutive factors.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case, which gives the integer N (1<span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo></mrow>&lt;</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span></span></span></span>N<span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo><msup><mn>2</mn><mrow><mn>3</mn><mn>1</mn></mrow></msup></mrow>&lt;2^{31}</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.853208em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">3</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>).</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print in the first line the maximum number of consecutive factors.  Then in the second line, print the smallest sequence of the consecutive factors in the format <code>factor[1]*factor[2]*...*factor[k]</code>, where the factors are listed in increasing order, and 1 is NOT included.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">630
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">3
 5*6*7
-</pre>
+</code></pre>
 </div>

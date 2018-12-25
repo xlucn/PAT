@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1075. PAT Judge (25)</h1>
-<div id="problemContent">
-<p>The ranklist of PAT is generated from the status list, which shows the scores of the submittions.  This time you are supposed to generate the ranklist for PAT.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains 3 positive integers, N (&lt;=10<sup>4</sup>), the total number of users, K (&lt;=5), the total number of problems, and M (&lt;=10<sup>5</sup>), the total number of submittions.  It is then assumed that the user id's are 5-digit numbers from 00001 to N, and the problem id's are from 1 to K.  The next line contains K positive integers p[i] (i=1, ..., K), where p[i] corresponds to the full mark of the i-th problem.  Then M lines follow, each gives the information of a submittion in the following format:</p>
-<p>
-user_id problem_id partial_score_obtained</p>
-<p>
-where <b>partial_score_obtained</b> is either -1 if the submittion cannot even pass the compiler, or is an integer in the range [0, p[<b>problem_id</b>]].  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>PAT Judge</h1>
+<div class="ques-view"><p>The ranklist of PAT is generated from the status list, which shows the scores of the submissions.  This time you are supposed to generate the ranklist for PAT.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line contains 3 positive integers, <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>), the total number of users, <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>5</mn></mrow>\le 5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">5</span></span></span></span>), the total number of problems, and <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>), the total number of submissions.  It is then assumed that the user id's are 5-digit numbers from 00001 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>, and the problem id's are from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span>.  The next line contains <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> positive integers <code>p[i]</code> (<code>i</code>=1, ..., <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span>), where <code>p[i]</code> corresponds to the full mark of the i-th problem.  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> lines follow, each gives the information of a submission in the following format:</p>
+<pre><code>user_id problem_id partial_score_obtained
+</code></pre><p>where <code>partial_score_obtained</code> is either <span class="katex"><span class="katex-mathml"><math><mrow><mo>−</mo><mn>1</mn></mrow>-1</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span></span></span></span> if the submission cannot even pass the compiler, or is an integer in the range [0, <code>p[problem_id]</code>].  All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case, you are supposed to output the ranklist in the following format:</p>
-<p>
-rank user_id total_score s[1] ... s[K]</p>
-<p>
-where <b>rank</b> is calculated according to the <b>total_score</b>, and all the users with the same <b>total_score</b> obtain the same <b>rank</b>; and <b>s[i]</b> is the partial score obtained for the i-th problem.  If a user has never submitted a solution for a problem, then "-" must be printed at the corresponding position.  If a user has submitted several solutions to solve one problem, then the highest score will be counted.
-</p>
+<pre><code>rank user_id total_score s[1] ... s[K]
+</code></pre><p>where <code>rank</code> is calculated according to the <code>total_score</code>, and all the users with the same <code>total_score</code> obtain the same <code>rank</code>; and <code>s[i]</code> is the partial score obtained for the <code>i</code>-th problem.  If a user has never submitted a solution for a problem, then "-" must be printed at the corresponding position.  If a user has submitted several solutions to solve one problem, then the highest score will be counted.</p>
 <p>The ranklist must be printed in non-decreasing order of the ranks.  For those who have the same rank, users must be sorted in nonincreasing order according to the number of perfectly solved problems.  And if there is still a tie, then they must be printed in increasing order of their id's.  For those who has never submitted any solution that can pass the compiler, or has never submitted any solution, they must NOT be shown on the ranklist.  It is guaranteed that at least one user can be shown on the ranklist.</p>
-<b>Sample Input:</b><pre>
-7 4 20
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">7 4 20
 20 25 25 30
 00002 2 12
 00007 4 17
@@ -45,12 +39,12 @@ where <b>rank</b> is calculated according to the <b>total_score</b>, and all the
 00001 4 2
 00005 2 -1
 00004 2 0
-</pre>
-<b>Sample Output:</b><pre>
-1 00002 63 20 25 - 18
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">1 00002 63 20 25 - 18
 2 00005 42 20 0 22 -
 2 00007 42 - 25 - 17
 2 00001 42 18 18 4 2
 5 00004 40 15 0 25 -
-</pre>
+</code></pre>
 </div>

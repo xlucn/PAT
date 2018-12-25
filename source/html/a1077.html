@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1077. Kuchiguse (20)</h1>
-<div id="problemContent">
-<p>
-The Japanese language is notorious for its sentence ending particles. Personal preference of such particles can be considered as a reflection of the speaker's personality. Such a preference is called "Kuchiguse" and is often exaggerated artistically in Anime and Manga. For example, the artificial sentence ending particle "nyan~" is often used as a stereotype for characters with a cat-like personality:</p>
-<li>Itai nyan~ (It hurts, nyan~)</li>
-<li>Ninjin wa iyada nyan~ (I hate carrots, nyan~)</li>
-<p>
-Now given a few lines spoken by the same character, can you find her Kuchiguse?</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line is an integer N (2&lt;=N&lt;=100). Following are N file lines of 0~256 (inclusive) characters in length, each representing a character's spoken line. The spoken lines are case sensitive.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, print in one line the kuchiguse of the character, i.e., the longest common suffix of all N lines. If there is no such suffix, write "nai".</p>
-<b>Sample Input 1:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Kuchiguse</h1>
+<div class="ques-view"><p>The Japanese language is notorious for its sentence ending particles. Personal preference of such particles can be considered as a reflection of the speaker's personality. Such a preference is called "Kuchiguse" and is often exaggerated artistically in Anime and Manga. For example, the artificial sentence ending particle "nyan~" is often used as a stereotype for characters with a cat-like personality:</p>
+<ul>
+<li><p>Itai nyan~ (It hurts, nyan~)</p>
+</li>
+<li><p>Ninjin wa iyada nyan~ (I hate carrots, nyan~)</p>
+</li>
+</ul>
+<p>Now given a few lines spoken by the same character, can you find her Kuchiguse?</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line is an integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mn>2</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>2\le N\le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span><span class="mrel">≤</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>). Following are <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> file lines of 0~256 (inclusive) characters in length, each representing a character's spoken line. The spoken lines are case sensitive.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print in one line the kuchiguse of the character, i.e., the longest common suffix of all <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines. If there is no such suffix, write <code>nai</code>.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">3
 Itai nyan~
 Ninjin wa iyadanyan~
 uhhh nyan~
-</pre>
-<b>Sample Output 1:</b><pre>
-nyan~
-</pre>
-<b>Sample Input 2:</b><pre>
-3
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">nyan~
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">3
 Itai!
 Ninjinnwaiyada T_T
 T_T
-</pre>
-<b>Sample Output 2:</b><pre>
-nai
-</pre>
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">nai
+</code></pre>
 </div>

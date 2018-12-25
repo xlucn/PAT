@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1066. Root of AVL Tree (25)</h1>
-<div id="problemContent">
-<p>An AVL tree is a self-balancing binary search tree.  In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property.  Figures 1-4 illustrate the rotation rules.</p>
-<center><img src="http://nos.patest.cn/79_mtxjq1kj3gx.jpg"/>    <img src="http://nos.patest.cn/79_mtxjqnwja2o.jpg"/></center>
-<p></p>
-<center><img src="http://nos.patest.cn/79_mtxjr4gyzdg.jpg"/>    <img src="http://nos.patest.cn/79_mtxjrh51o9y.jpg"/></center>
-<p>Now given a sequence of insertions, you are supposed to tell the root of the resulting AVL tree.</p>
-</div>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Root of AVL Tree</h1>
+<div class="ques-view"><p>An AVL tree is a self-balancing binary search tree.  In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property.  Figures 1-4 illustrate the rotation rules.</p>
+<p></p><center>
+<img alt="" src="https://images.ptausercontent.com/31"/>
+<img alt="" src="https://images.ptausercontent.com/32"/><p></p>
+<p><img alt="" src="https://images.ptausercontent.com/33"/>
+<img alt="" src="https://images.ptausercontent.com/34"/>
+</p></center>
+Now given a sequence of insertions, you are supposed to tell the root of the resulting AVL tree.<p></p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line contains a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>2</mn><mn>0</mn></mrow>\le 20</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">2</span><span class="mord mathrm">0</span></span></span></span>) which is the total number of keys to be inserted.  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> distinct integer keys are given in the next line.  All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print the root of the resulting AVL tree in one line.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">5
+88 70 61 96 120
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">70
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code>7
+88 70 61 96 120 90 65
+</code></pre><h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code>88
+</code></pre></div>

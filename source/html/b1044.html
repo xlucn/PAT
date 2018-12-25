@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1044. 火星数字(20)</h1>
-<div id="problemContent">
-<p>
-火星人是以13进制计数的：</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>火星数字</h1>
+<div class="ques-view"><p>火星人是以 13 进制计数的：</p>
 <ul>
-<li>地球人的0被火星人称为tret。
-<li>地球人数字1到12的火星文分别为：jan, feb, mar, apr, may, jun, jly, aug, sep, oct, nov, dec。
-<li>火星人将进位以后的12个高位数字分别称为：tam, hel, maa, huh, tou, kes, hei, elo, syy, lok, mer, jou。
-</li></li></li></ul>
-<p>例如地球人的数字“29”翻译成火星文就是“hel mar”；而火星文“elo nov”对应地球数字“115”。为了方便交流，请你编写程序实现地球和火星数字之间的互译。
-</p>
-<p><b>
-输入格式：
-</b></p>
-<p>
-输入第一行给出一个正整数N（&lt;100），随后N行，每行给出一个[0, 169)区间内的数字 —— 或者是地球文，或者是火星文。
-</p>
-<p><b>
-输出格式：
-</b></p>
-<p>
-对应输入的每一行，在一行中输出翻译后的另一种语言的数字。</p>
-<b>输入样例：</b><pre>
-4
+<li>地球人的 0 被火星人称为 tret。</li>
+<li>地球人数字 1 到 12 的火星文分别为：jan, feb, mar, apr, may, jun, jly, aug, sep, oct, nov, dec。</li>
+<li>火星人将进位以后的 12 个高位数字分别称为：tam, hel, maa, huh, tou, kes, hei, elo, syy, lok, mer, jou。</li>
+</ul>
+<p>例如地球人的数字 <code>29</code> 翻译成火星文就是 <code>hel mar</code>；而火星文 <code>elo nov</code> 对应地球数字 <code>115</code>。为了方便交流，请你编写程序实现地球和火星数字之间的互译。</p>
+<h3 id="-">输入格式：</h3>
+<p>输入第一行给出一个正整数 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>&lt;100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>），随后 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> 行，每行给出一个 [0, 169) 区间内的数字 —— 或者是地球文，或者是火星文。</p>
+<h3 id="-">输出格式：</h3>
+<p>对应输入的每一行，在一行中输出翻译后的另一种语言的数字。</p>
+<h3 id="-">输入样例：</h3>
+<pre><code class="lang-in">4
 29
 5
 elo nov
 tam
-</pre>
-<b>输出样例：</b><pre>
-hel mar
+</code></pre>
+<h3 id="-">输出样例：</h3>
+<pre><code class="lang-out">hel mar
 may
 115
 13
-</pre>
+</code></pre>
 </div>

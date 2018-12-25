@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1132. Cut Integer (20)</h1>
-<div id="problemContent">
-<p>Cutting an integer means to cut a K digits long integer Z into two integers of (K/2) digits long integers A and B.  For example, after cutting Z = 167334, we have A = 167 and B = 334.  It is interesting to see that Z can be devided by the product of A and B, as 167334 / (167 x 334) = 3.  Given an integer Z, you are supposed to test if it is such an integer.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives a positive integer N (&lt;= 20).  Then N lines follow, each gives an integer Z (10&lt;=Z&lt;=2<sup>31</sup>).  It is guaranteed that the number of digits of Z is an even number.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, print a single line "Yes" if it is such a number, or "No" if not.</p>
-<b>Sample Input:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Cut Integer</h1>
+<div class="ques-view"><p>Cutting an integer means to cut a K digits lone integer Z into two integers of (K/2) digits long integers A and B. For example, after cutting Z = 167334, we have A = 167 and B = 334. It is interesting to see that Z can be devided by the product of A and B, as 167334 / (167 <span class="katex"><span class="katex-mathml"><math><mrow><mo>×</mo></mrow>\times</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.58333em;"></span><span class="strut bottom" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">×</span></span></span></span> 334) = 3. Given an integer Z, you are supposed to test if it is such an integer.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives a positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 20). Then N lines follow, each gives an integer Z (10 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> Z <span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo><msup><mn>2</mn><mrow><mn>3</mn><mn>1</mn></mrow></msup></mrow>&lt;2^{31}</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.853208em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">3</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>). It is guaranteed that the number of digits of Z is an even number.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, print a single line <code>Yes</code> if it is such a number, or <code>No</code> if not.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">3
 167334
 2333
 12345678
-</pre>
-<b>Sample Output:</b><pre>
-Yes
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">Yes
 No
 No
-</pre>
+</code></pre>
 </div>

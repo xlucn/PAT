@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1129. Recommendation System (25)</h1>
-<div id="problemContent">
-<p>Recommendation system predicts the preference that a user would give to an item.  Now you are asked to program a very simple recommendation system that rates the user's preference by the number of times that an item has been accessed by this user.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each test case, the first line contains two positive integers: N (&lt;= 50000), the total number of queries, and K (&lt;= 10), the maximum number of recommendations the system must show to the user.  Then given in the second line are the indices of items that the user is accessing -- for the sake of simplicity, all the items are indexed from 1 to N.  All the numbers in a line are separated by a space.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Recommendation System</h1>
+<div class="ques-view"><p>Recommendation system predicts the preference that a user would give to an item. Now you are asked to program a very simple recommendation system that rates the user's preference by the number of times that an item has been accessed by this user.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each test case, the first line contains two positive integers: N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 50,000), the total number of queries, and K (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 10), the maximum number of recommendations the system must show to the user. Then given in the second line are the indices of items that the user is accessing -- for the sake of simplicity, all the items are indexed from 1 to N. All the numbers in a line are separated by a space.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each case, process the queries one by one. Output the recommendations for each query in a line in the format:</p>
-<p>
-query: rec[1] rec[2] ... rec[K]
-</p>
-<p>
-where <b>query</b> is the item that the user is accessing, and <b>rec[i]</b> (i = 1, ... K) is the i-th item that the system recommends to the user.  The first K items that have been accessed most frequently are supposed to be recommended in non-increasing order of their frequencies.  If there is a tie, the items will be ordered by their indices in increasing order.</p>
-<p>
-Note: there is no output for the first item since it is impossible to give any recommendation at the time.  It is guaranteed to have the output for at least one query.
-</p>
-<b>Sample Input:</b><pre>
-12 3
+<pre><code>query: rec[1] rec[2] ... rec[K]
+</code></pre><p>where <code>query</code> is the item that the user is accessing, and <code>rec[i]</code> (<code>i</code>=1, ... K) is the <code>i</code>-th item that the system recommends to the user. The first K items that have been accessed most frequently are supposed to be recommended in non-increasing order of their frequencies. If there is a tie, the items will be ordered by their indices in increasing order.</p>
+<p>Note: there is no output for the first item since it is impossible to give any recommendation at the time. It is guaranteed to have the output for at least one query.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">12 3
 3 5 7 5 5 3 2 1 8 3 8 12
-</pre>
-<b>Sample Output:</b><pre>
-5: 3
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">5: 3
 7: 3 5
 5: 3 5 7
 5: 5 3 7
@@ -35,5 +30,5 @@ Note: there is no output for the first item since it is impossible to give any r
 3: 5 3 1
 8: 3 5 1
 12: 3 5 8
-</pre>
+</code></pre>
 </div>

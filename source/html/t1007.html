@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1007. Red-black Tree (35)</h1>
-<div id="problemContent">
-<p>There is a kind of binary tree named <b>red-black tree</b> in the data structure. It has the following 5 properties:</p>
-<p>
-(1) Every node is either red or black.<br/>
-(2) The root is black.<br/>
-(3) All the leaves are NULL nodes and are colored black.<br/>
-(4) Each red node must have 2 black descends (may be NULL).<br/>
-(5) All simple paths from any node x to a descendant leaf have the same number of black nodes.</p>
-<p>
-We call a non-NULL node an <b>internal node</b>. From property (5) we can define the <b>black-height</b> of a red-black tree as the number of nodes on the simple path from the root (excluding the root itself) to any NULL leaf (including the NULL leaf). And we can derive that a red-black tree with black height H has at least 2<sup>H</sup>-1 internal nodes.</p>
-<p>Here comes the question: given a positive N, how many distinct red-black trees are there that consist of exactly N internal nodes?</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case which gives a positive integer N (&lt;= 500).</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, print in a line the number of distinct red-black tees with N internal nodes. Since the answer may be very large, output the remainder of it divided by 1000000007 please.</p>
-<b>Sample Input:</b><pre>
-5
-</pre>
-<b>Sample Output:</b><pre>
-8
-</pre>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Red-black Tree</h1>
+<div class="ques-view"><p>There is a kind of binary tree named <strong>red-black tree</strong> in the data structure. It has the following 5 properties:</p>
+<ul>
+<li>(1) Every node is either red or black.</li>
+<li>(2) The root is black.</li>
+<li>(3) All the leaves are NULL nodes and are colored black.</li>
+<li>(4) Each red node must have 2 black descends (may be NULL).</li>
+<li>(5) All simple paths from any node x to a descendant leaf have the same number of black nodes.</li>
+</ul>
+<p>We call a non-NULL node an <strong>internal node</strong>. From property (5) we can define the <strong>black-height</strong> of a red-black tree as the number of nodes on the simple path from the root (excluding the root itself) to any NULL leaf (including the NULL leaf). And we can derive that a red-black tree with black height H has at least <span class="katex"><span class="katex-mathml"><math><mrow><msup><mn>2</mn><mi>H</mi></msup><mo>−</mo><mn>1</mn></mrow>2^H-1</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathrm">2</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.08125em;">H</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span> internal nodes.</p>
+<p>Here comes the question: given a positive <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>, how many distinct red-black trees are there that consist of exactly <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> internal nodes?</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case which gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>5</mn><mn>0</mn><mn>0</mn></mrow>\le  500</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">5</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>).</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, print in a line the number of distinct red-black tees with <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> internal nodes. Since the answer may be very large, output the remainder of it divided by 1000000007 please.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">5
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">8
+</code></pre>
 </div>

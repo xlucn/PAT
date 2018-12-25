@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1036. Boys vs Girls (25)</h1>
-<div id="problemContent">
-<p>This time you are asked to tell the difference between the lowest grade of all the male students and the highest grade of all the female students.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  Each case contains a positive integer N, followed by N lines of student information.  Each line contains a student's name, gender, ID and grade, separated by a space, where name and ID are strings of no more than 10 characters with no space, gender is either F (female) or M (male), and grade is an integer between 0 and 100.  It is guaranteed that all the grades are distinct.<p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, output in 3 lines.  The first line gives the name and ID of the female student with the highest grade, and the second line gives that of the male student with the lowest grade.  The third line gives the difference grade<sub>F</sub>-grade<sub>M</sub>.  If one such kind of student is missing, output "Absent" in the corresponding line, and output "NA" in the third line instead.<p>
-<b>Sample Input 1:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Boys vs Girls</h1>
+<div class="ques-view"><p>This time you are asked to tell the difference between the lowest grade of all the male students and the highest grade of all the female students.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. Each case contains a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>, followed by <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines of student information. Each line contains a student's <code>name</code>, <code>gender</code>, <code>ID</code> and <code>grade</code>, separated by a space, where <code>name</code> and <code>ID</code> are strings of no more than 10 characters with no space, <code>gender</code> is either <code>F</code> (female) or <code>M</code> (male), and <code>grade</code> is an integer between 0 and 100. It is guaranteed that all the grades are distinct.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, output in 3 lines. The first line gives the name and ID of the female student with the highest grade, and the second line gives that of the male student with the lowest grade. The third line gives the difference <span class="katex"><span class="katex-mathml"><math><mrow><mi>g</mi><mi>r</mi><mi>a</mi><mi>d</mi><msub><mi>e</mi><mi>F</mi></msub><mo>−</mo><mi>g</mi><mi>r</mi><mi>a</mi><mi>d</mi><msub><mi>e</mi><mi>M</mi></msub></mrow>grade_F-grade_M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">a</span><span class="mord mathit">d</span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">F</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">a</span><span class="mord mathit">d</span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">M</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>. If one such kind of student is missing, output <code>Absent</code> in the corresponding line, and output <code>NA</code> in the third line instead.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">3
 Joe M Math990112 89
 Mike M CS991301 100
 Mary F EE990830 95
-</pre>
-<b>Sample Output 1:</b><pre>
-Mary EE990830
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">Mary EE990830
 Joe Math990112
 6
-</pre>
-<b>Sample Input 2:</b><pre>
-1
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">1
 Jean M AA980920 60
-</pre>
-<b>Sample Output 2:</b><pre>
-Absent
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">Absent
 Jean AA980920
 NA
-</pre>
-</p></p></p></p></div>
+</code></pre>
+</div>

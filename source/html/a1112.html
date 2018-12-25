@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1112. Stucked Keyboard (20)</h1>
-<div id="problemContent">
-<p>
-On a broken keyboard, some of the keys are always stucked.  So when you type some sentences, the characters corresponding to those keys will appear repeatedly on screen for k times.</p>
-<p>Now given a resulting string on screen, you are supposed to list all the possible stucked keys, and the original string.
-</p>
-<p>
-Notice that there might be some characters that are typed repeatedly.  The stucked key will always repeat output for a fixed k times whenever it is pressed.  For example, when k=3, from the string "thiiis iiisss a teeeeeest" we know that the keys "i" and "e" might be stucked, but "s" is not even though it appears repeatedly sometimes.  The original string could be "this isss a teest".
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the 1st line gives a positive integer k ( 1&lt;k&lt;=100 ) which is the output repeating times of a stucked key.  The 2nd line contains the resulting string on screen, which consists of no more than 1000 characters from {a-z}, {0-9} and "_".  It is guaranteed that the string is non-empty.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>
-For each test case, print in one line the possible stucked keys, in the order of being detected.  Make sure that each key is printed once only.  Then in the next line print the original string.  It is guaranteed that there is at least one stucked key.
-</p>
-<b>Sample Input:</b><pre>
-3
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Stucked Keyboard</h1>
+<div class="ques-view"><p>On a broken keyboard, some of the keys are always stucked. So when you type some sentences, the characters corresponding to those keys will appear repeatedly on screen for <span class="katex"><span class="katex-mathml"><math><mrow><mi>k</mi></mrow>k</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span> times.</p>
+<p>Now given a resulting string on screen, you are supposed to list all the possible stucked keys, and the original string.</p>
+<p>Notice that there might be some characters that are typed repeatedly. The stucked key will always repeat output for a fixed <span class="katex"><span class="katex-mathml"><math><mrow><mi>k</mi></mrow>k</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span> times whenever it is pressed. For example, when <span class="katex"><span class="katex-mathml"><math><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow>k = 3</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">3</span></span></span></span>, from the string <code>thiiis iiisss a teeeeeest</code> we know that the keys <code>i</code> and <code>e</code> might be stucked, but <code>s</code> is not even though it appears repeatedly sometimes. The original string could be <code>this isss a teest</code>.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the 1st line gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>k</mi></mrow>k</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mn>1</mn><mo>&lt;</mo><mi>k</mi><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>1 &lt; k \le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span><span class="mrel">&lt;</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>) which is the output repeating times of a stucked key. The 2nd line contains the resulting string on screen, which consists of no more than 1000 characters from {a-z}, {0-9} and <code>_</code>. It is guaranteed that the string is non-empty.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print in one line the possible stucked keys, in the order of being detected. Make sure that each key is printed once only. Then in the next line print the original string. It is guaranteed that there is at least one stucked key.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">3
 caseee1__thiiis_iiisss_a_teeeeeest
-</pre>
-<b>Sample Output:</b><pre>
-ei
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">ei
 case1__this_isss_a_teest
-</pre>
+</code></pre>
 </div>

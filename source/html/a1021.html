@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1021. Deepest Root (25)</h1>
-<div id="problemContent">
-<p>A graph which is connected and acyclic can be considered a tree.  The height of the tree depends on the selected root.  Now you are supposed to find the root that results in a highest tree.  Such a root is called <i>the deepest root</i>.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains a positive integer N (&lt;=10000) which is the number of nodes, and hence the nodes are numbered from 1 to N.  Then N-1 lines follow, each describes an edge by given the two adjacent nodes' numbers.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, print each of the deepest roots in a line.  If such a root is not unique, print them in increasing order of their numbers.  In case that the given graph is not a tree, print "Error: K components" where K is the number of connected components in the graph.</p>
-<b>Sample Input 1:</b><pre>
-5
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Deepest Root</h1>
+<div class="ques-view"><p>A graph which is connected and acyclic can be considered a tree. The hight of the tree depends on the selected root. Now you are supposed to find the root that results in a highest tree. Such a root is called <strong>the deepest root</strong>.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) which is the number of nodes, and hence the nodes are numbered from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>. Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow>N-1</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span> lines follow, each describes an edge by given the two adjacent nodes' numbers.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, print each of the deepest roots in a line. If such a root is not unique, print them in increasing order of their numbers. In case that the given graph is not a tree, print <code>Error: K components</code> where <code>K</code> is the number of connected components in the graph.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">5
 1 2
 1 3
 1 4
 2 5
-</pre>
-<b>Sample Output 1:</b><pre>
-3
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">3
 4
 5
-</pre>
-<b>Sample Input 2:</b><pre>
-5
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">5
 1 3
 1 4
 2 5
 3 4
-</pre>
-<b>Sample Output 2:</b><pre>
-Error: 2 components
-</pre>
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">Error: 2 components
+</code></pre>
 </div>

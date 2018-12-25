@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1135. Is It A Red-Black Tree (30)</h1>
-<div id="problemContent">
-<p>There is a kind of balanced binary search tree named <b>red-black tree</b> in the data structure. It has the following 5 properties:</p>
-<p>
-(1) Every node is either red or black.<br/>
-(2) The root is black.<br/>
-(3) Every leaf (NULL) is black.<br/>
-(4) If a node is red, then both its children are black.<br/>
-(5) For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
-</p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Is It A Red-Black Tree</h1>
+<div class="ques-view"><p>There is a kind of balanced binary search tree named <strong>red-black tree</strong> in the data structure. It has the following 5 properties:</p>
+<ul>
+<li>(1) Every node is either red or black.</li>
+<li>(2) The root is black.</li>
+<li>(3) Every leaf (NULL) is black.</li>
+<li>(4) If a node is red, then both its children are black.</li>
+<li>(5) For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.</li>
+</ul>
 <p>For example, the tree in Figure 1 is a red-black tree, while the ones in Figure 2 and 3 are not.</p>
-<center>
 <table>
+<thead>
 <tr>
-<td><center><img src="http://nos.patest.cn/pc_ovw0hp2a4xp.jpg"/></center></td>
-<td><center><img src="http://nos.patest.cn/pc_ovw0huh8oas.jpg"/></center></td>
-<td><center><img src="http://nos.patest.cn/pc_ovw0jb719kh.jpg"/></center></td>
+<th style="text-align:center"><img alt="rbf1.jpg" src="https://images.ptausercontent.com/eff80bd4-c833-4818-9786-81680d1b304a.jpg"/></th>
+<th style="text-align:center"><img alt="rbf2.jpg" src="https://images.ptausercontent.com/b11184df-eaab-451c-b7d4-7fc1dc82b028.jpg"/></th>
+<th style="text-align:center"><img alt="rbf3.jpg" src="https://images.ptausercontent.com/625c532b-22fc-47b9-80ea-0537cf00d922.jpg"/></th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td><center>Figure 1</center></td>
-<td><center>Figure 2</center></td>
-<td><center>Figure 3</center></td>
+<td style="text-align:center">Figure 1</td>
+<td style="text-align:center">Figure 2</td>
+<td style="text-align:center">Figure 3</td>
 </tr>
+</tbody>
 </table>
-</center>
 <p>For each given binary search tree, you are supposed to tell if it is a legal red-black tree.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains several test cases.  The first line gives a positive integer K (&lt;=30) which is the total number of cases.  For each case, the first line gives a positive integer N (&lt;=30), the total number of nodes in the binary tree.  The second line gives the preorder traversal sequence of the tree.  While all the keys in a tree are positive integers, we use negative signs to represent red nodes.  All the numbers in a line are separated by a space.  The sample input cases correspond to the trees shown in Figure 1, 2 and 3.</p>
-<p><b>
-Output Specification:
-</b></p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains several test cases.  The first line gives a positive integer K (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span>30) which is the total number of cases.  For each case, the first line gives a positive integer N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span>30), the total number of nodes in the binary tree.  The second line gives the preorder traversal sequence of the tree.  While all the keys in a tree are positive integers, we use negative signs to represent red nodes.  All the numbers in a line are separated by a space.  The sample input cases correspond to the trees shown in Figure 1, 2 and 3.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each test case, print in a line "Yes" if the given tree is a red-black tree, or "No" if not.</p>
-<b>Sample Input:</b><pre>
-3
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">3
 9
 7 -2 1 5 -4 -11 8 14 -15
 9
 11 -2 1 -7 5 -4 8 14 -15
 8
 10 -7 5 -6 8 15 -11 17
-</pre>
-<b>Sample Output:</b><pre>
-Yes
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">Yes
 No
 No
-</pre>
+</code></pre>
 </div>

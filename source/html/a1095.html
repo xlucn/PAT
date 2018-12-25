@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1095. Cars on Campus (30)</h1>
-<div id="problemContent">
-<p>Zhejiang University has 6 campuses and a lot of gates.  From each gate we can collect the in/out times and the plate numbers of the cars crossing the gate.  Now with all the information available, you are supposed to tell, at any specific time point, the number of cars parking on campus, and at the end of the day find the cars that have parked for the longest time period.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  Each case starts with two positive integers N (&lt;= 10000), the number of records, and K (&lt;= 80000) the number of queries.  Then N lines follow, each gives a record in the format</p>
-<p>plate_number hh:mm:ss status</p>
-<p>where <b>plate_number</b> is a string of 7 English capital letters or 1-digit numbers; <b>hh:mm:ss</b> represents the time point in a day by hour:minute:second, with the earliest time being 00:00:00 and the latest 23:59:59; and <b>status</b> is either <b>in</b> or <b>out</b>.</p>
-<p>Note that all times will be within a single day. Each "in" record is paired with the chronologically next record for the same car provided it is an "out" record. Any "in" records that are not paired with an "out" record are ignored, as are "out" records not paired with an "in" record. It is guaranteed that at least one car is well paired in the input, and no car is both "in" and "out" at the same moment. Times are recorded using a 24-hour clock.
-</p>
-<p>
-Then K lines of queries follow, each gives a time point in the format <b>hh:mm:ss</b>.  Note: the queries are given in <b>ascending</b> order of the times.</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Cars on Campus</h1>
+<div class="ques-view"><p>Zhejiang University has 8 campuses and a lot of gates.  From each gate we can collect the in/out times and the plate numbers of the cars crossing the gate.  Now with all the information available, you are supposed to tell, at any specific time point, the number of cars parking on campus, and at the end of the day find the cars that have parked for the longest time period.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  Each case starts with two positive integers <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>), the number of records, and <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>8</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 8\times 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">8</span><span class="mbin">×</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) the number of queries.  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines follow, each gives a record in the format:</p>
+<pre><code>plate_number hh:mm:ss status
+</code></pre><p>where <code>plate_number</code> is a string of 7 English capital letters or 1-digit numbers; <code>hh:mm:ss</code> represents the time point in a day by hour:minute:second, with the earliest time being <code>00:00:00</code> and the latest <code>23:59:59</code>; and <code>status</code> is either <code>in</code> or <code>out</code>.</p>
+<p>Note that all times will be within a single day. Each <code>in</code> record is paired with the chronologically next record for the same car provided it is an <code>out</code> record. Any <code>in</code> records that are not paired with an <code>out</code> record are ignored, as are <code>out</code> records not paired with an <code>in</code> record. It is guaranteed that at least one car is well paired in the input, and no car is both <code>in</code> and <code>out</code> at the same moment. Times are recorded using a 24-hour clock.</p>
+<p>Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> lines of queries follow, each gives a time point in the format <code>hh:mm:ss</code>.  Note: the queries are given in <strong>accending</strong> order of the times.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each query, output in a line the total number of cars parking on campus.  The last line of output is supposed to give the plate number of the car that has parked for the longest time period, and the corresponding time length.  If such a car is not unique, then output all of their plate numbers in a line in alphabetical order, separated by a space.</p>
-<b>Sample Input:</b><pre>
-16 7
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">16 7
 JH007BD 18:00:01 in
 ZD00001 11:30:08 out
 DB8888A 13:00:00 out
@@ -42,9 +40,9 @@ DB8888A 06:30:50 in
 14:00:00
 18:00:00
 23:59:00
-</pre>
-<b>Sample Output:</b><pre>
-1
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">1
 4
 5
 2
@@ -52,5 +50,5 @@ DB8888A 06:30:50 in
 0
 1
 JH007BD ZD00001 07:20:09
-</pre>
+</code></pre>
 </div>

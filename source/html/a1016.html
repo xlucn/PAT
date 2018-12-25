@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1016. Phone Bills (25)</h1>
-<div id="problemContent">
-<p>A long-distance telephone company charges its customers by the following rules:</p>
-<p>
-Making a long-distance call costs a certain amount per minute, depending on the time of day when the call is made.  When a customer starts connecting a long-distance call, the time will be recorded, and so will be the time when the customer hangs up the phone.  Every calendar month, a bill is sent to the customer for each minute called (at a rate determined by the time of day).  Your job is to prepare the bills for each month, given a set of phone call records.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  Each case has two parts:  the rate structure, and the phone call records.</p>
-<p>The rate structure consists of a line with 24 non-negative integers denoting the toll (cents/minute) from 00:00 - 01:00, the toll from 01:00 - 02:00, and so on for each hour in the day. </p>
-<p>The next line contains a positive number N (&lt;= 1000), followed by N lines of records.  Each phone call record consists of the name of the customer (string of up to 20 characters without space), the time and date (mm:dd:hh:mm), and the word "on-line" or "off-line".</p>
-<p>For each test case, all dates will be within a single month.  Each "on-line" record is paired with the chronologically next record for the same customer provided it is an "off-line" record.  Any "on-line" records that are not paired with an "off-line" record are ignored, as are "off-line" records not paired with an "on-line" record.  It is guaranteed that at least one call is well paired in the input.  You may assume that no two records for the same customer have the same time.  Times are recorded using a 24-hour clock.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each test case, you must print a phone bill for each customer. </p>
-<p>Bills must be printed in alphabetical order of customers' names. 
-For each customer, first print in a line the name of the customer and the month of the bill in the format shown by the sample.  Then for each time period of a call, print in one line the beginning and ending time and date (dd:hh:mm), the lasting time (in minute) and the charge of the call.  The calls must be listed in chronological order.  Finally, print the total charge for the month in the format shown by the sample.</p>
-<b>Sample Input:</b><pre>
-10 10 10 10 10 10 20 20 20 15 15 15 15 15 15 15 20 30 20 15 15 10 10 10
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Phone Bills</h1>
+<div class="ques-view"><p>A long-distance telephone company charges its customers by the following rules:</p>
+<p>Making a long-distance call costs a certain amount per minute, depending on the time of day when the call is made. When a customer starts connecting a long-distance call, the time will be recorded, and so will be the time when the customer hangs up the phone. Every calendar month, a bill is sent to the customer for each minute called (at a rate determined by the time of day). Your job is to prepare the bills for each month, given a set of phone call records.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. Each case has two parts: the rate structure, and the phone call records.</p>
+<p>The rate structure consists of a line with 24 non-negative integers denoting the toll (cents/minute) from 00:00 - 01:00, the toll from 01:00 - 02:00, and so on for each hour in the day.</p>
+<p>The next line contains a positive number <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow>\le 1000</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>), followed by <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines of records. Each phone call record consists of the name of the customer (string of up to 20 characters without space), the time and date (<code>mm:dd:hh:mm</code>), and the word <code>on-line</code> or <code>off-line</code>.</p>
+<p>For each test case, all dates will be within a single month. Each <code>on-line</code> record is paired with the chronologically next record for the same customer provided it is an <code>off-line</code> record. Any <code>on-line</code> records that are not paired with an <code>off-line</code> record are ignored, as are <code>off-line</code> records not paired with an <code>on-line</code> record. It is guaranteed that at least one call is well paired in the input. You may assume that no two records for the same customer have the same time. Times are recorded using a 24-hour clock.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, you must print a phone bill for each customer.</p>
+<p>Bills must be printed in alphabetical order of customers' names. For each customer, first print in a line the name of the customer and the month of the bill in the format shown by the sample. Then for each time period of a call, print in one line the beginning and ending time and date (<code>dd:hh:mm</code>), the lasting time (in minute) and the charge of the call. The calls must be listed in chronological order. Finally, print the total charge for the month in the format shown by the sample.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">10 10 10 10 10 10 20 20 20 15 15 15 15 15 15 15 20 30 20 15 15 10 10 10
 10
 CYLL 01:01:06:01 on-line
 CYLL 01:28:16:05 off-line
@@ -31,9 +29,9 @@ aaa 01:02:00:01 on-line
 CYLL 01:28:15:41 on-line
 aaa 01:05:02:24 on-line
 aaa 01:04:23:59 off-line
-</pre>
-<b>Sample Output:</b><pre>
-CYJJ 01
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">CYJJ 01
 01:05:59 01:07:00 61 $12.10
 Total amount: $12.10
 CYLL 01
@@ -43,5 +41,5 @@ Total amount: $28.25
 aaa 01
 02:00:01 04:23:59 4318 $638.80
 Total amount: $638.80
-</pre>
+</code></pre>
 </div>

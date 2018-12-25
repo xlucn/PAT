@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>解码PAT准考证</h1>
+<div class="ques-view"><p>PAT 准考证号由 4 部分组成：</p>
+<ul>
+<li>第 1 位是级别，即 <code>T</code> 代表顶级；<code>A</code> 代表甲级；<code>B</code> 代表乙级；</li>
+<li>第 2~4 位是考场编号，范围从 101 到 999；</li>
+<li>第 5~10 位是考试日期，格式为年、月、日顺次各占 2 位；</li>
+<li>最后 11~13 位是考生编号，范围从 000 到 999。</li>
+</ul>
+<p>现给定一系列考生的准考证号和他们的成绩，请你按照要求输出各种统计信息。</p>
+<h3 id="-">输入格式：</h3>
+<p>输入首先在一行中给出两个正整数 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>\le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>）和 <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>\le 100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>），分别为考生人数和统计要求的个数。</p>
+<p>接下来 <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> 行，每行给出一个考生的准考证号和其分数（在区间 <span class="katex"><span class="katex-mathml"><math><mrow><mo>[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mn>0</mn><mn>0</mn><mo>]</mo></mrow>[0, 100]</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">[</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span><span class="mclose">]</span></span></span></span> 内的整数），其间以空格分隔。</p>
+<p>考生信息之后，再给出 <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> 行，每行给出一个统计要求，格式为：<code>类型 指令</code>，其中</p>
+<ul>
+<li><code>类型</code> 为 1 表示要求按分数非升序输出某个指定级别的考生的成绩，对应的 <code>指令</code> 则给出代表指定级别的字母；</li>
+<li><code>类型</code> 为 2 表示要求将某指定考场的考生人数和总分统计输出，对应的 <code>指令</code> 则给出指定考场的编号；</li>
+<li><code>类型</code> 为 3 表示要求将某指定日期的考生人数分考场统计输出，对应的 <code>指令</code> 则给出指定日期，格式与准考证上日期相同。</li>
+</ul>
+<h3 id="-">输出格式：</h3>
+<p>对每项统计要求，首先在一行中输出 <code>Case #: 要求</code>，其中 <code>#</code> 是该项要求的编号，从 1 开始；<code>要求</code> 即复制输入给出的要求。随后输出相应的统计结果：</p>
+<ul>
+<li><code>类型</code> 为 1 的指令，输出格式与输入的考生信息格式相同，即 <code>准考证号 成绩</code>。对于分数并列的考生，按其准考证号的字典序递增输出（题目保证无重复准考证号）；</li>
+<li><code>类型</code> 为 2 的指令，按 <code>人数 总分</code> 的格式输出；</li>
+<li><code>类型</code> 为 3 的指令，输出按人数非递增顺序，格式为 <code>考场编号 总人数</code>。若人数并列则按考场编号递增顺序输出。</li>
+</ul>
+<p>如果查询结果为空，则输出 <code>NA</code>。</p>
+<h3 id="-">输入样例：</h3>
+<pre><code class="lang-in">8 4
+B123180908127 99
+B102180908003 86
+A112180318002 98
+T107150310127 62
+A107180908108 100
+T123180908010 78
+B112160918035 88
+A107180908021 98
+1 A
+2 107
+3 180908
+2 999
+</code></pre>
+<h3 id="-">输出样例：</h3>
+<pre><code class="lang-out">Case 1: 1 A
+A107180908108 100
+A107180908021 98
+A112180318002 98
+Case 2: 2 107
+3 260
+Case 3: 3 180908
+107 2
+123 2
+102 1
+Case 4: 2 999
+NA
+</code></pre>
+</div>

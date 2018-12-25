@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>LCA in a Binary Tree</h1>
+<div class="ques-view"><p>The lowest common ancestor (LCA) of two nodes U and V in a tree is the deepest node that has both U and V as descendants.</p>
+<p>Given any two nodes in a binary tree, you are supposed to find their LCA.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives two positive integers: M (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 1,000), the number of pairs of nodes to be tested; and N (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 10,000), the number of keys in the binary tree, respectively. In each of the following two lines, N distinct integers are given as the inorder and preorder traversal sequences of the binary tree, respectively.  It is guaranteed that the binary tree can be uniquely determined by the input sequences.  Then M lines follow, each contains a pair of integer keys U and V. All the keys are in the range of <strong>int</strong>.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each given pair of U and V, print in a line <code>LCA of U and V is A.</code> if the LCA is found and <code>A</code> is the key.  But if <code>A</code> is one of U and V, print <code>X is an ancestor of Y.</code> where <code>X</code> is <code>A</code> and <code>Y</code> is the other node.  If U or V is not found in the binary tree, print in a line <code>ERROR: U is not found.</code> or <code>ERROR: V is not found.</code> or <code>ERROR: U and V are not found.</code>.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">6 8
+7 2 3 4 6 5 1 8
+5 3 7 2 6 4 8 1
+2 6
+8 1
+7 9
+12 -3
+0 8
+99 99
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">LCA of 2 and 6 is 3.
+8 is an ancestor of 1.
+ERROR: 9 is not found.
+ERROR: 12 and -3 are not found.
+ERROR: 0 is not found.
+ERROR: 99 and 99 are not found.
+</code></pre>
+</div>

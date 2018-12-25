@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1004. Counting Leaves (30)</h1>
-<div id="problemContent">
-  A family hierarchy is usually presented by a pedigree tree.  Your job is to count those family members who have no child.<p>
-<p><b>Input</b></p>
-<p>Each input file contains one test case. Each case starts with a line containing 0 &lt; N &lt; 100, the number of nodes in a tree, and M (&lt; N), the number of non-leaf nodes.  Then M lines follow, each in the format:</p>
-<pre>
-ID K ID[1] ID[2] ... ID[K]
-</pre>
-where ID is a two-digit number representing a given non-leaf node, K is the number of its children, followed by a sequence of two-digit ID's of its children.  For the sake of simplicity, let us fix the root ID to be 01.</p>
-<p><b>Output</b></p>
-<p>For each test case, you are supposed to count those family members who have no child <b>for every seniority level</b> starting from the root.  The numbers must be printed in a line, separated by a space, and there must be no extra space at the end of each line.</p>
-<p>The sample case represents a tree with only 2 nodes, where 01 is the root and 02 is its only child.  Hence on the root 01 level, there is 0 leaf node; and on the next level, there is 1 leaf node.  Then we should output "0 1" in a line.</p>
-<b>Sample Input</b><pre>
-2 1
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Counting Leaves</h1>
+<div class="ques-view"><p>A family hierarchy is usually presented by a pedigree tree.  Your job is to count those family members who have no child.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. Each case starts with a line  containing <span class="katex"><span class="katex-mathml"><math><mrow><mn>0</mn><mo>&lt;</mo><mi>N</mi><mo>&lt;</mo><mn>1</mn><mn>0</mn><mn>0</mn></mrow>0&lt;N&lt;100</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span><span class="mrel">&lt;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">&lt;</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">0</span></span></span></span>, the number of nodes in a tree, and <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>&lt;</mo><mi>N</mi></mrow>&lt;N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>), the number of non-leaf nodes.  Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> lines follow, each in the format:</p>
+<pre><code>ID K ID[1] ID[2] ... ID[K]
+</code></pre><p>where <code>ID</code> is a two-digit number representing a given non-leaf node, <code>K</code> is the number of its children, followed by a sequence of two-digit <code>ID</code>'s of its children.  For the sake of simplicity, let us fix the root ID to be <code>01</code>.</p>
+<p>The input ends with <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> being 0.  That case must NOT be processed.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each test case, you are supposed to count those family members who have no child <strong>for every seniority level</strong> starting from the root.  The numbers must be printed in a line, separated by a space, and there must be no extra space at the end of each line.</p>
+<p>The sample case represents a tree with only 2 nodes, where <code>01</code> is the root and <code>02</code> is its only child.  Hence on the root <code>01</code> level, there is <code>0</code> leaf node; and on the next level, there is <code>1</code> leaf node.  Then we should output <code>0 1</code> in a line.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">2 1
 01 1 02
-</pre>
-<b>Sample Output</b><pre>
-0 1
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">0 1
+</code></pre>
 </div>

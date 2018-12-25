@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1017. A除以B (20)</h1>
-<div id="problemContent">
-<p>
-本题要求计算A/B，其中A是不超过1000位的正整数，B是1位正整数。你需要输出商数Q和余数R，使得A = B * Q + R成立。</p>
-<p><b>
-输入格式：
-</b></p>
-<p>输入在1行中依次给出A和B，中间以1空格分隔。
-</p>
-<p><b>
-输出格式：
-</b></p>
-<p>在1行中依次输出Q和R，中间以1空格分隔。
-</p>
-<b>输入样例：</b><pre>
-123456789050987654321 7
-</pre>
-<b>输出样例：</b><pre>
-17636684150141093474 3
-</pre>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>A除以B</h1>
+<div class="ques-view"><p>本题要求计算 <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi><mi mathvariant="normal">/</mi><mi>B</mi></mrow>A/B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mord mathrm">/</span><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> 是不超过 1000 位的正整数，<span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span> 是 1 位正整数。你需要输出商数 <span class="katex"><span class="katex-mathml"><math><mrow><mi>Q</mi></mrow>Q</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit">Q</span></span></span></span> 和余数 <span class="katex"><span class="katex-mathml"><math><mrow><mi>R</mi></mrow>R</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span>，使得 <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi><mo>=</mo><mi>B</mi><mo>×</mo><mi>Q</mi><mo>+</mo><mi>R</mi></mrow>A = B \times Q + R</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mbin">×</span><span class="mord mathit">Q</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span> 成立。</p>
+<h3 id="-">输入格式：</h3>
+<p>输入在一行中依次给出 <span class="katex"><span class="katex-mathml"><math><mrow><mi>A</mi></mrow>A</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><mrow><mi>B</mi></mrow>B</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span></span></span></span>，中间以 1 空格分隔。</p>
+<h3 id="-">输出格式：</h3>
+<p>在一行中依次输出 <span class="katex"><span class="katex-mathml"><math><mrow><mi>Q</mi></mrow>Q</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit">Q</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><mrow><mi>R</mi></mrow>R</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span>，中间以 1 空格分隔。</p>
+<h3 id="-">输入样例：</h3>
+<pre><code class="lang-in">123456789050987654321 7
+</code></pre>
+<h3 id="-">输出样例：</h3>
+<pre><code class="lang-out">17636684150141093474 3
+</code></pre>
 </div>

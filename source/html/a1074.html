@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1074. Reversing Linked List (25)</h1>
-<div id="problemContent">
-<p>Given a constant K and a singly linked list L, you are supposed to reverse the links of every K elements on L.  For example, given L being 1→2→3→4→5→6, if K = 3, then you must output 3→2→1→6→5→4; if K = 4, you must output 4→3→2→1→5→6.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains the address of the first node, a positive N (&lt;= 10<sup>5</sup>) which is the total number of nodes, and a positive K (&lt;=N) which is the length of the sublist to be reversed.  The address of a node is a 5-digit nonnegative integer, and NULL is represented by -1.</p>
-<p>Then N lines follow, each describes a node in the format:</p>
-<p><i>Address Data Next</i></p>
-<p>where <i>Address</i> is the position of the node, <i>Data</i> is an integer, and <i>Next</i> is the position of the next node.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, output the resulting ordered linked list.  Each node occupies a line, and is printed in the same format as in the input.
-</p>
-<b>Sample Input:</b><pre>
-00100 6 4
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Reversing Linked List</h1>
+<div class="ques-view"><p>Given a constant <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> and a singly linked list <span class="katex"><span class="katex-mathml"><math><mrow><mi>L</mi></mrow>L</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span>, you are supposed to reverse the links of every <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> elements on <span class="katex"><span class="katex-mathml"><math><mrow><mi>L</mi></mrow>L</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span>.  For example, given <span class="katex"><span class="katex-mathml"><math><mrow><mi>L</mi></mrow>L</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span> being 1→2→3→4→5→6, if <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi><mo>=</mo><mn>3</mn></mrow>K = 3</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span><span class="mrel">=</span><span class="mord mathrm">3</span></span></span></span>, then you must output 3→2→1→6→5→4; if <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi><mo>=</mo><mn>4</mn></mrow>K = 4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span><span class="mrel">=</span><span class="mord mathrm">4</span></span></span></span>, you must output 4→3→2→1→5→6.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case.  For each case, the first line contains the address of the first node, a positive <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) which is the total number of nodes, and a positive <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mi>N</mi></mrow>\le N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>) which is the length of the sublist to be reversed.  The address of a node is a 5-digit nonnegative integer, and NULL is represented by -1.</p>
+<p>Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines follow, each describes a node in the format:</p>
+<pre><code>Address Data Next
+</code></pre><p>where <code>Address</code> is the position of the node, <code>Data</code> is an integer, and <code>Next</code> is the position of the next node.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, output the resulting ordered linked list.  Each node occupies a line, and is printed in the same format as in the input.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">00100 6 4
 00000 4 99999
 00100 1 12309
 68237 6 -1
 33218 3 00000
 99999 5 68237
 12309 2 33218
-</pre>
-<b>Sample Output:</b><pre>
-00000 4 33218
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">00000 4 33218
 33218 3 12309
 12309 2 00100
 00100 1 99999
 99999 5 68237
 68237 6 -1
-</pre>
+</code></pre>
 </div>

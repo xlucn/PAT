@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1032. Sharing (25)</h1>
-<div id="problemContent">
-<p>To store English words, one method is to use linked lists and store a word letter by letter.  To save some space, we may let the words share the same sublist if they share the same suffix.  For example, "loading" and "being" are stored as showed in Figure 1.</p>
-<center><img src="http://nos.patest.cn/1w_m16pjsommxz.jpg"/><br/>Figure 1</center>
-<p>You are supposed to find the starting position of the common suffix (e.g. the position of "i" in Figure 1).</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line contains two addresses of nodes and a positive N (&lt;= 10<sup>5</sup>), where the two addresses are the addresses of the first nodes of the two words, and N is the total number of nodes.  The address of a node is a 5-digit positive integer, and NULL is represented by -1.</p>
-<p>Then N lines follow, each describes a node in the format:</p>
-<p><i>Address Data Next</i></p>
-<p>where <i>Address</i> is the position of the node, <i>Data</i> is the letter contained by this node which is an English letter chosen from {a-z, A-Z}, and <i>Next</i> is the position of the next node.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each case, simply output the 5-digit starting position of the common suffix.  If the two words have no common suffix, output "-1" instead.
-</p>
-<b>Sample Input 1:</b><pre>
-11111 22222 9
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Sharing</h1>
+<div class="ques-view"><p>To store English words, one method is to use linked lists and store a word letter by letter. To save some space, we may let the words share the same sublist if they share the same suffix. For example, <code>loading</code> and <code>being</code> are stored as showed in Figure 1.</p>
+<p><img alt="fig.jpg" src="https://images.ptausercontent.com/ef0a1fdf-3d9f-46dc-9a27-21f989270fd4.jpg"/></p>
+<p>Figure 1</p>
+<p>You are supposed to find the starting position of the common suffix (e.g. the position of <code>i</code> in Figure 1).</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line contains two addresses of nodes and a positive <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow>\le 10^5</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>), where the two addresses are the addresses of the first nodes of the two words, and <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> is the total number of nodes. The address of a node is a 5-digit positive integer, and NULL is represented by <span class="katex"><span class="katex-mathml"><math><mrow><mo>−</mo><mn>1</mn></mrow>-1</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span></span></span></span>.</p>
+<p>Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> lines follow, each describes a node in the format:</p>
+<pre><code>Address Data Next
+</code></pre><p>where<code>Address</code> is the position of the node, <code>Data</code> is the letter contained by this node which is an English letter chosen from { a-z, A-Z }, and <code>Next</code> is the position of the next node.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each case, simply output the 5-digit starting position of the common suffix. If the two words have no common suffix, output <code>-1</code> instead.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">11111 22222 9
 67890 i 00002
 00010 a 12345
 00003 g -1
@@ -28,18 +28,18 @@ Output Specification:
 11111 L 00001
 23456 e 67890
 00001 o 00010
-</pre>
-<b>Sample Output 1:</b><pre>
-67890
-</pre>
-<b>Sample Input 2:</b><pre>
-00001 00002 4
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">67890
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">00001 00002 4
 00001 a 10001
 10001 s -1
 00002 a 10002
 10002 t -1
-</pre>
-<b>Sample Output 2:</b><pre>
--1
-</pre>
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">-1
+</code></pre>
 </div>

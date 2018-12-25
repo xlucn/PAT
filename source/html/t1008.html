@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1008. Airline Routes (35)</h1>
-<div id="problemContent">
-<p>Given a map of airline routes, you are supposed to check if a round trip can be planned between any pair of cities.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives two positive integers N (2&lt;= N &lt;= 10<sup>4</sup>) and M (&lt;=6N), which are the total number of cities (hence the cities are numbered from 1 to N) and the number of airline routes, respectively.  Then M lines follow, each gives the information of a route in the format of the source city index first, and then the destination city index, separated by a space.  It is guaranteed that the source is never the same as the destination.</p>
-<p>After the map information, another positive integer K is given, which is the number of queries.  Then K lines of queries follow, each contains a pair of distinct cities' indices.</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>For each query, output in a line "Yes" if a round trip is possible, or "No" if not.</p>
-<b>Sample Input:</b><pre>
-12 19
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Airline Routes</h1>
+<div class="ques-view"><p>Given a map of airline routes, you are supposed to check if a round trip can be planned between any pair of cities.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives two positive integers <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mn>2</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow>2\le N \le 10^4</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.950078em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span><span class="mrel">≤</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≤</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span>) and <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo><mn>6</mn><mi>N</mi></mrow>\le 6N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span><span class="mord mathrm">6</span><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>), which are the total number of cities (hence the cities are numbered from 1 to <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>) and the number of airline routes, respectively. Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>M</mi></mrow>M</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> lines follow, each gives the information of a route in the format of the source city index first, and then the destination city index, separated by a space. It is guaranteed that the source is never the same as the destination.</p>
+<p>After the map information, another positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> is given, which is the number of queries. Then <span class="katex"><span class="katex-mathml"><math><mrow><mi>K</mi></mrow>K</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span> lines of queries follow, each contains a pair of distinct cities' indices.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>For each query, output in a line <code>Yes</code> if a round trip is possible, or <code>No</code> if not.</p>
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">12 19
 3 4
 1 3
 12 11
@@ -54,27 +54,27 @@ Output Specification:
 7 3
 6 9
 6 8
-</pre>
-<b>Sample Output:</b><pre>
-Yes
-Yes
-No
-No
-No
-No
-No
-No
-Yes
-Yes
-Yes
-No
-Yes
-Yes
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">Yes
 Yes
 No
 No
 No
 No
 No
-</pre>
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+No
+No
+</code></pre>
 </div>

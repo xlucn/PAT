@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1019. Separate the Animals (35)</h1>
-<div id="problemContent">
-<p>There are some animals in a zoo which can be described as a grid with N rows and M columns.  Your task is to place some obstacles so that no pairs of animals can reach each other.
-</p>
-<p>
-Two animals can <b>reach each other</b> if and only if their cells are <b>4-connected</b>.  For example, in Figure 1, the central blue cell can be reached by the four red cells, and cannot be reached by the other four white cells.
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw14g1rloy.JPG"/><br/>Figure 1</center>
-<p>
-What is more, you must put obstacles in exactly K cells, which are 4-connected and form exactly H holes.  Here a <b>hole</b> is defined as a 4-connected part with finitely many open cells while the zoo is placed in an infinite open grid. For example, there are 2 holes (the green and the yellow areas) in Figure 2.
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw14ksk9ux.JPG"/><br/>Figure 2</center>
-<p>
-For the following grid with two animals:
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw1511p3u3.jpg"/><br/>Figure 3</center>
-<p>
-If K = 8 and H = 1, one way to separate them is the following:
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw15u5uah0.jpg"/><br/>Figure 4</center>
-<p>
-Figure 5 is illegal because it contains no hole.
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw1bm9izxb.jpg"/><br/>Figure 5</center>
-<p>
-Figure 6 is also illegal because the obstacles are not 4-connected.
-</p>
-<center><img src="http://nos.patest.cn/pe_ovw1c4ccr11.jpg"/><br/>Figure 6</center>
-<p>
-Given some animals, you are supposed to count the number of different solutions.
-</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case.  For each case, the first line gives four integers: N, M, K, H (2 &lt;= N, M &lt;= 6; 1 &lt;= K &lt;= 12; 0 &lt;= H &lt;= 2).  All the numbers are separated by spaces.</p>
-<p>Then N lines follow, each contains M characters, which are either "." or "O", representing an open cell or an animal, respectively.  There will be at least 2 animals.
-</p>
-<p><b>
-Output Specification:
-</b></p>
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>Separate the Animals</h1>
+<div class="ques-view"><p>There are some animals in a zoo which can be described as a grid with N rows and M columns. Your task is to place some obstacles so that no pairs of animals can reach each other.</p>
+<p>Two animals can <strong>reach each other</strong> if and only if their cells are <strong>4-connected</strong>. For example, in Figure 1, the central blue cell can be reached by the four red cells, and cannot be reached by the other four white cells.</p>
+<p><img alt="sep1.JPG" src="https://images.ptausercontent.com/0eba9ce1-1391-424e-ab2c-2e67cea8a90c.JPG"/></p>
+<p>Figure 1</p>
+<p>What is more, you must put obstacles in exactly K cells, which are 4-connected and form exactly H holes. Here a <strong>hole</strong> is defined as a 4-connected part with finitely many open cells while the zoo is placed in an infinite open grid. For example, there are 2 holes (the green and the yellow areas) in Figure 2.</p>
+<p><img alt="sep2.JPG" src="https://images.ptausercontent.com/be0f6b32-a181-4ee7-8410-0899291ce154.JPG"/></p>
+<p>Figure 2</p>
+<p>For the following grid with two animals:</p>
+<p><img alt="sep3.jpg" src="https://images.ptausercontent.com/5265c6d9-1a9a-4ab1-8eb8-f880f8add579.jpg"/></p>
+<p>Figure 3</p>
+<p>If K = 8 and H = 1, one way to separate them is the following:</p>
+<p><img alt="sep4.jpg" src="https://images.ptausercontent.com/0c3939f3-ba1e-46cd-a677-a9e122fd7202.jpg"/></p>
+<p>Figure 4</p>
+<p>Figure 5 is illegal because it contains no hole.</p>
+<p><img alt="sep5.jpg" src="https://images.ptausercontent.com/5dbbae27-6155-480a-a7b9-48007deb653c.jpg"/></p>
+<p>Figure 5</p>
+<p>Figure 6 is also illegal because the obstacles are not 4-connected.</p>
+<p><img alt="sep6.jpg" src="https://images.ptausercontent.com/927e59e8-4c19-4d77-8bc4-df2486228b50.jpg"/></p>
+<p>Figure 6</p>
+<p>Given some animals, you are supposed to count the number of different solutions.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case. For each case, the first line gives four integers: N, M, K, H (2 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> N, M <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 6; 1 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> K <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 12; 0 <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> H <span class="katex"><span class="katex-mathml"><math><mrow><mo>≤</mo></mrow>\le</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.63597em;"></span><span class="strut bottom" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mrel">≤</span></span></span></span> 2). All the numbers are separated by spaces.</p>
+<p>Then N lines follow, each contains M characters, which are either <code>.</code> or <code>O</code>, representing an open cell or an animal, respectively. There will be at least 2 animals.</p>
+<h3 id="output-specification-">Output Specification:</h3>
 <p>For each case, print a single line containing a single integer: the number of solutions.</p>
-<b>Sample Input:</b><pre>
-3 5 8 1
+<h3 id="sample-input-">Sample Input:</h3>
+<pre><code class="lang-in">3 5 8 1
 ...O.
 .O...
 .....
-</pre>
-<b>Sample Output:</b><pre>
-8
-</pre>
+</code></pre>
+<h3 id="sample-output-">Sample Output:</h3>
+<pre><code class="lang-out">8
+</code></pre>
 </div>

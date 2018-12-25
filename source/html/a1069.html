@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>1069. The Black Hole of Numbers (20)</h1>
-<div id="problemContent">
-<p>For any 4-digit integer except the ones with all the digits being the same, if we sort the digits in non-increasing order first, and then in non-decreasing order, a new number can be obtained by taking the second number from the first one.  Repeat in this manner we will soon end up at the number 6174 -- the "black hole" of 4-digit numbers.  This number is named Kaprekar Constant.</p>
-<p>For example, start from 6767, we'll get:</p>
-<p>
-7766 - 6677 = 1089<br/>
-9810 - 0189 = 9621<br/>
-9621 - 1269 = 8352<br/>
-8532 - 2358 = 6174<br/>
-7641 - 1467 = 6174<br/>
-... ...</p>
-<p>Given any 4-digit number, you are supposed to illustrate the way it gets into the black hole.</p>
-<p><b>
-Input Specification:
-</b></p>
-<p>Each input file contains one test case which gives a positive integer N in the range (0, 10000).</p>
-<p><b>
-Output Specification:
-</b></p>
-<p>If all the 4 digits of N are the same, print in one line the equation "N - N = 0000".  Else print each step of calculation in a line until 6174 comes out as the difference.  All the numbers must be printed as 4-digit numbers.</p>
-<b>Sample Input 1:</b><pre>
-6767
-</pre>
-<b>Sample Output 1:</b><pre>
-7766 - 6677 = 1089
+<style type="text/css">
+        .katex-html {display: none;}
+        .katex-mathml {font-size: 0px;}
+        .katex-mathml math mrow {font-size: 16px;}
+        </style>
+<h1>The Black Hole of Numbers</h1>
+<div class="ques-view"><p>For any 4-digit integer except the ones with all the digits being the same, if we sort the digits in non-increasing order first, and then in non-decreasing order, a new number can be obtained by taking the second number from the first one. Repeat in this manner we will soon end up at the number <code>6174</code> -- the <strong>black hole</strong> of 4-digit numbers. This number is named Kaprekar Constant.</p>
+<p>For example, start from <code>6767</code>, we'll get:</p>
+<pre><code>7766 - 6677 = 1089
 9810 - 0189 = 9621
 9621 - 1269 = 8352
 8532 - 2358 = 6174
-</pre>
-<b>Sample Input 2:</b><pre>
-2222
-</pre>
-<b>Sample Output 2:</b><pre>
-2222 - 2222 = 0000
-</pre>
+7641 - 1467 = 6174
+... ...
+</code></pre><p>Given any 4-digit number, you are supposed to illustrate the way it gets into the black hole.</p>
+<h3 id="input-specification-">Input Specification:</h3>
+<p>Each input file contains one test case which gives a positive integer <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> in the range <span class="katex"><span class="katex-mathml"><math><mrow><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup><mo>)</mo></mrow>(0, 10^4)</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathrm">1</span><span class="mord"><span class="mord mathrm">0</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mclose">)</span></span></span></span>.</p>
+<h3 id="output-specification-">Output Specification:</h3>
+<p>If all the 4 digits of <span class="katex"><span class="katex-mathml"><math><mrow><mi>N</mi></mrow>N</math></span><span aria-hidden="true" class="katex-html"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> are the same, print in one line the equation <code>N - N = 0000</code>. Else print each step of calculation in a line until <code>6174</code> comes out as the difference. All the numbers must be printed as 4-digit numbers.</p>
+<h3 id="sample-input-1-">Sample Input 1:</h3>
+<pre><code class="lang-in">6767
+</code></pre>
+<h3 id="sample-output-1-">Sample Output 1:</h3>
+<pre><code class="lang-out">7766 - 6677 = 1089
+9810 - 0189 = 9621
+9621 - 1269 = 8352
+8532 - 2358 = 6174
+</code></pre>
+<h3 id="sample-input-2-">Sample Input 2:</h3>
+<pre><code class="lang-in">2222
+</code></pre>
+<h3 id="sample-output-2-">Sample Output 2:</h3>
+<pre><code class="lang-out">2222 - 2222 = 0000
+</code></pre>
 </div>
