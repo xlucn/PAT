@@ -1,13 +1,7 @@
-<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
- <title/>
- <desc/>
-
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <path fill="#007fff" id="folder" d="m16.540239,7.781675l-2,-3.999999l-10.99724,0c-1.10609,0 -2.00276,0.889669 -2.00276,1.99115l0,18.017692c0,1.099689 0.89971,1.991158 1.99329,1.991158l25.01342,0c1.100861,0 1.99329,-0.89262 1.99329,-1.99509l0,-14.009819c0,-1.10186 -0.89706,-1.99509 -2.005859,-1.99509l-11.994141,0z"/>
- </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48" version="1.1" width="48px" height="48px">
+<g id="surface1">
+<path style=" fill:#FFA000;" d="M 40 12 L 22 12 L 18 8 L 8 8 C 5.800781 8 4 9.800781 4 12 L 4 20 L 44 20 L 44 16 C 44 13.800781 42.199219 12 40 12 Z "/>
+<path style=" fill:#FFCA28;" d="M 40 12 L 8 12 C 5.800781 12 4 13.800781 4 16 L 4 36 C 4 38.199219 5.800781 40 8 40 L 40 40 C 42.199219 40 44 38.199219 44 36 L 44 16 C 44 13.800781 42.199219 12 40 12 Z "/>
+</g>
 </svg>
