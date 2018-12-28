@@ -4,7 +4,7 @@ BINARIES:=$(SOURCES:%.c=%)
 all: $(BINARIES)
 
 %: %.c
-	gcc -Wall $< -o $@ -lm
+	gcc -g -Wall $< -o $@ -lm
 
 clean:
 	rm $(BINARIES)
