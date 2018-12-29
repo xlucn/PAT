@@ -7,10 +7,10 @@
 
 ## 解题说明
 
-按最初计划, 已成功初步在Github Pages上建立了博客, 用这个主要是因为高度可定制行，高亮很棒, 并且可以用markdown写文章,
+按最初计划, 已成功初步在Github Pages上建立了博客, 用这个主要是因为高度可定制性，高亮很棒, 并且可以用markdown写文章,
 还能用git进行管理. 所以以后最先更新的是这里的文章.
 
-- 最新解题说明: [Github Pages][gh-pages] （主要更新）
+- [Github Pages][gh-pages] (主要更新)
 
 - [简书][jianshu] (暂不同步更新)
 
