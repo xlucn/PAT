@@ -34,7 +34,10 @@ class PATDownloader:
         </style>'''
 
     def __del__(self):
-        self._phantomBrowser.quit()
+        try:
+            self._phantomBrowser.quit()
+        except:
+            pass
 
     def _phantomParseSoup(self, url):
         browser = self._phantomBrowser
@@ -79,10 +82,8 @@ class PATDownloader:
         return pc
 
     def download(self, indexes=config.indexes):
-        """Download all html files
-
-        Attributes:
-            force: boolean, weather to redownload files that already exists.
+        """
+        Download all html files
         """
         if not os.path.exists(config.html_dir):
             os.mkdir(config.html_dir)
@@ -101,53 +102,51 @@ class PATDownloader:
                     continue
 
                 htmlfile = "{}/{}{}.html".format(config.html_dir, c, url['index'])
-                if self._force is True or\
-                  (self._force is False and not os.path.exists(htmlfile)):
-                    logging.info("downloading " + htmlfile)
-                    pc = self._parseProblem(url['link'])
-                    with open(htmlfile, 'w') as f:
-                        f.write("{}\n{}\n{}\n{}\n{}".format(
-                                self._doctype,
-                                self._meta,
-                                self._style,
-                                url['title'],
-                                pc
-                            ))
-                else:
+                if self._force is False and os.path.exists(htmlfile):
                     logging.info(htmlfile + " exists")
+                    continue
+
+                logging.info("downloading " + htmlfile)
+                pc = self._parseProblem(url['link'])
+                with open(htmlfile, 'w') as f:
+                    f.write("{}\n".format(self._doctype))
+                    f.write("{}\n".format(self._meta))
+                    f.write("{}\n".format(self._style))
+                    f.write("{}\n".format(url['title']))
+                    f.write("{}".format(pc))
 
 if __name__ == "__main__":
+    # setting logging
+    logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s',
+                        level=logging.INFO)
+
     # parse arguments
     parser = argparse.ArgumentParser(description='''Python script to download
         problem content from PAT website. I will include the downloaded files
         in the repo, so this script does not need to be executed.''')
-    parser.add_argument('ids', nargs='*',
+    parser.add_argument('ids', nargs='+',
                         metavar='<problem id>',
-                        help='the id of the problem, e.g. 1001 for the first problem')
+                        help='''the id of the problem, e.g. 1001 for the first
+                        problem. use all for downloading all html files''')
     parser.add_argument('-f', '--force-download',
                         action='store_true',
                         help='force download html file again even if it exists')
     args = parser.parse_args()
 
-    # setting logging
-    logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s',
-                        level=logging.INFO)
+    dlIndexes = {'a': [], 'b': [], 't': []}
+    if 'all' in args.ids:
+        dlIndexes = config.indexes
+    else:
+        for ID in args.ids:
+            if not re.match(r"[abt]\d{4}", ID):
+                logging.error('This id is not valid: {}'.format(ID))
+                exit(0)
+            category = ID[0]
+            index = int(ID[1:])
+            if index not in config.indexes[category]:
+                logging.error('Index out of range: {}'.format(index))
+                exit(0)
+            dlIndexes[category].append(index)
 
     dl = PATDownloader(force=args.force_download)
-
-    dlIndexes = {'a': [], 'b': [], 't': []}
-    if len(args.ids) == 0:
-        dlIndexes = config.indexes
-
-    for ID in args.ids:
-        if not re.match(r"[abt]\d{4}", ID):
-            logging.error('This id is not valid: {}'.format(ID))
-            exit(0)
-        category = ID[0]
-        index = int(ID[1:])
-        if index not in config.indexes[category]:
-            logging.error('Index out of range: {}'.format(index))
-            exit(0)
-        dlIndexes[category].append(index)
-
     dl.download(dlIndexes)
