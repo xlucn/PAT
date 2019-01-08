@@ -91,6 +91,14 @@ class PATDownloader:
         if not os.path.exists(config.html_dir):
             os.mkdir(config.html_dir)
         for c in indexes.keys():
+            # checking file existance
+            for index in indexes[c]:
+                htmlfile = "{}/{}{}.html".format(config.html_dir, c, index)
+                if self._force is False and os.path.exists(htmlfile):
+                    logging.info(htmlfile + " exists")
+                    indexes[c].remove(index)
+                    continue
+
             if len(indexes[c]) == 0:
                 continue
 
@@ -105,10 +113,6 @@ class PATDownloader:
                     continue
 
                 htmlfile = "{}/{}{}.html".format(config.html_dir, c, url['index'])
-                if self._force is False and os.path.exists(htmlfile):
-                    logging.info(htmlfile + " exists")
-                    continue
-
                 logging.info("downloading " + htmlfile)
                 pc = self._parseProblem(url['link'])
                 with open(htmlfile, 'w') as f:
