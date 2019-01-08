@@ -25,14 +25,6 @@ class PATDownloader:
                 't': "994805148990160896"
                 }
 
-        self._doctype = '<!DOCTYPE html>'
-        self._meta = '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
-        self._style = '''<style type=\"text/css\">
-        .katex-html {display: none;}
-        .katex-mathml {font-size: 0px;}
-        .katex-mathml math mrow {font-size: 16px;}
-        </style>'''
-
     def __del__(self):
         try:
             self._phantomBrowser.quit()
@@ -70,7 +62,7 @@ class PATDownloader:
             link = tdlist[2].find('a')
             problemList.append({
                 'index': tdlist[1].contents[0],
-                'title': '<h1>{}</h1>'.format(link.contents[0]),
+                'title': link.contents[0],
                 'link': self._baseUrl + link['href']
             })
 
@@ -109,11 +101,7 @@ class PATDownloader:
                 logging.info("downloading " + htmlfile)
                 pc = self._parseProblem(url['link'])
                 with open(htmlfile, 'w') as f:
-                    f.write("{}\n".format(self._doctype))
-                    f.write("{}\n".format(self._meta))
-                    f.write("{}\n".format(self._style))
-                    f.write("{}\n".format(url['title']))
-                    f.write("{}".format(pc))
+                    f.write("{}\n{}".format(url['title'], pc))
 
 if __name__ == "__main__":
     # setting logging

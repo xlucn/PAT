@@ -64,13 +64,12 @@ class FileBuilder:
         html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
         lines = open(html).readlines()
 
-        h1_tag = [l for l in lines if '<h1>' in l][0]
-        indexl = h1_tag.find("<h1>") + len("<h1>")
-        indexr = h1_tag.rfind("</h1>")
-        h1 = '{}. {}'.format(self.i, h1_tag[indexl: indexr])
-
-        title = config.cat_string[self.c] + " " + h1 + " (C语言实现)"
-        content = lines[lines.index(h1_tag)+1:]
+        title = "{level} {index}. {title} {lang}".format(
+                    level=config.cat_string[self.c],
+                    index=self.i,
+                    title=lines[0].rstrip(),
+                    lang="(C语言实现)")
+        content = lines[1:]
         return title, content
 
     def read_code(self):
