@@ -6,6 +6,7 @@ Build markdown files from different sources
 import os
 import sys
 import re
+import argparse
 from subprocess import run, PIPE, CalledProcessError
 import config
 
@@ -151,35 +152,27 @@ class FileBuilder:
         except CalledProcessError:
             pass
 
-usage = """Usage:
-    python3 ./build.py [-h/--help] [<problem-id>]
-
-    -h/--help: show this message
-
-    Without <problem-id>, this script will build all the markdown files.
-
-    <problem-id>: should be like [abt]xxxx, meaning starting with a, b or t and
-        followed by a four digit number. 'a', 'b' and 't' stand for 'Advanced',
-        'Basic' and 'Top', which are the names of problem sets. The four digit
-        number is the problem id.
-"""
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="""A script to combine the
+        html problem content, markdown file and the source code into a final
+        markdown file for jekyll blog""")
+    parser.add_argument('ids', nargs="+",
+                        metavar="<problem-id>",
+                        help="[abt][0-9]{4}, or 'all' for all problems.")
+    args = parser.parse_args()
+
     builder = FileBuilder()
     if not os.path.exists(config.md_dir):
         os.mkdir(config.md_dir)
 
-    if len(sys.argv) == 1:
-        for c in list(config.indexes.keys()):
+    if 'all' in args.ids:
+        for c in config.indexes.keys():
             for i in config.indexes[c]:
                 builder.build(c, i)
-    if len(sys.argv) == 2:
-        if sys.argv[1] == '-h' or sys.argv[1] == '--help':
-            print(usage)
-        elif re.match(r"[abt]\d{4}", sys.argv[1]):
-            category = sys.argv[1][0]
-            index = int(sys.argv[1][1:])
-            if index in config.indexes[category]:
-                builder.build(category, index)
-        else:
-            print(usage)
+    else:
+        for ID in args.ids:
+            if re.match(r"[abt]\d{4}", ID):
+                category = ID[0]
+                index = int(ID[1:])
+                if index in config.indexes[category]:
+                    builder.build(category, index)
