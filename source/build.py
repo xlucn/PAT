@@ -7,6 +7,7 @@ import os
 import sys
 import re
 import argparse
+from bs4 import BeautifulSoup
 from subprocess import run, PIPE, CalledProcessError
 import config
 
@@ -55,7 +56,21 @@ class FileBuilder:
         frontmatter += "---\n\n"
         return frontmatter
 
-    def filename(self):
+    def _processkatex(self, html):
+        """
+        replace all the 'katex' class spans with simple latex string
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        katex_spans = soup.find_all("span", class_="katex")
+        for katex_span in katex_spans:
+            katex_span.mrow.decompose()
+            mathstr = katex_span.find("math")
+            mathjax = soup.new_tag("span")
+            mathjax.string = "${}$".format(mathstr.string)
+            katex_span.replace_with(mathjax)
+        return str(soup)
+
+    def _filename(self):
         return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
 
     def read_html(self):
@@ -70,7 +85,8 @@ class FileBuilder:
                     index=self.i,
                     title=lines[0].rstrip(),
                     lang="(C语言实现)")
-        content = lines[1:]
+        content = self._processkatex("".join(lines[1:]))
+
         return title, content
 
     def read_code(self):
