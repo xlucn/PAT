@@ -28,12 +28,12 @@
 int main()
 {
     int printed[128] = {0};
-    char c, line[80];
-    
-    gets(line); /* the newline was replaced with '\0' */
+    char c, line[82];
+
+    fgets(line, 82, stdin);
     while((c = getchar()) != '\n')
         printed[toupper(c)]++;
-    
+
     for(char *p = line; *p; p++) 
     {
         c = toupper(*p);
