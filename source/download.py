@@ -12,10 +12,8 @@ import config
 
 class PATDownloader:
     def __init__(self, force):
+        self._phantomIsSetup = False
         self._force = force
-        options = Options()
-        options.headless = True
-        self._phantomBrowser = webdriver.Firefox(options=options)
         self._baseUrl = "https://pintia.cn"
         self._problemSetsUrl = self._baseUrl + "/problem-sets"
         # the number in the website url
@@ -31,29 +29,42 @@ class PATDownloader:
         except:
             pass
 
+    def _phantomSetup(self):
+        options = Options()
+        options.headless = True
+        try:
+            self._phantomBrowser = webdriver.Firefox(options=options)
+        except:
+            logging.error("Starting phantom firefox driver failed")
+            exit(1)
+        self._phantomIsSetup = True
+
     def _phantomParseSoup(self, url):
-        browser = self._phantomBrowser
-        browser.get(url)
+        if self._phantomIsSetup == False:
+            self._phantomSetup()
+        self._phantomBrowser.get(url)
         # check return here
-        html = browser.page_source
+        html = self._phantomBrowser.page_source
         soup = BeautifulSoup(html, 'html.parser')
         return soup
 
     def _parseCatatory(self, category):
-        categoryUrl = "{baseurl}/{ID}/problems".format(baseurl=self._problemSetsUrl,
-                      ID=self._ProblemID[category])
+        categoryUrl = "{baseurl}/{ID}/problems".format(
+                          baseurl=self._problemSetsUrl,
+                          ID=self._ProblemID[category])
         logging.info('requesting page \'{}\''.format(categoryUrl))
         soup = self._phantomParseSoup(categoryUrl)
         table = soup.find('tbody')
         if table == None:
-            logging.warning('requesting page \'{}\' failed, will retry (table returned None)'.format(categoryUrl))
+            logging.warning('requesting page \'{}\' failed, will retry {}'
+                            .format(categoryUrl, '(table returned None)'))
             return None
 
         rows = table.find_all('tr')
 
-        # request failed
         if len(rows) < len(config.indexes[category]):
-            logging.warning('requesting page \'{}\' failed, will retry (rows length not enough)'.format(categoryUrl))
+            logging.warning('requesting page \'{}\' failed, will retry {}'
+                            .format(categoryUrl, '(rows length not enough)'))
             return None
 
         problemList = []
