@@ -18,7 +18,7 @@ class FileBuilder:
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
 
-    def yaml_frontmatter(self, date=None, title=None):
+    def _yaml_frontmatter(self, date=None, title=None):
         """
         create the yaml front matter for markdown files
         """
@@ -73,7 +73,7 @@ class FileBuilder:
     def _filename(self):
         return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
 
-    def read_html(self):
+    def _read_html(self):
         """
         Open the html file and read into lines
         """
@@ -89,7 +89,7 @@ class FileBuilder:
 
         return title, content
 
-    def read_code(self):
+    def _read_code(self):
         """
         read code file from master branch
         """
@@ -101,7 +101,7 @@ class FileBuilder:
         code = raw_code[raw_code.index("#include"):]
         return code, github_file_url
 
-    def read_expl(self):
+    def _read_expl(self):
         """
         read explanation.
         The file contains the date at the first line and a blank line after it.
@@ -123,15 +123,15 @@ class FileBuilder:
 
         return date, "".join(expl[2:])
 
-    def __build(self):
+    def _build(self):
         """
         write everything to a final markdown file
         """
-        filename = self.filename()
-        title, problem_div = self.read_html()
-        code, code_url = self.read_code()
-        date, expl = self.read_expl()
-        yaml = self.yaml_frontmatter(date, title)
+        filename = self._filename()
+        title, problem_div = self._read_html()
+        code, code_url = self._read_code()
+        date, expl = self._read_expl()
+        yaml = self._yaml_frontmatter(date, title)
 
         print("Building {}".format(filename))
 
@@ -162,7 +162,7 @@ class FileBuilder:
         self.c = c
         self.i = i
         try:
-            self.__build()
+            self._build()
         except FileNotFoundError:
             pass
         except CalledProcessError:
