@@ -9,6 +9,9 @@ import re
 import argparse
 from bs4 import BeautifulSoup
 from subprocess import run, PIPE, CalledProcessError
+
+import html2text
+
 import config
 
 class FileBuilder:
@@ -65,9 +68,8 @@ class FileBuilder:
         for katex_span in katex_spans:
             katex_span.mrow.decompose()
             mathstr = katex_span.find("math")
-            mathjax = soup.new_tag("span")
-            mathjax.string = "${}$".format(mathstr.string)
-            katex_span.replace_with(mathjax)
+            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+            katex_span.replace_with(mathjax_string)
         return str(soup)
 
     def _filename(self):
@@ -75,7 +77,7 @@ class FileBuilder:
 
     def _read_html(self):
         """
-        Open the html file and read into lines
+        Open the html file and read title and content
         """
         html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
         lines = open(html).readlines()
@@ -85,7 +87,8 @@ class FileBuilder:
                     index=self.i,
                     title=lines[0].rstrip(),
                     lang="(C语言实现)")
-        content = self._processkatex("".join(lines[1:]))
+        content_html = self._processkatex("".join(lines[1:]))
+        content = html2text.html2text(content_html)
 
         return title, content
 
@@ -128,10 +131,10 @@ class FileBuilder:
         write everything to a final markdown file
         """
         filename = self._filename()
-        title, problem_div = self._read_html()
-        code, code_url = self._read_code()
-        date, expl = self._read_expl()
-        yaml = self._yaml_frontmatter(date, title)
+        title, problemcontent = self.read_html()
+        code, code_url = self.read_code()
+        date, expl = self.read_expl()
+        yaml = self.yaml_frontmatter(date, title)
 
         print("Building {}".format(filename))
 
@@ -140,12 +143,9 @@ class FileBuilder:
             f.write(yaml)
 
             # write problem content
-            f.write("## 题目\n\n{% raw %}")
-            for line in problem_div:
-                if config.quote_text is True:
-                    f.write("> ")
-                f.write(line)
-            f.write("{% endraw %}\n\n")
+            f.write("## 题目\n\n")
+            f.write(problemcontent)
+            f.write("\n\n")
 
             # write explanation
             f.write("## 思路\n\n{}\n".format(expl))
