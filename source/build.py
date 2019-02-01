@@ -131,10 +131,10 @@ class FileBuilder:
         write everything to a final markdown file
         """
         filename = self._filename()
-        title, problemcontent = self.read_html()
-        code, code_url = self.read_code()
-        date, expl = self.read_expl()
-        yaml = self.yaml_frontmatter(date, title)
+        title, problemcontent = self._read_html()
+        code, code_url = self._read_code()
+        date, expl = self._read_expl()
+        yaml = self._yaml_frontmatter(date, title)
 
         print("Building {}".format(filename))
 
