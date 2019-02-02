@@ -8,7 +8,7 @@ layout: default
 
     {% assign Articles = site.articles | sort: "title" %}
 
-    {%- if Articles.size > 0 -%}
+    {%- if Articles.size -%}
     <h2 class="post-list-heading">{{ page.title | default: "Articles" }}</h2>
     <ul class="post-list">
         {%- for item in Articles -%}

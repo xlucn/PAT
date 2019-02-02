@@ -41,3 +41,14 @@ div.highlight{
 pre, code{
     font-size:13px;
 }
+
+/* post meta */
+.meta-tags, .meta-category {
+    margin-left: 16px;
+}
+.tag-string {
+    margin-right: 4px;
+}
+.svg-icon {
+    vertical-align: text-bottom;
+}
