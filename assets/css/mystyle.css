@@ -42,6 +42,23 @@ pre, code{
     font-size:13px;
 }
 
+/* fixed header */
+.site-header{
+    position:fixed;
+    width:100%;
+    background-color:white;
+    z-index:1;
+    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);  /* same as google.com */
+}
+main{
+    margin-top:60px;
+}
+@media screen and (max-width: 600px){
+    .site-nav{
+        position:fixed;
+    }
+}
+
 /* site title */
 .favicon{
     margin-right:8px;
