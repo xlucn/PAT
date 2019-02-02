@@ -24,6 +24,11 @@
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          {%- if site.github_repo -%}
+            <a class="page-link" href="{{ site.github_repo }}"><img
+                src="{{ '/assets/images/github.svg' | relative_url }}"
+                class="svg-icon" style="width: 24px; height: 24px"></a>
+          {%- endif -%}
         </div>
       </nav>
     {%- endif -%}
