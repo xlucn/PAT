@@ -38,3 +38,6 @@ div.highlight{
 .highlight code{
     border:0px;
 }
+pre, code{
+    font-size:13px;
+}
