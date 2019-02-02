@@ -43,16 +43,16 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY) $(CONF)
 $(ANA_DIR)/%.md:
 	touch $@
 
-$(HTML_DIR)/%.html:
+$(HTML_DIR)/%.html: $(DL_PY)
 	./download.py $(notdir $(basename $@))
 
 clean:
-	rm -f $(MD) $(POST)
+	rm -f $(MD)
 
 rebuild: clean all
 
 download:
-	./download.py
+	python ./download.py
 
 force-download:
 	./download.py -f

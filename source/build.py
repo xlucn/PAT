@@ -6,7 +6,12 @@ Build markdown files from different sources
 import os
 import sys
 import re
+import argparse
+from bs4 import BeautifulSoup
 from subprocess import run, PIPE, CalledProcessError
+
+import html2text
+
 import config
 
 class FileBuilder:
@@ -16,7 +21,7 @@ class FileBuilder:
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
 
-    def yaml_frontmatter(self, date=None, title=None):
+    def _yaml_frontmatter(self, date=None, title=None):
         """
         create the yaml front matter for markdown files
         """
@@ -54,26 +59,40 @@ class FileBuilder:
         frontmatter += "---\n\n"
         return frontmatter
 
-    def filename(self):
+    def _processkatex(self, html):
+        """
+        replace all the 'katex' class spans with simple latex string
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        katex_spans = soup.find_all("span", class_="katex")
+        for katex_span in katex_spans:
+            katex_span.mrow.decompose()
+            mathstr = katex_span.find("math")
+            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+            katex_span.replace_with(mathjax_string)
+        return str(soup)
+
+    def _filename(self):
         return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
 
-    def read_html(self):
+    def _read_html(self):
         """
-        Open the html file and read into lines
+        Open the html file and read title and content
         """
         html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
         lines = open(html).readlines()
 
-        h1_tag = [l for l in lines if '<h1>' in l][0]
-        indexl = h1_tag.find("<h1>") + len("<h1>")
-        indexr = h1_tag.rfind("</h1>")
-        h1 = '{}. {}'.format(self.i, h1_tag[indexl: indexr])
+        title = "{level} {index}. {title} {lang}".format(
+                    level=config.cat_string[self.c],
+                    index=self.i,
+                    title=lines[0].rstrip(),
+                    lang="(C语言实现)")
+        content_html = self._processkatex("".join(lines[1:]))
+        content = html2text.html2text(content_html)
 
-        title = config.cat_string[self.c] + " " + h1 + " (C语言实现)"
-        content = lines[lines.index(h1_tag)+1:]
         return title, content
 
-    def read_code(self):
+    def _read_code(self):
         """
         read code file from master branch
         """
@@ -85,7 +104,7 @@ class FileBuilder:
         code = raw_code[raw_code.index("#include"):]
         return code, github_file_url
 
-    def read_expl(self):
+    def _read_expl(self):
         """
         read explanation.
         The file contains the date at the first line and a blank line after it.
@@ -107,15 +126,15 @@ class FileBuilder:
 
         return date, "".join(expl[2:])
 
-    def __build(self):
+    def _build(self):
         """
         write everything to a final markdown file
         """
-        filename = self.filename()
-        title, problem_div = self.read_html()
-        code, code_url = self.read_code()
-        date, expl = self.read_expl()
-        yaml = self.yaml_frontmatter(date, title)
+        filename = self._filename()
+        title, problemcontent = self._read_html()
+        code, code_url = self._read_code()
+        date, expl = self._read_expl()
+        yaml = self._yaml_frontmatter(date, title)
 
         print("Building {}".format(filename))
 
@@ -124,12 +143,9 @@ class FileBuilder:
             f.write(yaml)
 
             # write problem content
-            f.write("## 题目\n\n{% raw %}")
-            for line in problem_div:
-                if config.quote_text is True:
-                    f.write("> ")
-                f.write(line)
-            f.write("{% endraw %}\n\n")
+            f.write("## 题目\n\n")
+            f.write(problemcontent)
+            f.write("\n\n")
 
             # write explanation
             f.write("## 思路\n\n{}\n".format(expl))
@@ -137,7 +153,7 @@ class FileBuilder:
             # write code
             f.write("## 代码\n\n")
             f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
-            f.write("```c\n{{% raw %}}{}{{% endraw %}}\n```".format(code))
+            f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
     def build(self, c, i):
         """
@@ -146,41 +162,33 @@ class FileBuilder:
         self.c = c
         self.i = i
         try:
-            self.__build()
+            self._build()
         except FileNotFoundError:
             pass
         except CalledProcessError:
             pass
 
-usage = """Usage:
-    python3 ./build.py [-h/--help] [<problem-id>]
-
-    -h/--help: show this message
-
-    Without <problem-id>, this script will build all the markdown files.
-
-    <problem-id>: should be like [abt]xxxx, meaning starting with a, b or t and
-        followed by a four digit number. 'a', 'b' and 't' stand for 'Advanced',
-        'Basic' and 'Top', which are the names of problem sets. The four digit
-        number is the problem id.
-"""
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="""A script to combine the
+        html problem content, markdown file and the source code into a final
+        markdown file for jekyll blog""")
+    parser.add_argument('ids', nargs="+",
+                        metavar="<problem-id>",
+                        help="[abt][0-9]{4}, or 'all' for all problems.")
+    args = parser.parse_args()
+
     builder = FileBuilder()
     if not os.path.exists(config.md_dir):
         os.mkdir(config.md_dir)
 
-    if len(sys.argv) == 1:
-        for c in list(config.indexes.keys()):
+    if 'all' in args.ids:
+        for c in config.indexes.keys():
             for i in config.indexes[c]:
                 builder.build(c, i)
-    if len(sys.argv) == 2:
-        if sys.argv[1] == '-h' or sys.argv[1] == '--help':
-            print(usage)
-        elif re.match(r"[abt]\d{4}", sys.argv[1]):
-            category = sys.argv[1][0]
-            index = int(sys.argv[1][1:])
-            if index in config.indexes[category]:
-                builder.build(category, index)
-        else:
-            print(usage)
+    else:
+        for ID in args.ids:
+            if re.match(r"[abt]\d{4}", ID):
+                category = ID[0]
+                index = int(ID[1:])
+                if index in config.indexes[category]:
+                    builder.build(category, index)

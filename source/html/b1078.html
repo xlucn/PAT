@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style type="text/css">
-        .katex-html {display: none;}
-        .katex-mathml {font-size: 0px;}
-        .katex-mathml math mrow {font-size: 16px;}
-        </style>
-<h1>字符串压缩与解压</h1>
+字符串压缩与解压
 <div class="ques-view"><p>文本压缩有很多种方法，这里我们只考虑最简单的一种：把由相同字符组成的一个连续的片段用这个字符和片段中含有这个字符的个数来表示。例如 <code>ccccc</code> 就用 <code>5c</code> 来表示。如果字符没有重复，就原样输出。例如 <code>aba</code> 压缩后仍然是 <code>aba</code>。</p>
 <p>解压方法就是反过来，把形如 <code>5c</code> 这样的表示恢复为 <code>ccccc</code>。</p>
 <p>本题需要你根据压缩或解压的要求，对给定字符串进行处理。这里我们简单地假设原始字符串是完全由英文字母和空格组成的非空字符串。</p>

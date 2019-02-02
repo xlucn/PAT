@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style type="text/css">
-        .katex-html {display: none;}
-        .katex-mathml {font-size: 0px;}
-        .katex-mathml math mrow {font-size: 16px;}
-        </style>
-<h1>查验身份证</h1>
+查验身份证
 <div class="ques-view"><p>一个合法的身份证号码由17位地区、日期编号和顺序编号加1位校验码组成。校验码的计算规则如下：</p>
 <p>首先对前17位数字加权求和，权重分配为：{7，9，10，5，8，4，2，1，6，3，7，9，10，5，8，4，2}；然后将计算的和对11取模得到值<code>Z</code>；最后按照以下关系对应<code>Z</code>值与校验码<code>M</code>的值：</p>
 <pre><code>Z：0 1 2 3 4 5 6 7 8 9 10

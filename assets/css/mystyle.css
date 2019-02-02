@@ -1,0 +1,43 @@
+/* Turn on word wrap. e.g. in Basic 1094 there is a long number */
+p {
+  word-wrap:break-word;
+}
+
+/* Remove unwanted margins, paddings and borders in rouge code highlighter
+ * after enabled the line number */
+div.highlight{
+    margin:0px;
+}
+.rouge-table{
+    width:0;
+    margin:0px;
+    border:0px;
+}
+.rouge-gutter.gl{
+    border-left:0px;
+    padding:0px;
+    border-right:2px solid #e8e8e8;
+    border-top:0px;
+    border-bottom:0px;
+    text-align:right;
+    color:gray;
+}
+.rouge-code{
+    border:0px;
+    padding:0px;
+}
+.lineno{
+    margin-bottom:0px;
+    border:0px;
+}
+.rouge-code pre{
+    margin:;
+    margin-bottom:0px;
+    border:0px;
+}
+.highlight code{
+    border:0px;
+}
+pre, code{
+    font-size:13px;
+}
