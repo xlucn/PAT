@@ -38,6 +38,7 @@ header_pages:
   - categories/Basic.md
   - categories/Advanced.md
   - categories/Top.md
+  - tags.html
   - about.md
 
 exclude: 
