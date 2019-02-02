@@ -153,7 +153,7 @@ class FileBuilder:
             # write code
             f.write("## 代码\n\n")
             f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
-            f.write("```c\n{{% raw %}}{}{{% endraw %}}\n```".format(code))
+            f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
     def build(self, c, i):
         """
