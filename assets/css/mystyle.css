@@ -43,14 +43,27 @@ pre, code{
 }
 
 /* post meta */
-.meta-tags, .meta-category {
-    margin-left: 16px;
+.meta-tags, .meta-category, .meta-date {
+    display: inline-block;
+    margin: 3px 4px;
+    padding:0px 4px;
 }
-.tag-string {
-    margin-right: 4px;
+a.meta-tags:hover, a.meta-category:hover {
+    text-decoration: none;
+}
+.meta-tags {
+    padding:0px 12px;
+    background:#2a7ae21a;
+    border-radius:4px;
 }
 .svg-icon {
     vertical-align: text-bottom;
+}
+
+/* post list */
+.post-list-title {
+    margin-top:16px;
+    margin-bottom:0px;
 }
 
 /* tags page */

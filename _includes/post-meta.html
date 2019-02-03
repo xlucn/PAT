@@ -1,29 +1,30 @@
 {%- assign curpage = include.page -%}
 <p class="post-meta" style="color: #555555">
   <!--date-->
-  <img src="{{ '/assets/images/date.svg' | relative_url }}"
-       alt="date" class="svg-icon">
-  <time class="dt-published"
-        datetime="{{ curpage.date | date_to_xmlschema }}"
-        itemprop="datePublished">
-    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-    {{ curpage.date | date: date_format }}
-  </time>
+  <span class="meta-date">
+      <img src="{{ '/assets/images/date.svg' | relative_url }}"
+           alt="date" class="svg-icon">
+      <time class="dt-published"
+            datetime="{{ curpage.date | date_to_xmlschema }}"
+            itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ curpage.date | date: date_format }}
+      </time>
+  </span>
   <!--catetory-->
-  <span class="meta-category">
-    <img src="{{ '/assets/images/category.svg' | relative_url }}"
-         alt="category" class="svg-icon">
     <a href="{{ curpage.categories | first | relative_url }}" 
-       class="category-string">
+       class="meta-category">
+        <img src="{{ '/assets/images/category.svg' | relative_url }}"
+             alt="category" class="svg-icon">
         {{ curpage.categories }}
     </a>
-  </span>
   <!--tag-->
-  <span class="meta-tags">
+  {%- for tag in curpage.tags -%}
+  <a href="{{ "/tags" | relative_url }}/#{{ tag | slugify }}"
+     class="meta-tags">
     <img src="{{ '/assets/images/tag.svg' | relative_url }}"
          alt="tag" class="svg-icon">
-    {%- for tag in curpage.tags -%}
-      <a href="" class="tag-string"> {{ tag }} </a>
-    {%- endfor -%}
-  </span>
+    {{ tag }}
+  </a>
+  {%- endfor -%}
 </p>
