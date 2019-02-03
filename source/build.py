@@ -21,11 +21,10 @@ class FileBuilder:
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
 
-    def _yaml_frontmatter(self, date=None, title=None):
+    def _yaml_frontmatter(self, date=None, title=None, tags=[]):
         """
         create the yaml front matter for markdown files
         """
-        tags = []
         categories = config.category[self.c]
 
         # Check validity
