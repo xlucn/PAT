@@ -9,12 +9,6 @@ code_dir = {                # Children folders of code_dir
     't': 'PATTop'
 }
 
-tag = {
-    'a': ['PAT-A'],
-    'b': ['PAT-B'],
-    't': ['PAT-T']
-}
-
 category = {
     'a': 'Advanced',
     'b': 'Basic',
@@ -32,5 +26,3 @@ indexes = {                 # Problem indexes for each level
     'b': [i + 1001 for i in range(95)],
     't': [i + 1001 for i in range(27)]
 }
-
-quote_text = False   # If add '> ' to problem text in markdown file
