@@ -125,7 +125,7 @@ class FileBuilder:
             print("date should be in the pattern of")
             print("'YYYY-MM-DD HH:MM:SS +/-TTTT'")
             exit(1)
-        tags = expl[1].split()
+        tags = expl[1].strip('\n').split(',')
 
         return date, tags, "".join(expl[2:])
 
