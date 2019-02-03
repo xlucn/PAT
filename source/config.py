@@ -26,5 +26,3 @@ indexes = {                 # Problem indexes for each level
     'b': [i + 1001 for i in range(95)],
     't': [i + 1001 for i in range(27)]
 }
-
-quote_text = False   # If add '> ' to problem text in markdown file
