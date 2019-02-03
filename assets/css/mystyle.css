@@ -52,3 +52,14 @@ pre, code{
 .svg-icon {
     vertical-align: text-bottom;
 }
+
+/* tags page */
+.tagnames {
+    margin-bottom: 16px;
+    margin-left: 16px;
+}
+.tags-title {}
+.tags hr {
+    color: rgba(200, 200, 200, 0.5);
+    margin-bottom: 16px;
+}
