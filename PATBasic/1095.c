@@ -15,7 +15,7 @@ int cmp(const void *a, const void *b)
 {
     Info *ipa = (Info*)a;
     Info *ipb = (Info*)b;
-    
+
     if(ipa->score != ipb->score)
         return ipb->score - ipa->score;
     return strcmp(ipa->string, ipb->string);

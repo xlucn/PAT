@@ -1,39 +1,3 @@
-/**
- * 1010. Radix (25)
- * 
- * Given a pair of positive integers, for example, 6 and 110, can this equation 
- * 6 = 110 be true? The answer is "yes", if 6 is a decimal number and 110 is a 
- * binary number.
- * 
- * Now for any pair of positive integers N1 and N2, your task is to find the 
- * radix of one number while that of the other is given.
- * 
- * Input Specification:
- * 
- * Each input file contains one test case. Each case occupies a line which 
- * contains 4 positive integers:
- * N1 N2 tag radix
- * Here N1 and N2 each has no more than 10 digits. A digit is less than its 
- * radix and is chosen from the set {0-9, a-z} where 0-9 represent the decimal 
- * numbers 0-9, and a-z represent the decimal numbers 10-35. The last number 
- * "radix" is the radix of N1 if "tag" is 1, or of N2 if "tag" is 2.
- * 
- * Output Specification:
- * 
- * For each test case, print in one line the radix of the other number so that 
- * the equation N1 = N2 is true. If the equation is impossible, print 
- * "Impossible". If the solution is not unique, output the smallest possible 
- * radix.
- * 
- * Sample Input 1:
- * 6 110 1 10
- * Sample Output 1:
- * 2
- * Sample Input 2:
- * 1 ab 1 2
- * Sample Output 2:
- * Impossible
- */
 #include <ctype.h>
 #include <stdio.h>
 #include <limits.h>
@@ -61,7 +25,7 @@ long long base10(char *s, long long radix)
 int minradix(char *s)
 {   /* Simply the largest digit in the number plus 1 */
     char r;
-    for(r = '0'; *s; s++) 
+    for(r = '0'; *s; s++)
         if(*s > r)
             r = *s;
     return CBASE10(r) + 1;
@@ -74,7 +38,7 @@ long long binsearch(char *s, long long n, long long rmin, long long rmax)
     while(rmax >= rmin)
     {
         r = rmin + (rmax - rmin) / 2; /* avoid (rmin + rmax) overflow */
-        if((m = base10(s, r)) > n || m == OVERFLOW) 
+        if((m = base10(s, r)) > n || m == OVERFLOW)
             rmax = r - 1;
         else if(m < n)
             rmin = r + 1;
@@ -89,12 +53,12 @@ int main()
     int tag, radix;
     long long N1, rmin, rmax, r;
     char buf1[11], buf2[11], *S1, *S2;
-    
+
     /* Make S1 point to the number with known radix, S2 to the other */
     scanf("%s %s %d %d", buf1, buf2, &tag, &radix);
     if(tag == 1) S1 = buf1, S2 = buf2;
     if(tag == 2) S1 = buf2, S2 = buf1;
-    
+
     N1 = base10(S1, radix);     /* Corresponding decimal of S1 */
     rmin = minradix(S2);        /* Smallest possible radix of S2 */
     rmax = LLONG_MAX;           /* Largest possible radix of S2 */
@@ -109,6 +73,6 @@ int main()
         if(r != NOTFOUNT)       printf("%lld", r);
         else                    printf("Impossible");
     }
-    
+
     return 0;
 }

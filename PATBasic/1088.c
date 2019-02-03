@@ -5,7 +5,7 @@ int main()
     int m, n, a, b, X, Y, M, diffab;
     double c;
     scanf("%d %d %d", &M, &X, &Y);
-    
+
     for(m = 9; m > 0; m--)
     {
         for(n = 9; n >= 0; n--)
@@ -21,10 +21,10 @@ int main()
                 printf(b > M ? " Cong" : (b == M ? " Ping" : " Gai"));
                 printf(c > M ? " Cong" : (c == M ? " Ping" : " Gai"));
                 return 0;
-            }            
+            }
         }
     }
-    
+
     printf("No Solution");
     return 0;
 }
