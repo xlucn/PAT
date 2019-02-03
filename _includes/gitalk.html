@@ -10,7 +10,8 @@
             repo: "{{site.gitalk.repo}}",
             owner: "{{site.gitalk.owner}}",
             admin: ["{{site.gitalk.admin}}"],
-            id: "{{page.url}}", /* A configuration in this file */
+             /* A configuration in this file: id */
+            id: "{{page.url | remove: ".html" | split: '/' | join ' ' | strip}}",
             lables: [
                 {% for gitalk_lable in site.gitalk.lables %}
                     "{{ gitalk_lable }}",
