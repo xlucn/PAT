@@ -66,7 +66,9 @@ The purpose of this snippet is to list all your posts posted with a certain tag.
 {% endcomment %}
 {% for tag in tags %}
   {% assign slug_tag = tag | slugify %}
-  <h2 class="tag-string-h2" id="{{ tag | slugify }}">{{ tag }}</h2>
+  <h2 class="tag-string-h2">
+      <a class="anchor" id="{{ tag | slugify }}"></a>{{ tag }}
+  </h2>
   <ul>
    {% for post in site.articles %}
      {% if post.tags contains tag %}
