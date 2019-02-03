@@ -31,7 +31,6 @@ div.highlight{
     border:0px;
 }
 .rouge-code pre{
-    margin:;
     margin-bottom:0px;
     border:0px;
 }
@@ -40,6 +39,41 @@ div.highlight{
 }
 pre, code{
     font-size:13px;
+}
+
+/* post meta */
+.meta-tags, .meta-category, .meta-date {
+    display: inline-block;
+    margin: 3px 4px;
+    padding:0px 4px;
+}
+a.meta-tags:hover, a.meta-category:hover {
+    text-decoration: none;
+}
+.meta-tags {
+    padding:0px 12px;
+    background:#2a7ae21a;
+    border-radius:4px;
+}
+.svg-icon {
+    vertical-align: text-bottom;
+}
+
+/* post list */
+.post-list-title {
+    margin-top:16px;
+    margin-bottom:0px;
+}
+
+/* tags page */
+.tagnames {
+    margin-bottom: 16px;
+    margin-left: 16px;
+}
+.tags-title {}
+.tags hr {
+    color: rgba(200, 200, 200, 0.5);
+    margin-bottom: 16px;
 }
 
 /* fixed header */
@@ -58,8 +92,14 @@ main{
         position:fixed;
     }
 }
+.anchor {       /* move anchor up */
+    display: block;
+    position: relative;
+    top: -60px;
+    visibility: hidden;
+}
 
-/* site title */
+/* favicon beside site title */
 .favicon{
     margin-right:8px;
     vertical-align:middle;

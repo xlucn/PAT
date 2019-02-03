@@ -1,5 +1,6 @@
 Gemfile.lock
 _site
+Gemfile.lock
 .sass-cache
 .jekyll-metadata
 __pycache__
