@@ -9,12 +9,6 @@ code_dir = {                # Children folders of code_dir
     't': 'PATTop'
 }
 
-tag = {
-    'a': ['PAT-A'],
-    'b': ['PAT-B'],
-    't': ['PAT-T']
-}
-
 category = {
     'a': 'Advanced',
     'b': 'Basic',

@@ -21,11 +21,10 @@ class FileBuilder:
     def __init__(self):
         self.github = "https://github.com/OliverLew/PAT/blob/master"
 
-    def _yaml_frontmatter(self, date=None, title=None):
+    def _yaml_frontmatter(self, date=None, title=None, tags=[]):
         """
         create the yaml front matter for markdown files
         """
-        tags = config.tag[self.c]
         categories = config.category[self.c]
 
         # Check validity
@@ -104,27 +103,31 @@ class FileBuilder:
         code = raw_code[raw_code.index("#include"):]
         return code, github_file_url
 
-    def _read_expl(self):
+    def _read_date_tags_expl(self):
         """
-        read explanation.
-        The file contains the date at the first line and a blank line after it.
-        Hence the return has two parts.
+        read explanation part.
+        The file contains:
+            the date at the first line,
+            the tags at the second line,
+            the actual anylasis.
+        Hence the return has three parts.
         """
         expl_file = os.path.join(config.analysis_dir,
                                  "{}{}.md".format(self.c, self.i))
         expl = open(expl_file).readlines()
-        if len(expl) < 3:
+        if len(expl) < 2:
             print(expl_file + ": ")
-            print("analysis file should be at least 3 lines long:")
-            print("date, blank, and content")
+            print("analysis file should be at least 2 lines long:")
+            print("date, tags, and content(optional)")
             exit(1)
         date = expl[0].strip('\n')
         if re.match(r'', date) is None:
             print("date should be in the pattern of")
             print("'YYYY-MM-DD HH:MM:SS +/-TTTT'")
             exit(1)
+        tags = expl[1].split()
 
-        return date, "".join(expl[2:])
+        return date, tags, "".join(expl[2:])
 
     def _build(self):
         """
@@ -133,8 +136,8 @@ class FileBuilder:
         filename = self._filename()
         title, problemcontent = self._read_html()
         code, code_url = self._read_code()
-        date, expl = self._read_expl()
-        yaml = self._yaml_frontmatter(date, title)
+        date, tags, expl = self._read_date_tags_expl()
+        yaml = self._yaml_frontmatter(date, title, tags)
 
         print("Building {}".format(filename))
 
