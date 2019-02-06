@@ -3,8 +3,6 @@ author: LuXu
 email: oliver_lew@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   浙江大学编程能力测试(PAT)C语言题解说明
-  "- 你的网站颜色用的和PAT好像啊"
-  "- 这里的颜色都是取自PAT网站的"
 baseurl: "/PAT" # the subpath of your site, e.g. /blog
 url: "http://oliverlew.github.io/PAT/" # the base hostname & protocol for your site, e.g. http://example.com
 
