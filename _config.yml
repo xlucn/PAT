@@ -60,4 +60,18 @@ collections:
 # Google Analytics
 google_analytics: UA-118900116-1
 
+# Gitalk
+gitalk:
+  # NOTE: id configuration is in _includes/gitalk.html
+  enabled: true
+  clientID: '7bf7cca48411ad47d5c3'
+  clientSecret: '9b1d5d7c3aa64fe4f5e4c8e71ea597e63f6e83b9'
+  repo: 'oliverlew.github.io'
+  owner: 'OliverLew'
+  admin: 'OliverLew'
+  distractionFreeMode: false
+  lables: ['Gitalk', 'PAT solutions in C']
+  pagerDirection: 'first'
+  createIssueManually: true
+
 # vim:tabstop=2:softtabstop=2:shiftwidth=2

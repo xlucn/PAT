@@ -12,6 +12,10 @@ layout: default
     {{ content }}
   </div>
 
+  {%- if site.gitalk.enabled == "impossible" -%}
+    {%- include gitalk.html -%}
+  {%- endif -%}
+
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
   {%- endif -%}
