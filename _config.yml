@@ -70,7 +70,7 @@ gitalk:
   owner: 'OliverLew'
   admin: 'OliverLew'
   distractionFreeMode: false
-  lables: ['Gitalk', 'PAT solutions in C']
+  labels: ['Gitalk', 'PAT solutions in C']
   pagerDirection: 'first'
   createIssueManually: true
 

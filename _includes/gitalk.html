@@ -12,8 +12,8 @@
             admin: ["{{site.gitalk.admin}}"],
              /* A configuration in this file: id */
             id: "{{page.url | remove: ".html" | split: '/' | join ' ' | strip}}",
-            lables: [
-                {% for gitalk_lable in site.gitalk.lables %}
+            labels: [
+                {% for gitalk_lable in site.gitalk.labels %}
                     "{{ gitalk_lable }}",
                 {% endfor %}
             ],
