@@ -6,4 +6,5 @@ Gemfile.lock
 __pycache__
 PATAdvanced/
 PATBasic/
+source/others/
 *.log
