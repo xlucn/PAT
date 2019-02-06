@@ -18,8 +18,9 @@ class FileBuilder:
     """
     build markdown files.
     """
-    def __init__(self):
-        self.github = "https://github.com/OliverLew/PAT/blob/master"
+    def __init__(self, other_platforms):
+        self._github = "https://github.com/OliverLew/PAT/blob/master"
+        self._other_platforms = other_platforms
 
     def _yaml_frontmatter(self, date=None, title=None, tags=[]):
         """
@@ -55,7 +56,7 @@ class FileBuilder:
         frontmatter += "categories: {}\n".format(categories)
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
         frontmatter += "permalink: {}/{:04}.html\n".format(categories, self.i)
-        frontmatter += "---\n\n"
+        frontmatter += "---"
         return frontmatter
 
     def _processkatex(self, html):
@@ -97,7 +98,7 @@ class FileBuilder:
         """
         code_rel_path = os.path.join(config.code_dir[self.c],
                                      "{}.c".format(self.i))
-        github_file_url = os.path.join(self.github, code_rel_path)
+        github_file_url = os.path.join(self._github, code_rel_path)
         raw_code = run(["git", "show", "master:" + code_rel_path], check=True,
                        stdout=PIPE, stderr=PIPE).stdout.decode("utf-8")
         code = raw_code[raw_code.index("#include"):]
@@ -139,36 +140,41 @@ class FileBuilder:
         date, tags, expl = self._read_date_tags_expl()
         yaml = self._yaml_frontmatter(date, title, tags)
 
-        print("Building {}".format(filename))
+        basicContent = "## 题目\n\n{}\n\n".format(problemcontent) +          \
+                       "## 思路\n\n{}\n".format(expl) +                      \
+                       "## 代码\n\n" +                                       \
+                       "[最新代码@github]({})，欢迎交流\n".format(code_url)
 
         with open(filename, 'w') as f:
-            # write the yaml front matter
-            f.write(yaml)
-
-            # write problem content
-            f.write("## 题目\n\n")
-            f.write(problemcontent)
-            f.write("\n\n")
-
-            # write explanation
-            f.write("## 思路\n\n{}\n".format(expl))
-
-            # write code
-            f.write("## 代码\n\n")
-            f.write("[最新代码@github]({})，欢迎交流\n".format(code_url))
+            print("Building {}".format(filename))
+            f.write("{}\n\n".format(yaml))
+            f.write(basicContent)
             f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
-    def build(self, c, i):
+        if self._other_platforms == True:
+            with open("others/{}{}.md".format(self.c, self.i), 'w') as f:
+                print("Building {} for other platforms".format(filename))
+                f.write("我的PAT系列文章更新重心已移至Github，" +            \
+                        "欢迎来看PAT题解的小伙伴请到" +                      \
+                        "[Github Pages](https://oliverlew.github.io/PAT/)" + \
+                        "浏览最新内容。欢迎star我的" +                       \
+                        "[repo](https://github.com/OliverLew/PAT)。\n\n")
+                f.write(basicContent)
+                f.write("```c\n{}```".format(code))
+
+    def build(self, category, index):
         """
         build a file with error handling
         """
-        self.c = c
-        self.i = i
+        self.c = category
+        self.i = index
         try:
             self._build()
         except FileNotFoundError:
+            print("FileNotFoundError")
             pass
         except CalledProcessError:
+            print("CalledProcessError")
             pass
 
 if __name__ == "__main__":
@@ -178,9 +184,11 @@ if __name__ == "__main__":
     parser.add_argument('ids', nargs="+",
                         metavar="<problem-id>",
                         help="[abt][0-9]{4}, or 'all' for all problems.")
+    parser.add_argument('-o', '--other-platforms', action='store_true',
+                        help='If generate files for other platforms')
     args = parser.parse_args()
 
-    builder = FileBuilder()
+    builder = FileBuilder(args.other_platforms)
     if not os.path.exists(config.md_dir):
         os.mkdir(config.md_dir)
 
