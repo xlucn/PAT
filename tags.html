@@ -73,7 +73,7 @@ The purpose of this snippet is to list all your posts posted with a certain tag.
    {% for post in site.articles %}
      {% if post.tags contains tag %}
      <li><h3>
-     <a href="{{ post.url }}">
+     <a href="{{ post.url | relative_url }}">
      {{ post.title }}
      <span class="post-meta">
        {{ post.date | date_to_string }}
