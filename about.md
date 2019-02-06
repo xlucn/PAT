@@ -1,6 +1,8 @@
 ---
-layout: page
+layout: post
 title: About
+date:  2017-05-05 17:55:00 +0800
+categories: About
 permalink: /about.html
 ---
 
