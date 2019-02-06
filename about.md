@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about.html
 ---
 
 本博客是[浙江大学在线测试系统PAT题目集][PAT]解答说明，所有代码均仅使用C语言.

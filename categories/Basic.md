@@ -2,5 +2,5 @@
 layout: category
 title: Basic
 category: Basic
-permalink: /Basic/
+permalink: /Basic.html
 ---

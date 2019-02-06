@@ -12,7 +12,7 @@
       </time>
   </span>
   <!--catetory-->
-    <a href="{{ curpage.categories | first | relative_url }}" 
+    <a href="{{ curpage.categories | first | relative_url }}.html" 
        class="meta-category">
         <img src="{{ '/assets/images/category.svg' | relative_url }}"
              alt="category" class="svg-icon">
@@ -20,7 +20,7 @@
     </a>
   <!--tag-->
   {%- for tag in curpage.tags -%}
-  <a href="{{ "/tags" | relative_url }}/#{{ tag | slugify }}"
+  <a href="{{ "/tags" | relative_url }}.html#{{ tag | slugify }}"
      class="meta-tags">
     <img src="{{ '/assets/images/tag.svg' | relative_url }}"
          alt="tag" class="svg-icon">
