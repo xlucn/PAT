@@ -12,7 +12,7 @@ layout: default
     {{ content }}
   </div>
 
-  {%- if site.gitalk.enabled == "impossible" -%}
+  {%- if site.gitalk.enabled  -%}
     {%- include gitalk.html -%}
   {%- endif -%}
 
