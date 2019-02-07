@@ -16,7 +16,7 @@ Github Pages + Jekyll搭建的静态博客
   - [x] Add tags in [this pull request][add tags]
 - [ ] Add commenting system
   - [ ] Disqus
-  - [ ] Gitalk
+  - [x] Gitalk in [this pull request][add gitalk]
 - [x] Add page analysis tool, added Google analytics in [this commit][add GA]
 
 [first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
@@ -26,3 +26,4 @@ Github Pages + Jekyll搭建的静态博客
 [add tags]: https://github.com/OliverLew/PAT/pull/15
 [add GA]: https://github.com/OliverLew/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
 [add mathjax]: https://github.com/OliverLew/PAT/pull/12
+[add gitalk]: https://github.com/OliverLew/PAT/pull/16
