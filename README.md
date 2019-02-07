@@ -9,14 +9,12 @@ Github Pages + Jekyll搭建的静态博客
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
 - [ ] Use include to reduce code duplication
-- [x] Consider using collections(so no restriction on filename), done in [this pull request][use collections]
+- [x] Use permalink to fix the page urls in [this pull request][use collections]
 - [x] Add MathJax support in [this pull request][add mathjax]
 - [x] Use tags/categories to manage posts.
   - [x] Add indexes of each category in [this commit][add categories]
   - [x] Add tags in [this pull request][add tags]
-- [ ] Add commenting system
-  - [ ] Disqus
-  - [x] Gitalk in [this pull request][add gitalk]
+- [x] Add commenting system. Added Gitalk in [this pull request][add gitalk]
 - [x] Add page analysis tool, added Google analytics in [this commit][add GA]
 
 [first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
