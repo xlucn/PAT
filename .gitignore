@@ -1,4 +1,8 @@
-*/*
+/*
+!/README.md
+!/PATBasic
+!/PATAdvanced
+/PATBasic/*
+/PATAdvanced/*
 !/PATBasic/*.c
 !/PATAdvanced/*.c
-!/README.md
