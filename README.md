@@ -1,7 +1,7 @@
 # PAT exercises in C language
 
 [PAT][pat]习题C语言题解。全部用C语言编写，尽量达到代码的简洁和可读性，
-尽量用注释(英文)将思路写明。
+尽量用注释(英文)将思路写明。大家有更好的代码，欢迎贡献改进。
 
 * PAT Basic (1001-1095)
 * PAT Advanced
@@ -23,13 +23,13 @@
 
 非常欢迎讨论!
 
-- 暂时没有评论系统，大家在简书和CSDN评论我同样会认真回复
+- 我在Github Pages博客里使用了[gitalk][]评论系统，可登录Github账号进行评论，
+  大家在简书和CSDN评论我同样会认真回复
+
+- 发现问题/题目讨论，要改正/改进代码，比如有更高效的算法，更简洁的逻辑，
+  也欢迎提交[issue][issues]或者[pull request][pulls]
 
 - 邮箱:oliver_lew@outlook.com
-
-- 发现问题/题目讨论也欢迎提交[issue][issues]
-
-- 要改正/改进代码欢迎提交[pull request][pulls]
 
 ##
 [gh-pages]: https://oliverlew.github.io/PAT/
@@ -40,3 +40,5 @@
 
 [jianshu]: https://www.jianshu.com/u/6d7ea07c8f6e
 [CSDN]: https://blog.csdn.net/Oliver__Lew
+
+[gitalk]: https://github.com/gitalk/gitalk
