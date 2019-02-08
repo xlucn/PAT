@@ -34,6 +34,7 @@ class PATDownloader:
         options.headless = True
         try:
             self._phantomBrowser = webdriver.Firefox(options=options)
+            logging.info("Starting phantom firefox driver")
         except:
             logging.error("Starting phantom firefox driver failed")
             exit(1)
@@ -73,7 +74,9 @@ class PATDownloader:
             link = tdlist[2].find('a')
             problemList.append({
                 'index': tdlist[1].contents[0],
-                'title': link.contents[0],
+                'title': "{content} ({score})".format(
+                            content=link.contents[0],
+                            score=tdlist[3].contents[0]),
                 'link': self._baseUrl + link['href']
             })
 

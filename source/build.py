@@ -157,7 +157,8 @@ class FileBuilder:
                 f.write("我的PAT系列文章更新重心已移至Github，" +            \
                         "欢迎来看PAT题解的小伙伴请到" +                      \
                         "[Github Pages](https://oliverlew.github.io/PAT/)" + \
-                        "浏览最新内容。欢迎star我的" +                       \
+                        "浏览最新内容。此处文章目前已更新至与" +             \
+                        "Github Pages同步。欢迎star我的" +                   \
                         "[repo](https://github.com/OliverLew/PAT)。\n\n")
                 f.write(basicContent)
                 f.write("```c\n{}```".format(code))
