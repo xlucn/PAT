@@ -154,7 +154,7 @@ class FileBuilder:
         if self._other_platforms == True:
             with open("others/{}{}.md".format(self.c, self.i), 'w') as f:
                 print("Building {} for other platforms".format(filename))
-                f.write("我的PAT系列文章更新重心已移至Github，" +            \
+                f.write("### 我的PAT系列文章更新重心已移至Github，" +        \
                         "欢迎来看PAT题解的小伙伴请到" +                      \
                         "[Github Pages](https://oliverlew.github.io/PAT/)" + \
                         "浏览最新内容。此处文章目前已更新至与" +             \
