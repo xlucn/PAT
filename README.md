@@ -15,9 +15,9 @@
 
 - [Github Pages][gh-pages] (主要更新)
 
-- [简书][jianshu] (暂不同步更新)
+- [简书][jianshu]
 
-- [CSDN博客][CSDN] (暂不同步更新)
+- [CSDN博客][CSDN]
 
 ## 讨论/交流
 
