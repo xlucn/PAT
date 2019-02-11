@@ -73,7 +73,7 @@ class FileBuilder:
         return str(soup)
 
     def _filename(self):
-        return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
+        return os.path.join(config.post_dir, "{}{:04}.md".format(self.c, self.i))
 
     def _read_html(self):
         """
@@ -88,9 +88,9 @@ class FileBuilder:
                     title=lines[0].rstrip(),
                     lang="(C语言实现)")
         content_html = self._processkatex("".join(lines[1:]))
-        content = html2text.html2text(content_html)
+        content_md = html2text.html2text(content_html)
 
-        return title, content
+        return title, content_md
 
     def _read_code(self):
         """
@@ -190,8 +190,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     builder = FileBuilder(args.other_platforms)
-    if not os.path.exists(config.md_dir):
-        os.mkdir(config.md_dir)
+    if not os.path.exists(config.post_dir):
+        os.mkdir(config.post_dir)
 
     if 'all' in args.ids:
         for c in config.indexes.keys():
