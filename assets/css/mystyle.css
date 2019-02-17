@@ -87,6 +87,11 @@ pre, code{
     margin-left: 8px;
 }
 
+/* header links */
+.page-link:hover, .site-title:hover{
+    text-decoration: none;
+    color: #2a7ae2;
+}
 /* fixed header */
 .site-header{
     position:fixed;
