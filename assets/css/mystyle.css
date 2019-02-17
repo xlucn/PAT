@@ -75,9 +75,16 @@ pre, code{
     margin-left: 16px;
 }
 .tags-title {}
+.tag-string-h2 {
+    display: inline-block;
+}
 .tags hr {
     color: rgba(200, 200, 200, 0.5);
     margin-bottom: 16px;
+}
+.gotop {
+    display: inline-block;
+    margin-left: 8px;
 }
 
 /* fixed header */
@@ -97,9 +104,8 @@ main{
     }
 }
 .anchor {       /* move anchor up */
-    display: block;
     position: relative;
-    top: -60px;
+    top: -72px;
     visibility: hidden;
 }
 
