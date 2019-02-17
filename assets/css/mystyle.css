@@ -47,16 +47,20 @@ pre, code{
     margin: 3px 4px;
     padding:0px 4px;
 }
-a.meta-tags:hover, a.meta-category:hover {
+.meta-category, .meta-tags, .meta-category:visited, .meta-tags:visited {
+    padding: 0px 12px;
+    background-color: #2a7ae21a;
+    border-radius: 4px;
+    color: #2a7ae2;
+}
+.meta-category:hover, .meta-tags:hover {
     text-decoration: none;
+    background-color: #2a7ae2;
+    color: white;
 }
-.meta-tags {
-    padding:0px 12px;
-    background:#2a7ae21a;
-    border-radius:4px;
-}
-.svg-icon {
-    vertical-align: text-bottom;
+.fa, .fas, .fab {
+    vertical-align: middle;
+    margin-right: 0.5em;
 }
 
 /* post list */
