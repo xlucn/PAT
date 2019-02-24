@@ -17,6 +17,7 @@ class FileBuilder:
     """
     def __init__(self, other_platforms):
         self._github = "https://github.com/OliverLew/PAT/blob/master"
+        self._gh_pages = "https://oliverlew.github.io/PAT"
         self._other_platforms = other_platforms
 
     def _yaml_frontmatter(self, date=None, title=None, tags=[]):
@@ -24,7 +25,6 @@ class FileBuilder:
         create the yaml front matter for markdown files
         """
         categories = config.category[self.c]
-
         # Check validity
         if re.match(r'', date) is None:
             print("{}{}:".format(self.c, self.i))
@@ -52,12 +52,9 @@ class FileBuilder:
         frontmatter += "title:  \"{}\"\n".format(title)
         frontmatter += "categories: {}\n".format(categories)
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
-        frontmatter += "permalink: {}/{:04}.html\n".format(categories, self.i)
+        frontmatter += "permalink: {}\n".format(self._permalink)
         frontmatter += "---"
         return frontmatter
-
-    def _filename(self):
-        return os.path.join(config.post_dir, "{}{:04}.md".format(self.c, self.i))
 
     def _read_text(self):
         """
@@ -128,7 +125,6 @@ class FileBuilder:
         """
         write everything to a final markdown file
         """
-        filename = self._filename()
         title, problemcontent = self._read_text()
         code, code_url = self._read_code()
         if code == None:
@@ -145,19 +141,22 @@ class FileBuilder:
                        "## 代码\n\n" +                                       \
                        "[最新代码@github]({})，欢迎交流\n".format(code_url)
 
-        with open(filename, 'w') as f:
-            print("Building {}".format(filename))
+        with open(self._filename, 'w') as f:
+            print("Building {}".format(self._filename))
             f.write("{}\n\n".format(yaml))
             f.write(basicContent)
             f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
         if self._other_platforms == True:
             with open("others/{}{}.md".format(self.c, self.i), 'w') as f:
-                print("Building {} for other platforms".format(filename))
+                print("Building {} for other platforms".format(self._filename))
                 f.write("### 我的PAT系列文章更新重心已移至Github，" +        \
                         "欢迎来看PAT题解的小伙伴请到" +                      \
-                        "[Github Pages](https://oliverlew.github.io/PAT/)" + \
-                        "浏览最新内容。此处文章目前已更新至与" +             \
+                        "[Github Pages]({})".format(self._gh_pages) +        \
+                        "浏览最新内容" +                                     \
+                        "([本篇文章链接]({}/{}))。".format(self._gh_pages,
+                                                         self._permalink) +  \
+                        "此处文章目前已更新至与" +                           \
                         "Github Pages同步。欢迎star我的" +                   \
                         "[repo](https://github.com/OliverLew/PAT)。\n\n")
                 f.write(basicContent)
@@ -169,6 +168,10 @@ class FileBuilder:
         """
         self.c = category
         self.i = index
+        self._filename = os.path.join(config.post_dir,
+                                      "{}{:04}.md".format(self.c, self.i))
+        self._permalink = "{}/{:04}.html".format(config.category[self.c],
+                                                   self.i)
         self._build()
 
 
