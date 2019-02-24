@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
-md_dir = "../_articles"               # The dir of final generated markdown file
-html_dir = "html"           # The dir of html file from patest.cn
+post_dir = "../_articles"                # The dir of final generated markdown file
+text_dir = "html"           # The dir of html file from patest.cn
 analysis_dir = "analysis"   # The dir of md files of only analysis text
 code_dir = {                # Children folders of code_dir
     'a': 'PATAdvanced',
@@ -25,4 +25,10 @@ indexes = {                 # Problem indexes for each level
     'a': [i + 1001 for i in range(155)],
     'b': [i + 1001 for i in range(95)],
     't': [i + 1001 for i in range(27)]
+}
+
+urlidx = {
+    'b': "994805260223102976",
+    'a': "994805342720868352",
+    't': "994805148990160896"
 }

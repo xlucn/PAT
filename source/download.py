@@ -10,18 +10,14 @@ import argparse
 import logging
 import config
 
+import html2text
+
 class PATDownloader:
     def __init__(self, force):
         self._phantomIsSetup = False
         self._force = force
         self._baseUrl = "https://pintia.cn"
         self._problemSetsUrl = self._baseUrl + "/problem-sets"
-        # the number in the website url
-        self._ProblemID = {
-                'b': "994805260223102976",
-                'a': "994805342720868352",
-                't': "994805148990160896"
-                }
 
     def __del__(self):
         try:
@@ -52,7 +48,7 @@ class PATDownloader:
     def _parseCatatory(self, category):
         categoryUrl = "{baseurl}/{ID}/problems".format(
                           baseurl=self._problemSetsUrl,
-                          ID=self._ProblemID[category])
+                          ID=config.urlidx[category])
         logging.info('requesting page \'{}\''.format(categoryUrl))
         soup = self._phantomParseSoup(categoryUrl)
         table = soup.find('tbody')
@@ -82,44 +78,62 @@ class PATDownloader:
 
         return problemList
 
+    def _processkatex(self, html):
+        """
+        replace all the 'katex' class spans with simple latex string
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        katex_spans = soup.find_all("span", class_="katex")
+        for katex_span in katex_spans:
+            katex_span.mrow.decompose()
+            mathstr = katex_span.find("math")
+            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+            katex_span.replace_with(mathjax_string)
+        return str(soup)
+
     def _parseProblem(self, url):
         soup = self._phantomParseSoup(url)
-        pc = soup.find_all('div', 'ques-view')[1]
-        return pc
+        pc_div = soup.find_all('div', 'ques-view')[1]
+        content_html = self._processkatex(str(pc_div))
+        content_md = html2text.html2text(content_html)
+        return content_md
 
     def download(self, indexes=config.indexes):
         """
-        Download all html files
+        Download html files
         """
-        if not os.path.exists(config.html_dir):
-            os.mkdir(config.html_dir)
+        if not os.path.exists(config.text_dir):
+            os.mkdir(config.text_dir)
+
         for c in indexes.keys():
-            # checking file existance
-            for index in indexes[c]:
-                htmlfile = "{}/{}{}.html".format(config.html_dir, c, index)
-                if self._force is False and os.path.exists(htmlfile):
-                    logging.info(htmlfile + " exists")
-                    indexes[c].remove(index)
-                    continue
-
-            if len(indexes[c]) == 0:
-                continue
-
             url_list = None
-            while url_list == None:
-                url_list = self._parseCatatory(c)
-                if url_list == None:
-                    time.sleep(5)
-
-            for url in url_list:
-                if int(url['index']) not in indexes[c]:
+            for index in indexes[c]:
+                textfile = "{}/{}{}.md".format(config.text_dir, c, index)
+                if self._force is False and os.path.exists(textfile):
+                    logging.info(textfile + " exists")
                     continue
 
-                htmlfile = "{}/{}{}.html".format(config.html_dir, c, url['index'])
-                logging.info("downloading " + htmlfile)
-                pc = self._parseProblem(url['link'])
-                with open(htmlfile, 'w') as f:
-                    f.write("{}\n{}".format(url['title'], pc))
+                # try to getch the list of urls of all problems
+                while url_list == None:
+                    url_list = self._parseCatatory(c)
+                    if url_list == None:
+                        time.sleep(5)
+
+                # find the corresponding url
+                url_index = next((url for url in url_list
+                                  if int(url['index']) == index),
+                                 None)
+                # download
+                if url_index:
+                    logging.info("downloading " + textfile)
+                    pc = self._parseProblem(url_index['link'])
+                    with open(textfile, 'w') as f:
+                        f.write("<!-- Title\n" +                           \
+                                "{}\n-->\n".format(url_index['title']) +   \
+                                pc)
+                else:
+                    logging.error("Index {}{} not available".format(c, index))
+
 
 if __name__ == "__main__":
     # setting logging

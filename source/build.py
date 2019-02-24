@@ -7,10 +7,7 @@ import os
 import sys
 import re
 import argparse
-from bs4 import BeautifulSoup
 from subprocess import run, PIPE, CalledProcessError
-
-import html2text
 
 import config
 
@@ -20,6 +17,7 @@ class FileBuilder:
     """
     def __init__(self, other_platforms):
         self._github = "https://github.com/OliverLew/PAT/blob/master"
+        self._gh_pages = "https://oliverlew.github.io/PAT"
         self._other_platforms = other_platforms
 
     def _yaml_frontmatter(self, date=None, title=None, tags=[]):
@@ -27,7 +25,6 @@ class FileBuilder:
         create the yaml front matter for markdown files
         """
         categories = config.category[self.c]
-
         # Check validity
         if re.match(r'', date) is None:
             print("{}{}:".format(self.c, self.i))
@@ -55,42 +52,25 @@ class FileBuilder:
         frontmatter += "title:  \"{}\"\n".format(title)
         frontmatter += "categories: {}\n".format(categories)
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
-        frontmatter += "permalink: {}/{:04}.html\n".format(categories, self.i)
+        frontmatter += "permalink: {}\n".format(self._permalink)
         frontmatter += "---"
         return frontmatter
 
-    def _processkatex(self, html):
-        """
-        replace all the 'katex' class spans with simple latex string
-        """
-        soup = BeautifulSoup(html, "html.parser")
-        katex_spans = soup.find_all("span", class_="katex")
-        for katex_span in katex_spans:
-            katex_span.mrow.decompose()
-            mathstr = katex_span.find("math")
-            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
-            katex_span.replace_with(mathjax_string)
-        return str(soup)
-
-    def _filename(self):
-        return os.path.join(config.md_dir, "{}{:04}.md".format(self.c, self.i))
-
-    def _read_html(self):
+    def _read_text(self):
         """
         Open the html file and read title and content
         """
-        html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
-        lines = open(html).readlines()
+        text = self._text_file
+        lines = open(text).readlines()
 
         title = "{level} {index}. {title} {lang}".format(
                     level=config.cat_string[self.c],
                     index=self.i,
-                    title=lines[0].rstrip(),
+                    title=lines[1].rstrip(),
                     lang="(C语言实现)")
-        content_html = self._processkatex("".join(lines[1:]))
-        content = html2text.html2text(content_html)
+        content_md = "".join(lines[3:])
 
-        return title, content
+        return title, content_md
 
     def _read_code(self):
         """
@@ -99,10 +79,16 @@ class FileBuilder:
         code_rel_path = os.path.join(config.code_dir[self.c],
                                      "{}.c".format(self.i))
         github_file_url = os.path.join(self._github, code_rel_path)
-        raw_code = run(["git", "show", "master:" + code_rel_path], check=True,
-                       stdout=PIPE, stderr=PIPE).stdout.decode("utf-8")
-        code = raw_code[raw_code.index("#include"):]
-        return code, github_file_url
+        result = run(["git", "show", "master:" + code_rel_path],
+                     # check=True,
+                     stdout=PIPE,
+                     stderr=PIPE)
+        if result.returncode == 0:
+            raw_code = result.stdout.decode("utf-8")
+            code = raw_code[raw_code.index("#include"):]
+            return code, github_file_url
+        else:
+            return None, None
 
     def _read_date_tags_expl(self):
         """
@@ -113,54 +99,72 @@ class FileBuilder:
             the actual anylasis.
         Hence the return has three parts.
         """
-        expl_file = os.path.join(config.analysis_dir,
-                                 "{}{}.md".format(self.c, self.i))
-        expl = open(expl_file).readlines()
-        if len(expl) < 2:
+        expl_file = self._expl_file
+        try:
+            expl = open(expl_file).readlines()
+        except FileNotFoundError:
+            print("No analysis file: {}".format(expl_file))
+            return None, None, None
+
+        if len(expl) < 4:
             print(expl_file + ": ")
-            print("analysis file should be at least 2 lines long:")
-            print("date, tags, and content(optional)")
+            print("analysis file should be at least 4 lines long:")
+            print("date, tags, surrounding html comment and content(optional)")
             exit(1)
-        date = expl[0].strip('\n')
+        date = expl[1].strip('\n')
         if re.match(r'', date) is None:
             print("date should be in the pattern of")
             print("'YYYY-MM-DD HH:MM:SS +/-TTTT'")
             exit(1)
-        tags = expl[1].strip('\n').split(',')
+        tags = expl[2].strip('\n').split(',')
 
-        return date, tags, "".join(expl[2:])
+        return date, tags, "".join(expl[4:])
 
     def _build(self):
         """
         write everything to a final markdown file
         """
-        filename = self._filename()
-        title, problemcontent = self._read_html()
+        title, problemcontent = self._read_text()
         code, code_url = self._read_code()
+        if code == None:
+            return
         date, tags, expl = self._read_date_tags_expl()
+        if expl == None:
+            return
+
         yaml = self._yaml_frontmatter(date, title, tags)
 
-        basicContent = "## 题目\n\n{}\n\n".format(problemcontent) +          \
-                       "## 思路\n\n{}\n".format(expl) +                      \
-                       "## 代码\n\n" +                                       \
-                       "[最新代码@github]({})，欢迎交流\n".format(code_url)
-
-        with open(filename, 'w') as f:
-            print("Building {}".format(filename))
+        with open(self._filename, 'w') as f:
+            print("Building {}".format(self._filename))
             f.write("{}\n\n".format(yaml))
-            f.write(basicContent)
+            f.write("## 题目\n\n" +                                          \
+                    "{{% include_relative {} %}}".format(
+                        os.path.join(config.text_dir,
+                           "{}{}.md".format(self.c, self.i))) +  \
+                    "\n\n## 思路\n\n" +                                      \
+                    "{{% include_relative {} %}}".format(
+                        os.path.join(config.analysis_dir,
+                           "{}{}.md".format(self.c, self.i))) +  \
+                    "\n## 代码\n\n" +                                        \
+                    "[最新代码@github]({})，欢迎交流\n".format(code_url))
             f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
         if self._other_platforms == True:
             with open("others/{}{}.md".format(self.c, self.i), 'w') as f:
-                print("Building {} for other platforms".format(filename))
+                print("Building {} for other platforms".format(self._filename))
                 f.write("### 我的PAT系列文章更新重心已移至Github，" +        \
                         "欢迎来看PAT题解的小伙伴请到" +                      \
-                        "[Github Pages](https://oliverlew.github.io/PAT/)" + \
-                        "浏览最新内容。此处文章目前已更新至与" +             \
+                        "[Github Pages]({})".format(self._gh_pages) +        \
+                        "浏览最新内容" +                                     \
+                        "([本篇文章链接]({}/{}))。".format(self._gh_pages,
+                                                         self._permalink) +  \
+                        "此处文章目前已更新至与" +                           \
                         "Github Pages同步。欢迎star我的" +                   \
                         "[repo](https://github.com/OliverLew/PAT)。\n\n")
-                f.write(basicContent)
+                f.write("## 题目\n\n{}\n\n".format(problemcontent) +         \
+                        "## 思路\n\n{}\n".format(expl) +                     \
+                        "## 代码\n\n" +                                      \
+                        "[最新代码@github]({})，欢迎交流\n".format(code_url))
                 f.write("```c\n{}```".format(code))
 
     def build(self, category, index):
@@ -169,14 +173,16 @@ class FileBuilder:
         """
         self.c = category
         self.i = index
-        try:
-            self._build()
-        except FileNotFoundError:
-            print("FileNotFoundError")
-            pass
-        except CalledProcessError:
-            print("CalledProcessError")
-            pass
+        self._filename = os.path.join(config.post_dir,
+                                      "{}{:04}.md".format(self.c, self.i))
+        self._permalink = "{}/{:04}.html".format(config.category[self.c],
+                                                   self.i)
+        self._text_file = os.path.join(config.post_dir, config.text_dir,
+                                       "{}{}.md".format(self.c, self.i))
+        self._expl_file = os.path.join(config.post_dir, config.analysis_dir,
+                                       "{}{}.md".format(self.c, self.i))
+        self._build()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""A script to combine the
@@ -190,8 +196,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     builder = FileBuilder(args.other_platforms)
-    if not os.path.exists(config.md_dir):
-        os.mkdir(config.md_dir)
+    if not os.path.exists(config.post_dir):
+        os.mkdir(config.post_dir)
 
     if 'all' in args.ids:
         for c in config.indexes.keys():
