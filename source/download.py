@@ -10,6 +10,8 @@ import argparse
 import logging
 import config
 
+import html2text
+
 class PATDownloader:
     def __init__(self, force):
         self._phantomIsSetup = False
@@ -82,23 +84,38 @@ class PATDownloader:
 
         return problemList
 
+    def _processkatex(self, html):
+        """
+        replace all the 'katex' class spans with simple latex string
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        katex_spans = soup.find_all("span", class_="katex")
+        for katex_span in katex_spans:
+            katex_span.mrow.decompose()
+            mathstr = katex_span.find("math")
+            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+            katex_span.replace_with(mathjax_string)
+        return str(soup)
+
     def _parseProblem(self, url):
         soup = self._phantomParseSoup(url)
-        pc = soup.find_all('div', 'ques-view')[1]
-        return pc
+        pc_div = soup.find_all('div', 'ques-view')[1]
+        content_html = self._processkatex(str(pc_div))
+        content_md = html2text.html2text(content_html)
+        return content_md
 
     def download(self, indexes=config.indexes):
         """
         Download all html files
         """
-        if not os.path.exists(config.html_dir):
-            os.mkdir(config.html_dir)
+        if not os.path.exists(config.text_dir):
+            os.mkdir(config.text_dir)
         for c in indexes.keys():
             # checking file existance
             for index in indexes[c]:
-                htmlfile = "{}/{}{}.html".format(config.html_dir, c, index)
-                if self._force is False and os.path.exists(htmlfile):
-                    logging.info(htmlfile + " exists")
+                textfile = "{}/{}{}.md".format(config.text_dir, c, index)
+                if self._force is False and os.path.exists(textfile):
+                    logging.info(textfile + " exists")
                     indexes[c].remove(index)
                     continue
 
@@ -115,10 +132,10 @@ class PATDownloader:
                 if int(url['index']) not in indexes[c]:
                     continue
 
-                htmlfile = "{}/{}{}.html".format(config.html_dir, c, url['index'])
-                logging.info("downloading " + htmlfile)
+                textfile = "{}/{}{}.md".format(config.text_dir, c, url['index'])
+                logging.info("downloading " + textfile)
                 pc = self._parseProblem(url['link'])
-                with open(htmlfile, 'w') as f:
+                with open(textfile, 'w') as f:
                     f.write("{}\n{}".format(url['title'], pc))
 
 if __name__ == "__main__":

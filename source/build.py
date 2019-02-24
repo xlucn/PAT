@@ -7,10 +7,7 @@ import os
 import sys
 import re
 import argparse
-from bs4 import BeautifulSoup
 from subprocess import run, PIPE, CalledProcessError
-
-import html2text
 
 import config
 
@@ -59,19 +56,6 @@ class FileBuilder:
         frontmatter += "---"
         return frontmatter
 
-    def _processkatex(self, html):
-        """
-        replace all the 'katex' class spans with simple latex string
-        """
-        soup = BeautifulSoup(html, "html.parser")
-        katex_spans = soup.find_all("span", class_="katex")
-        for katex_span in katex_spans:
-            katex_span.mrow.decompose()
-            mathstr = katex_span.find("math")
-            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
-            katex_span.replace_with(mathjax_string)
-        return str(soup)
-
     def _filename(self):
         return os.path.join(config.post_dir, "{}{:04}.md".format(self.c, self.i))
 
@@ -79,16 +63,15 @@ class FileBuilder:
         """
         Open the html file and read title and content
         """
-        html = os.path.join(config.html_dir, "{}{}.html".format(self.c, self.i))
-        lines = open(html).readlines()
+        text = os.path.join(config.text_dir, "{}{}.md".format(self.c, self.i))
+        lines = open(text).readlines()
 
         title = "{level} {index}. {title} {lang}".format(
                     level=config.cat_string[self.c],
                     index=self.i,
                     title=lines[0].rstrip(),
                     lang="(C语言实现)")
-        content_html = self._processkatex("".join(lines[1:]))
-        content_md = html2text.html2text(content_html)
+        content_md = "".join(lines[1:])
 
         return title, content_md
 
