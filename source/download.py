@@ -100,37 +100,40 @@ class PATDownloader:
 
     def download(self, indexes=config.indexes):
         """
-        Download all html files
+        Download html files
         """
         if not os.path.exists(config.text_dir):
             os.mkdir(config.text_dir)
+
         for c in indexes.keys():
-            # checking file existance
+            url_list = None
             for index in indexes[c]:
                 textfile = "{}/{}{}.md".format(config.text_dir, c, index)
                 if self._force is False and os.path.exists(textfile):
                     logging.info(textfile + " exists")
-                    indexes[c].remove(index)
                     continue
 
-            if len(indexes[c]) == 0:
-                continue
+                # try to getch the list of urls of all problems
+                while url_list == None:
+                    url_list = self._parseCatatory(c)
+                    if url_list == None:
+                        time.sleep(5)
 
-            url_list = None
-            while url_list == None:
-                url_list = self._parseCatatory(c)
-                if url_list == None:
-                    time.sleep(5)
+                # find the corresponding url
+                url_index = next((url for url in url_list
+                                  if int(url['index']) == index),
+                                 None)
+                # download
+                if url_index:
+                    logging.info("downloading " + textfile)
+                    pc = self._parseProblem(url_index['link'])
+                    with open(textfile, 'w') as f:
+                        f.write("<!-- Title\n" +                           \
+                                "{}\n-->\n".format(url_index['title']) +   \
+                                pc)
+                else:
+                    logging.error("Index {}{} not available".format(c, index))
 
-            for url in url_list:
-                if int(url['index']) not in indexes[c]:
-                    continue
-
-                textfile = "{}/{}{}.md".format(config.text_dir, c, url['index'])
-                logging.info("downloading " + textfile)
-                pc = self._parseProblem(url['link'])
-                with open(textfile, 'w') as f:
-                    f.write("{}\n{}".format(url['title'], pc))
 
 if __name__ == "__main__":
     # setting logging

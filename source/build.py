@@ -59,7 +59,7 @@ class FileBuilder:
     def _filename(self):
         return os.path.join(config.post_dir, "{}{:04}.md".format(self.c, self.i))
 
-    def _read_html(self):
+    def _read_text(self):
         """
         Open the html file and read title and content
         """
@@ -69,9 +69,9 @@ class FileBuilder:
         title = "{level} {index}. {title} {lang}".format(
                     level=config.cat_string[self.c],
                     index=self.i,
-                    title=lines[0].rstrip(),
+                    title=lines[1].rstrip(),
                     lang="(C语言实现)")
-        content_md = "".join(lines[1:])
+        content_md = "".join(lines[3:])
 
         return title, content_md
 
@@ -82,10 +82,16 @@ class FileBuilder:
         code_rel_path = os.path.join(config.code_dir[self.c],
                                      "{}.c".format(self.i))
         github_file_url = os.path.join(self._github, code_rel_path)
-        raw_code = run(["git", "show", "master:" + code_rel_path], check=True,
-                       stdout=PIPE, stderr=PIPE).stdout.decode("utf-8")
-        code = raw_code[raw_code.index("#include"):]
-        return code, github_file_url
+        result = run(["git", "show", "master:" + code_rel_path],
+                     # check=True,
+                     stdout=PIPE,
+                     stderr=PIPE)
+        if result.returncode == 0:
+            raw_code = result.stdout.decode("utf-8")
+            code = raw_code[raw_code.index("#include"):]
+            return code, github_file_url
+        else:
+            return None, None
 
     def _read_date_tags_expl(self):
         """
@@ -98,7 +104,12 @@ class FileBuilder:
         """
         expl_file = os.path.join(config.analysis_dir,
                                  "{}{}.md".format(self.c, self.i))
-        expl = open(expl_file).readlines()
+        try:
+            expl = open(expl_file).readlines()
+        except FileNotFoundError:
+            print("No analysis file: {}".format(expl_file))
+            return None, None, None
+
         if len(expl) < 2:
             print(expl_file + ": ")
             print("analysis file should be at least 2 lines long:")
@@ -118,9 +129,15 @@ class FileBuilder:
         write everything to a final markdown file
         """
         filename = self._filename()
-        title, problemcontent = self._read_html()
+        title, problemcontent = self._read_text()
         code, code_url = self._read_code()
+        if code == None:
+            # print("No code")
+            return
         date, tags, expl = self._read_date_tags_expl()
+        if expl == None:
+            return
+
         yaml = self._yaml_frontmatter(date, title, tags)
 
         basicContent = "## 题目\n\n{}\n\n".format(problemcontent) +          \
@@ -152,14 +169,8 @@ class FileBuilder:
         """
         self.c = category
         self.i = index
-        try:
-            self._build()
-        except FileNotFoundError:
-            print("FileNotFoundError")
-            pass
-        except CalledProcessError:
-            print("CalledProcessError")
-            pass
+        self._build()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""A script to combine the
