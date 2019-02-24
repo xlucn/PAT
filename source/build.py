@@ -60,7 +60,7 @@ class FileBuilder:
         """
         Open the html file and read title and content
         """
-        text = os.path.join(config.text_dir, "{}{}.md".format(self.c, self.i))
+        text = self._text_file
         lines = open(text).readlines()
 
         title = "{level} {index}. {title} {lang}".format(
@@ -99,8 +99,7 @@ class FileBuilder:
             the actual anylasis.
         Hence the return has three parts.
         """
-        expl_file = os.path.join(config.analysis_dir,
-                                 "{}{}.md".format(self.c, self.i))
+        expl_file = self._expl_file
         try:
             expl = open(expl_file).readlines()
         except FileNotFoundError:
@@ -128,7 +127,6 @@ class FileBuilder:
         title, problemcontent = self._read_text()
         code, code_url = self._read_code()
         if code == None:
-            # print("No code")
             return
         date, tags, expl = self._read_date_tags_expl()
         if expl == None:
@@ -136,15 +134,19 @@ class FileBuilder:
 
         yaml = self._yaml_frontmatter(date, title, tags)
 
-        basicContent = "## 题目\n\n{}\n\n".format(problemcontent) +          \
-                       "## 思路\n\n{}\n".format(expl) +                      \
-                       "## 代码\n\n" +                                       \
-                       "[最新代码@github]({})，欢迎交流\n".format(code_url)
-
         with open(self._filename, 'w') as f:
             print("Building {}".format(self._filename))
             f.write("{}\n\n".format(yaml))
-            f.write(basicContent)
+            f.write("## 题目\n\n" +                                          \
+                    "{{% include_relative {} %}}".format(
+                        os.path.join(config.text_dir,
+                           "{}{}.md".format(self.c, self.i))) +  \
+                    "\n\n## 思路\n\n" +                                      \
+                    "{{% include_relative {} %}}".format(
+                        os.path.join(config.analysis_dir,
+                           "{}{}.md".format(self.c, self.i))) +  \
+                    "\n## 代码\n\n" +                                        \
+                    "[最新代码@github]({})，欢迎交流\n".format(code_url))
             f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
         if self._other_platforms == True:
@@ -159,7 +161,10 @@ class FileBuilder:
                         "此处文章目前已更新至与" +                           \
                         "Github Pages同步。欢迎star我的" +                   \
                         "[repo](https://github.com/OliverLew/PAT)。\n\n")
-                f.write(basicContent)
+                f.write("## 题目\n\n{}\n\n".format(problemcontent) +         \
+                        "## 思路\n\n{}\n".format(expl) +                     \
+                        "## 代码\n\n" +                                      \
+                        "[最新代码@github]({})，欢迎交流\n".format(code_url))
                 f.write("```c\n{}```".format(code))
 
     def build(self, category, index):
@@ -172,6 +177,10 @@ class FileBuilder:
                                       "{}{:04}.md".format(self.c, self.i))
         self._permalink = "{}/{:04}.html".format(config.category[self.c],
                                                    self.i)
+        self._text_file = os.path.join(config.post_dir, config.text_dir,
+                                       "{}{}.md".format(self.c, self.i))
+        self._expl_file = os.path.join(config.post_dir, config.analysis_dir,
+                                       "{}{}.md".format(self.c, self.i))
         self._build()
 
 
