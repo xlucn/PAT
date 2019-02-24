@@ -1,10 +1,26 @@
-## PAT解题说明
+# PAT解题说明
 
 https://oliverlew.github.io/PAT
 
 Github Pages + Jekyll搭建的静态博客
 
-### Todo list
+## 文件结构
+
+最终目标：生成jekyll博客接受的markdown文件，需要：
+
+- PAT习题题目内容。由`source/download.py`下载自PAT网站，并转换为markdown语法。
+- 题解内容。写在`analysis`文件夹里的markdown文件中。
+- 代码。利用`git show`命令从master分支中读取。
+
+`source/build.py`Python脚本会将上述内容汇集到一个文件中，并添加适当的标题、
+副标题、markdown语法结构还有为jekyll设置的yaml front matter。
+
+博客基于[minimal][]这个jekyll主题，并有所改变：
+
+- 做了一定美化，css的改变集中在`assets/css/mystyle.css`中
+- 使用category layout
+
+## Todo list
 
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
