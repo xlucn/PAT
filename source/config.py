@@ -26,3 +26,9 @@ indexes = {                 # Problem indexes for each level
     'b': [i + 1001 for i in range(95)],
     't': [i + 1001 for i in range(27)]
 }
+
+urlidx = {
+    'b': "994805260223102976",
+    'a': "994805342720868352",
+    't': "994805148990160896"
+}

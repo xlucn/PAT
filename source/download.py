@@ -18,12 +18,6 @@ class PATDownloader:
         self._force = force
         self._baseUrl = "https://pintia.cn"
         self._problemSetsUrl = self._baseUrl + "/problem-sets"
-        # the number in the website url
-        self._ProblemID = {
-                'b': "994805260223102976",
-                'a': "994805342720868352",
-                't': "994805148990160896"
-                }
 
     def __del__(self):
         try:
@@ -54,7 +48,7 @@ class PATDownloader:
     def _parseCatatory(self, category):
         categoryUrl = "{baseurl}/{ID}/problems".format(
                           baseurl=self._problemSetsUrl,
-                          ID=self._ProblemID[category])
+                          ID=config.urlidx[category])
         logging.info('requesting page \'{}\''.format(categoryUrl))
         soup = self._phantomParseSoup(categoryUrl)
         table = soup.find('tbody')
