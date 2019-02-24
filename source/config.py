@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
-post_dir = "../_articles"               # The dir of final generated markdown file
-text_dir = "html"           # The dir of html file from patest.cn
-analysis_dir = "analysis"   # The dir of md files of only analysis text
+post_dir = "../_articles"                # The dir of final generated markdown file
+text_dir = "../_articles/html"           # The dir of html file from patest.cn
+analysis_dir = "../_articles/analysis"   # The dir of md files of only analysis text
 code_dir = {                # Children folders of code_dir
     'a': 'PATAdvanced',
     'b': 'PATBasic',
