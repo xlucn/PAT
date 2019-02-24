@@ -110,19 +110,19 @@ class FileBuilder:
             print("No analysis file: {}".format(expl_file))
             return None, None, None
 
-        if len(expl) < 2:
+        if len(expl) < 4:
             print(expl_file + ": ")
-            print("analysis file should be at least 2 lines long:")
-            print("date, tags, and content(optional)")
+            print("analysis file should be at least 4 lines long:")
+            print("date, tags, surrounding html comment and content(optional)")
             exit(1)
-        date = expl[0].strip('\n')
+        date = expl[1].strip('\n')
         if re.match(r'', date) is None:
             print("date should be in the pattern of")
             print("'YYYY-MM-DD HH:MM:SS +/-TTTT'")
             exit(1)
-        tags = expl[1].strip('\n').split(',')
+        tags = expl[2].strip('\n').split(',')
 
-        return date, tags, "".join(expl[2:])
+        return date, tags, "".join(expl[4:])
 
     def _build(self):
         """
