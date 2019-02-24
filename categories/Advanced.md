@@ -2,5 +2,5 @@
 layout: category
 title: Advanced
 category: Advanced
-permalink: /Advanced.html
+permalink: Advanced.html
 ---

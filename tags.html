@@ -45,12 +45,11 @@ The purpose of this snippet is to list all the tags you have in your site.
 =======================
 {% endcomment %}
 <div class="tags">
-<h2 class="tags-title">TAGS</h2>
+    <h1 class="tags-title"><a id="top" class="anchor"></a>TAGS</h1>
 <div class="tagnames">
 {% for tag in tags %}
   <a class="meta-tags" href="#{{ tag | slugify }}">
-      <img src="{{ '/assets/images/tag.svg' | relative_url }}"
-           alt="tag" class="svg-icon">
+      <i class="fas fa-tag fa-sm"></i>
       {{ tag }}
   </a>
 {% endfor %}
@@ -67,8 +66,10 @@ The purpose of this snippet is to list all your posts posted with a certain tag.
 {% for tag in tags %}
   {% assign slug_tag = tag | slugify %}
   <h2 class="tag-string-h2">
+      <i class="fas fa-tag fa-sm"></i>
       <a class="anchor" id="{{ tag | slugify }}"></a>{{ tag }}
   </h2>
+  <a href="#top" class="gotop">go to top</a>
   <ul>
    {% for post in site.articles %}
      {% if post.tags contains tag %}

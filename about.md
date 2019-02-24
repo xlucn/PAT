@@ -3,7 +3,6 @@ layout: post
 title: About
 date:  2017-05-05 17:55:00 +0800
 categories: About
-permalink: /about.html
 ---
 
 本博客是[浙江大学在线测试系统PAT题目集][PAT]解答说明，所有代码均仅使用C语言.
