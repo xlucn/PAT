@@ -4,10 +4,9 @@ Build markdown files from different sources
 """
 
 import os
-import sys
 import re
 import argparse
-from subprocess import run, PIPE, CalledProcessError
+from subprocess import run, PIPE
 
 import config
 
@@ -15,12 +14,23 @@ class FileBuilder:
     """
     build markdown files.
     """
-    def __init__(self, other_platforms):
+    def __init__(self, category, index, other_platforms):
         self._github = "https://github.com/OliverLew/PAT/blob/master"
         self._gh_pages = "https://oliverlew.github.io/PAT"
+
+        self.c = category
+        self.i = index
         self._other_platforms = other_platforms
 
-    def _yaml_frontmatter(self, date=None, title=None, tags=[]):
+        self._permalink = "{}/{}.html".format(config.category[self.c], self.i)
+        self._filename = os.path.join(config.post_dir,
+                                      "{}{}.md".format(self.c, self.i))
+        self._text_file = os.path.join(config.post_dir, config.text_dir,
+                                       "{}{}.md".format(self.c, self.i))
+        self._expl_file = os.path.join(config.post_dir, config.analysis_dir,
+                                       "{}{}.md".format(self.c, self.i))
+
+    def _yaml_frontmatter(self, date=None, title=None, tags=None):
         """
         create the yaml front matter for markdown files
         """
@@ -64,10 +74,10 @@ class FileBuilder:
         lines = open(text).readlines()
 
         title = "{level} {index}. {title} {lang}".format(
-                    level=config.cat_string[self.c],
-                    index=self.i,
-                    title=lines[1].rstrip(),
-                    lang="(C语言实现)")
+            level=config.cat_string[self.c],
+            index=self.i,
+            title=lines[1].rstrip(),
+            lang="(C语言实现)")
         content_md = "".join(lines[3:])
 
         return title, content_md
@@ -83,12 +93,13 @@ class FileBuilder:
                      # check=True,
                      stdout=PIPE,
                      stderr=PIPE)
+
         if result.returncode == 0:
             raw_code = result.stdout.decode("utf-8")
             code = raw_code[raw_code.index("#include"):]
             return code, github_file_url
-        else:
-            return None, None
+
+        return None, None
 
     def _read_date_tags_expl(self):
         """
@@ -120,68 +131,53 @@ class FileBuilder:
 
         return date, tags, "".join(expl[4:])
 
-    def _build(self):
+    def build(self):
         """
         write everything to a final markdown file
         """
         title, problemcontent = self._read_text()
         code, code_url = self._read_code()
-        if code == None:
+        if code is None:
             return
         date, tags, expl = self._read_date_tags_expl()
-        if expl == None:
+        if expl is None:
             return
 
         yaml = self._yaml_frontmatter(date, title, tags)
 
-        with open(self._filename, 'w') as f:
+        with open(self._filename, 'w') as md_file:
             print("Building {}".format(self._filename))
-            f.write("{}\n\n".format(yaml))
-            f.write("## 题目\n\n" +                                          \
+            md_file.write("{}\n\n".format(yaml))
+            md_file.write("## 题目\n\n" +                                    \
                     "{{% include_relative {} %}}".format(
                         os.path.join(config.text_dir,
-                           "{}{}.md".format(self.c, self.i))) +  \
+                                     "{}{}.md".format(self.c, self.i))) +    \
                     "\n\n## 思路\n\n" +                                      \
                     "{{% include_relative {} %}}".format(
                         os.path.join(config.analysis_dir,
-                           "{}{}.md".format(self.c, self.i))) +  \
+                                     "{}{}.md".format(self.c, self.i))) +    \
                     "\n## 代码\n\n" +                                        \
                     "[最新代码@github]({})，欢迎交流\n".format(code_url))
-            f.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
+            md_file.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
-        if self._other_platforms == True:
-            with open("others/{}{}.md".format(self.c, self.i), 'w') as f:
+        if self._other_platforms:
+            with open("others/{}{}.md".format(self.c, self.i), 'w') as md_file:
                 print("Building {} for other platforms".format(self._filename))
-                f.write("### 我的PAT系列文章更新重心已移至Github，" +        \
-                        "欢迎来看PAT题解的小伙伴请到" +                      \
-                        "[Github Pages]({})".format(self._gh_pages) +        \
-                        "浏览最新内容" +                                     \
-                        "([本篇文章链接]({}/{}))。".format(self._gh_pages,
-                                                         self._permalink) +  \
-                        "此处文章目前已更新至与" +                           \
-                        "Github Pages同步。欢迎star我的" +                   \
-                        "[repo](https://github.com/OliverLew/PAT)。\n\n")
-                f.write("## 题目\n\n{}\n\n".format(problemcontent) +         \
-                        "## 思路\n\n{}\n".format(expl) +                     \
-                        "## 代码\n\n" +                                      \
-                        "[最新代码@github]({})，欢迎交流\n".format(code_url))
-                f.write("```c\n{}```".format(code))
+                md_file.write("### 我的PAT系列文章更新重心已移至Github，" +  \
+                    "欢迎来看PAT题解的小伙伴请到" +                          \
+                    "[Github Pages]({})".format(self._gh_pages) +            \
+                    "浏览最新内容" +                                         \
+                    "([本篇文章链接]({}/{}))。".format(self._gh_pages,
+                                                self._permalink) +           \
+                    "此处文章目前已更新至与" +                               \
+                    "Github Pages同步。欢迎star我的" +                       \
+                    "[repo](https://github.com/OliverLew/PAT)。\n\n" +       \
+                    "## 题目\n\n{}\n\n".format(problemcontent) +             \
+                    "## 思路\n\n{}\n".format(expl) +                         \
+                    "## 代码\n\n" +                                          \
+                    "[最新代码@github]({})，欢迎交流\n".format(code_url) +   \
+                    "```c\n{}```".format(code))
 
-    def build(self, category, index):
-        """
-        build a file with error handling
-        """
-        self.c = category
-        self.i = index
-        self._filename = os.path.join(config.post_dir,
-                                      "{}{:04}.md".format(self.c, self.i))
-        self._permalink = "{}/{:04}.html".format(config.category[self.c],
-                                                   self.i)
-        self._text_file = os.path.join(config.post_dir, config.text_dir,
-                                       "{}{}.md".format(self.c, self.i))
-        self._expl_file = os.path.join(config.post_dir, config.analysis_dir,
-                                       "{}{}.md".format(self.c, self.i))
-        self._build()
 
 
 if __name__ == "__main__":
@@ -195,18 +191,19 @@ if __name__ == "__main__":
                         help='If generate files for other platforms')
     args = parser.parse_args()
 
-    builder = FileBuilder(args.other_platforms)
     if not os.path.exists(config.post_dir):
         os.mkdir(config.post_dir)
 
     if 'all' in args.ids:
         for c in config.indexes.keys():
             for i in config.indexes[c]:
-                builder.build(c, i)
+                builder = FileBuilder(c, i, args.other_platforms)
+                builder.build()
     else:
         for ID in args.ids:
             if re.match(r"[abt]\d{4}", ID):
                 category = ID[0]
                 index = int(ID[1:])
                 if index in config.indexes[category]:
-                    builder.build(category, index)
+                    builder = FileBuilder(category, index, args.other_platforms)
+                    builder.build()

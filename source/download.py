@@ -1,104 +1,100 @@
 #! /usr/bin/env python3
 import os
-import sys
 import re
 import time
+import logging
+import argparse
+
+import html2text
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
-import argparse
-import logging
+
 import config
 
-import html2text
+
+def process_katex(html):
+    """
+    replace all the 'katex' class spans with simple latex string
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    katex_spans = soup.find_all("span", class_="katex")
+    for katex_span in katex_spans:
+        katex_span.mrow.decompose()
+        mathstr = katex_span.find("math")
+        mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+        katex_span.replace_with(mathjax_string)
+    return str(soup)
 
 class PATDownloader:
     def __init__(self, force):
-        self._phantomIsSetup = False
+        self._phantom_is_setup = False
         self._force = force
-        self._baseUrl = "https://pintia.cn"
-        self._problemSetsUrl = self._baseUrl + "/problem-sets"
+        self._base_url = "https://pintia.cn"
+        self._problem_sets_url = self._base_url + "/problem-sets"
 
-    def __del__(self):
-        try:
-            self._phantomBrowser.quit()
-        except:
-            pass
-
-    def _phantomSetup(self):
+        # phantom_setup
         options = Options()
         options.headless = True
         try:
-            self._phantomBrowser = webdriver.Firefox(options=options)
+            self._phantom_browser = webdriver.Firefox(options=options)
             logging.info("Starting phantom firefox driver")
         except:
             logging.error("Starting phantom firefox driver failed")
             exit(1)
-        self._phantomIsSetup = True
 
-    def _phantomParseSoup(self, url):
-        if self._phantomIsSetup == False:
-            self._phantomSetup()
-        self._phantomBrowser.get(url)
+    def __del__(self):
+        self._phantom_browser.quit()
+
+    def _phantom_parse_soup(self, url):
+        self._phantom_browser.get(url)
         # check return here
-        html = self._phantomBrowser.page_source
+        html = self._phantom_browser.page_source
         soup = BeautifulSoup(html, 'html.parser')
         return soup
 
-    def _parseCatatory(self, category):
-        categoryUrl = "{baseurl}/{ID}/problems".format(
-                          baseurl=self._problemSetsUrl,
-                          ID=config.urlidx[category])
-        logging.info('requesting page \'{}\''.format(categoryUrl))
-        soup = self._phantomParseSoup(categoryUrl)
+    def _parse_catatory(self, category):
+        category_url = "{baseurl}/{ID}/problems".format(
+            baseurl=self._problem_sets_url,
+            ID=config.urlidx[category])
+        logging.info('requesting page \'%s\'', category_url)
+        soup = self._phantom_parseSoup(category_url)
         table = soup.find('tbody')
-        if table == None:
-            logging.warning('requesting page \'{}\' failed, will retry {}'
-                            .format(categoryUrl, '(table returned None)'))
+        if table is None:
+            logging.warning('requesting page \'%s\' failed, will retry %s',
+                            category_url, '(table returned None)')
             return None
 
         rows = table.find_all('tr')
 
         if len(rows) < len(config.indexes[category]):
-            logging.warning('requesting page \'{}\' failed, will retry {}'
-                            .format(categoryUrl, '(rows length not enough)'))
+            logging.warning('requesting page \'%s\' failed, will retry %s',
+                            category_url, '(rows length not enough)')
             return None
 
-        problemList = []
+        problem_list = []
         for row in rows:
             tdlist = row.find_all('td')
             link = tdlist[2].find('a')
-            problemList.append({
+            problem_list.append({
                 'index': tdlist[1].contents[0],
                 'title': "{content} ({score})".format(
-                            content=link.contents[0],
-                            score=tdlist[3].contents[0]),
-                'link': self._baseUrl + link['href']
+                    content=link.contents[0],
+                    score=tdlist[3].contents[0]),
+                'link': self._base_url + link['href']
             })
 
-        return problemList
+        return problem_list
 
-    def _processkatex(self, html):
-        """
-        replace all the 'katex' class spans with simple latex string
-        """
-        soup = BeautifulSoup(html, "html.parser")
-        katex_spans = soup.find_all("span", class_="katex")
-        for katex_span in katex_spans:
-            katex_span.mrow.decompose()
-            mathstr = katex_span.find("math")
-            mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
-            katex_span.replace_with(mathjax_string)
-        return str(soup)
 
-    def _parseProblem(self, url):
-        soup = self._phantomParseSoup(url)
+    def _parse_problem(self, url):
+        soup = self._phantom_parse_soup(url)
         pc_div = soup.find_all('div', 'ques-view')[1]
-        content_html = self._processkatex(str(pc_div))
+        content_html = process_katex(str(pc_div))
         content_md = html2text.html2text(content_html)
         return content_md
 
-    def download(self, indexes=config.indexes):
+    def download(self, indexes=None):
         """
         Download html files
         """
@@ -110,13 +106,13 @@ class PATDownloader:
             for index in indexes[c]:
                 textfile = "{}/{}{}.md".format(config.text_dir, c, index)
                 if self._force is False and os.path.exists(textfile):
-                    logging.info(textfile + " exists")
+                    logging.info("%s exists", textfile)
                     continue
 
                 # try to getch the list of urls of all problems
-                while url_list == None:
-                    url_list = self._parseCatatory(c)
-                    if url_list == None:
+                while url_list is None:
+                    url_list = self._parse_catatory(c)
+                    if url_list is None:
                         time.sleep(5)
 
                 # find the corresponding url
@@ -125,14 +121,14 @@ class PATDownloader:
                                  None)
                 # download
                 if url_index:
-                    logging.info("downloading " + textfile)
-                    pc = self._parseProblem(url_index['link'])
+                    logging.info("downloading %s", textfile)
+                    pc = self._parse_problem(url_index['link'])
                     with open(textfile, 'w') as f:
                         f.write("<!-- Title\n" +                           \
                                 "{}\n-->\n".format(url_index['title']) +   \
                                 pc)
                 else:
-                    logging.error("Index {}{} not available".format(c, index))
+                    logging.error("Index %s%s not available", c, index)
 
 
 if __name__ == "__main__":
@@ -159,12 +155,12 @@ if __name__ == "__main__":
     else:
         for ID in args.ids:
             if not re.match(r"[abt]\d{4}", ID):
-                logging.error('This id is not valid: {}'.format(ID))
+                logging.error('This id is not valid: %s', ID)
                 exit(0)
             category = ID[0]
             index = int(ID[1:])
             if index not in config.indexes[category]:
-                logging.error('Index out of range: {}'.format(index))
+                logging.error('Index out of range: %s', index)
                 exit(0)
             dlIndexes[category].append(index)
 
