@@ -1,6 +1,6 @@
-HTML_DIR=html
-ANA_DIR=analysis
 MD_DIR=../_articles
+HTML_DIR=$(MD_DIR)/html
+ANA_DIR=$(MD_DIR)/analysis
 
 ANA=$(wildcard $(ANA_DIR)/*.md)
 HTML=$(addprefix $(HTML_DIR)/,$(notdir $(ANA:.md=.html)))

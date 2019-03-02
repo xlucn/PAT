@@ -58,7 +58,7 @@ class PATDownloader:
             baseurl=self._problem_sets_url,
             ID=config.urlidx[category])
         logging.info('requesting page \'%s\'', category_url)
-        soup = self._phantom_parseSoup(category_url)
+        soup = self._phantom_parse_soup(category_url)
         table = soup.find('tbody')
         if table is None:
             logging.warning('requesting page \'%s\' failed, will retry %s',
