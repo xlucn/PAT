@@ -24,7 +24,7 @@ Github Pages + Jekyll搭建的静态博客
 
 - [x] Get it running. First successful run in [this commit][first run]
 - [x] Add correct date to filenames in [this commit][add date]
-- [ ] Use include to reduce code duplication
+- [x] Use include to reduce code duplication in [this pull request][use include]
 - [x] Use permalink to fix the page urls in [this pull request][use collections]
 - [x] Add MathJax support in [this pull request][add mathjax]
 - [x] Use tags/categories to manage posts.
@@ -36,6 +36,7 @@ Github Pages + Jekyll搭建的静态博客
 [first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
 [add date]: https://github.com/OliverLew/PAT/commit/e6e23b82b4f12b895d2504602f8b4a6b9e912f41
 [use collections]: https://github.com/OliverLew/PAT/pull/10
+[use include]: https://github.com/OliverLew/PAT/pull/17
 [add categories]: https://github.com/OliverLew/PAT/commit/2f74e56775f5ec7c1ab31c27f23d3071b178784f
 [add tags]: https://github.com/OliverLew/PAT/pull/15
 [add GA]: https://github.com/OliverLew/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
