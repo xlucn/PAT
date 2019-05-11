@@ -105,8 +105,10 @@ class FileBuilder:
         """
         read explanation part.
         The file contains:
-            the date at the first line,
-            the tags at the second line,
+            html comment
+            the date
+            the tags
+            ending html comment
             the actual anylasis.
         Hence the return has three parts.
         """
