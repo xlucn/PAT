@@ -9,9 +9,13 @@
             clientSecret: "{{site.gitalk.clientSecret}}",
             repo: "{{site.gitalk.repo}}",
             owner: "{{site.gitalk.owner}}",
-            admin: ["{{site.gitalk.admin}}"],
              /* A configuration in this file: id */
             id: "{{page.url | remove: ".html" | split: '/' | join ' ' | strip}}",
+            admin: [
+                {% for gitalk_admin in site.gitalk.admin %}
+                    "{{gitalk_admin}}",
+                {% endfor %}
+            ],
             labels: [
                 {% for gitalk_lable in site.gitalk.labels %}
                     "{{ gitalk_lable }}",
