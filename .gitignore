@@ -1,7 +1,6 @@
-Gemfile.lock
 _site
-Gemfile.lock
 .sass-cache
+.bundle/
 .jekyll-metadata
 __pycache__
 PATAdvanced/
