@@ -18,10 +18,8 @@ int main()
     /* read the first one */
     scanf("%d", &n);
     /* just enough to find the median: skip the first half */
-    /*printf("steps: %d\n", (N1 + N2 + 1) / 2);*/
     for(int i = 0; i < (N1 + N2 + 1) / 2; i++)
     {
-        /*printf("p: %d, n: %d\n", *p, n);*/
         /* Record the smallest of the two */
         if(*p < n)
             median = *p;
