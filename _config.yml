@@ -66,10 +66,11 @@ gitalk:
   enabled: true
   clientID: '7bf7cca48411ad47d5c3'
   clientSecret: '9b1d5d7c3aa64fe4f5e4c8e71ea597e63f6e83b9'
-  # create issues in my github.io repo
-  repo: 'oliverlew.github.io'
+  # create issues in owner/repo
   owner: 'OliverLew'
-  admin: 'OliverLew'
+  repo: 'oliverlew.github.io'
+  # users with write permission to the repo
+  admin: ['OliverLew']
   labels: ['Gitalk', 'PAT solutions in C']
   pagerDirection: 'first'
   distractionFreeMode: false
