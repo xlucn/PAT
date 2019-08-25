@@ -16,7 +16,7 @@ CONF=config.py
 
 all: $(MD)
 
-$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(HTML_DIR)/%.html $(BD_PY) $(CONF)
+$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(BD_PY) $(CONF)
 	@id=$(notdir $(basename $@));                                           \
 	c=$${id:0:1};                                                           \
 	index=$${id:1:4};                                                       \
