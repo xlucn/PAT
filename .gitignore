@@ -5,5 +5,5 @@ _site
 __pycache__
 PATAdvanced/
 PATBasic/
-source/others/
+*/others/
 *.log

@@ -1,4 +1,6 @@
-MD_DIR=../_articles
+MD_DIR=_articles
+SRC_DIR=scripts
+
 HTML_DIR=$(MD_DIR)/html
 ANA_DIR=$(MD_DIR)/analysis
 
@@ -8,9 +10,9 @@ MD=$(addprefix $(MD_DIR)/,$(notdir $(ANA)))
 MASTER=$(shell git ls-tree -r --name-only --full-tree master)
 PHONY_TARGETS=$(notdir $(ANA:.md=))
 
-DL_PY=download.py
-BD_PY=build.py
-CONF=config.py
+DL_PY=$(SRC_DIR)/download.py
+BD_PY=$(SRC_DIR)/build.py
+CONF=$(SRC_DIR)/config.py
 
 .PHONY: $(PHONY_TARGETS) clean rebuild download force-download test
 
@@ -38,7 +40,7 @@ $(MD_DIR)/%.md:$(ANA_DIR)/%.md $(BD_PY) $(CONF)
 	        if [ ! -f $$f ]; then                                           \
 	            echo $$f is missing;                                        \
 	        else                                                            \
-	            ./build.py -o $$id; break;                                  \
+	            python $(SRC_DIR)/build.py -o $$id; break;                  \
 	        fi;                                                             \
 	    done;                                                               \
 	else                                                                    \
@@ -49,7 +51,7 @@ $(ANA_DIR)/%.md:
 	touch $@
 
 $(HTML_DIR)/%.html: $(DL_PY)
-	./download.py $(notdir $(basename $@))
+	python $(SRC_DIR)/download.py $(notdir $(basename $@))
 
 clean:
 	rm -f $(MD)
@@ -57,10 +59,10 @@ clean:
 rebuild: clean all
 
 download:
-	./download.py
+	python $(SRC_DIR)/download.py
 
 force-download:
-	./download.py -f
+	python $(SRC_DIR)/download.py -f
 
 test:
 	@echo -e $(PHONY_TARGETS)

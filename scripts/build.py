@@ -36,9 +36,9 @@ class FileBuilder:
         """
         categories = config.category[self.c]
         # Check validity
-        if re.match(r'', date) is None:
+        if re.match(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}', date) is None:
             print("{}{}:".format(self.c, self.i))
-            print("date should be in the pattern of 'YYYY-MM-DD HH:MM:SS +/-TTTT'")
+            print("date should be in the pattern of 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'")
             print("date is now: {}".format(date))
             exit(1)
         if not isinstance(title, str):
@@ -163,8 +163,9 @@ class FileBuilder:
             md_file.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
         if self._other_platforms:
-            with open("others/{}{}.md".format(self.c, self.i), 'w') as md_file:
-                print("Building {} for other platforms".format(self._filename))
+            other_file = "{}/{}{}.md".format(config.other_dir, self.c, self.i)
+            with open(other_file, 'w') as md_file:
+                print("Building {} for other platforms".format(other_file))
                 md_file.write("### 我的PAT系列文章更新重心已移至Github，" +  \
                     "欢迎来看PAT题解的小伙伴请到" +                          \
                     "[Github Pages]({})".format(self._gh_pages) +            \
