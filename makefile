@@ -1,5 +1,5 @@
-SOURCES:=$(shell find ./ -name '*.c')
-BINARIES:=$(SOURCES:%.c=%)
+SOURCES:=$(wildcard */*.c)
+BINARIES:=$(SOURCES:.c=)
 
 all: $(BINARIES)
 
@@ -7,4 +7,8 @@ all: $(BINARIES)
 	gcc -g -Wall $< -o $@ -lm
 
 clean:
-	rm $(BINARIES)
+	rm -f $(BINARIES)
+
+test:
+	@echo $(SOURCES)
+	@echo $(BINARIES)
