@@ -8,10 +8,11 @@ post_dir = os.path.join(script_dir, "..", "_articles")
 # The dir of markdown file prepared for other blog websites
 other_dir = os.path.join(post_dir, "others")
 # The dir of html file from patest.cn
-text_dir = "html"
+text_reldir = "html"
+text_dir = os.path.join(post_dir, text_reldir)
 # The dir of md files of only analysis text
-analysis_dir = "analysis"
-
+analysis_reldir = "analysis"
+analysis_dir = os.path.join(post_dir, analysis_reldir)
 
 category = {
     'a': 'Advanced',

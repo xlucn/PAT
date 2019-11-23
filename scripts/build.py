@@ -28,9 +28,9 @@ class FileBuilder:
         self._permalink = "{}/{}.html".format(config.category[self.c], self.i)
         self._filename = os.path.join(config.post_dir,
                                       "{}{}.md".format(self.c, self.i))
-        self._text_file = os.path.join(config.post_dir, config.text_dir,
+        self._text_file = os.path.join(config.text_dir,
                                        "{}{}.md".format(self.c, self.i))
-        self._expl_file = os.path.join(config.post_dir, config.analysis_dir,
+        self._expl_file = os.path.join(config.analysis_dir,
                                        "{}{}.md".format(self.c, self.i))
 
     def _yaml_frontmatter(self, date=None, title=None, tags=None):
@@ -152,11 +152,11 @@ class FileBuilder:
             md_file.write("{}\n\n".format(yaml))
             md_file.write("## 题目\n\n" +
                           "{{% include_relative {} %}}".format(
-                              os.path.join(config.text_dir,
+                              os.path.join(config.text_reldir,
                                            "{}{}.md".format(self.c, self.i))) +
                           "\n\n## 思路\n\n" +
                           "{{% include_relative {} %}}".format(
-                              os.path.join(config.analysis_dir,
+                              os.path.join(config.analysis_reldir,
                                            "{}{}.md".format(self.c, self.i))) +
                           "\n\n## 代码\n\n" +
                           "[Github最新代码]({})，欢迎交流\n\n".format(code_url))
