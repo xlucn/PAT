@@ -13,18 +13,32 @@ from selenium.webdriver.firefox.options import Options
 import config
 
 
-def process_katex(html):
+def process_katex(soup):
     """
     replace all the 'katex' class spans with simple latex string
     """
-    soup = BeautifulSoup(html, "html.parser")
     katex_spans = soup.find_all("span", class_="katex")
     for katex_span in katex_spans:
         katex_span.mrow.decompose()
         mathstr = katex_span.find("math")
-        mathjax_string = soup.new_string(" ${}$ ".format(mathstr.string))
+        mathjax_string = " ${}$ ".format(mathstr.string)
         katex_span.replace_with(mathjax_string)
-    return str(soup)
+    return soup
+
+
+def extract_sample_IO(soup):
+    """
+    Extract the "sample input" and "sample output" in the problem text and
+    replace them with placeholders.
+    """
+    sample_input = soup.find("code", class_="lang-in")
+    samplt_input_text = sample_input.string
+
+    sample_output = soup.find("code", class_="lang-out")
+    samplt_output_text = sample_output.string
+
+    return samplt_input_text, samplt_output_text
+
 
 class PATDownloader:
     def __init__(self, force):
@@ -90,9 +104,12 @@ class PATDownloader:
     def _parse_problem(self, url):
         soup = self._phantom_parse_soup(url)
         pc_div = soup.find_all('div', 'ques-view')[1]
-        content_html = process_katex(str(pc_div))
-        content_md = html2text.html2text(content_html)
-        return content_md
+
+        content_soup = process_katex(pc_div)
+        content_md = html2text.html2text(str(content_soup))
+
+        sample_in, sample_out = extract_sample_IO(content_soup)
+        return content_md, sample_in, sample_out
 
     def download(self, indexes=None):
         """
@@ -100,11 +117,15 @@ class PATDownloader:
         """
         if not os.path.exists(config.text_dir):
             os.mkdir(config.text_dir)
+        if not os.path.exists(config.sample_dir):
+            os.mkdir(config.sample_dir)
 
         for c in indexes.keys():
             url_list = None
             for index in indexes[c]:
                 textfile = "{}/{}{}.md".format(config.text_dir, c, index)
+                si_file = "{}/{}{}.in".format(config.sample_dir, c, index)
+                so_file = "{}/{}{}.out".format(config.sample_dir, c, index)
                 if self._force is False and os.path.exists(textfile):
                     logging.info("%s exists", textfile)
                     continue
@@ -122,11 +143,15 @@ class PATDownloader:
                 # download
                 if url_index:
                     logging.info("downloading %s", textfile)
-                    pc = self._parse_problem(url_index['link'])
+                    pc, si, so = self._parse_problem(url_index['link'])
                     with open(textfile, 'w') as f:
                         f.write("<!-- Title\n" +                           \
                                 "{}\n-->\n".format(url_index['title']) +   \
                                 pc)
+                    with open(si_file, 'w') as f:
+                        f.write(si)
+                    with open(so_file, 'w') as f:
+                        f.write(so)
                 else:
                     logging.error("Index %s%s not available", c, index)
 
