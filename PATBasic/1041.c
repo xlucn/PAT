@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef struct student{
-    char ID[15];
+    char ID[17];
     int test_seat;
     int exam_seat;
 }Student, *pStudent;
