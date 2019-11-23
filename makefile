@@ -32,7 +32,6 @@ test: $(BINARIES)
 			printf %s "$$(cat $${sample/in/out})" > temp/ans;\
 			diff temp/out temp/ans;\
 		done;\
-		if [ $$cat = b ] && [ $$id = 1041 ]; then exit; fi;\
 	done;\
 	rm -r temp
 
