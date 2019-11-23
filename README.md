@@ -4,6 +4,12 @@ https://oliverlew.github.io/PAT
 
 Github Pages + Jekyll搭建的静态博客
 
+Requirements:
+
+- selenium + firefox
+- html2text
+- beautifulsoup
+
 ## 文件结构
 
 最终目标：生成jekyll博客接受的markdown文件，需要：
