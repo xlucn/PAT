@@ -47,6 +47,9 @@ indexes = {
     't': [i + 1001 for i in range(numbers['t'])]
 }
 
+# the number of problems per page
+number_per_page = 100
+
 urlidx = {
     'b': "994805260223102976",
     'a': "994805342720868352",

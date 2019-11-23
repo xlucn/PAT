@@ -82,38 +82,37 @@ class PATDownloader:
         return soup
 
     def _parse_catatory(self, category):
-        category_url = "{baseurl}/{ID}/problems".format(
-            baseurl=self._problem_sets_url,
-            ID=config.urlidx[category])
-        logging.info('requesting page \'%s\'', category_url)
-        soup = self._phantom_parse_soup(category_url)
-        table = soup.find('tbody')
-        if table is None:
-            logging.warning('requesting page \'%s\' failed, will retry %s',
-                            category_url, '(table returned None)')
-            return None
-
-        rows = table.find_all('tr')
-
-        if len(rows) < len(config.indexes[category]):
-            logging.warning('requesting page \'%s\' failed, will retry %s',
-                            category_url, '(rows length not enough)')
-            return None
-
         problem_list = []
-        for row in rows:
-            tdlist = row.find_all('td')
-            link = tdlist[2].find('a')
-            problem_list.append({
-                'index': tdlist[1].contents[0],
-                'title': "{content} ({score})".format(
-                    content=link.contents[0],
-                    score=tdlist[3].contents[0]),
-                'link': self._base_url + link['href']
-            })
+
+        logging.info("retrieving infomation for category {c}".format(
+                     c=config.category[category]))
+        for page in range(config.numbers[category] // config.number_per_page):
+            category_url = "{baseurl}/{ID}/problems/type/7?page={page}".format(
+                baseurl=self._problem_sets_url,
+                ID=config.urlidx[category],
+                page=page)
+
+            logging.debug('requesting page \'%s\'', category_url)
+            soup = self._phantom_parse_soup(category_url)
+            table = soup.find('tbody')
+            if table is None:
+                logging.warning('requesting page \'%s\' failed, will retry %s',
+                                category_url, '(table returned None)')
+                return None
+            rows = table.find_all('tr')
+
+            for row in rows:
+                tdlist = row.find_all('td')
+                link = tdlist[2].find('a')
+                problem_list.append({
+                    'index': tdlist[1].contents[0],
+                    'title': "{content} ({score})".format(
+                        content=link.contents[0],
+                        score=tdlist[3].contents[0]),
+                    'link': self._base_url + link['href']
+                })
 
         return problem_list
-
 
     def _parse_problem(self, url):
         logging.debug('requesting page \'%s\'', url)
