@@ -6,9 +6,11 @@ Build markdown files from different sources
 import os
 import re
 import argparse
+import logging
 from subprocess import run, PIPE
 
-import config
+logging.basicConfig(format="[%(level)s] %(filename)s:%(lineno): %(message)s")
+
 
 class FileBuilder:
     """
@@ -37,24 +39,21 @@ class FileBuilder:
         categories = config.category[self.c]
         # Check validity
         if re.match(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}', date) is None:
-            print("{}{}:".format(self.c, self.i))
-            print("date should be in the pattern of 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'")
-            print("date is now: {}".format(date))
+            logging.info("{}{}: " +
+                         "date should be 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'" +
+                         "date is now: {}".format(self.c, self.i, date))
             exit(1)
         if not isinstance(title, str):
-            print("{}{}:".format(self.c, self.i))
-            print("title should be string")
-            print("title is now: {}".format(title))
+            logging.info("{}{}: title should be string" +
+                         "title is now: {}".format(self.c, self.i, title))
             exit(1)
         if not isinstance(categories, str):
-            print("{}{}:".format(self.c, self.i))
-            print("categories should be a string")
-            print("categories is now: {}".format(categories))
+            logging.info("{}{}: categories should be a string" +
+                         "categories is now: {}".format(self.c, self.i, categories))
             exit(1)
         if not isinstance(tags, list):
-            print("{}{}:".format(self.c, self.i))
-            print("tags should be a list")
-            print("tags is now: {}".format(tags))
+            logging.info("{}{}: tags should be a list" +
+                         "tags is now: {}".format(self.c, self.i, tags))
             exit(1)
         frontmatter = "---\n"
         frontmatter += "layout: post\n"

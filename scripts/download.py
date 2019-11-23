@@ -11,6 +11,10 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
 import config
+# setting logging
+logging.basicConfig(
+    format='[%(levelname)s] %(filename)s:%(lineno)d: %(message)s',
+    level=logging.INFO)
 
 
 def process_katex(soup):
@@ -52,8 +56,8 @@ class PATDownloader:
         options.headless = True
         try:
             self._phantom_browser = webdriver.Firefox(options=options)
-            logging.info("Starting phantom firefox driver")
         except:
+            logging.debug("Starting phantom firefox driver")
             logging.error("Starting phantom firefox driver failed")
             exit(1)
 
@@ -102,6 +106,8 @@ class PATDownloader:
 
 
     def _parse_problem(self, url):
+        logging.debug('requesting page \'%s\'', url)
+
         soup = self._phantom_parse_soup(url)
         pc_div = soup.find_all('div', 'ques-view')[1]
 
@@ -127,7 +133,7 @@ class PATDownloader:
                 si_file = "{}/{}{}.in".format(config.sample_dir, c, index)
                 so_file = "{}/{}{}.out".format(config.sample_dir, c, index)
                 if self._force is False and os.path.exists(textfile):
-                    logging.info("%s exists", textfile)
+                    logging.warning("%s exists", textfile)
                     continue
 
                 # try to getch the list of urls of all problems
@@ -144,6 +150,7 @@ class PATDownloader:
                 if url_index:
                     logging.info("downloading %s", textfile)
                     pc, si, so = self._parse_problem(url_index['link'])
+                    logging.debug("saving %s", textfile)
                     with open(textfile, 'w') as f:
                         f.write("<!-- Title\n" +                           \
                                 "{}\n-->\n".format(url_index['title']) +   \
@@ -190,4 +197,8 @@ if __name__ == "__main__":
             dlIndexes[category].append(index)
 
     dl = PATDownloader(force=args.force_download)
-    dl.download(dlIndexes)
+    # selenium will print some error about connection poll
+    try:
+        dl.download(dlIndexes)
+    except KeyboardInterrupt:
+        logging.info("exiting...")
