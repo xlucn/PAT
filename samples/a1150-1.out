@@ -1,0 +1,8 @@
+Path 1: 11 (TS simple cycle)
+Path 2: 13 (TS simple cycle)
+Path 3: 10 (Not a TS cycle)
+Path 4: 8 (TS cycle)
+Path 5: 3 (Not a TS cycle)
+Path 6: 13 (Not a TS cycle)
+Path 7: NA (Not a TS cycle)
+Shortest Dist(4) = 8
