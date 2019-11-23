@@ -76,8 +76,14 @@ class PATDownloader:
 
     def _phantom_parse_soup(self, url):
         self._phantom_browser.get(url)
+        try:
+            html = self._phantom_browser.page_source
+        except WebDriverException as e:
+            print(e)
+            logging.warning("you just have to run the script again\n" +
+                            "something unfortunate happened.")
+            exit(1)
         # TODO: check return here
-        html = self._phantom_browser.page_source
         soup = BeautifulSoup(html, 'html.parser')
         return soup
 
@@ -118,12 +124,14 @@ class PATDownloader:
         logging.debug('requesting page \'%s\'', url)
 
         soup = self._phantom_parse_soup(url)
-        pc_div = soup.find_all('div', 'ques-view')[1]
 
-        if len(pc_div) <= 2:
+        pc_divs = soup.find_all('div', 'ques-view')
+        if len(pc_divs) < 2:
             logging.error("not finding enough div with class \'ques-view\'" +
                           "for url: {}".format(url))
+            return None, None, None
 
+        pc_div = pc_divs[1]
         content_soup = process_katex(pc_div)
         content_md = html2text.html2text(str(content_soup))
 
@@ -146,14 +154,14 @@ class PATDownloader:
                 si_file = "{}/{}{}.in".format(config.sample_dir, c, index)
                 so_file = "{}/{}{}.out".format(config.sample_dir, c, index)
                 if self._force is False and os.path.exists(textfile):
-                    logging.warning("%s exists", textfile)
+                    logging.info("%s exists", textfile)
                     continue
 
                 # try to getch the list of urls of all problems
                 while url_list is None:
                     url_list = self._parse_catatory(c)
                     if url_list is None:
-                        time.sleep(5)
+                        logging.info("retrying")
 
                 # find the corresponding url
                 url_index = next((url for url in url_list
@@ -162,7 +170,11 @@ class PATDownloader:
                 # download
                 if url_index:
                     logging.info("downloading %s", textfile)
-                    pc, si, so = self._parse_problem(url_index['link'])
+                    pc = None
+                    while pc is None:
+                        pc, si, so = self._parse_problem(url_index['link'])
+                        if pc is None:
+                            logging.info("retrying")
                     logging.debug("saving %s", textfile)
                     with open(textfile, 'w') as f:
                         f.write("<!-- Title\n{}\n-->\n{}".format(
