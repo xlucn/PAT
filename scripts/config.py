@@ -13,6 +13,8 @@ text_dir = os.path.join(post_dir, text_reldir)
 # The dir of md files of only analysis text
 analysis_reldir = "analysis"
 analysis_dir = os.path.join(post_dir, analysis_reldir)
+# The dir of sample input and output in the problem texts
+sample_dir = os.path.join(script_dir, "..", "samples")
 
 category = {
     'a': 'Advanced',
