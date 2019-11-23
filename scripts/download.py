@@ -36,11 +36,11 @@ def extract_sample_IO(soup):
     Extract the "sample input" and "sample output" in the problem text and
     replace them with placeholders.
     """
-    sample_input = soup.find("code", class_="lang-in")
-    samplt_input_text = sample_input.string
+    sample_input = soup.find_all("code", class_="lang-in")
+    samplt_input_text = [i.string for i in sample_input]
 
-    sample_output = soup.find("code", class_="lang-out")
-    samplt_output_text = sample_output.string
+    sample_output = soup.find_all("code", class_="lang-out")
+    samplt_output_text = [i.string for i in sample_output]
 
     return samplt_input_text, samplt_output_text
 
@@ -87,15 +87,15 @@ class PATDownloader:
         soup = BeautifulSoup(html, 'html.parser')
         return soup
 
-    def _parse_catatory(self, category):
+    def _parse_catatory(self, cat):
         problem_list = []
 
         logging.info("retrieving infomation for category {c}".format(
-                     c=config.category[category]))
-        for page in range(config.numbers[category] // config.number_per_page):
+                     c=config.category[cat]))
+        for page in range(config.numbers[cat] // config.number_per_page + 1):
             category_url = "{baseurl}/{ID}/problems/type/7?page={page}".format(
                 baseurl=self._problem_sets_url,
-                ID=config.urlidx[category],
+                ID=config.urlidx[cat],
                 page=page)
 
             logging.debug('requesting page \'%s\'', category_url)
@@ -149,10 +149,10 @@ class PATDownloader:
 
         for c in indexes.keys():
             url_list = None
-            for index in indexes[c]:
-                textfile = "{}/{}{}.md".format(config.text_dir, c, index)
-                si_file = "{}/{}{}.in".format(config.sample_dir, c, index)
-                so_file = "{}/{}{}.out".format(config.sample_dir, c, index)
+            for i in indexes[c]:
+                textfile = "{}/{}{}.md".format(config.text_dir, c, i)
+                si_file = "{}/{}{}-{{}}.in".format(config.sample_dir, c, i)
+                so_file = "{}/{}{}-{{}}.out".format(config.sample_dir, c, i)
                 if self._force is False and os.path.exists(textfile):
                     logging.info("%s exists", textfile)
                     continue
@@ -165,7 +165,7 @@ class PATDownloader:
 
                 # find the corresponding url
                 url_index = next((url for url in url_list
-                                  if int(url['index']) == index),
+                                  if int(url['index']) == i),
                                  None)
                 # download
                 if url_index:
@@ -175,16 +175,19 @@ class PATDownloader:
                         pc, si, so = self._parse_problem(url_index['link'])
                         if pc is None:
                             logging.info("retrying")
+
                     logging.debug("saving %s", textfile)
                     with open(textfile, 'w') as f:
                         f.write("<!-- Title\n{}\n-->\n{}".format(
                                 url_index['title'], pc))
-                    with open(si_file, 'w') as f:
-                        f.write(si)
-                    with open(so_file, 'w') as f:
-                        f.write(so)
+                    # There might be more than one samples
+                    for i in range(len(si)):
+                        with open(si_file.format(i + 1), 'w') as f:
+                            f.write(si[i])
+                        with open(so_file.format(i + 1), 'w') as f:
+                            f.write(so[i])
                 else:
-                    logging.error("Index %s%s not available", c, index)
+                    logging.error("Index %s%s not available", c, i)
 
 
 def get_parser():
