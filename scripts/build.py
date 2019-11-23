@@ -5,6 +5,7 @@ Build markdown files from different sources
 
 import os
 import re
+import config
 import argparse
 import logging
 from subprocess import run, PIPE
@@ -14,7 +15,7 @@ logging.basicConfig(format="[%(level)s] %(filename)s:%(lineno): %(message)s")
 
 class FileBuilder:
     """
-    build markdown files.
+    build a markdown file.
     """
     def __init__(self, category, index, other_platforms):
         self._github = "https://github.com/OliverLew/PAT/blob/master"
@@ -102,13 +103,13 @@ class FileBuilder:
 
     def _read_date_tags_expl(self):
         """
-        read explanation part.
+        parse explanation part.
         The file contains:
-            html comment
-            the date
-            the tags
-            ending html comment
-            the actual anylasis.
+            <!--
+            date
+            tags
+            -->
+            actual anylasis.
         Hence the return has three parts.
         """
         expl_file = self._expl_file
@@ -149,37 +150,38 @@ class FileBuilder:
         with open(self._filename, 'w') as md_file:
             print("Building {}".format(self._filename))
             md_file.write("{}\n\n".format(yaml))
-            md_file.write("## 题目\n\n" +                                    \
-                    "{{% include_relative {} %}}".format(
-                        os.path.join(config.text_dir,
-                                     "{}{}.md".format(self.c, self.i))) +    \
-                    "\n\n## 思路\n\n" +                                      \
-                    "{{% include_relative {} %}}".format(
-                        os.path.join(config.analysis_dir,
-                                     "{}{}.md".format(self.c, self.i))) +    \
-                    "\n## 代码\n\n" +                                        \
-                    "[最新代码@github]({})，欢迎交流\n".format(code_url))
+            md_file.write("## 题目\n\n" +
+                          "{{% include_relative {} %}}".format(
+                              os.path.join(config.text_dir,
+                                           "{}{}.md".format(self.c, self.i))) +
+                          "\n\n## 思路\n\n" +
+                          "{{% include_relative {} %}}".format(
+                              os.path.join(config.analysis_dir,
+                                           "{}{}.md".format(self.c, self.i))) +
+                          "\n\n## 代码\n\n" +
+                          "[Github最新代码]({})，欢迎交流\n\n".format(code_url))
             md_file.write("```c\n{{% raw %}}{}{{% endraw %}}```".format(code))
 
         if self._other_platforms:
             other_file = "{}/{}{}.md".format(config.other_dir, self.c, self.i)
             with open(other_file, 'w') as md_file:
                 print("Building {} for other platforms".format(other_file))
-                md_file.write("### 我的PAT系列文章更新重心已移至Github，" +  \
-                    "欢迎来看PAT题解的小伙伴请到" +                          \
-                    "[Github Pages]({})".format(self._gh_pages) +            \
-                    "浏览最新内容" +                                         \
+                md_file.write(
+                    "### 我的PAT系列文章更新重心已移至Github，" +
+                    "欢迎来看PAT题解的小伙伴请到" +
+                    "[Github Pages]({})".format(self._gh_pages) +
+                    "浏览最新内容" +
                     "([本篇文章链接]({}/{}))。".format(self._gh_pages,
-                                                self._permalink) +           \
-                    "此处文章目前已更新至与" +                               \
-                    "Github Pages同步。欢迎star我的" +                       \
-                    "[repo](https://github.com/OliverLew/PAT)。\n\n" +       \
-                    "## 题目\n\n{}\n\n".format(problemcontent) +             \
-                    "## 思路\n\n{}\n".format(expl) +                         \
-                    "## 代码\n\n" +                                          \
-                    "[最新代码@github]({})，欢迎交流\n".format(code_url) +   \
-                    "```c\n{}```".format(code))
-
+                                                self._permalink) +
+                    "此处文章目前已更新至与" +
+                    "Github Pages同步。欢迎star我的" +
+                    "[repo](https://github.com/OliverLew/PAT)。\n\n" +
+                    "## 题目\n\n{}\n\n".format(problemcontent) +
+                    "## 思路\n\n{}\n".format(expl) +
+                    "## 代码\n\n" +
+                    "[最新代码@github]({})，欢迎交流\n".format(code_url) +
+                    "```c\n{}```".format(code)
+                )
 
 
 if __name__ == "__main__":
@@ -207,5 +209,7 @@ if __name__ == "__main__":
                 category = ID[0]
                 index = int(ID[1:])
                 if index in config.indexes[category]:
-                    builder = FileBuilder(category, index, args.other_platforms)
+                    builder = FileBuilder(category,
+                                          index,
+                                          args.other_platforms)
                     builder.build()

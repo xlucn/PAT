@@ -12,12 +12,6 @@ text_dir = "html"
 # The dir of md files of only analysis text
 analysis_dir = "analysis"
 
-# Children folders of code_dir
-code_dir = {
-    'a': 'PATAdvanced',
-    'b': 'PATBasic',
-    't': 'PATTop'
-}
 
 category = {
     'a': 'Advanced',
@@ -25,17 +19,31 @@ category = {
     't': 'Top'
 }
 
+# Children folders of code_dir
+code_dir = {
+    'a': 'PAT' + category['a'],
+    'b': 'PAT' + category['b'],
+    't': 'PAT' + category['t']
+}
+
 cat_string = {
-    'a': "PAT Advanced",
-    'b': "PAT Basic",
-    't': "PAT Top"
+    'a': 'PAT ' + category['a'],
+    'b': 'PAT ' + category['b'],
+    't': 'PAT ' + category['t']
+}
+
+# Problem numbers
+numbers = {
+    'a': 155,
+    'b': 95,
+    't': 27
 }
 
 # Problem indexes for each level
 indexes = {
-    'a': [i + 1001 for i in range(155)],
-    'b': [i + 1001 for i in range(95)],
-    't': [i + 1001 for i in range(27)]
+    'a': [i + 1001 for i in range(numbers['a'])],
+    'b': [i + 1001 for i in range(numbers['b'])],
+    't': [i + 1001 for i in range(numbers['t'])]
 }
 
 urlidx = {

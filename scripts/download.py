@@ -3,14 +3,15 @@ import os
 import re
 import time
 import logging
+import config
 import argparse
 
 import html2text
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import WebDriverException
 
-import config
 # setting logging
 logging.basicConfig(
     format='[%(levelname)s] %(filename)s:%(lineno)d: %(message)s',
@@ -45,6 +46,11 @@ def extract_sample_IO(soup):
 
 
 class PATDownloader:
+    """
+    Automate browser to visit pintia.cn and download problem texts. The reason
+    for the tool is the content on the website is dynamically generated, so
+    simply get the webpage with requests is not working.
+    """
     def __init__(self, force):
         self._phantom_is_setup = False
         self._force = force
@@ -56,17 +62,21 @@ class PATDownloader:
         options.headless = True
         try:
             self._phantom_browser = webdriver.Firefox(options=options)
-        except:
             logging.debug("Starting phantom firefox driver")
+        except WebDriverException as e:
+            print(e)
             logging.error("Starting phantom firefox driver failed")
             exit(1)
 
     def __del__(self):
-        self._phantom_browser.quit()
+        try:
+            self._phantom_browser.quit()
+        except AttributeError:
+            pass
 
     def _phantom_parse_soup(self, url):
         self._phantom_browser.get(url)
-        # check return here
+        # TODO: check return here
         html = self._phantom_browser.page_source
         soup = BeautifulSoup(html, 'html.parser')
         return soup
@@ -111,6 +121,10 @@ class PATDownloader:
         soup = self._phantom_parse_soup(url)
         pc_div = soup.find_all('div', 'ques-view')[1]
 
+        if len(pc_div) <= 2:
+            logging.error("not finding enough div with class \'ques-view\'" +
+                          "for url: {}".format(url))
+
         content_soup = process_katex(pc_div)
         content_md = html2text.html2text(str(content_soup))
 
@@ -152,9 +166,8 @@ class PATDownloader:
                     pc, si, so = self._parse_problem(url_index['link'])
                     logging.debug("saving %s", textfile)
                     with open(textfile, 'w') as f:
-                        f.write("<!-- Title\n" +                           \
-                                "{}\n-->\n".format(url_index['title']) +   \
-                                pc)
+                        f.write("<!-- Title\n{}\n-->\n{}".format(
+                                url_index['title'], pc))
                     with open(si_file, 'w') as f:
                         f.write(si)
                     with open(so_file, 'w') as f:
@@ -163,26 +176,31 @@ class PATDownloader:
                     logging.error("Index %s%s not available", c, index)
 
 
-if __name__ == "__main__":
-    # setting logging
-    logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s',
-                        level=logging.INFO)
-
-    # parse arguments
+def get_parser():
     parser = argparse.ArgumentParser(description='''Python script to download
         problem content from PAT website. I will include the downloaded files
         in the repo, so this script does not need to be executed.''')
-    parser.add_argument('ids', nargs='+',
+    parser.add_argument('ids', nargs='*',
                         metavar='<problem id>',
                         help='''the id of the problem, e.g. 1001 for the first
                         problem. use all for downloading all html files''')
     parser.add_argument('-f', '--force-download',
                         action='store_true',
-                        help='force download html file again even if it exists')
+                        help='force download html file even if it exists')
+    return parser
+
+
+if __name__ == "__main__":
+    # parse arguments
+    parser = get_parser()
     args = parser.parse_args()
 
+    # create downloader
+    dl = PATDownloader(force=args.force_download)
+
+    # download problem texts for corresponding indexes
     dlIndexes = {'a': [], 'b': [], 't': []}
-    if 'all' in args.ids:
+    if args.ids is None or args.ids == [] or 'all' in args.ids:
         dlIndexes = config.indexes
     else:
         for ID in args.ids:
@@ -196,7 +214,6 @@ if __name__ == "__main__":
                 exit(0)
             dlIndexes[category].append(index)
 
-    dl = PATDownloader(force=args.force_download)
     # selenium will print some error about connection poll
     try:
         dl.download(dlIndexes)
