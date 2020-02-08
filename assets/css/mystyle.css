@@ -127,4 +127,5 @@ main{
 /* gitalk quote font too big */
 blockquote {
     font-size:16px;
+    font-style:inherit;
 }
