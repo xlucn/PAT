@@ -1,9 +1,6 @@
+__pycache__
 _site
 .sass-cache
 .bundle/
 .jekyll-metadata
-__pycache__
-PATAdvanced/
-PATBasic/
-*/others/
 *.log
