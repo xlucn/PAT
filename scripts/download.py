@@ -1,9 +1,7 @@
 #! /usr/bin/env python3
 import os
 import re
-import time
 import logging
-import config
 import argparse
 
 import html2text
@@ -11,6 +9,17 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import WebDriverException
+
+cat_counts = {'a': 155, 'b': 95, 't': 27}
+
+# the number of problems per page
+number_per_page = 100
+
+urlidx = {
+    'b': "994805260223102976",
+    'a': "994805342720868352",
+    't': "994805148990160896"
+}
 
 # setting logging
 logging.basicConfig(
@@ -61,7 +70,10 @@ class PATDownloader:
         options = Options()
         options.headless = True
         try:
-            self._phantom_browser = webdriver.Firefox(options=options)
+            self._phantom_browser = webdriver.Firefox(
+                options=options,
+                service_log_path=os.devnull
+            )
             logging.debug("Starting phantom firefox driver")
         except WebDriverException as e:
             print(e)
@@ -80,7 +92,7 @@ class PATDownloader:
             html = self._phantom_browser.page_source
         except WebDriverException as e:
             print(e)
-            logging.warning("you just have to run the script again\n" +
+            logging.warning("you just have to run the script again, "
                             "something unfortunate happened.")
             exit(1)
         # TODO: check return here
@@ -90,20 +102,22 @@ class PATDownloader:
     def _parse_catatory(self, cat):
         problem_list = []
 
-        logging.info("retrieving infomation for category {c}".format(
-                     c=config.category[cat]))
-        for page in range(config.numbers[cat] // config.number_per_page + 1):
+        logging.info("retrieving infomation for category {c}".format(c=cat))
+        for page in range(cat_counts[cat] // number_per_page + 1):
             category_url = "{baseurl}/{ID}/problems/type/7?page={page}".format(
                 baseurl=self._problem_sets_url,
-                ID=config.urlidx[cat],
+                ID=urlidx[cat],
                 page=page)
 
             logging.debug('requesting page \'%s\'', category_url)
             soup = self._phantom_parse_soup(category_url)
             table = soup.find('tbody')
             if table is None:
-                logging.warning('requesting page \'%s\' failed, will retry %s',
-                                category_url, '(table returned None)')
+                logging.warning(
+                    'requesting page \'%s\' failed, will retry '
+                    '(table returned None)',
+                    category_url
+                )
                 return None
             rows = table.find_all('tr')
 
@@ -127,12 +141,15 @@ class PATDownloader:
 
         pc_divs = soup.find_all('div', 'ques-view')
         if len(pc_divs) < 2:
-            logging.error("not finding enough div with class \'ques-view\'" +
-                          "for url: {}".format(url))
+            logging.error("Not finding enough div with class \'ques-view\'" +
+                          "for url: {}, got {}".format(url, len(pc_divs)))
             return None, None, None
 
         pc_div = pc_divs[1]
         content_soup = process_katex(pc_div)
+        for tag in content_soup.find_all('code'):
+            if tag.parent.name == 'pre':
+                tag.parent.replace_with(tag.wrap(soup.new_tag("pre")))
         content_md = html2text.html2text(str(content_soup))
 
         sample_in, sample_out = extract_sample_IO(content_soup)
@@ -142,17 +159,22 @@ class PATDownloader:
         """
         Download html files
         """
-        if not os.path.exists(config.text_dir):
-            os.mkdir(config.text_dir)
-        if not os.path.exists(config.sample_dir):
-            os.mkdir(config.sample_dir)
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        # The dir of sample input and output in the problem texts
+        sample_dir = os.path.join(script_dir, "..", "samples")
+        # The dir of html file from patest.cn
+        text_dir = os.path.join(script_dir, "..", "_articles", "html")
+        if not os.path.exists(text_dir):
+            os.mkdir(text_dir)
+        if not os.path.exists(sample_dir):
+            os.mkdir(sample_dir)
 
         for c in indexes.keys():
             url_list = None
             for i in indexes[c]:
-                textfile = "{}/{}{}.md".format(config.text_dir, c, i)
-                si_file = "{}/{}{}-{{}}.in".format(config.sample_dir, c, i)
-                so_file = "{}/{}{}-{{}}.out".format(config.sample_dir, c, i)
+                textfile = "{}/{}{}.md".format(text_dir, c, i)
+                si_file = "{}/{}{}-{{}}.in".format(sample_dir, c, i)
+                so_file = "{}/{}{}-{{}}.out".format(sample_dir, c, i)
                 if self._force is False and os.path.exists(textfile):
                     logging.info("%s exists", textfile)
                     continue
@@ -215,7 +237,8 @@ if __name__ == "__main__":
     # download problem texts for corresponding indexes
     dlIndexes = {'a': [], 'b': [], 't': []}
     if args.ids is None or args.ids == [] or 'all' in args.ids:
-        dlIndexes = config.indexes
+        for c in cat_counts.keys():
+            dlIndexes[c] = [i + 1001 for i in range(cat_counts[c])]
     else:
         for ID in args.ids:
             if not re.match(r"[abt]\d{4}", ID):
@@ -223,7 +246,7 @@ if __name__ == "__main__":
                 exit(0)
             category = ID[0]
             index = int(ID[1:])
-            if index not in config.indexes[category]:
+            if index < cat_counts[category] + 1001:
                 logging.error('Index out of range: %s', index)
                 exit(0)
             dlIndexes[category].append(index)

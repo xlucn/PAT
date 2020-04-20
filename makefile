@@ -11,13 +11,12 @@ MASTER=$(shell git ls-tree -r --name-only --full-tree master)
 
 DL_PY=$(SRC_DIR)/download.py
 BD_PY=$(SRC_DIR)/build.py
-CONF=$(SRC_DIR)/config.py
 
 .PHONY: clean rebuild download force-download test
 
 all: $(MD)
 
-$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(BD_PY) $(CONF)
+$(MD_DIR)/%.md:$(ANA_DIR)/%.md $(BD_PY)
 	@sh scripts/build "$@"
 
 $(ANA_DIR)/%.md:
