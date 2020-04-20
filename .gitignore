@@ -1,9 +1,5 @@
-/*
-!/README.md
-!/PATBasic
-!/PATAdvanced
-/PATBasic/*
-/PATAdvanced/*
-!/PATBasic/*.c
-!/PATAdvanced/*.c
-!/samples/
+*.log
+temp/
+.bundle/
+_site/
+__pycache__/
