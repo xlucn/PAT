@@ -1,7 +1,4 @@
-*.log
-temp/
 .bundle/
 _site/
-__pycache__/
 PAT*/*
 !PAT*/*.c
