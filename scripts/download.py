@@ -161,7 +161,7 @@ class PATDownloader:
         """
         script_dir = os.path.dirname(os.path.realpath(__file__))
         # The dir of sample input and output in the problem texts
-        sample_dir = os.path.join(script_dir, "..", "samples")
+        sample_dir = os.path.join(script_dir, "..", "sample_test")
         # The dir of html file from patest.cn
         text_dir = os.path.join(script_dir, "..", "_articles", "html")
         if not os.path.exists(text_dir):
