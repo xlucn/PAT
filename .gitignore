@@ -4,3 +4,5 @@ _site
 .bundle/
 .jekyll-metadata
 *.log
+PAT*/*
+!PAT*/*.c
