@@ -3,7 +3,7 @@
 #define LATE_FLAG -1
 #define FORWARD(I) ((I) = ((I) == 10) ? 0 : ((I) + 1))
 #define TIME_FRONT(I) time[queue[I][front[I]]]
-#define TIME_REAR_PREVIOUS(I) time[queue[I][rear[I] == 0 ? 10 : (rear[I] - 1)]]
+#define TIME_REAR_PREVIOUS(I) time[queue[I][(rear[I] == 0) ? 10 : (rear[I] - 1)]]
 
 int main()
 {
@@ -24,13 +24,14 @@ int main()
         {
             /* Find the next customer */
             int time_span = 9999, next = -1;
-            for(int j = 0; j < N; j++) if(length[j])
-            {
-                if(TIME_FRONT(j) < time_span)
-                    next = j, time_span = TIME_FRONT(j);
-                else if(next == -1 && TIME_FRONT(j) == LATE_FLAG)
-                    next = j;
-            }
+            for(int j = 0; j < N; j++)
+                if(length[j])
+                {
+                    if(TIME_FRONT(j) < time_span)
+                        next = j, time_span = TIME_FRONT(j);
+                    else if(next == -1 && TIME_FRONT(j) == LATE_FLAG)
+                        next = j;
+                }
             /* Dequeue */
             FORWARD(front[next]);
             length[next]--;
