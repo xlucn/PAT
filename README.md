@@ -1,12 +1,12 @@
 # PAT解题说明
 
-https://oliverlew.github.io/PAT
-
 Github Pages + Jekyll搭建的静态博客
 
-Requirements:
+博客地址： https://oliverlew.github.io/PAT
 
-- selenium + firefox
+本地依赖的Python模块:
+
+- selenium (需要firefox)
 - html2text
 - beautifulsoup
 
@@ -14,17 +14,19 @@ Requirements:
 
 最终目标：生成jekyll博客接受的markdown文件，需要：
 
-- PAT习题题目内容。由`source/download.py`下载自PAT网站，并转换为markdown语法。
-- 题解内容。写在`analysis`文件夹里的markdown文件中。
-- 代码。利用`git show`命令从master分支中读取。
+- PAT习题题目内容。放在`_articles/html`，由`scripts/download.py`下载自PAT网站，并转换为markdown语法。
+- 题解内容。写在`_articles/analysis`文件夹里的markdown文件中。
+- 代码。位于master分支，利用`git show`命令读取。
 
-`source/build.py`Python脚本会将上述内容汇集到一个文件中，并添加适当的标题、
+`scripts/build.py`Python脚本会将上述内容汇集到一个文件中，放在`_articles`文件夹下，并在其中添加适当的标题、
 副标题、markdown语法结构还有为jekyll设置的yaml front matter。
 
-博客基于[minimal][]这个jekyll主题，并有所改变：
+博客基于[minima](https://github.com/jekyll/minima)这个jekyll主题，增加了一下功能/特点：
 
 - 做了一定美化，css的改变集中在`assets/css/mystyle.css`中
-- 使用category layout
+- 添加了分类（顶级、甲级、乙级）和标签
+- 支持Mathjax，因此可以原样显示题目中的公式等
+- 利用[gitalk](https://github.com/gitalk/gitalk)评论系统
 
 ## Todo list
 
