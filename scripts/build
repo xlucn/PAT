@@ -1,0 +1,17 @@
+#!/bin/sh
+master=$(git ls-tree -r --name-only master PAT*/)
+markdown=$1
+id=$(basename "${markdown%.md}")
+index=${id#[a-z]}
+c=${id%%[0-9]*}
+case $c in
+    'a') codefile=PATAdvanced/$index.c ;;
+    'b') codefile=PATBasic/$index.c ;;
+    't') codefile=PATTop/$index.c ;;
+    *)   echo "file name wrong: $markdown"; exit ;;
+esac
+if [ "$master" != "${master%$codefile*}" ]; then
+    python "$(dirname "$0")/build.py" -o "$id"
+else
+    echo "$codefile does not exist"
+fi
