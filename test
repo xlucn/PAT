@@ -1,0 +1,21 @@
+#!/bin/sh
+mkdir -p temp
+tracked_files=$(git ls-tree --name-only HEAD PAT*/)
+for bin in "$@"; do
+    if [ "$tracked_files" = "${tracked_files%$bin*}" ]; then
+        echo "not tracking $bin's source"
+        continue
+    fi
+    dir=$(dirname "$bin")
+    id=$(basename "$bin")
+    [ "$dir" = PATAdvanced ] && cat=a
+    [ "$dir" = PATBasic    ] && cat=b
+    [ "$dir" = PATTop      ] && cat=t
+    for sample in "samples/$cat$id-"*.in; do
+        echo "testing $bin, sample $sample"
+        printf "%s" "$("$dir/$id" < "$sample" | tr -d '\0')" > temp/out
+        printf %s "$(cat "${sample%.in}.out")" > temp/ans
+        diff temp/out temp/ans || exit 1
+    done
+done
+# rm -r temp
