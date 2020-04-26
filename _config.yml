@@ -67,8 +67,8 @@ gitalk:
   clientID: '7bf7cca48411ad47d5c3'
   clientSecret: '9b1d5d7c3aa64fe4f5e4c8e71ea597e63f6e83b9'
   # create issues in owner/repo
-  owner: 'OliverLew'
-  repo: 'oliverlew.github.io'
+  owner: 'oliversgarage'
+  repo: 'GitalkIssues'
   # users with write permission to the repo
   admin: ['OliverLew']
   labels: ['Gitalk', 'PAT solutions in C']
