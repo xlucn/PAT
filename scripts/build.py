@@ -52,21 +52,21 @@ class FileBuilder:
         categories = category_str[self.c]
         # Check validity
         if re.match(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}', date) is None:
-            logging.info("{}{}: " +
-                         "date should be 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'" +
+            logging.info("{}{}: "
+                         "date should be 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'"
                          "date is now: {}".format(self.c, self.i, date))
             exit(1)
         if not isinstance(title, str):
-            logging.info("{}{}: title should be string" +
+            logging.info("{}{}: title should be string"
                          "title is now: {}".format(self.c, self.i, title))
             exit(1)
         if not isinstance(categories, str):
-            logging.info("{}{}: categories should be a string" +
+            logging.info("{}{}: categories should be a string"
                          "categories is now: {}".format(self.c, self.i,
                                                         categories))
             exit(1)
         if not isinstance(tags, list):
-            logging.info("{}{}: tags should be a list" +
+            logging.info("{}{}: tags should be a list"
                          "tags is now: {}".format(self.c, self.i, tags))
             exit(1)
         frontmatter = "---\n"
@@ -183,6 +183,7 @@ class FileBuilder:
             with open(other_file, 'w') as md_file:
                 print("Building {} for other platforms".format(other_file))
                 md_file.write(
+                    "# {title}\n\n"
                     "### 我的PAT系列文章更新重心已移至Github，"
                     "欢迎来看PAT题解的小伙伴请到[Github Pages]({gh})"
                     "浏览最新内容([本篇文章链接]({gh}/{link}))。"
@@ -193,6 +194,7 @@ class FileBuilder:
                     "## 代码\n\n"
                     "[最新代码@github]({codeurl})，欢迎交流\n"
                     "```c\n{code}```".format(
+                        title=title,
                         gh=self._gh_pages,
                         link=self._permalink,
                         pc=problemcontent,
