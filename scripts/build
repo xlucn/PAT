@@ -1,5 +1,5 @@
 #!/bin/sh
-master=$(git ls-tree -r --name-only master PAT*/)
+master=$(git ls-tree -r --name-only --full-tree master | grep "\.c")
 markdown=$1
 id=$(basename "${markdown%.md}")
 index=${id#[a-z]}
