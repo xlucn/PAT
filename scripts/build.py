@@ -183,7 +183,7 @@ class FileBuilder:
             with open(other_file, 'w') as md_file:
                 print("Building {} for other platforms".format(other_file))
                 md_file.write(
-                    "# {title}\n\n"
+                    "{title}\n"
                     "### 我的PAT系列文章更新重心已移至Github，"
                     "欢迎来看PAT题解的小伙伴请到[Github Pages]({gh})"
                     "浏览最新内容([本篇文章链接]({gh}/{link}))。"
