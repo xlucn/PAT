@@ -1,4 +1,5 @@
 _site
+_articles/others/
 .sass-cache
 .bundle/
 .jekyll-metadata
