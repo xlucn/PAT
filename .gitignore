@@ -1,4 +1,5 @@
 .bundle/
 _site/
+_articles/
 PAT*/*
 !PAT*/*.c
