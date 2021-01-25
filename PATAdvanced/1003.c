@@ -9,7 +9,6 @@ typedef struct Adj *Adj, *Adjs;
 typedef struct Graph *Graph;
 
 struct Vertex{
-    int id;         /* Unique id of a vertex */
     int known;      /* If the vertex has been traversed */
     int dist;       /* the distance along the path from start point */
     int nrescue;    /* Rescue teams in this city */
@@ -39,7 +38,6 @@ void Read(Graph G)
     {
         Vertex v = G->vs + i;
         scanf("%d", &nrescue);
-        v->id        = i;
         v->known     = 0;
         v->dist      = Inf;
         v->nrescue   = nrescue;
