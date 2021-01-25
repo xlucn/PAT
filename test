@@ -1,5 +1,6 @@
 #!/bin/sh
 mkdir -p temp
+trap 'rm -r temp' EXIT QUIT TERM INT
 tracked_files=$(git ls-tree --name-only HEAD PAT*/)
 for bin in "$@"; do
     [ "$tracked_files" = "${tracked_files%$bin*}" ] && continue
@@ -12,7 +13,11 @@ for bin in "$@"; do
         echo "testing $bin, sample $sample"
         printf "%s" "$("$dir/$id" < "$sample" | tr -d '\0')" > temp/out
         printf "%s" "$(cat "${sample%.in}.out")" > temp/ans
-        diff temp/out temp/ans || exit 1
+        diff temp/out temp/ans || failed="$failed$bin $sample\n"
     done
 done
-rm -r temp
+printf "$failed" | while read -r b s; do
+    printf "\033[1;31m%s failed for sample %s\033[1;0m\n" "$b" "$s"
+done
+printf "\033[1;31mSee the previous output for differences between correct output and execute output\033[1;0m\n"
+[ -z "$failed" ] && exit 1
