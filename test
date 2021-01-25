@@ -16,8 +16,10 @@ for bin in "$@"; do
         diff temp/out temp/ans || failed="$failed$bin $sample\n"
     done
 done
-printf "$failed" | while read -r b s; do
-    printf "\033[1;31m%s failed for sample %s\033[1;0m\n" "$b" "$s"
-done
-printf "\033[1;31mSee the previous output for differences between correct output and execute output\033[1;0m\n"
-[ -z "$failed" ] && exit 1
+if [ -n "$failed" ]; then
+    printf "$failed" | while read -r b s; do
+        printf "\033[1;31m%s failed for sample %s\033[1;0m\n" "$b" "$s"
+    done
+    printf "\033[1;31mSee the previous output for differences between correct output and execute output\033[1;0m\n"
+    exit 1
+fi
