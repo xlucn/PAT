@@ -32,6 +32,10 @@ def process_katex(soup):
     """
     replace all the 'katex' class spans with simple latex string
     """
+    dollar_signs = soup.find_all(text=re.compile("\\$"))
+    for dollar_sign in dollar_signs:
+        escaped_dollar = dollar_sign.replace("$", "\\\\$")
+        dollar_sign.replace_with(escaped_dollar)
     katex_spans = soup.find_all("span", class_="katex")
     for katex_span in katex_spans:
         katex_span.mrow.decompose()
