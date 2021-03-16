@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import os
 import re
+import time
 import logging
 import argparse
 
@@ -139,9 +140,9 @@ class PATDownloader:
 
         soup = self._phantom_parse_soup(url)
 
-        pc_divs = soup.find_all('div', 'ques-view')
+        pc_divs = soup.find_all('div', 'rendered-markdown')
         if len(pc_divs) < 2:
-            logging.error("Not finding enough div with class \'ques-view\'" +
+            logging.error("Not enough div with class \'rendered-markdown\'" +
                           "for url: {}, got {}".format(url, len(pc_divs)))
             return None, None, None
 
@@ -184,6 +185,7 @@ class PATDownloader:
                     url_list = self._parse_catatory(c)
                     if url_list is None:
                         logging.info("retrying")
+                        time.sleep(1)
 
                 # find the corresponding url
                 url_index = next((url for url in url_list
@@ -197,6 +199,7 @@ class PATDownloader:
                         pc, si, so = self._parse_problem(url_index['link'])
                         if pc is None:
                             logging.info("retrying")
+                            time.sleep(1)
 
                     logging.debug("saving %s", textfile)
                     with open(textfile, 'w') as f:
@@ -218,7 +221,7 @@ def get_parser():
         in the repo, so this script does not need to be executed.''')
     parser.add_argument('ids', nargs='*',
                         metavar='<problem id>',
-                        help='''the id of the problem, e.g. 1001 for the first
+                        help='''the id of the problem, e.g. b1001 for the first
                         problem. use all for downloading all html files''')
     parser.add_argument('-f', '--force-download',
                         action='store_true',
@@ -246,7 +249,7 @@ if __name__ == "__main__":
                 exit(0)
             category = ID[0]
             index = int(ID[1:])
-            if index < cat_counts[category] + 1001:
+            if index > cat_counts[category] + 1000:
                 logging.error('Index out of range: %s', index)
                 exit(0)
             dlIndexes[category].append(index)
