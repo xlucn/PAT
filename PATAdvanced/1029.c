@@ -3,7 +3,7 @@
 
 int main()
 {
-    int N1, N2, seq[200001], *p = seq, n, c = 0, median;
+    int N1, N2, seq[200001], *p = seq, n, c = 0, median = 0;
 
     /* Read one sequence into array */
     scanf("%d", &N1);

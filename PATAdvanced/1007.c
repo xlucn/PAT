@@ -2,7 +2,7 @@
 
 int main()
 {
-    int K, n, first;
+    int K, n, first = 0;
     int start, end, sum = -1;   /* the current non-negative subsequence */
     int a = -1, b, s = 0;       /* the maximum-sum subsequence */
 

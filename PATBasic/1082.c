@@ -2,7 +2,7 @@
 
 int main()
 {
-    int best_id, worst_id, cur_id;
+    int best_id = 0, worst_id = 0, cur_id;
     int x, y, N;
     int min_dist_sq = 99999, max_dist_sq = -1, cur_dist_sq;
 

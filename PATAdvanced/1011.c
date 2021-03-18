@@ -2,7 +2,7 @@
 
 int main()
 {
-    char c;
+    char c = '\0';
     float odd, maxodd, maxprofit = 1;
 
     for(int i = 0; i < 3; i++)
