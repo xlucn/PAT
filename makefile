@@ -6,7 +6,7 @@ BINARIES:=$(SOURCES:.c=)
 all: $(BINARIES)
 
 %: %.c
-	gcc -g -Wall $< -o $@ -lm
+	gcc -g -DONLINE_JUDGE -fno-tree-ch -O2 -Wall -std=c99 -pipe $< -o $@ -lm
 
 clean:
 	rm -f $(BINARIES)
