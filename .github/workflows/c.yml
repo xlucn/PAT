@@ -2,19 +2,17 @@ name: Sample Test
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: make
+      - uses: actions/checkout@v2
+      - name: Build
         run: make
-      - name: test
+      - name: Test
         run: make test
