@@ -2,9 +2,12 @@
 
 char max(int B, int C, int J)
 {
-    if(B >= C && B >= J) return 'B';
-    if(C >  B && C >= J) return 'C';
-    /* J > B && J > C */ return 'J';
+    if(B >= C && B >= J)
+        return 'B';
+    else if(C >  B && C >= J)
+        return 'C';
+    else
+        return 'J';
 }
 
 int main()
