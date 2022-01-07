@@ -36,10 +36,10 @@ def extract_sample_IO(soup):
     Extract the "sample input" and "sample output" in the problem text and
     replace them with placeholders.
     """
-    sample_input = soup.find_all("code", class_="lang-in")
+    sample_input = soup.find_all("code", class_="language-in")
     samplt_input_text = [i.string for i in sample_input]
 
-    sample_output = soup.find_all("code", class_="lang-out")
+    sample_output = soup.find_all("code", class_="language-out")
     samplt_output_text = [i.string for i in sample_output]
 
     return samplt_input_text, samplt_output_text
@@ -135,9 +135,9 @@ class PATDownloader(Firefox):
         """
         script_dir = os.path.dirname(os.path.realpath(__file__))
         # The dir of sample input and output in the problem texts
-        sample_dir = os.path.join(script_dir, "..", "sample_test")
+        sample_dir = os.path.join(os.path.dirname(script_dir), "sample_test")
         # The dir of html file from patest.cn
-        text_dir = os.path.join(script_dir, "..", "_articles", "html")
+        text_dir = os.path.join(os.path.dirname(script_dir), "_articles", "html")
         if not os.path.exists(text_dir):
             os.mkdir(text_dir)
         if not os.path.exists(sample_dir):
