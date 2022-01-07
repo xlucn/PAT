@@ -2,18 +2,17 @@
 
 int main()
 {
-    int A, B, C;
-    scanf("%d %d", &A, &B);
-    C = A * B;
+	int A, B, C;
+	scanf("%d %d", &A, &B);
+	C = A * B;
 
-    while(!(C % 10))
-        C /= 10;
+	while (!(C % 10))
+		C /= 10;
 
-    while(C)
-    {
-        putchar('0' + C % 10);
-        C /= 10;
-    }
+	while (C) {
+		putchar('0' + C % 10);
+		C /= 10;
+	}
 
-    return 0;
+	return 0;
 }

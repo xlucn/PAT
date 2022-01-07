@@ -2,18 +2,18 @@
 
 int main()
 {
-    char c, *str = "PATest";                /* use as index for count[] */
-    int i, flag = 1, count[128] = {0};      /* for each ASCII char */
+	char c, *str = "PATest";                /* use as index for count[] */
+	int i, flag = 1, count[128] = {0};      /* for each ASCII char */
 
-    /* Read and count numbers for every character */
-    while((c = getchar()) != EOF && c != '\n')
-        count[(int)c]++;
+	/* Read and count numbers for every character */
+	while ((c = getchar()) != EOF && c != '\n')
+		count[(int)c]++;
 
-    /* Print any character in "PATest" if it is still left */
-    while(flag)
-        for(i = 0, flag = 0; i < 6; i++)
-            if(count[(int)str[i]]-- > 0)    /* Check the number left */
-                putchar(str[i]), flag = 1;
+	/* Print any character in "PATest" if it is still left */
+	while (flag)
+		for (i = 0, flag = 0; i < 6; i++)
+			if (count[(int)str[i]]-- > 0)    /* Check the number left */
+				putchar(str[i]), flag = 1;
 
-    return 0;
+	return 0;
 }
