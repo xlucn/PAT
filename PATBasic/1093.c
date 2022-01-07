@@ -8,7 +8,7 @@ int main()
     while(lines < 2)
     {
         c = getchar();
-        if(c == '\n')
+        if(c == '\n' || c == EOF)
             lines++;
         else if(!ascii[(int)c])
         {

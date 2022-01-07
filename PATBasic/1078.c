@@ -20,7 +20,7 @@ void compress()
             count = 1;
         }
 
-        if(current == '\n')         /* Don't put this in while() */
+        if(current == '\n' || current == EOF)  /* Don't put this in while() */
             break;
     }
 }
@@ -30,7 +30,7 @@ void decompress()
     char c;
     int count = 0;
 
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
     {
         if(c >= '0' && c <= '9') /* If it is number */
         {

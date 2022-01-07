@@ -7,7 +7,7 @@ int main()
     char c, line[82];
 
     fgets(line, 82, stdin);
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
         printed[toupper(c)]++;
 
     for(char *p = line; *p; p++)

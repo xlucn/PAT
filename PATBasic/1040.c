@@ -7,7 +7,7 @@ int main()
     int P = 0, PA = 0, PAT = 0;
     char c;
 
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
     {
         if(c == 'P')   P++;
         if(c == 'A')   PA = (PA + P) % LIM;

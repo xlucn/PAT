@@ -5,14 +5,14 @@ int main()
     char c;
     int num;
     scanf("%d", &num);
-    while(getchar() != '\n');  /* read the rest of the line,
+    while((c = getchar()) != '\n'); /* read the rest of the line,
                                   make sure to start from a new line later */
     for(int i = 0; i < num; i++)
     {
         /* pos: indicate the position of current index for count[]     */
         /* count[3]: number of As; before P, between P & T and after T */
         int pos = 0, count[3] = {0, 0, 0};
-        while((c = getchar()) != '\n')
+        while((c = getchar()) != EOF)
         {
             if(c == 'A')                  count[pos]++; /* count 'A's     */
             else if(c == 'P' && pos == 0) pos = 1;      /* one P before T */
@@ -30,7 +30,7 @@ int main()
 
         /* read the rest of the line */
         if(c != '\n')
-            while(getchar() != '\n');
+            while((c = getchar()) != EOF && c != '\n');
     }
 
     return 0;

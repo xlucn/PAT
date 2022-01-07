@@ -6,7 +6,7 @@ int main()
     char c;
     int sum = 0, count[2] = {0};
 
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
         if(isalpha(c))
             sum += tolower(c) - 'a' + 1;
 

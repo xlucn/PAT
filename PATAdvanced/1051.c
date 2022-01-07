@@ -2,6 +2,7 @@
 
 int main()
 {
+    char c;
     int M, N, K, stack[7] = {0}, top, pushed, popped, wanted;
 
     scanf("%d %d %d", &M, &N, &K);
@@ -36,7 +37,7 @@ int main()
                 break;
         }
         printf("%s\n", popped < N ? "NO" : "YES");
-        while(getchar() != '\n') ;
+        while((c = getchar()) != EOF && c != '\n');
     }
 
     return 0;

@@ -6,7 +6,7 @@ int main()
     int i, flag = 1, count[128] = {0};      /* for each ASCII char */
 
     /* Read and count numbers for every character */
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
         count[(int)c]++;
 
     /* Print any character in "PATest" if it is still left */

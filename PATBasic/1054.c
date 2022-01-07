@@ -19,14 +19,14 @@ int main()
         f = strtod(s, &pEnd);           /* pEnd -> converted floating number */
         pDot = strchr(s, '.');          /* pDot -> (first) decimal point */
 
-        if(!isspace(c)                          /* string too long */
+        if((!isspace(c) && c != EOF)            /* string too long */
         || *pEnd                                /* not floating number */
         || (f > 1000 || f < -1000)              /* out of range */
         || (pDot && pDot - s < strlen(s) - 3))  /* precision too high */
         {
             printf("ERROR: %s", s);
             /* this can avoid overflow (we don't know how long input is) */
-            while(!isspace(c = getchar())) putchar(c);
+            while(!isspace(c = getchar()) && c != EOF) putchar(c);
             printf(" is not a legal number\n");
         }
         else                                    /* legel number */

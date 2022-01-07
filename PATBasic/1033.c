@@ -9,7 +9,7 @@ int main()
     while((c = getchar()) != '\n')      /* read broken keys */
         bad[toupper(c)] = 1;
 
-    while((c = getchar()) != '\n')      /* read string and print */
+    while((c = getchar()) != EOF && c != '\n')      /* read string and print */
         if(!bad[toupper(c)] && !(isupper(c) && bad['+']))
               putchar(c);
 

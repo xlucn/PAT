@@ -6,7 +6,7 @@ int main()
     char c;
     int count[26] = {0}, max = 25;
 
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
         if(isalpha(c))
             count[tolower(c) - 'a']++;
 

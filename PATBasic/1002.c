@@ -6,7 +6,7 @@ int main()
     char c, *pinyins[] = {"ling", "yi", "er", "san", "si",
                           "wu", "liu", "qi", "ba", "jiu"};
 
-    while((c = getchar()) != '\n')
+    while((c = getchar()) != EOF && c != '\n')
         sum += c - '0';
 
     if(sum / 100)                           /* hundreds */

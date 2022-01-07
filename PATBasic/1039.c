@@ -5,7 +5,7 @@ int main()
     char c;
     int record[128] = {0};  /* all ASCII characters */
     while((c = getchar()) != '\n')  record[(int)c]++;
-    while((c = getchar()) != '\n')  record[(int)c]--;
+    while((c = getchar()) != EOF && c != '\n')  record[(int)c]--;
 
     int more = 0, less = 0;
     for(int i = 0; i < 128; i++)
