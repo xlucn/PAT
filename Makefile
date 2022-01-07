@@ -6,7 +6,7 @@ BINARIES:=$(SOURCES:.c=)
 all: $(BINARIES)
 
 %: %.c
-	clang -DONLINE_JUDGE -O2 -Wall -std=c99 -pipe $< -lm -o $@
+	clang -g -DONLINE_JUDGE -Wall -std=c99 -pipe $< -lm -o $@
 
 clean:
 	rm -f $(BINARIES)
