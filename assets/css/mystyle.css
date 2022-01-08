@@ -1,59 +1,60 @@
 /* Turn on word wrap. e.g. in Basic 1094 there is a long number */
 p {
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 /* Remove unwanted margins, paddings and borders in rouge code highlighter
  * after enabled the line number */
 div.highlight{
-    margin:0px;
+    margin: 0px;
 }
 .rouge-table{
-    width:0;
-    margin:0px;
-    border:0px;
+    width: 0;
+    margin: 0px;
+    border: 0px;
 }
 .rouge-gutter.gl{
-    border-left:0px;
-    padding:0px;
-    border-right:2px solid #e8e8e8;
-    border-top:0px;
-    border-bottom:0px;
-    text-align:right;
-    color:gray;
+    border-left: 0px;
+    padding: 0px;
+    border-right: 2px solid #e8e8e8;
+    border-top: 0px;
+    border-bottom: 0px;
+    text-align: right;
+    color: gray;
 }
 .rouge-code{
-    border:0px;
-    padding:0px;
+    border: 0px;
+    padding: 0px;
 }
 .lineno{
-    margin-bottom:0px;
-    border:0px;
+    margin-bottom: 0px;
+    border: 0px;
 }
 .rouge-code pre{
-    margin-bottom:0px;
-    border:0px;
+    margin-bottom: 0px;
+    border: 0px;
 }
 .highlight code{
-    border:0px;
+    border: 0px;
 }
 pre, code{
-    font-size:13px;
+    font-size: 13px;
+    tab-size: 4;
 }
 
 /* post meta */
 .meta-tags, .meta-category, .meta-date {
     display: inline-block;
     margin: 3px 4px;
-    padding:0px 4px;
+    padding: 0px 4px;
 }
-.meta-category, .meta-tags, .meta-category:visited, .meta-tags:visited {
+.meta-category, .meta-tags, .meta-category: visited, .meta-tags:visited {
     padding: 0px 12px;
     background-color: #2a7ae21a;
     border-radius: 4px;
     color: #2a7ae2;
 }
-.meta-category:hover, .meta-tags:hover {
+.meta-category: hover, .meta-tags:hover {
     text-decoration: none;
     background-color: #2a7ae2;
     color: white;
@@ -65,8 +66,8 @@ pre, code{
 
 /* post list */
 .post-list-title {
-    margin-top:16px;
-    margin-bottom:0px;
+    margin-top: 16px;
+    margin-bottom: 0px;
 }
 
 /* tags page */
@@ -88,24 +89,24 @@ pre, code{
 }
 
 /* header links */
-.page-link:hover, .site-title:hover{
+.page-link: hover, .site-title:hover{
     text-decoration: none;
     color: #2a7ae2;
 }
 /* fixed header */
 .site-header{
-    position:fixed;
-    width:100%;
-    background-color:white;
-    z-index:100;
-    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);  /* same as google.com */
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);  /* same as google.com */
 }
 main{
-    margin-top:60px;
+    margin-top: 60px;
 }
 @media screen and (max-width: 600px){
     .site-nav{
-        position:fixed;
+        position: fixed;
     }
 }
 .anchor {       /* move anchor up */
@@ -116,16 +117,16 @@ main{
 
 /* favicon beside site title */
 .favicon{
-    margin-right:8px;
-    vertical-align:middle;
+    margin-right: 8px;
+    vertical-align: middle;
 }
 .site-title span{
-    padding-top:4px;
-    vertical-align:middle;
+    padding-top: 4px;
+    vertical-align: middle;
 }
 
 /* gitalk quote font too big */
 blockquote {
-    font-size:16px;
-    font-style:inherit;
+    font-size: 16px;
+    font-style: inherit;
 }
