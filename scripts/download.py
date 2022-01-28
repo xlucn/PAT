@@ -120,8 +120,25 @@ class PATDownloader(Firefox):
         for tag in content_soup.find_all('code'):
             if tag.parent.name == 'pre':
                 tag.parent.replace_with(tag.wrap(soup.new_tag("pre")))
+        html2text.config.MARK_CODE = True
         content_md = html2text.html2text(str(content_soup))
 
+        md_list = content_md.splitlines()
+        end = 0
+        while True:
+            try:
+                start = md_list.index('[code]', end)
+                md_list.pop(md_list.index('', start))
+                end = md_list.index('[/code]', start) - 1
+                md_list.pop(end)
+                md_list[start] = '```'
+                md_list[end] = '```'
+                for i in range(start + 1, end):
+                    md_list[i] = md_list[i][4:]
+            except ValueError:
+                break
+
+        content_md = '\n'.join(md_list)
         sample_in, sample_out = extract_sample_IO(content_soup)
         return content_md, sample_in, sample_out
 
