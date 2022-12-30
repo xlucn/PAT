@@ -26,7 +26,7 @@ Github Pages + Jekyll搭建的静态博客
 - 做了一定美化，css的改变集中在`assets/css/mystyle.css`中
 - 添加了分类（顶级、甲级、乙级）和标签
 - 支持Mathjax，因此可以原样显示题目中的公式等
-- 利用[gitalk](https://github.com/gitalk/gitalk)评论系统
+- 利用[giscus](https://github.com/giscus/giscus)评论系统
 
 ## Todo list
 

@@ -124,9 +124,3 @@ main{
     padding-top: 4px;
     vertical-align: middle;
 }
-
-/* gitalk quote font too big */
-blockquote {
-    font-size: 16px;
-    font-style: inherit;
-}
