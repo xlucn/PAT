@@ -29,6 +29,7 @@ class FileBuilder:
     """
     build a markdown file.
     """
+
     def __init__(self, category, index, other_platforms):
         self._github = "https://github.com/OliverLew/PAT/blob/master"
         self._gh_pages = "https://oliverlew.github.io/PAT"
@@ -52,30 +53,28 @@ class FileBuilder:
         categories = category_str[self.c]
         # Check validity
         if re.match(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}', date) is None:
-            logging.info("{}{}: "
-                         "date should be 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'"
-                         "date is now: {}".format(self.c, self.i, date))
+            logging.info(f"{self.c}{self.i} date {date}: "
+                         "date should be 'YYYY-MM-DD HH:MM[:SS +/-TTTT]'")
             exit(1)
         if not isinstance(title, str):
-            logging.info("{}{}: title should be string"
-                         "title is now: {}".format(self.c, self.i, title))
+            logging.info(f"{self.c}{self.i}: title should be string"
+                         f"title is now: {title}")
             exit(1)
         if not isinstance(categories, str):
-            logging.info("{}{}: categories should be a string"
-                         "categories is now: {}".format(self.c, self.i,
-                                                        categories))
+            logging.info(f"{self.c}{self.i}: categories should be a string"
+                         "categories is now: {categories}")
             exit(1)
         if not isinstance(tags, list):
-            logging.info("{}{}: tags should be a list"
-                         "tags is now: {}".format(self.c, self.i, tags))
+            logging.info(f"{self.c}{self.i}: tags should be a list"
+                         "tags is now: {tags}")
             exit(1)
         frontmatter = "---\n"
         frontmatter += "layout: post\n"
-        frontmatter += "date: {}\n".format(date)
-        frontmatter += "title:  \"{}\"\n".format(title)
-        frontmatter += "categories: {}\n".format(categories)
+        frontmatter += f"date: {date}\n"
+        frontmatter += f"title:  \"{title}\"\n"
+        frontmatter += f"categories: {categories}\n"
         frontmatter += "tags: [{}]\n".format(', '.join(tags))
-        frontmatter += "permalink: {}\n".format(self._permalink)
+        frontmatter += f"permalink: {self._permalink}\n"
         frontmatter += "---"
         return frontmatter
 
