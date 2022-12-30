@@ -4,6 +4,14 @@ Github Pages + Jekyll搭建的静态博客
 
 博客地址： https://oliverlew.github.io/PAT
 
+博客采用Github Pages，原因是：
+
+- 基于Jekyll模板，页面可定制性高
+- 支持markdown，Mathjax（数学公式）
+- 可以用模板保持文章排版的高度一致性
+- 脚本直接抓取原题网页内容，最大程度保留原题格式（包括数学公式和图片）。
+- 还使用了giscus评论系统，大家可以试试去评论～
+
 本地依赖的Python模块:
 
 - selenium (需要firefox)
