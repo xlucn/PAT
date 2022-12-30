@@ -1,5 +1,6 @@
 _site
 _articles/others/
 .jekyll*
+.bundle/
 PAT*/*
 !PAT*/*.c
