@@ -1,6 +1,6 @@
 # PAT习题C语言题解
 
-![](https://github.com/oliverlew/pat/workflows/Sample%20Test/badge.svg)
+![](https://github.com/xlucn/pat/workflows/Sample%20Test/badge.svg)
 
 ## 代码
 
@@ -14,11 +14,11 @@
 
 ## 解题说明
 
-https://oliverlew.github.io/PAT/
+https://xlucn.github.io/PAT/
 
 博客代码在仓库的`gh-pages`分支。
 
 [pintia]: https://pintia.cn/problem-sets
-[issues]: https://github.com/OliverLew/PAT/issues
-[pr]: https://github.com/OliverLew/PAT/pulls
+[issues]: https://github.com/xlucn/PAT/issues
+[pr]: https://github.com/xlucn/PAT/pulls
 [mail]: mailto:oliver_lew@outlook.com
