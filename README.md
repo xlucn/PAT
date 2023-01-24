@@ -2,7 +2,7 @@
 
 Github Pages + Jekyll搭建的静态博客
 
-博客地址： https://oliverlew.github.io/PAT
+博客地址： https://xlucn.github.io/PAT
 
 博客采用Github Pages，原因是：
 
@@ -49,12 +49,12 @@ Github Pages + Jekyll搭建的静态博客
 - [x] Add commenting system. Added Gitalk in [this pull request][add gitalk]
 - [x] Add page analysis tool, added Google analytics in [this commit][add GA]
 
-[first run]: https://github.com/OliverLew/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
-[add date]: https://github.com/OliverLew/PAT/commit/e6e23b82b4f12b895d2504602f8b4a6b9e912f41
-[use collections]: https://github.com/OliverLew/PAT/pull/10
-[use include]: https://github.com/OliverLew/PAT/pull/17
-[add categories]: https://github.com/OliverLew/PAT/commit/2f74e56775f5ec7c1ab31c27f23d3071b178784f
-[add tags]: https://github.com/OliverLew/PAT/pull/15
-[add GA]: https://github.com/OliverLew/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
-[add mathjax]: https://github.com/OliverLew/PAT/pull/12
-[add gitalk]: https://github.com/OliverLew/PAT/pull/16
+[first run]: https://github.com/xlucn/PAT/commit/a06f099b2a64138612128b2c9227b2b2514ff617
+[add date]: https://github.com/xlucn/PAT/commit/e6e23b82b4f12b895d2504602f8b4a6b9e912f41
+[use collections]: https://github.com/xlucn/PAT/pull/10
+[use include]: https://github.com/xlucn/PAT/pull/17
+[add categories]: https://github.com/xlucn/PAT/commit/2f74e56775f5ec7c1ab31c27f23d3071b178784f
+[add tags]: https://github.com/xlucn/PAT/pull/15
+[add GA]: https://github.com/xlucn/PAT/commit/54db3d618760df626872c6fe42e861709ca1d962
+[add mathjax]: https://github.com/xlucn/PAT/pull/12
+[add gitalk]: https://github.com/xlucn/PAT/pull/16
